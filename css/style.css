@@ -1,0 +1,47 @@
+body{
+  background-image: url(../img/cartix-pic.jpg) !important;
+  background-size: cover;
+  background-attachment: fixed;
+
+}
+.btn-cartix{
+  position:relative;
+  left: 7%;
+  margin-top: 47%;
+  border-radius: 20px;
+  width: 100px;
+  height: 45.93px;
+  font-weight: bold;
+  background-color: #4C0014;
+  color: white;
+  border: 2px solid #4C0014;
+}
+
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 200;
+    top: 0;
+    left: 0;
+    background-color: white;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    text-align:center;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+.opacity{
+  background-color: rgba(0, 0, 0, 1);
+    background-size: cover;
+    z-index: 100px;
+    background-attachment: fixed;
+}
