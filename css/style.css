@@ -40,8 +40,8 @@ body{
     margin-left: 50px;
 }
 .opacity{
-  background-color: rgba(0, 0, 0, 1);
-    background-size: cover;
-    z-index: 100px;
-    background-attachment: fixed;
+    background-color: rgb(0, 0, 0);
+    background-size: 200px 200px;
+    z-index: 100;
+    
 }
