@@ -2,21 +2,29 @@ body{
   background-image: url(../img/cartix-pic.jpg) !important;
   background-size: cover;
   background-attachment: fixed;
-  
+
 
 }
-.btn-cartix{
-  position:relative;
-  left: 30px;
-  margin-top: 690px;
-  border-radius: 20px;
-  width: 100px;
-  height: 45.93px;
-  font-weight: bold;
-  background-color: #4C0014;
-  color: white;
-  border: 2px solid #4C0014;
-}
+footer{
+    position: absolute;
+     bottom: 0;
+ }
+
+
+ .footer .btn-cartix-bottom{
+     margin-left: 50px;
+     margin-bottom: 30px;
+ }
+
+ .btn-cartix{
+   border-radius: 20px;
+   width: 100px;
+   height: 50px;
+   font-weight: bold;
+   background-color: #4C0014;
+   color: white;
+   border: 2px solid #4C0014;
+ }
 
 .sidenav {
     height: 100%;
