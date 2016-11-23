@@ -4,18 +4,8 @@ body{
   background-attachment: fixed;
 
 }
-.btn-cartix{
-  position:relative;
-  left: 7%;
-  margin-top: 47%;
-  border-radius: 20px;
-  width: 100px;
-  height: 45.93px;
-  font-weight: bold;
-  background-color: #4C0014;
-  color: white;
-  border: 2px solid #4C0014;
-}
+
+
 
 
 .sidenav {
@@ -44,4 +34,25 @@ body{
     background-size: 200px 200px;
     z-index: 100;
     
+}
+
+.footer{
+    position: absolute;
+    bottom: 0;
+}
+
+
+.footer .btn-cartix-bottom{
+    margin-left: 50px;
+    margin-bottom: 30px;
+}
+
+.btn-cartix{
+  border-radius: 20px;
+  width: 100px;
+  height: 30px;
+  font-weight: bold;
+  background-color: #4C0014;
+  color: white;
+  border: 2px solid #4C0014;
 }
