@@ -2,12 +2,13 @@ body{
   background-image: url(../img/cartix-pic.jpg) !important;
   background-size: cover;
   background-attachment: fixed;
+  
 
 }
 .btn-cartix{
   position:relative;
-  left: 7%;
-  margin-top: 47%;
+  left: 30px;
+  margin-top: 690px;
   border-radius: 20px;
   width: 100px;
   height: 45.93px;
@@ -16,7 +17,6 @@ body{
   color: white;
   border: 2px solid #4C0014;
 }
-
 
 .sidenav {
     height: 100%;
