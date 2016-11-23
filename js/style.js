@@ -1,6 +1,6 @@
 function openNav() {
     document.getElementById("mySidenav").style.width = "50%";
-    document.body.style.backgroundColor = "lightgray";
+    document.body.style.backgroundColor = "#fff";
 }
 
 function closeNav() {
