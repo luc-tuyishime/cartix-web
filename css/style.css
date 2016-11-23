@@ -50,7 +50,8 @@ body{
 .btn-cartix{
   border-radius: 20px;
   width: 100px;
-  height: 30px;
+  height: 40px;
+  line-height: 20px;
   font-weight: bold;
   background-color: #4C0014;
   color: white;
