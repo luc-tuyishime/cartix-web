@@ -1,5 +1,4 @@
-$("document").ready(function(){
-    $("#search").hover(function(e){
+$("#search").hover(function(e){
         
         setTimeout(function(){
             $("#search").attr("placeholder","Search");
@@ -7,4 +6,3 @@ $("document").ready(function(){
     }, function(e){
          $("#search").attr("placeholder","");
     });
-});
