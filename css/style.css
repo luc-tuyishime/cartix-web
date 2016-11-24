@@ -105,8 +105,18 @@ body {
     background-color:#EBEBEB;
     margin-top: 190px;
     padding: 120px;
+    
+    
 }
 .text_2 {
     font-size: 15px;
     font-family: 'Open Sans', sans-serif;
+}
+
+
+.navbar-sidebar{
+    background-color: #4C0014;
+    border-radius: 0px !important;
+    height: 94px;
+    margin-top: -60px;
 }
