@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="cartix_shape" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+	 y="0px" width="500px" height="500px" viewBox="0 0 500 500" enable-background="new 0 0 500 500" xml:space="preserve">
+<g id="cartix_Background_vector" opacity="0.2">
+	<circle id="circle_3_1_" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="250" cy="250.001" r="168.582"/>
+	
+		<circle id="circle_4" fill="none" stroke="#FFFFFF" stroke-width="0.25" stroke-miterlimit="10" cx="250" cy="250.001" r="220.453"/>
+	<g id="circle_5">
+		
+			<circle fill="none" stroke="#FFFFFF" stroke-width="0.25" stroke-miterlimit="10" stroke-dasharray="11.9865,11.9865" cx="250" cy="250" r="247.993"/>
+	</g>
+	
+		<circle id="circle_2" fill="none" stroke="#FFFFFF" stroke-width="0.25" stroke-miterlimit="10" cx="250" cy="250.001" r="128.793"/>
+	<path id="circle_1" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" d="M325.583,303.983
+		c-29.815,41.746-87.826,51.426-129.571,21.609c-41.747-29.816-51.41-87.83-21.594-129.574
+		c29.816-41.748,87.823-51.425,129.57-21.608C345.733,204.228,355.398,262.237,325.583,303.983z"/>
+	<g id="compass" opacity="0.3">
+		<polygon fill="#FFFFFF" points="302.102,287.214 101.805,458.89 102.942,455.956 197.896,212.787 398.194,41.114 396.959,44.292 
+					"/>
+		<polygon opacity="0.3" fill="#8E2B70" enable-background="new    " points="302.102,287.214 101.805,458.89 102.942,455.956 
+			396.959,44.292 		"/>
+	</g>
+	<circle id="compass_centre_cirlce" opacity="0.2" fill="#FFFFFF" cx="256.048" cy="241.501" r="10.999"/>
+</g>
+</svg>
