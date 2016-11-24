@@ -9,5 +9,3 @@ function closeNav() {
     document.body.style.backgroundColor = "white";
     document.getElementById("call-opacity").className = "";
 }
-
- 

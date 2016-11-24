@@ -104,7 +104,12 @@ body {
 .upload-file {
     background-color:#EBEBEB;
     margin-top: 190px;
-    padding: 120px;
+    padding: 100px;
+    position: absolute;
+    left: 100px;
+    right: 75px;
+
+
 }
 .text_2 {
     font-size: 15px;
