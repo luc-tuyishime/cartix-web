@@ -6,67 +6,12 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <link rel="stylesheet" href="css/bootstrap.min.css">
       <link rel="stylesheet" href="css/style.css" type="text/css">
-      <link rel="">
-      <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-      <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+      <link rel="//fonts.googleapis.com/css?family=Open+Sans">
+      <link href='//fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
    </head>
-   <body>
-      <div class="container">
-         <div class="row">
-            <div id="mySidenav" class="sidenav">
-               <div class="background">
-                  <div class="col-md-2">
-                     <img src="img/cartix-icon.png">
-                  </div>
-                  <div class="col-md-4"></div>
-                  <div class="row">
-                     <div class="col-md-4">
-                        <form action="" class="search-form">
-                           <div class="form-group has-feedback">
-                              <label for="search" class="sr-only">Search</label>
-                              <input type="text" class="form-control" name="search" id="search" placeholder="search">
-                              <span class="glyphicon glyphicon-search form-control-feedback"></span>
-                           </div>
-                        </form>
-                     </div>
-                  </div>
-                  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-               </div>
-               <div class="container">
-                  <div class="row">
-                     <div class="col-md-1"></div>
-                     <div class="col-md-6">
-                        <div class="upload-file">
-                           <p class="text_1">Upload the field Data compilation sheet here</p>
-                           <p class="text_2">Format: csv, xls, xlsx</p>
-                        </div>
-                     </div>
-                     </div class="col-md-1">
-                  </div>
-                  <!--footer-->
-                  <footer class="footer">
-                     <div class="container">
-                        <div class="row">
-                           <div class="col[md-2"></div>
-                           <div class="col-md-4">
-                              <p class="copyright">© Copyright cartix 2016</p>
-                           </div>
-                           <div class="col-md-4">
-                              <p class="copyright_">Hope Rwanda</p>
-                           </div>
-                           <div class="col-md-2"></div>
-                        </div>
-                     </div>
-                     <!--Footer-->
-                  </footer>
-               </div>
-            </div>
-         </div>
-      </div>
-      </div>
-      </div>
+   <body background="img/cartix-pic_.jpg">
       <div class="" id="call-opacity"></div>
-      <div class="container-fluid">
       <footer class="footer">
          <div class="container-fluid">
             <div class="row">
@@ -77,8 +22,59 @@
             </div>
          </div>
       </footer>
+      <section id="mySidenav" class="sidenav">
+         <nav class="navbar navbar-sidebar">
+            <div class="container-fluid">
+               <div class="navbar-header">
+                  <a class="navbar-brand" href="#">
+                  <img alt="" src="img/cartix-icon.png">
+                  </a>
+               </div>
+               <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            </div>
+         </nav>
+         <!--Upload btn-->
+         <div class="box-center">
+            <div class="input-group btn-upload">
+               <span class="input-group-btn">
+               <button id="fake-file-button-browse" type="button" class="btn btn-default">
+               <span class="glyphicon glyphicon-file"></span>
+               </button>
+               </span>
+               <input type="file" id="files-input-upload" style="display:none">
+               <input type="text" id="fake-file-input-name" disabled="disabled" placeholder="File not selected" class="form-control">
+               <span class="input-group-btn">
+               <button type="button" class="btn btn-default" disabled="disabled" id="fake-file-button-upload">
+               <a href="data.html"><span class="glyphicon glyphicon-arrow-right"></span></a>
+               </button>
+               </span>
+            </div>
+            <p class="text_1">Upload the field Data compilation sheet here</p>
+            <p class="text_2">Format: csv, xls, xlsx</p>
+       </div>
+         <div class="container-fluid">
+            <div class="download-data">
+               <a href="" style="text-decoration:none">
+                  <p>Download Data compilation sheet Template here</p>
+               </a>
+            </div>
+         </div>
+         <footer class="footer">
+            <div class="container">
+               <div class="row">
+                  <div class="col-md-3">
+                     <p class="footer-text">© Copyright cartix 2016</p>
+                  </div>
+                  <div class="col-md-7">
+                     <p class="footer-text">Hope Rwanda<span class="glyphicon glyphicon-user"></span></p>
+                  </div>
+               </div>
+            </div>
+         </footer>
+      </section>
       <script src="js/jquery.min.js"></script>
       <script src="js/bootstrap.min.js"></script>
       <script src="js/style.js"></script>
+      <script src="js/script.js"></script>
    </body>
 </html>
