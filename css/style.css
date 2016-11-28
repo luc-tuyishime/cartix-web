@@ -5,6 +5,13 @@ body {
     background-attachment: fixed;
     font-family: 'Open Sans', sans-serif;
 }
+.bg-1 {
+    background-image: url(../img/bg-image.jpg)!important;
+    font-family: 'Open Sans', sans-serif;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    height: 100%;
+}
 .sidenav {
     height: 100%;
     width: 0;
@@ -25,6 +32,15 @@ body {
     font-size: 36px;
     margin-left: 50px;
     color: white;
+}
+.sidenav .closebtn_2 {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+    color: white;
+    margin-top: 40px;
 }
 .opacity {
     background-color: rgba(0, 0, 0, 0.9);
@@ -62,6 +78,7 @@ body {
     color: white;
     border: 2px solid #009710;
     z-index: 100;
+    float: left;
 }
 .background {
     border: 1px solid #4C0014;
@@ -76,7 +93,6 @@ body {
     width: 30px;
     height: 35px;
 }
-
 .upload-file {
     background-color: #EBEBEB;
     margin-top: 190px;
@@ -91,6 +107,12 @@ body {
     border-radius: 0px !important;
     height: 94px;
     margin-top: -60px;
+}
+.nav-side {
+    background-color: #4C0014;
+    border-radius: 0px !important;
+    margin-top: -60px;
+    margin-left: auto;
 }
 .navbar-brand img {
     width: 25px;
@@ -107,8 +129,7 @@ body {
     background: #EBEBEB;
     text-align: center;
 }
-
-.box-center > input {
+.table-center {} .box-center > input {
     display: none;
 }
 .box-center i {
@@ -129,12 +150,36 @@ body {
     color: #3D5AFE;
     font-weight: bold;
 }
-.download-data p:hover{
-  color: #1A237E;
+.download-data p:hover {
+    color: #1A237E;
 }
 .footer-text {
     font-size: 11px;
     color: #BDBDBD;
+}
+.footer-text_ {
+    font-size: 11px;
+    color: #BDBDBD;
+    margin-top: 97px;
+    text-align: center;
+}
+.footer-text___ {
+    font-size: 11px;
+    color: #BDBDBD;
+    margin-top: 131px;
+    text-align: center;
+}
+.recovery-footer {
+    font-size: 11px;
+    color: #BDBDBD;
+    margin-top: 363px;
+    text-align: center;
+}
+.footer_pwd {
+    font-size: 11px;
+    color: #BDBDBD;
+    margin-top: 348px;
+    text-align: center;
 }
 .footer-style {
     margin-top: 40px;
@@ -149,7 +194,7 @@ body {
 }
 .navbar-default img {
     width: 50px;
-    margin-top: 30px;
+    margin-top: 10px;
 }
 .dropdown-list {
     padding-top: 40px;
@@ -251,4 +296,119 @@ td {
 }
 .button-save {
     margin-top: 15px;
+}
+.cartix img {
+    margin-bottom: 40px;
+    margin-top: 50px;
+    height: 34px;
+}
+.logo-center img {
+    max-width: 110px;
+    max-height: 36px;
+    margin-top: 40px;
+}
+h1 {
+    text-align: center;
+    margin-top: 150px;
+}
+h2 {
+    text-align: center;
+    margin-top: 150px;
+}
+.forgot-password {
+    text-align: center;
+    color: white;
+    font-size: 13px;
+    color: #BDBDBD;
+    margin-top: 25px;
+}
+.text_ {
+    text-align: center;
+    color: white;
+    margin-top: 166px;
+    font-size: 13px;
+    color: #BDBDBD;
+}
+.text__ {
+    text-align: center;
+    color: white;
+    font-size: 13px;
+    color: #BDBDBD;
+}
+.text_2 {
+    text-align: center;
+    color: white;
+    margin-top: 100px;
+    font-size: 13px;
+    color: #BDBDBD;
+}
+.text_3 {
+    text-align: center;
+    color: white;
+    padding-top: 17px;
+    font-size: 13px;
+    color: #BDBDBD;
+}
+.btn-success {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #009710!important;
+    border-radius: 20px;
+    width: 90px;
+    height: 37px;
+    margin-top: 15px;
+}
+.btn-success_ {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #009710!important;
+    border-radius: 20px;
+    height: 37px;
+    margin-top: 15px;
+}
+.form-style {
+    margin-top: 12px;
+}
+.sign-up-style {
+    font-weight: bold;
+    color: white;
+}
+.sign-up-style:hover {
+    color: #1A237E;
+}
+.forgot-password_ {
+    font-weight: bold;
+    color: white;
+}
+.forgot-password_:hover {
+    color: #1A237E;
+}
+.login {
+    color: white;
+}
+#email,
+#pwd {
+    border: 1px solid #212121;
+    background-color: #212121;
+    !important;
+    color: white;
+    opacity: 0.70;
+}
+input[type="placeholder"] {
+    color: white;
+    opacity: 2;
+}
+a:hover {
+    text-decoration: none;
+}
+.login-box {
+    margin-top: 60px;
+}
+.pwd_recovery {
+    margin-top: 20px;
+}
+#Fname text {
+    color: #FFF;
 }

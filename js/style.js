@@ -56,17 +56,18 @@ function closeNav() {
     document.getElementById("call-opacity").className = "";
 }
 
+function openNav1() {
+    document.getElementById("mySidenav_").style.width = "900px";
+    document.body.style.backgroundColor = "#fff";
+    document.getElementById("call-opacity").className = "opacity";
+}
 
+function closeNav_() {
+    document.getElementById("mySidenav_").style.width = "0";
+    document.body.style.backgroundColor = "white";
+    document.getElementById("call-opacity").className = "";
+}
 
-document.getElementById('fake-file-button-browse').addEventListener('click', function() {
-	document.getElementById('files-input-upload').click();
-});
-
-document.getElementById('files-input-upload').addEventListener('change', function() {
-	document.getElementById('fake-file-input-name').value = this.value;
-
-	document.getElementById('fake-file-button-upload').removeAttribute('disabled');
-});
 
 <!-- Initialize the plugin: -->
 
@@ -99,3 +100,7 @@ $(document).ready(function() {
     // $("#my-multi-select").multiselect('updateButtonText');
 
 });
+
+$('.ui.sidebar')
+  .sidebar('toggle')
+;
