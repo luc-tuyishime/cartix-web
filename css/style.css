@@ -178,6 +178,11 @@ body {
 }
 .footer-style {
     margin-top: 40px;
+    position: absolute;
+   right: 0;
+   bottom: 0;
+   left: 0;
+   padding: 1rem;
 }
 .btn-upload {
     padding-top: 84px;
@@ -429,4 +434,14 @@ a:hover {
  bottom: 0;
  left: 0;
  padding: 1rem;
+}
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: white;
+  opacity:2;
+  font-size: 13px;
+}
+label, input {
+  font-family: sans-serif;
+  font-weight:bolder;
+  /*font-size:13px; */
 }
