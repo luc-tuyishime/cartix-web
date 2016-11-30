@@ -4,14 +4,9 @@ body {
     background-size: cover;
     background-attachment: fixed;
     font-family: 'Open Sans', sans-serif;
+      background-size: 100% 100%;
 }
-.bg-1 {
-    background-image: url(../img/bg-image.jpg)!important;
-    font-family: 'Open Sans', sans-serif;
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    height: 100%;
-}
+
 .sidenav {
     height: 100%;
     width: 0;
@@ -160,25 +155,25 @@ body {
 .footer-text_ {
     font-size: 11px;
     color: #BDBDBD;
-    margin-top: 97px;
+    /*margin-top: 97px;*/
     text-align: center;
 }
 .footer-text___ {
     font-size: 11px;
     color: #BDBDBD;
-    margin-top: 131px;
+
     text-align: center;
 }
 .recovery-footer {
     font-size: 11px;
     color: #BDBDBD;
-    margin-top: 363px;
+
     text-align: center;
 }
 .footer_pwd {
     font-size: 11px;
     color: #BDBDBD;
-    margin-top: 348px;
+
     text-align: center;
 }
 .footer-style {
@@ -333,7 +328,7 @@ h2 {
     text-align: center;
     color: white;
     font-size: 13px;
-    color: #BDBDBD;
+
 }
 .text_2 {
     text-align: center;
@@ -368,6 +363,20 @@ h2 {
     height: 37px;
     margin-top: 15px;
 }
+.btn-default{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #009710!important;
+  border-radius: 20px;
+  border: 1px solid #009710;
+  height: 37px;
+  margin-top: 15px;
+  color: white;
+}
+ .btn-default:hover{
+   color: white;
+ }
 .form-style {
     margin-top: 12px;
 }
@@ -376,7 +385,7 @@ h2 {
     color: white;
 }
 .sign-up-style:hover {
-    color: #1A237E;
+    color: #E0E0E0;
 }
 .forgot-password_ {
     font-weight: bold;
@@ -396,9 +405,10 @@ h2 {
     color: white;
     opacity: 0.70;
 }
-input[type="placeholder"] {
+input[type="text"] {
     color: white;
     opacity: 2;
+    font-size: 12px;
 }
 a:hover {
     text-decoration: none;
@@ -411,4 +421,12 @@ a:hover {
 }
 #Fname text {
     color: #FFF;
+}
+
+.footer-contain{
+  position: absolute;
+ right: 0;
+ bottom: 0;
+ left: 0;
+ padding: 1rem;
 }

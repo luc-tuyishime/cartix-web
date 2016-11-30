@@ -10,7 +10,7 @@
       <link href='//fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
    </head>
-   <body>
+   <body background="img/bg-image.jpg">
       <div class="container-fluid bg-1">
          <div class="row">
             <div class="logo-center">
@@ -21,16 +21,16 @@
             <div class="row">
                <h1 class="login">log in</h1>
                <div class="col-md-4 col-md-offset-4">
-                  <form>
+                  <form action="demo_form.asp" method="post">
                      <div class="form-style">
                         <div class="form-group">
-                           <input type="email"  class="form-control" placeholder="Username" id="email">
+                           <input type="text"  class="form-control" placeholder="Username" id="email" required>
                         </div>
                         <div class="form-group">
-                           <input type="password" class="form-control form-style" placeholder="Password"  id="pwd">
+                           <input type="password" class="form-control form-style" placeholder="Password"  id="pwd" required>
                         </div>
-                        <p class="forgot-password">Forgot your password? <a href=""><span class="forgot-password_">Click here</a></p>
-                        <button type="submit" class="btn btn-success">Log in</button>
+                        <p class="forgot-password">Forgot your password? <a href="pwd-recovery.html"><span class="forgot-password_">Click here</a></p>
+                        <a href="organisation_form.html"><button type="submit" class="btn btn-success">Log in</button></a>
                   </form>
                   </div>
                </div>
@@ -38,11 +38,11 @@
          </div>
          <div class="container">
             <div class="row">
-               <p class="text_">Don’t have an account?<a href=""><span class="sign-up-style"> Sign up</span></a></p>
+               <p class="text_">Don’t have an account?<a href="sign-up.html"><span class="sign-up-style"> Sign up</span></a></p>
             </div>
          </div>
          <footer>
-            <div class="container">
+            <div class="container footer-contain">
                <div class="row">
                   <p class="footer-text___">© Copyright cartix 2016</p>
                </div>

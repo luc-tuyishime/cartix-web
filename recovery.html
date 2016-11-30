@@ -10,7 +10,7 @@
       <link href='//fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
    </head>
-   <body>
+   <body background="img/bg-image.jpg">
       <div class="container-fluid bg-1">
          <div class="row">
             <div class="logo-center">
@@ -21,10 +21,10 @@
             <div class="row">
                <h2 class="login">Password recovery</h2>
                <div class="col-md-4 col-md-offset-4">
-                  <form>
+                  <form action="demo_form.asp" method="post">
                      <div class="form-style">
                         <div class="form-group">
-                           <input type="email"  class="form-control form-style" placeholder="Email" id="email">
+                           <input type="email"  class="form-control form-style" placeholder="Email" id="email" required>
                         </div>
                         <button type="submit" class="btn btn-success">Log in</button>
                   </form>
@@ -33,7 +33,7 @@
             </div>
          </div>
          <footer>
-            <div class="container">
+            <div class="container footer-contain">
                <div class="row">
                   <p class="recovery-footer">© Copyright cartix 2016</p>
                </div>
