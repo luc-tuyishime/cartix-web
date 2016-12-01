@@ -4,9 +4,8 @@ body {
     background-size: cover;
     background-attachment: fixed;
     font-family: 'Open Sans', sans-serif;
-      background-size: 100% 100%;
+    background-size: 100% 100%;
 }
-
 .sidenav {
     height: 100%;
     width: 0;
@@ -36,7 +35,6 @@ body {
     margin-left: 50px;
     color: white;
     margin-top: 40px;
-
 }
 .opacity {
     background-color: rgba(0, 0, 0, 0.9);
@@ -157,32 +155,30 @@ body {
     font-size: 11px;
     color: #BDBDBD;
     /*margin-top: 97px;*/
+
     text-align: center;
 }
 .footer-text___ {
     font-size: 11px;
     color: #BDBDBD;
-
     text-align: center;
 }
 .recovery-footer {
     font-size: 11px;
     color: #BDBDBD;
-
     text-align: center;
 }
 .footer_pwd {
     font-size: 11px;
     color: #BDBDBD;
-
     text-align: center;
 }
 .footer-style {
     position: absolute;
-   right: 0;
-   bottom: 0;
-   left: 0;
-   padding: 1rem;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
 }
 .btn-upload {
     padding-top: 84px;
@@ -333,7 +329,6 @@ h2 {
     text-align: center;
     color: white;
     font-size: 13px;
-
 }
 .text_2 {
     text-align: center;
@@ -368,21 +363,31 @@ h2 {
     height: 37px;
     margin-top: 15px;
 }
-.btn-pwd{
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  background-color: #009710!important;
-  border-radius: 20px;
-  border: 1px solid #009710;
-  height: 37px;
-  margin-top: 15px;
-  color: white;
-  font-weight:lighter;
+.btn-pwd {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #009710!important;
+    border-radius: 20px;
+    border: 1px solid #009710;
+    height: 37px;
+    margin-top: 15px;
+    color: white;
+    font-weight: lighter;
 }
- .btn-pwd:hover{
-   color: white;
- }
+#text,
+#pwd,
+#email {
+    font-size: 14.40px;
+    border: 1px solid #212121;
+    background-color: #212121;
+    !important;
+    color: white;
+    opacity: 0.90;
+}
+.btn-pwd:hover {
+    color: white;
+}
 .form-style {
     margin-top: 12px;
 }
@@ -428,34 +433,27 @@ a:hover {
 #Fname text {
     color: #FFF;
 }
-
-.footer-contain{
-  position: absolute;
- right: 0;
- bottom: 0;
- left: 0;
- padding: 1rem;
+.footer-contain {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
 }
-::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-  color: white;
-  opacity:2;
-  font-size: 13px;
+::-webkit-input-placeholder {
+    color: white;
+    opacity: 2;
+    font-size: 13px;
+    font-weight: bold;
 }
-input[placeholder]:focus{
-  font-weight: bold;
-  color: white;
-  opacity:2;
-}
-label, input {
-  /*font-family: sans-serif;
-  font-weight:500;*/
-  /*font-size:13px; */
+input[placeholder]:focus {
+    font-weight: bold;
+    color: white;
+    opacity: 2;
 }
 input:focus::-webkit-input-placeholder {
     color: #FAFAFA;
 }
-
-#side-content-data{
-  display: none;
-
+#side-content-data {
+    display: none;
 }
