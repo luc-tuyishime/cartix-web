@@ -8,6 +8,7 @@
       <link rel="stylesheet" href="css/style.css" type="text/css">
       <link rel="//fonts.googleapis.com/css?family=Open+Sans">
       <link href='//fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
    </head>
    <body background="img/cartix-pic_.jpg">
@@ -23,6 +24,9 @@
          </div>
       </footer>
       <section id="mySidenav" class="sidenav">
+
+
+        <div id="side-content-upload">
          <nav class="navbar navbar-sidebar">
             <div class="container-fluid">
                <div class="navbar-header">
@@ -38,7 +42,7 @@
 
            <form action="">
            <input type="file" name="pic" accept="image/*">
-           <button type="button" class="btn btn-default" onclick="openNav1()">Save</button>
+           <button id="open-side" type="button" class="btn btn-default" >Save</button>
 
           </form>
 
@@ -68,152 +72,159 @@
             </div>
          </footer>
 
+      </div>
 
+      <div id="side-content-data">
+      <nav class="navbar navbar-inner nav-side">
+         <div class="container-fluid">
+            <div class="row">
+               <div class="navbar-header cartix">
+                  <img alt="" src="img/cartix-icon2.png">
+               </div>
+               <!-- <section id="mySidenav_" class="sidenav"> -->
+               <a href="javascript:void(0)" class="closebtn_2" onclick="closeNav()">&times;</a>
+             <!-- </section> -->
+               <div class="collapse navbar-collapse" id="myNavbar">
+                  <ul class="nav navbar-nav navbar-right">
+                  </ul>
+               </div>
+               <div class="col-md-4">
+                  <h5>Province</h5>
+                  <a class="btn btn-default btn-select btn-select-light" id="my-select">
+                     <input type="hidden" class="btn-select-input"  name="" value="" />
+                     <span class="btn-select-value">City of kigali</span>
+                     <span class='btn-select-arrow glyphicon glyphicon-chevron-down'></span>
+                     <ul>
+                        <li>Option 1</li>
+                        <li>Option 2</li>
+                        <li>Option 3</li>
+                        <li>Option 4</li>
+                     </ul>
+                  </a>
+               </div>
+               <div class="col-md-4">
+                  <h5>District</h5>
+                  <a class="btn btn-default btn-select btn-select-light">
+                     <input type="hidden" class="btn-select-input" id="" name="" value="" />
+                     <span class="btn-select-value">Kicukiro</span>
+                     <span class='btn-select-arrow glyphicon glyphicon-chevron-down'></span>
+                     <ul>
+                        <li>Option 1</li>
+                        <li>Option 2</li>
+                        <li>Option 3</li>
+                        <li>Option 4</li>
+                     </ul>
+                  </a>
+               </div>
+               <div class="col-md-4">
+                  <h5>Sectors</h5>
+                  <a class="btn btn-default btn-select btn-select-light" >
+                     <input type="hidden" class="btn-select-input" id="" name="" value="" />
+                     <span class="btn-select-value">Kagarama</span>
+                     <span class='btn-select-arrow glyphicon glyphicon-chevron-down'></span>
+                     <ul>
+                        <li>Option 1</li>
+                        <li>Option 2</li>
+                        <li>Option 3</li>
+                        <li>Option 4</li>
+                     </ul>
+                  </a>
+               </div>
+            </div>
+         </div>
+
+      </nav>
+      <div class="container-fluid">
+      <div class="table-center">
+            <div class="table">
+               <table class="table table-hover">
+                  <thead>
+                     <tr>
+                        <td class="text-left">Saving Group name:</td>
+                        <th></th>
+                        <td class="text-right">ABAREWI</td>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td class="text-left">SGs Year of creation:</td>
+                        <td></td>
+                        <td class="text-right">2013</td>
+                     </tr>
+                     <tr>
+                        <td class="text-left">SGs members Total:</td>
+                        <td></td>
+                        <td style="text-align: right">17</td>
+                     </tr>
+                     <tr>
+                        <td class="text-left">SGs members- Female:</td>
+                        <td></td>
+                        <td style="text-align: right">9</td>
+                     </tr>
+                     <tr>
+                        <td class="text-left">SGs members- Male:</td>
+                        <td></td>
+                        <td style="text-align: right">8</td>
+                     </tr>
+                     <tr>
+                        <td class="text-left">Funding NGO:</td>
+                        <td></td>
+                        <td style="text-align: right">HOPE Rwanda</td>
+                     </tr>
+                     <tr>
+                        <td class="text-left">Partner NGO:</td>
+                        <td></td>
+                        <td style="text-align: right">ADEPR</td>
+                     </tr>
+                     <tr>
+                        <td class="text-left">SGs Status/ supervised</td>
+                        <td></td>
+                        <td style="text-align: right">654</td>
+                     </tr>
+                     <tr>
+                        <td class="text-left">SGs Status/ graduated</td>
+                        <td></td>
+                        <td style="text-align: right">1000</td>
+                     </tr>
+                     <tr>
+                        <td class="text-left">Saved Amount as of December 2014( In Rwf ):</td>
+                        <td></td>
+                        <td style="text-align: right">N/A</td>
+                     </tr>
+                     <tr>
+                        <td class="text-left">Outstanding Loans as of December 2014 ( In Rwf ):</td>
+                        <td></td>
+                        <td style="text-align: right">N/A</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+          </div>
+         <div class="button-save">
+            <button type="button" class="btn btn-success btn-cartix_">Save</button>
+         </div>
+      </div>
+      <footer>
+         <div class="container-fluid footer-style">
+            <div class="row">
+
+                     <div class="col-md-9">
+                     <div class="col-md-4 footer-text">© Copyright cartix 2016</div>
+
+                   </div>
+                     <div class="col-md-3">
+                     <div class="footer-text" style="">Hope Rwanda<span class="glyphicon glyphicon-user"></span></div>
+                   </div>
+
+            </div>
+         </div>
+      </footer>
+    </div>
+  </div>
+      </div>
       </section>
 
-      <section id="mySidenav_" class="sidenav">
-           <nav class="navbar navbar-inner nav-side">
-              <div class="container">
-                 <div class="row">
-                    <div class="navbar-header cartix">
-                       <img alt="" src="img/cartix-icon2.png">
-                    </div>
-                    <a href="javascript:void(0)" class="closebtn_2" onclick="closeNav_()">&times;</a>
-                    <div class="collapse navbar-collapse" id="myNavbar">
-                       <ul class="nav navbar-nav navbar-right">
-                       </ul>
-                    </div>
-                    <div class="col-md-3">
-                       <h5>Province</h5>
-                       <a class="btn btn-default btn-select btn-select-light" id="my-select">
-                          <input type="hidden" class="btn-select-input"  name="" value="" />
-                          <span class="btn-select-value">City of kigali</span>
-                          <span class='btn-select-arrow glyphicon glyphicon-chevron-down'></span>
-                          <ul>
-                             <li>Option 1</li>
-                             <li>Option 2</li>
-                             <li>Option 3</li>
-                             <li>Option 4</li>
-                          </ul>
-                       </a>
-                    </div>
-                    <div class="col-md-3">
-                       <h5>District</h5>
-                       <a class="btn btn-default btn-select btn-select-light">
-                          <input type="hidden" class="btn-select-input" id="" name="" value="" />
-                          <span class="btn-select-value">Kicukiro</span>
-                          <span class='btn-select-arrow glyphicon glyphicon-chevron-down'></span>
-                          <ul>
-                             <li>Option 1</li>
-                             <li>Option 2</li>
-                             <li>Option 3</li>
-                             <li>Option 4</li>
-                          </ul>
-                       </a>
-                    </div>
-                    <div class="col-md-3">
-                       <h5>Sectors</h5>
-                       <a class="btn btn-default btn-select btn-select-light" >
-                          <input type="hidden" class="btn-select-input" id="" name="" value="" />
-                          <span class="btn-select-value">Kagarama</span>
-                          <span class='btn-select-arrow glyphicon glyphicon-chevron-down'></span>
-                          <ul>
-                             <li>Option 1</li>
-                             <li>Option 2</li>
-                             <li>Option 3</li>
-                             <li>Option 4</li>
-                          </ul>
-                       </a>
-                    </div>
-                 </div>
-              </div>
-            </div>
-           </nav>
-           <div class="container-fluid">
-           <div class="table-center">
-                 <div class="table">
-                    <table class="table table-hover">
-                       <thead>
-                          <tr>
-                             <td class="text-left">Saving Group name:</td>
-                             <th></th>
-                             <td class="text-right">ABAREWI</td>
-                          </tr>
-                       </thead>
-                       <tbody>
-                          <tr>
-                             <td class="text-left">SGs Year of creation:</td>
-                             <td></td>
-                             <td class="text-right">2013</td>
-                          </tr>
-                          <tr>
-                             <td class="text-left">SGs members Total:</td>
-                             <td></td>
-                             <td style="text-align: right">17</td>
-                          </tr>
-                          <tr>
-                             <td class="text-left">SGs members- Female:</td>
-                             <td></td>
-                             <td style="text-align: right">9</td>
-                          </tr>
-                          <tr>
-                             <td class="text-left">SGs members- Male:</td>
-                             <td></td>
-                             <td style="text-align: right">8</td>
-                          </tr>
-                          <tr>
-                             <td class="text-left">Funding NGO:</td>
-                             <td></td>
-                             <td style="text-align: right">HOPE Rwanda</td>
-                          </tr>
-                          <tr>
-                             <td class="text-left">Partner NGO:</td>
-                             <td></td>
-                             <td style="text-align: right">ADEPR</td>
-                          </tr>
-                          <tr>
-                             <td class="text-left">SGs Status/ supervised</td>
-                             <td></td>
-                             <td style="text-align: right">654</td>
-                          </tr>
-                          <tr>
-                             <td class="text-left">SGs Status/ graduated</td>
-                             <td></td>
-                             <td style="text-align: right">1000</td>
-                          </tr>
-                          <tr>
-                             <td class="text-left">Saved Amount as of December 2014( In Rwf ):</td>
-                             <td></td>
-                             <td style="text-align: right">N/A</td>
-                          </tr>
-                          <tr>
-                             <td class="text-left">Outstanding Loans as of December 2014 ( In Rwf ):</td>
-                             <td></td>
-                             <td style="text-align: right">N/A</td>
-                          </tr>
-                       </tbody>
-                    </table>
-                 </div>
-               </div>
-              <div class="button-save">
-                 <button type="button" class="btn btn-success btn-cartix_">Save</button>
-              </div>
-           </div>
-           <footer>
-              <div class="container">
-                 <div class="row">
-                    <div class="footer-style">
-                          <div class="col-md-4">
-                          <div class="footer-text">© Copyright cartix 2016</div>
-                        </div>
-                          <div class="col-md-6">
-                          <div class="footer-text" style="">Hope Rwanda<span class="glyphicon glyphicon-user"></span></div>
-                        </div>
-                    </div>
-                 </div>
-              </div>
-           </footer>
-         </section>
+
 
 
       <script src="js/jquery.min.js"></script>
