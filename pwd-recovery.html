@@ -10,7 +10,7 @@
       <link href='//fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
    </head>
-   <body>
+   <body background="img/bg-image.jpg">
       <div class="container-fluid bg-1">
          <div class="row">
             <div class="logo-center">
@@ -21,22 +21,22 @@
             <div class="row">
                <h1 class="login">Password recovery</h1>
                <div class="col-md-4 col-md-offset-4">
-                  <form>
+                  <form action="recovery.html" method="post">
                      <div class="form-style">
                         <div class="form-group">
-                           <input type="password"  class="form-control form-style" placeholder="New password" id="email">
+                           <input type="password"  class="form-control form-control-no-border form-style" placeholder="New password" id="pwd_1" required>
                         </div>
                         <div class="form-group">
-                           <input type="password" class="form-control form-style" placeholder="Confirm password"  id="pwd">
+                           <input type="password" class="form-control form-control-no-border form-style" placeholder="Confirm password"  id="pwd_2" required>
                         </div>
-                        <button type="submit" class="btn btn-success_">Change password</button>
+                        <button type="submit" class="btn btn-default btn-pwd">Change password</button>
                   </form>
                   </div>
                </div>
             </div>
          </div>
          <footer>
-            <div class="container">
+            <div class="container footer-contain">
                <div class="row">
                   <p class="footer_pwd">© Copyright cartix 2016</p>
                </div>

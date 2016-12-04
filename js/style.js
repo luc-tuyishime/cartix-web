@@ -1,10 +1,11 @@
-$(document).ready(function() {
-       $('#example-post').multiselect({
-           includeSelectAllOption: true,
-           enableFiltering: true
-       });
-   });
 
+$(document).ready(function(){
+   $("#open-side").click(function(e){
+        event.preventDefault();
+       $("#side-content-upload").hide();
+        $("#side-content-data").show();
+   });
+});
 
 $(document).on('click', '.btn-select', function (e) {
     e.preventDefault();
@@ -35,13 +36,6 @@ $(document).on('click', function (e) {
         $(".btn-select").removeClass("active").find("ul").hide();
     }
 });
-             /* settings date*/
-
-             $(document).ready(function(){
-         $("   ").click(function(){
-             $(this).hide();
-         });
-     });
 
 
 function openNav() {
@@ -57,16 +51,17 @@ function closeNav() {
 }
 
 function openNav1() {
-    document.getElementById("mySidenav_").style.width = "900px";
+    document.getElementById("mySidenav").style.width = "50%";
     document.body.style.backgroundColor = "#fff";
     document.getElementById("call-opacity").className = "opacity";
 }
 
 function closeNav_() {
-    document.getElementById("mySidenav_").style.width = "0";
+    document.getElementById("mySidenav").style.width = "0";
     document.body.style.backgroundColor = "white";
     document.getElementById("call-opacity").className = "";
 }
+
 
 
 <!-- Initialize the plugin: -->
@@ -77,30 +72,3 @@ $(document).ready(function() {
          selectAllNumber: false
      });
  });
-
- <!--select button-->
-
- $(document).ready(function () {
-     $(".btn-select").each(function (e) {
-         var value = $(this).find("ul li.selected").html();
-         if (value != undefined) {
-             $(this).find(".btn-select-input").val(value);
-             $(this).find(".btn-select-value").html(value);
-         }
-     });
- });
-
- $(function() {
-
-    $('#my-select').multiselect({
-        includeSelectAllOption: true
-    });
-
-    // $("#my-multi-select").multiselect('selectAll', false);
-    // $("#my-multi-select").multiselect('updateButtonText');
-
-});
-
-$('.ui.sidebar')
-  .sidebar('toggle')
-;
