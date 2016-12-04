@@ -1,17 +1,10 @@
 
-.table-center {} .box-center > input {
-    display: none;
-}
 .box-center i {
     padding-top: 43px;
     font-size: 100px;
     color: #BDBDBD;
 }
-.text_1 {
-    font-weight: bold;
-    color: #757575;
-    font-size: 13px;
-}
+
 .text_2 {
     color: #BDBDBD;
 }
@@ -59,9 +52,7 @@
 .status {
     float: right;
 }
-.table {
-    padding-top: 12px;
-}
+
 /*Default button*/
 
 .btn-select {
@@ -326,9 +317,7 @@ input[placeholder]:focus {
 input:focus::-webkit-input-placeholder {
     color: #FAFAFA;
 }
-#side-content-data {
-    display: none;
-}
+
 
 .form-control-no-border:focus {
   border-color:#ccc;

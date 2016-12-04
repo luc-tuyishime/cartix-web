@@ -36,9 +36,6 @@ body {
     margin-top: 40px;
 }
 
-.select-box{
-    margin-right: 20px;
-}
 .opacity {
     background-color: rgba(0, 0, 0, 0.9);
     position: absolute;
@@ -54,6 +51,7 @@ body {
     margin-left: 50px;
     margin-bottom: 30px;
 }
+
 .btn-cartix {
     border-radius: 20px;
     width: 100px;
@@ -65,6 +63,7 @@ body {
     border: 2px solid #4C0014;
     z-index: 100;
 }
+
 .btn-cartix_ {
     border-radius: 20px;
     width: 100px;
@@ -77,6 +76,7 @@ body {
     z-index: 100;
     float: left;
 }
+
 .background {
     border: 1px solid #4C0014;
     background-color: #4C0014;
@@ -86,36 +86,50 @@ body {
     position: absolute;
     top: 0;
 }
+
 .background img {
     width: 30px;
     height: 35px;
 }
+
 .upload-file {
     background-color: #EBEBEB;
     margin-top: 190px;
     padding: 120px;
 }
+.text_1 {
+    font-weight: bold;
+    color: #757575;
+    font-size: 13px;
+    margin-top: 10px;
+}
+
 .text_2 {
     font-size: 15px;
     font-family: 'Open Sans', sans-serif;
+    margin-top: 0px;
 }
+
 .navbar-sidebar {
     background-color: #4C0014;
     border-radius: 0px !important;
     height: 94px;
     margin-top: -60px;
 }
+
 .nav-side {
     background-color: #4C0014;
     border-radius: 0px !important;
     margin-top: -60px;
     margin-left: auto;
 }
+
 .navbar-brand img {
     width: 25px;
     height: 27.6px;
     margin-left: 25px;
 }
+
 .box-center {
     position: absolute;
     left: 50%;
@@ -126,4 +140,72 @@ body {
     padding: 20px;
     background: #EBEBEB;
     text-align: center;
+}
+
+#side-content-data {
+    display: none;
+}
+#side-content-saved{
+  display: none;
+}
+#side-content-uploading{
+  display: none;
+}
+#side-upload-complete{
+display: none;
+}
+.uploading-box{
+  margin-top: 80px;
+}
+.uploading-text_1{
+  font-size: 25px;
+
+}
+.uploading-text_2{
+ color: #757575;
+}
+.box-center-ok{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 650px;
+  height: 300px;
+  padding: 20px;
+  background: #E8F5E9;
+  text-align: center;
+}
+.circle{
+  border-radius: 50%;
+	width: 100px;
+	height: 100px;
+  background-color: green;
+  display: block;
+  margin: auto;
+  margin-top: 50px;
+}
+.text-saved {
+  display: block;
+  margin: auto;
+  margin-top: 10px;
+  font-size: 30px;
+}
+.glyphicon-ok{
+  font-size: 45px;
+  margin-top: 25px;
+  color: white;
+}
+input[type=file] {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.form-style{
+  margin-top: 50px;
+}
+.table {
+    padding-top: 12px;
+}
+.table-center {} .box-center > input {
+    display: none;
 }
