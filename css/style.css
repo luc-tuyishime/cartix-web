@@ -32,9 +32,12 @@ body {
     top: 0;
     right: 25px;
     font-size: 36px;
-    margin-left: 50px;
     color: white;
     margin-top: 40px;
+}
+
+.select-box{
+    margin-right: 20px;
 }
 .opacity {
     background-color: rgba(0, 0, 0, 0.9);
@@ -296,6 +299,7 @@ td {
 .cartix img {
     margin-bottom: 40px;
     margin-top: 50px;
+    margin-left: 10px;
     height: 34px;
 }
 .logo-center img {
