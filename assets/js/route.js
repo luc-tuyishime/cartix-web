@@ -5,6 +5,9 @@ myapp.config(['$routeProvider', function($routeProvider){
     .when('/', {
         templateUrl: 'views/sign/sign-in.html'
     })
+    .when('/signup', {
+        templateUrl: 'views/sign/sign-up.html'
+    })
     .otherwise({
         redirectTo: '/'    
     })
