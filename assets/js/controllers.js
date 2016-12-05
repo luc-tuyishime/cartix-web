@@ -45,10 +45,28 @@ myapp.controller('signupCtrl',['$scope','$http','$location', function($scope,$ht
 			}
 		}
         
-        var data = '{"names":"'+fullname+'","email":"'+email+'","password":"'+password+'","name":"'+org_name+'","category":"'+org_type+'"}';
         
+        var data_ngo = '{"name":"'+org_name+'","category":"'+org_type+'"}';
         
+        $http.post('http://0.0.0.0:8000/api/v1/ngo', data_ngo, config)
+        .success(function(data, status, header, config){
+            if (data.auth){
+                var ngo_id = data.ngo.id
+            }else{
+                var ngo_id = data.ngo
+            }
+            var data_user = '{"names":"'+fullname+'","email":"'+email+'","password":"'+password+'","ngo_id":"'+ngo_id+'"}';
+            
+            addUser(data_user);
+            
+        });
         
+        function addUser(data_user){
+            $http.post('http://0.0.0.0:8000/api/v1/user', data_user, config)
+            .success(function(data, status, header, config){
+                console.log(data);
+            });
+        }
         
 	}
 	
