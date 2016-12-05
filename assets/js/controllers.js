@@ -18,7 +18,7 @@ myapp.config(['$routeProvider', function($routeProvider){
         templateUrl: 'views/sign/pwd-recovery.html'
     })
     .when('/forget-password', {
-        templateUrl:'views/sign/recovery.html'
+        templateUrl:'views/sign/recovery.html' 
     })
     .otherwise({
         redirectTo: '/'    
@@ -26,9 +26,30 @@ myapp.config(['$routeProvider', function($routeProvider){
 }]);
 
 myapp.controller('signupCtrl',['$scope','$http','$location', function($scope,$http,$location){
-	
-	$scope.singup =  function(fullname, email, password){
-	   console.log(Array(fullname, email, password));	
+	$scope.user = true;
+    $scope.organization = false
+    
+    $scope.nextOrg = function(fullname, email, password){
+        $scope.user = false;
+        $scope.organization = true;
+        $scope.fullname = fullname;
+        $scope.email = email;
+        $scope.password = password;
+    }
+    
+	$scope.sign_up = function(fullname, email, password, org_name, org_type){
+        console.log(Array(fullname, email, password, org_name, org_type));
+        var config = {
+			headers:{
+				'Content-Type':'application/json'
+			}
+		}
+        
+        var data = '{"names":"'+fullname+'","email":"'+email+'","password":"'+password+'","name":"'+org_name+'","category":"'+org_type+'"}';
+        
+        
+        
+        
 	}
 	
 }]);
