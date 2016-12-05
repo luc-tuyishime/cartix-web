@@ -11,8 +11,11 @@ myapp.config(['$routeProvider', function($routeProvider){
     .when('/organisation', {
         templateUrl: 'views/sign/organisation.html'
     })
-    .when('/recovery', {
+    .when('/new-password', {
         templateUrl: 'views/sign/pwd-recovery.html'
+    })
+    .when('/forget-password', {
+        templateUrl:'views/sign/recovery.html'
     })
     .otherwise({
         redirectTo: '/'    
