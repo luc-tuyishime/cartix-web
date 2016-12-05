@@ -4,12 +4,12 @@
       <title>cartix-web</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="stylesheet" href="css/bootstrap.min.css">
+      <link rel="stylesheet" href="css/bootstrap-min.css">
       <link rel="stylesheet" href="css/style.css" type="text/css">
+      <link href="css/bootstrap-multiselect.css" rel="stylesheet" type="text/css"/>
       <link rel="stylesheet" href="css/style-app.css" type="text/css">
       <link rel="//fonts.googleapis.com/css?family=Open+Sans">
       <link href='//fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
    </head>
    <body background="img/cartix-pic_.jpg">
@@ -25,7 +25,7 @@
          </div>
       </footer>
       <section id="mySidenav" class="sidenav">
-        <!--Upload Page-->
+         <!--Upload Page-->
          <div id="side-content-upload">
             <nav class="navbar navbar-sidebar">
                <div class="container-fluid">
@@ -39,18 +39,17 @@
             </nav>
             <!--Upload btn-->
             <div class="box-center">
-              <div class="form-input">
-                <div class="form-style">
-               <form action="">
-                  <input  type="file" name="pic" accept="image/*">
-                     <button id="open-side" type="button" class="btn btn-default">Upload</button>
-               </form>
-             </div>
-           </div>
+               <div class="form-input">
+                  <div class="form-style">
+                     <form action="">
+                        <input  type="file" name="pic" accept="image/*">
+                        <button id="open-side" type="button" class="btn btn-default">Upload</button>
+                     </form>
+                  </div>
+               </div>
                <p class="text_1">Upload the field Data compilation sheet here</p>
                <p class="text_2">Format: csv, xls, xlsx</p>
             </div>
-
             <div class="container-fluid">
                <div class="download-data">
                   <a href="" style="text-decoration:none">
@@ -71,81 +70,81 @@
                </div>
             </footer>
          </div>
-
          <!--Uploading page-->
          <!-- <div id="side-content-uploading">
-           <nav class="navbar navbar-sidebar">
-              <div class="container-fluid">
-                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#">
-                    <img alt="" src="img/cartix-icon.png">
-                    </a>
-                 </div>
-                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <nav class="navbar navbar-sidebar">
+               <div class="container-fluid">
+                  <div class="navbar-header">
+                     <a class="navbar-brand" href="#">
+                     <img alt="" src="img/cartix-icon.png">
+                     </a>
+                  </div>
+                  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+               </div>
+            </nav>
+            <div class="box-center-ok">
+             <div class="uploading-box">
+                <p class="uploading-text_1">Uploading:<span class="uploading-text_2"> Data_compilation_sheet.xlsx</span></p>
+                <div class="progress">
+               <div class="progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:50%">
+                 50%
+               </div>
               </div>
-           </nav>
-           <div class="box-center-ok">
-            <div class="uploading-box">
-               <p class="uploading-text_1">Uploading:<span class="uploading-text_2"> Data_compilation_sheet.xlsx</span></p>
-               <div class="progress">
-              <div class="progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:50%">
-                50%
-              </div>
-             </div>
-           </div>
-         </div>
-           <footer class="footer">
-              <div class="container">
-                 <div class="row">
-                    <div class="col-md-4">
-                       <p class="footer-text">© Copyright cartix 2016</p>
-                    </div>
-                    <div class="col-md-4">
-                       <p class="footer-text">Hope Rwanda<span class="glyphicon glyphicon-user"></span></p>
-                    </div>
-                 </div>
-              </div>
-           </footer>
-       </div> -->
+            </div>
+            </div>
+            <footer class="footer">
+               <div class="container">
+                  <div class="row">
+                     <div class="col-md-4">
+                        <p class="footer-text">© Copyright cartix 2016</p>
+                     </div>
+                     <div class="col-md-4">
+                        <p class="footer-text">Hope Rwanda<span class="glyphicon glyphicon-user"></span></p>
+                     </div>
+                  </div>
+               </div>
+            </footer>
+            </div> -->
 
-       <!--Uploading Complete page-->
-       <div id="side-upload-complete">
-         <nav class="navbar navbar-sidebar">
-            <div class="container-fluid">
-               <div class="navbar-header">
-                  <a class="navbar-brand" href="#">
-                  <img alt="" src="img/cartix-icon.png">
-                  </a>
+         <!--Uploading Complete Page-->
+         <div id="side-upload-complete">
+            <nav class="navbar navbar-sidebar">
+               <div class="container-fluid">
+                  <div class="navbar-header">
+                     <a class="navbar-brand" href="#">
+                     <img alt="" src="img/cartix-icon.png">
+                     </a>
+                  </div>
+                  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                </div>
-               <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            </nav>
+            <div class="box-center-ok">
+               <div class="uploading-box">
+                  <p class="uploading-text_1">Upload Complete:<span class="uploading-text_2"> Data_compilation_sheet.xlsx</span></p>
+                  <div class="progress">
+                     <div class="progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                        100%
+                     </div>
+                  </div>
+                  <div class="button-save">
+                     <button id="button-save-file" type="button" class="btn btn-success btn-cartix_">Save</button>
+                  </div>
+               </div>
             </div>
-         </nav>
-         <div class="box-center-ok">
-          <div class="uploading-box">
-             <p class="uploading-text_1">Upload Complete:<span class="uploading-text_2"> Data_compilation_sheet.xlsx</span></p>
-             <div class="progress">
-            <div class="progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:100%">
-              100%
-            </div>
-           </div>
-           <div class="button-save">
-              <button id="button-save-file" type="button" class="btn btn-success btn-cartix_">Save</button>
-           </div>
+            <footer class="footer">
+               <div class="container">
+                  <div class="row">
+                     <div class="col-md-4">
+                        <p class="footer-text">© Copyright cartix 2016</p>
+                     </div>
+                     <div class="col-md-4">
+                        <p class="footer-text">Hope Rwanda<span class="glyphicon glyphicon-user"></span></p>
+                     </div>
+                  </div>
+               </div>
+            </footer>
          </div>
-       </div>
-         <footer class="footer">
-            <div class="container">
-               <div class="row">
-                  <div class="col-md-4">
-                     <p class="footer-text">© Copyright cartix 2016</p>
-                  </div>
-                  <div class="col-md-4">
-                     <p class="footer-text">Hope Rwanda<span class="glyphicon glyphicon-user"></span></p>
-                  </div>
-               </div>
-            </div>
-         </footer>
-     </div>
+
          <!--Data Content Display-->
          <div id="side-content-data">
             <nav class="navbar navbar-inner nav-side">
@@ -154,54 +153,47 @@
                      <div class="navbar-header cartix">
                         <img alt="" src="img/cartix-icon2.png">
                      </div>
-                     <!-- <section id="mySidenav_" class="sidenav"> -->
                      <a href="javascript:void(0)" class="closebtn_2" onclick="closeNav()">&times;</a>
-                     <!-- </section> -->
                      <div class="collapse navbar-collapse" id="myNavbar">
-                        <ul class="nav navbar-nav navbar-right">
-                        </ul>
                      </div>
                      <div class="col-md-4">
-                        <h5>Province</h5>
-                        <a class="btn btn-default btn-select btn-select-light" id="my-select">
-                           <input type="hidden" class="btn-select-input"  name="" value="" />
-                           <span class="btn-select-value">City of kigali</span>
-                           <span class='btn-select-arrow glyphicon glyphicon-chevron-down'></span>
-                           <ul>
-                              <li>Option 1</li>
-                              <li>Option 2</li>
-                              <li>Option 3</li>
-                              <li>Option 4</li>
-                           </ul>
-                        </a>
+                        <div class="select-box">
+                           <h5>Province</h5>
+                           <select  id="ddlCars2" multiple="multiple">
+                              <option value="1">Option 1</option>
+                              <option value="2">Option 2</option>
+                              <option value="3">Option 3</option>
+                              <option value="4">Option 4</option>
+                              <option value="5">Option 5</option>
+                              <option value="6">Option 6</option>
+                           </select>
+                        </div>
                      </div>
                      <div class="col-md-4">
-                        <h5>District</h5>
-                        <a class="btn btn-default btn-select btn-select-light">
-                           <input type="hidden" class="btn-select-input" id="" name="" value="" />
-                           <span class="btn-select-value">Kicukiro</span>
-                           <span class='btn-select-arrow glyphicon glyphicon-chevron-down'></span>
-                           <ul>
-                              <li>Option 1</li>
-                              <li>Option 2</li>
-                              <li>Option 3</li>
-                              <li>Option 4</li>
-                           </ul>
-                        </a>
+                        <div class="select-box">
+                           <h5>District</h5>
+                           <select id="ddlCars3" multiple="multiple">
+                              <option value="1">Option 1</option>
+                              <option value="2">Option 2</option>
+                              <option value="3">Option 3</option>
+                              <option value="4">Option 4</option>
+                              <option value="5">Option 5</option>
+                              <option value="6">Option 6</option>
+                           </select>
+                        </div>
                      </div>
                      <div class="col-md-4">
-                        <h5>Sectors</h5>
-                        <a class="btn btn-default btn-select btn-select-light" >
-                           <input type="hidden" class="btn-select-input" id="" name="" value="" />
-                           <span class="btn-select-value">Kagarama</span>
-                           <span class='btn-select-arrow glyphicon glyphicon-chevron-down'></span>
-                           <ul>
-                              <li>Option 1</li>
-                              <li>Option 2</li>
-                              <li>Option 3</li>
-                              <li>Option 4</li>
-                           </ul>
-                        </a>
+                        <div class="select-box">
+                           <h5>Sectors</h5>
+                           <select id="ddlCars4" multiple="multiple">
+                              <option value="1">Option 1</option>
+                              <option value="2">Option 2</option>
+                              <option value="3">Option 3</option>
+                              <option value="4">Option 4</option>
+                              <option value="5">Option 5</option>
+                              <option value="6">Option 6</option>
+                           </select>
+                        </div>
                      </div>
                   </div>
                </div>
@@ -209,129 +201,129 @@
             <div class="container-fluid">
                <div class="table-center">
                   <div class="table">
-                     <table class="table table-hover">
-                        <thead>
-                           <tr>
-                              <td class="text-left">Saving Group name:</td>
-                              <th></th>
-                              <td class="text-right">ABAREWI</td>
-                           </tr>
-                        </thead>
-                        <tbody>
-                           <tr>
-                              <td class="text-left">SGs Year of creation:</td>
-                              <td></td>
-                              <td class="text-right">2013</td>
-                           </tr>
-                           <tr>
-                              <td class="text-left">SGs members Total:</td>
-                              <td></td>
-                              <td style="text-align: right">17</td>
-                           </tr>
-                           <tr>
-                              <td class="text-left">SGs members- Female:</td>
-                              <td></td>
-                              <td style="text-align: right">9</td>
-                           </tr>
-                           <tr>
-                              <td class="text-left">SGs members- Male:</td>
-                              <td></td>
-                              <td style="text-align: right">8</td>
-                           </tr>
-                           <tr>
-                              <td class="text-left">Funding NGO:</td>
-                              <td></td>
-                              <td style="text-align: right">HOPE Rwanda</td>
-                           </tr>
-                           <tr>
-                              <td class="text-left">Partner NGO:</td>
-                              <td></td>
-                              <td style="text-align: right">ADEPR</td>
-                           </tr>
-                           <tr>
-                              <td class="text-left">SGs Status/ supervised</td>
-                              <td></td>
-                              <td style="text-align: right">654</td>
-                           </tr>
-                           <tr>
-                              <td class="text-left">SGs Status/ graduated</td>
-                              <td></td>
-                              <td style="text-align: right">1000</td>
-                           </tr>
-                           <tr>
-                              <td class="text-left">Saved Amount as of December 2014( In Rwf ):</td>
-                              <td></td>
-                              <td style="text-align: right">N/A</td>
-                           </tr>
-                           <tr>
-                              <td class="text-left">Outstanding Loans as of December 2014 ( In Rwf ):</td>
-                              <td></td>
-                              <td style="text-align: right">N/A</td>
-                           </tr>
-                        </tbody>
+                     <div class="col-md-12">
+                        <table class="table table-hover">
+                           <thead>
+                              <tr>
+                                 <td class="text-left">Saving Group name:</td>
+                                 <th></th>
+                                 <td class="text-right">ABAREWI</td>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr>
+                                 <td class="text-left">SGs Year of creation:</td>
+                                 <td></td>
+                                 <td class="text-right">2013</td>
+                              </tr>
+                              <tr>
+                                 <td class="text-left">SGs members Total:</td>
+                                 <td></td>
+                                 <td style="text-align: right">17</td>
+                              </tr>
+                              <tr>
+                                 <td class="text-left">SGs members- Female:</td>
+                                 <td></td>
+                                 <td style="text-align: right">9</td>
+                              </tr>
+                              <tr>
+                                 <td class="text-left">SGs members- Male:</td>
+                                 <td></td>
+                                 <td style="text-align: right">8</td>
+                              </tr>
+                              <tr>
+                                 <td class="text-left">Funding NGO:</td>
+                                 <td></td>
+                                 <td style="text-align: right">HOPE Rwanda</td>
+                              </tr>
+                              <tr>
+                                 <td class="text-left">Partner NGO:</td>
+                                 <td></td>
+                                 <td style="text-align: right">ADEPR</td>
+                              </tr>
+                              <tr>
+                                 <td class="text-left">SGs Status/ supervised</td>
+                                 <td></td>
+                                 <td style="text-align: right">654</td>
+                              </tr>
+                              <tr>
+                                 <td class="text-left">SGs Status/ graduated</td>
+                                 <td></td>
+                                 <td style="text-align: right">1000</td>
+                              </tr>
+                              <tr>
+                                 <td class="text-left">Saved Amount as of December 2014( In Rwf ):</td>
+                                 <td></td>
+                                 <td style="text-align: right">N/A</td>
+                              </tr>
+                              <tr>
+                                 <td class="text-left">Outstanding Loans as of December 2014 ( In Rwf ):</td>
+                                 <td></td>
+                                 <td style="text-align: right">N/A</td>
+                              </tr>
+                           </tbody>
+                       </div>
                      </table>
                   </div>
                </div>
-               <div class="button-save">
+            </div>
+            <div class="button-save">
+               <div class="col-md-12">
                   <button id="button-save" type="button" class="btn btn-success btn-cartix_">Save</button>
                </div>
-            </div>
-            <footer>
-               <div class="container-fluid footer-style">
-                  <div class="row">
-                     <div class="col-md-9">
-                        <div class="col-md-4 footer-text">© Copyright cartix 2016</div>
+               <footer>
+                  <div class="container-fluid footer-style">
+                     <div class="row">
+                        <div class="col-md-9">
+                           <div class="col-md-4 footer-text">© Copyright cartix 2016</div>
+                        </div>
+                        <div class="col-md-3">
+                           <div class="footer-text" style="">Hope Rwanda<span class="glyphicon glyphicon-user"></span></div>
+                        </div>
                      </div>
-                     <div class="col-md-3">
-                        <div class="footer-text" style="">Hope Rwanda<span class="glyphicon glyphicon-user"></span></div>
+                  </div>
+               </footer>
+            </div>
+         </div>
+         </div>
+
+         <!--Successfull Saved Page-->
+         <div id="side-content-saved">
+            <nav class="navbar navbar-sidebar">
+               <div class="container-fluid">
+                  <div class="navbar-header">
+                     <a class="navbar-brand" href="#">
+                     <img alt="" src="img/cartix-icon.png">
+                     </a>
+                  </div>
+                  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+               </div>
+            </nav>
+            <div class="box-center-ok">
+               <div class="circle">
+                  <span class="glyphicon glyphicon-ok"></span>
+               </div>
+               <p class="text-saved">successfull saved</p>
+            </div>
+            <footer class="footer">
+               <div class="container">
+                  <div class="row">
+                     <div class="col-md-4">
+                        <p class="footer-text">© Copyright cartix 2016</p>
+                     </div>
+                     <div class="col-md-4">
+                        <p class="footer-text">Hope Rwanda<span class="glyphicon glyphicon-user"></span></p>
                      </div>
                   </div>
                </div>
             </footer>
-         </div>
-         </div>
-         </div>
-
-         <div id="side-content-saved">
-
-           <nav class="navbar navbar-sidebar">
-              <div class="container-fluid">
-                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#">
-                    <img alt="" src="img/cartix-icon.png">
-                    </a>
-                 </div>
-                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-              </div>
-           </nav>
-           <!--Upload btn-->
-           <div class="box-center-ok">
-             <div class="circle">
-               <span class="glyphicon glyphicon-ok"></span>
-
-             </div>
-
-             <p class="text-saved">successfull saved</p>
-
-           </div>
-
-           <footer class="footer">
-              <div class="container">
-                 <div class="row">
-                    <div class="col-md-4">
-                       <p class="footer-text">© Copyright cartix 2016</p>
-                    </div>
-                    <div class="col-md-4">
-                       <p class="footer-text">Hope Rwanda<span class="glyphicon glyphicon-user"></span></p>
-                    </div>
-                 </div>
-              </div>
-           </footer>
          </div>
       </section>
       <script src="js/jquery.min.js"></script>
       <script src="js/bootstrap.min.js"></script>
       <script src="js/style.js"></script>
       <script src="js/script.js"></script>
+      <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+      <script src="js/bootstrap-multiselect.js" type="text/javascript"></script>
    </body>
 </html>

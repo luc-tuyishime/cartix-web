@@ -1,3 +1,29 @@
+// $(document).ready(function() {
+//         $('#ddlCars2').multiselect();
+//
+//        $('#ddlCars2').multiselect({
+//          includeSelectAllOption: true,
+//            enableFiltering:true
+//      });
+//
+// });
+
+$(function () {
+            $('#ddlCars2').multiselect({
+                includeSelectAllOption: true
+            });
+
+            $('#ddlCars3').multiselect({
+                includeSelectAllOption: true
+            });
+
+            $('#ddlCars4').multiselect({
+                includeSelectAllOption: true
+            });
+
+        });
+
+
 
 $(document).ready(function(){
    $("#open-side").click(function(e){
@@ -22,6 +48,8 @@ $(document).ready(function(){
         $("#side-content-data").show();
    });
 });
+
+/*select  box*/
 
 
 $(document).on('click', '.btn-select', function (e) {
