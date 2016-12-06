@@ -6,14 +6,7 @@
 .text_2 {
     color: #BDBDBD;
 }
-.download-data p {
-    margin-top: 580px;
-    color: #3D5AFE;
-    font-weight: bold;
-}
-.download-data p:hover {
-    color: #1A237E;
-}
+
 .footer-text {
     text-align: center;
     font-size: 11px;
