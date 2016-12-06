@@ -36,7 +36,9 @@
                              <option value="0">Local NGO</option>
                          </select>
                      </div>
-                     
+                     <div class="form-group">
+                         <p>{{ message }}</p>
+                      </div>
                      <div class="btn-next">
                         <button type="submit" class="btn btn-success" ng-click="sign_up(fullname, email, password, org_name, org_type)" ng-disabled="!signup_org.$valid">Sign up</button>
                      </div>
