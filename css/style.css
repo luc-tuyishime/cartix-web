@@ -7,16 +7,7 @@
     color: #BDBDBD;
 }
 
-.footer-text {
-    text-align: center;
-    font-size: 11px;
-    color: #BDBDBD;
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    padding: 1rem;
-}
+
 .footer-style {
     position: absolute;
     right: 0;
@@ -238,9 +229,7 @@ h2 {
 .btn-pwd:hover {
     color: white;
 }
-.form-style {
-    margin-top: 12px;
-}
+
 .sign-up-style {
     font-weight: bold;
     color: white;
