@@ -65,9 +65,53 @@ myapp.controller('signupCtrl',['$scope','$http','$location', function($scope,$ht
             $http.post('http://0.0.0.0:8000/api/v1/user', data_user, config)
             .success(function(data, status, header, config){
                 console.log(data);
+                if (data.auth){
+                    $location.path('/signin');
+                }else{
+                    $scope.message = data.message
+                }
             });
         }
         
 	}
 	
 }]);
+
+myapp.controller('signinCtrl', ['$scope', '$http','$location', function($scope,$http,$location){
+    $scope.message = false;
+    $scope.sign_in = function(username, password){
+        var config = {
+			headers:{
+				'Content-Type':'application/json'
+			}
+        }
+         
+        
+        var data = '{"username":"'+username+'","password":"'+password+'"}';
+        
+        $http.post('http://0.0.0.0:8000/api/v1/login/', data, config)
+        .success(function(data, status, header, config){
+           console.log(data);
+            if(data.auth == 1){
+                var store_id = storeUser(data.user.id);
+                $location.path('/');
+            }else{
+                $scope.message = true;
+            }
+        });
+    }
+    
+}]);
+
+
+
+function storeUser(User){
+	localStorage.setItem('u___', User);
+	return 1;
+}
+
+
+function restoreUserAsprin(){
+	var user_id = localStorage.getItem('u___');
+	return user_id;
+}
