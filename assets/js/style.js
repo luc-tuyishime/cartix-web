@@ -66,9 +66,9 @@ function closeNav_() {
 
 <!-- Initialize the plugin: -->
 
-$(document).ready(function() {
+/*$(document).ready(function() {
      $('#example-selectAllNumber').multiselect({
          includeSelectAllOption: true,
          selectAllNumber: false
      });
- });
+ });*/
