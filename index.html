@@ -8,8 +8,10 @@
       <title>Cartix</title>
       <!-- Bootstrap -->
       <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-      <link href="assets/css/style.css" rel="stylesheet">
       <link href="assets/css/style-app.css" rel="stylesheet">
+      <link href="assets/css/style.css" rel="stylesheet">
+      <link href="assets/css/multiple-select.css" rel="stylesheet">
+      
 
      <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
       <script src="assets/js/lib/jquery-1.11.2.min.js"></script>
@@ -23,12 +25,31 @@
       <script src="assets/js/lib/angular-route.min.js"></script>
       <script src="assets/js/lib/ng-file-upload/ng-file-upload-shim.js"></script>
       <script src="assets/js/lib/ng-file-upload/ng-file-upload.js"></script>
+      <script src="assets/js/lib/multiple-select.js"></script>
       <script src="assets/js/controllers.js"></script>
       <script src="assets/js/style.js"></script>
       <script src="assets/js/script.js"></script>
 
+      <script>
+          
+          $(function(){
+            var url = document.URL;
+            if (url == "http://127.0.0.1:8080/#/app/"){
+                $("#change-bg").removeClass('body-login');
+                $("#change-bg").addClass('body-app');
+                console.log("djdjdjdddddd");
+            }else{
+                $("#change-bg").removeClass('body-app');
+                $("#change-bg").addClass('body-login');
+                console.log("djdjdj");
+            }
+        });
+          
+        
+
+       </script>
    </head>
-   <body class="body-login">
+   <body class="body-login" id="change-bg">
 	   <main ng-view></main>
    </body>
 </html>
