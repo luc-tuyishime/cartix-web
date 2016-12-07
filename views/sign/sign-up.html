@@ -12,13 +12,13 @@
                <div ng-show="user">
                   <form name="signup">
                      <div class="form-group">
-                        <input type="text" class="form-control form-control-no-border form-style" placeholder="Your name" id="email" ng-model="fullname" required>
+                        <input type="text" class="form-control form-control-no-border form-style text" placeholder="Your name" id="email" ng-model="fullname" required>
                      </div>
                      <div class="form-group">
-                        <input type="email" class="form-control form-control-no-border form-style" placeholder="Enter email" ng-model="email" id="email"  required>
+                        <input type="email" class="form-control form-control-no-border form-style text" placeholder="Enter email" ng-model="email" id="email"  required>
                      </div>
                      <div class="form-group">
-                        <input type="password" class="form-control form-control-no-border form-style" placeholder="Enter password" ng-model="password" id="text" required>
+                        <input type="password" class="form-control form-control-no-border form-style text" placeholder="Enter password" ng-model="password"  required>
                      </div>
                      <div class="btn-next">
                         <button type="submit" class="btn btn-success" ng-click="nextOrg(fullname, email, password)" ng-disabled="!signup.$valid">Next</button>
@@ -28,10 +28,10 @@
                <div ng-show="organization">
                   <form name="signup_org">
                      <div class="form-group">
-                        <input type="text" class="form-control form-control-no-border form-style" placeholder="Oganization Name" ng-model="org_name" id="text" required>
+                        <input type="text" class="form-control form-control-no-border form-style text" placeholder="Oganization Name" ng-model="org_name" id="text" required>
                      </div>
                      <div class="form-group">
-                         <select class="form-control form-control-no-border form-style" id="text" ng-model="org_type" required>
+                         <select class="form-control form-control-no-border form-style text" ng-model="org_type" required>
                              <option value="1">International NGO</option>
                              <option value="0">Local NGO</option>
                          </select>
