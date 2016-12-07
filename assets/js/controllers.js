@@ -1,4 +1,4 @@
-var myapp = angular.module('cartixApp', ['ngRoute']);
+var myapp = angular.module('cartixApp', ['ngRoute','ngFileUpload']);
 
 myapp.config(['$routeProvider', function($routeProvider){
     $routeProvider
@@ -16,6 +16,9 @@ myapp.config(['$routeProvider', function($routeProvider){
     })
     .when('/new-password', {
         templateUrl: 'views/sign/pwd-recovery.html'
+    })
+    .when('/app/',{
+        templateUrl: 'views/cartix/index.html'
     })
     .when('/forget-password', {
         templateUrl:'views/sign/recovery.html' 
@@ -86,7 +89,6 @@ myapp.controller('signinCtrl', ['$scope', '$http','$location', function($scope,$
 			}
         }
          
-        
         var data = '{"username":"'+username+'","password":"'+password+'"}';
         
         $http.post('http://0.0.0.0:8000/api/v1/login/', data, config)
@@ -94,7 +96,9 @@ myapp.controller('signinCtrl', ['$scope', '$http','$location', function($scope,$
            console.log(data);
             if(data.auth == 1){
                 var store_id = storeUser(data.user.id);
-                $location.path('/');
+                $location.path('/app/');
+                $("#change-bg").removeClass('body-login');
+                $("#change-bg").addClass('body-app');
             }else{
                 $scope.message = true;
             }
@@ -105,13 +109,107 @@ myapp.controller('signinCtrl', ['$scope', '$http','$location', function($scope,$
 
 
 
+myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout','$window','$http','$location', function ($scope, Upload, $timeout, $window, $http, $location) {
+    
+    $scope.box_data_one = true;
+    $scope.box_data_two = false;
+    
+	$scope.upload_File = function(file) {
+		file.upload = Upload.upload({
+			url: 'http://0.0.0.0:8000/api/upload/',
+			data: {file: file},
+		});
+
+		file.upload.then(function (response) {
+			$timeout(function () {
+				console.log(response.data);
+                if(!response.data.status){
+                    postFailFile(response.data.originalpath, response.data.savepath, response.data.filename)
+                    $scope.box_data_one = false;
+                    $scope.box_data_two = true;
+                    $scope.savepath = response.data.savepath;
+                    $scope.filename = response.data.filename;
+                }else{
+                    storeJson = storeJson(response.data);
+                    closeNav();
+                    openNav1();
+                    
+                }
+			});
+		}, function (response) {
+			if (response.status > 0)
+				$scope.errorMsg = response.status + ': ' + response.data;
+		}, function (evt,response) {
+				// Math.min is to fix IE which reports 200% sometimes
+				file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+				if(file.progress == 100){
+                    
+				}
+			});
+		}
+    
+    function postFailFile(original, save, filename){
+        var id = restoreUser();
+        var config = {
+			headers:{
+				'Content-Type':'application/json'
+			}
+        }
+        
+        var data = '{"original":"'+original+'","save":"'+save+'","user_id":"'+id+'","filename":"'+filename+'"}';
+    
+        $http.post('http://0.0.0.0:8000/api/v1/file/save/', data, config)
+        .success(function(data, status, header, config){
+            console.log(data);
+        })
+    }
+}]);
+
+
+
+
+
+
+
+
 function storeUser(User){
 	localStorage.setItem('u___', User);
 	return 1;
 }
 
+function storeJson(json){
+    localStorage.setItem('j___', json);
+}
 
-function restoreUserAsprin(){
+
+function restoreUser(){
 	var user_id = localStorage.getItem('u___');
 	return user_id;
 }
+
+
+
+function openNav() {
+    document.getElementById("mySidenav").style.width = "50%";
+    document.body.style.backgroundColor = "#fff";
+    document.getElementById("call-opacity").className = "opacity";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.body.style.backgroundColor = "white";
+    document.getElementById("call-opacity").className = "";
+}
+
+function openNav1() {
+    document.getElementById("mySidenav1").style.width = "50%";
+    document.body.style.backgroundColor = "#fff";
+    document.getElementById("call-opacity").className = "opacity";
+}
+
+function closeNav_() {
+    document.getElementById("mySidenav1").style.width = "0";
+    document.body.style.backgroundColor = "#fff";
+    document.getElementById("call-opacity").className = "opacity";
+}
+
