@@ -114,6 +114,8 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout','$window','$ht
     $scope.box_data_one = true;
     $scope.box_data_two = false;
     
+    //$scope.sg_number = 100;
+    
 	$scope.upload_File = function(file) {
 		file.upload = Upload.upload({
 			url: 'http://0.0.0.0:8000/api/upload/',
@@ -124,15 +126,16 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout','$window','$ht
 			$timeout(function () {
 				console.log(response.data);
                 if(!response.data.status){
+                    console.log(response.data);
                     postFailFile(response.data.originalpath, response.data.savepath, response.data.filename)
                     $scope.box_data_one = false;
                     $scope.box_data_two = true;
                     $scope.savepath = response.data.savepath;
                     $scope.filename = response.data.filename;
                 }else{
-                    storeJson = storeJson(response.data);
                     closeNav();
                     openNav1();
+                    renderView(response.data);
                     
                 }
 			});
@@ -163,6 +166,85 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout','$window','$ht
             console.log(data);
         })
     }
+    
+    
+    function renderView(data){
+        if(data.json.length == 1){
+            
+        }else{
+            multipleDataView(data.json);
+        }
+    }
+    
+    
+    function multipleDataView(json_data){
+        var year = [], member = [], female = [], male = [], ngo = [], partner = [], saved = [], loan = [], sg = [], status = [];
+        
+        $.each(json_data, function(key, value){
+            ngo.push(value['funding_ngo']);
+            partner.push(value['partner_ngo']);
+            
+            if(value['saved_amount_as_of_december_2014'] != 'N/A'){
+                saved.push(parseInt(value['saved_amount_as_of_december_2014']));
+            }
+            
+            if(value['outstanding_loans_as_of_december_2014'] != 'N/A'){
+                loan.push(parseInt(value['outstanding_loans_as_of_december_2014']));
+            }
+
+            sg.push(value['saving_group_name']);
+            female.push(parseInt(value['sgs_members__female']));
+            male.push(parseInt(value['sgs_members__male_']));
+            member.push(parseInt(value['sgs_members_total']));    
+            status.push(value['sgs_status']);
+            year.push(parseInt(value['sgs_year_of_creation']));
+        });
+        
+        $scope.sg_number = sg.length;
+        var min_year = Math.min.apply(Math, year);
+        var max_year = Math.max.apply(Math, year);
+        $scope.year_creation = min_year +" to "+max_year;
+        $scope.total_member = member.reduce(add, 0);
+        $scope.total_female = female.reduce(add, 0);
+        $scope.total_male = male.reduce(add, 0);
+        $scope.partner_number = unique(partner).length;
+        $scope.ngo_number = unique(ngo).length;
+        $scope.total_loan = loan.reduce(add, 0);
+        $scope.total_saved = saved.reduce(add, 0);
+        var status_dump = compressArray(status);
+        console.log(status_dump);
+        if (status_dump[0].value == 'Supervised'){
+            $scope.supervised_num = status_dump[0].count;
+            $scope.graduated_num = status_dump[1].count;
+        }else{
+            $scope.supervised_num = status_dump[1].count;
+            $scope.graduated_num = status_dump[0].count;
+        }
+            
+        
+        
+       console.log(loan);
+       console.log(saved);
+        
+    }
+    
+    
+    function add(a, b) {
+        return a + b;
+    }
+    
+    
+    function unique(list) {
+        var result = [];
+        $.each(list, function(i, e) {
+            if ($.inArray(e, result) == -1) result.push(e);
+        });
+        return result;
+    }
+
+    
+    
+    
 }]);
 
 
