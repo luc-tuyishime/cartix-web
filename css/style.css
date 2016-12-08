@@ -218,14 +218,7 @@ h2 {
     color: white;
     font-weight: lighter;
 }
-.text {
-    font-size: 14.40px;
-    border: 1px solid #212121;
-    background-color: #212121;
-    !important;
-    color: white;
-    opacity: 0.60;
-}
+
 .btn-pwd:hover {
     color: white;
 }
@@ -247,19 +240,7 @@ h2 {
 .login {
     color: white;
 }
-/*.pwd_1,.pwd_2 {
-    font-size: 14.40px;
-    border: 1px solid #212121;
-    background-color: #212121;
-    !important;
-    color: white;
-    /*opacity: 0.70;*/
-}
-*/ input[type="text"] {
-    color: white;
-    opacity: 2;
-    font-size: 12px;
-}
+ 
 a:hover {
     text-decoration: none;
 }
@@ -302,6 +283,16 @@ input:focus::-webkit-input-placeholder {
 .btn:focus,
 .btn:active {
     outline: none !important;
+}
+
+
+.text {
+    font-size: 14.40px;
+    border: 1px solid #212121;
+    background-color: #212121;
+    !important;
+    color: white;
+    opacity: 0.60;
 }
 .footer-text {
     text-align: center;
