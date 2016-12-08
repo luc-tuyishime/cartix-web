@@ -154,7 +154,7 @@ h2 {
 .text_ {
     text-align: center;
     color: white;
-    margin-top: 166px;
+    /*margin-top: 166px;*/
     font-size: 13px;
     color: #BDBDBD;
 }
@@ -166,7 +166,7 @@ h2 {
 .text_2 {
     text-align: center;
     color: white;
-    margin-top: 100px;
+    /*margin-top: 100px;*/
     font-size: 13px;
     color: #BDBDBD;
     /*position: fixed;
@@ -240,7 +240,7 @@ h2 {
 .login {
     color: white;
 }
- 
+
 a:hover {
     text-decoration: none;
 }
@@ -294,6 +294,7 @@ input:focus::-webkit-input-placeholder {
     color: white;
     opacity: 0.60;
 }
+
 .footer-text {
     text-align: center;
     font-size: 11px;

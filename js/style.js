@@ -72,5 +72,5 @@ function openNav1() {
 function closeNav_() {
     document.getElementById("mySidenav1").style.width = "0";
     document.body.style.backgroundColor = "#fff";
-    document.getElementById("call-opacity").className = "opacity";
+    document.getElementById("call-opacity").className = "";
 }
