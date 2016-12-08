@@ -161,8 +161,8 @@ body {
 }
 
 .box-container{
-  margin-left: 55px;
-  margin-top: 40px;
+display: table;
+margin: 0 auto;
 }
 
 .box-center {
@@ -222,13 +222,6 @@ input[type=file] {
     padding-top: 12px;
 }
 
-#side-content-saved{
+.side-content-saved{
   display: none;
-}
-
-.footer-text {
-    text-align: center;
-    font-size: 11px;
-    color: #BDBDBD;
-    padding: 1rem;
 }

@@ -303,3 +303,9 @@ input:focus::-webkit-input-placeholder {
 .btn:active {
     outline: none !important;
 }
+.footer-text {
+    text-align: center;
+    font-size: 11px;
+    color: #BDBDBD;
+    padding: 1rem;
+}
