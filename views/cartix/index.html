@@ -5,7 +5,7 @@
           <div class="row">
              <div class="col-md-12 btn-cartix-bottom">
                 <button type="button" class="btn btn-default btn-cartix" onclick="openNav()">Data</button>
-                <button type="button" class="btn btn-default btn-cartix">Sign out</button>
+                <button ng-click="signout()" class="btn btn-default btn-cartix">Sign out</button>
              </div>
           </div>
        </div>
@@ -61,7 +61,7 @@
          
          <div class="row">
              <div class="col-md-12">
-                 <div class="download-sample">
+                 <div class="download-sample text-center">
                     <p><a href="">Download Data compilation sheet Template here</a></p>
                  </div>
              </div>
@@ -82,43 +82,28 @@
             </div>
          </div>
       </footer>
-</div>
-</div>
 </section>
 <section id="mySidenav1" class="sidenav" >
-   <!--Four-->
-   <div id="side-content-saved">
-      <nav class="navbar navbar-sidebar">
-         <div class="container-fluid">
-            <div class="navbar-header">
-               <a class="navbar-brand" href="#">
-               <img alt="" src="img/cartix-icon.png">
-               </a>
-            </div>
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav_()">&times;</a>
-         </div>
-      </nav>
-      <div class="box-center-successful">
-         <div class="circle">
-            <span class="glyphicon glyphicon-ok"></span>
-         </div>
-         <p class="text-saved">successfull saved</p>
-      </div>
-      <footer class="footer">
-         <div class="container">
-            <div class="row">
-               <div class="col-md-4">
-                  <p class="footer-text">© Copyright cartix 2016</p>
-               </div>
-               <div class="col-md-4">
-                  <p class="footer-text">Hope Rwanda<span class="glyphicon glyphicon-user"></span></p>
-               </div>
-            </div>
-         </div>
-      </footer>
+      <div id="side-content-saved">
+          <nav class="navbar navbar-sidebar">
+             <div class="container-fluid">
+                <div class="navbar-header">
+                   <a class="navbar-brand" href="#">
+                   <img alt="" src="assets/img/cartix-icon.png">
+                   </a>
+                </div>
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav_()">&times;</a>
+             </div>
+          </nav>
+          <div class="box-center-successful">
+             <div class="circle">
+                <span class="glyphicon glyphicon-ok"></span>
+             </div>
+             <p class="text-saved">successfull saved</p>
+          </div>
+
    </div>
-   <!--Data Displayed-->
-   <!--Three-->
+   
    <div id="side-content-data">
       <nav class="navbar navbar-inner nav-side">
          <div class="container-fluid">
@@ -129,11 +114,11 @@
                <a href="javascript:void(0)" class="closebtn_2" onclick="closeNav_()">&times;</a>
                <div class="collapse navbar-collapse" id="myNavbar">
                </div>
-               <div class="from-selection">
+              <!-- <div class="from-selection">
                    <div class="col-md-4 option-select">
                   <div class="form-group">
                      <h5>Province</h5>
-                     <select  id="province" multiple="multiple">
+                     <select id="province" multiple="multiple">
                         <option value="1">Option 1</option>
                         <option value="2">Option 2</option>
                         <option value="3">Option 3</option>
@@ -169,7 +154,7 @@
                      </select>
                   </div>
                </div>
-                </div>
+                </div> -->
             </div>
          
       </nav>
@@ -177,74 +162,76 @@
          <div class="table-center">
             <div class="table">
                <div class="col-md-12">
+                   
                   <table class="table table-hover">
                      <thead>
                         <tr>
-                           <td class="text-left">Saving Group name:</td>
-                           <td class="text-right">ABAREWI</td>
+                           <td class="text-left">Saving Group :</td>
+                           <td class="text-right">{{sg_number}}</td>
                         </tr>
                      </thead>
                      <tbody>
                         <tr>
                            <td class="text-left">SGs Year of creation:</td>
                            
-                           <td class="text-right">2013</td>
+                           <td class="text-right">{{year_creation}}</td>
                         </tr>
                         <tr>
                            <td class="text-left">SGs members Total:</td>
                         
-                           <td class="text-right">17</td>
+                           <td class="text-right">{{ total_member }}</td>
                         </tr>
                         <tr>
                            <td class="text-left">SGs members- Female:</td>
                            
-                           <td class="text-right">9</td>
+                           <td class="text-right">{{ total_female }}</td>
                         </tr>
                         <tr>
                            <td class="text-left">SGs members- Male:</td>
                            
-                           <td class="text-right">8</td>
+                           <td class="text-right">{{ total_male }}</td>
                         </tr>
                         <tr>
                            <td class="text-left">Funding NGO:</td>
                            
-                           <td class="text-right">HOPE Rwanda</td>
+                           <td class="text-right">{{ ngo_number }}</td>
                         </tr>
                         <tr>
                            <td class="text-left">Partner NGO:</td>
                            
-                           <td class="text-right">ADEPR</td>
+                           <td class="text-right">{{ partner_number }}</td>
                         </tr>
                         <tr>
                            <td class="text-left">SGs Status/ supervised</td>
                           
-                           <td class="text-right">654</td>
+                           <td class="text-right">{{ supervised_num }}</td>
                         </tr>
                         <tr>
                            <td class="text-left">SGs Status/ graduated</td>
                         
-                           <td class="text-right">1000</td>
+                           <td class="text-right">{{ graduated_num }}</td>
                         </tr>
                         <tr>
                            <td class="text-left">Saved Amount as of December 2014( In Rwf ):</td>
                           
-                           <td class="text-right">N/A</td>
+                           <td class="text-right">{{ total_saved }}</td>
                         </tr>
                         <tr>
                            <td class="text-left">Outstanding Loans as of December 2014 ( In Rwf ):</td>
                           
-                           <td class="text-right">N/A</td>
+                           <td class="text-right">{{ total_loan }}</td>
                         </tr>
                      </tbody>
-               </div>
                </table>
+               </div>
             </div>
          </div>
-      </div>
+      
       <div class="button-save">
          <div class="col-md-12">
-            <button id="button-save" type="button" class="btn btn-success btn-cartix_">Save</button>
+            <button id="button-save" type="button" class="btn btn-success btn-cartix_" ng-click="saveData(originalpath, filename_save)">Save</button>
          </div>
+      </div>
       </div>
       <footer class="footer">
          <div class="container">
@@ -258,8 +245,9 @@
             </div>
          </div>
       </footer>
-   </div>
 </section>
+
+
 </div>
 
 
@@ -276,7 +264,7 @@
                 console.log($(this).val());
             }).multipleSelect({
                 width: '100%',
-                placeholder: "Financial Institutions",
+                placeholder: "District",
                 option: 'finance'
             });
             
@@ -284,7 +272,7 @@
                 console.log($(this).val());
             }).multipleSelect({
                 width: '100%',
-                placeholder: "SACCOs"
+                placeholder: "Sector"
             });
             
             
