@@ -1,66 +1,55 @@
-<div class="container-fluid bg-1">
-   <div class="row">
-      <div class="logo-center">
-         <img src="assets/img/cartix-logo2.png" class="img-responsive center-block" />
-      </div>
-   </div>
-   <div class="container">
-      <div class="row" ng-controller="signupCtrl">
-         <h1 class="login">Sign Up</h1>
-         <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
-            <div class="form-style">
-               <div ng-show="user">
-                  <form name="signup">
-                     <div class="form-group">
-                        <input type="text" class="form-control form-control-no-border form-style text" placeholder="Your name" id="email" ng-model="fullname" required>
-                     </div>
-                     <div class="form-group">
-                        <input type="email" class="form-control form-control-no-border form-style text" placeholder="Enter email" ng-model="email" id="email"  required>
-                     </div>
-                     <div class="form-group">
-                        <input type="password" class="form-control form-control-no-border form-style text" placeholder="Enter password" ng-model="password"  required>
-                     </div>
-                     <div class="btn-next">
-                        <button type="submit" class="btn btn-success" ng-click="nextOrg(fullname, email, password)" ng-disabled="!signup.$valid">Next</button>
-                     </div>
-                  </form>
-               </div>
-               <div ng-show="organization">
-                  <form name="signup_org">
-                     <div class="form-group">
-                        <input type="text" class="form-control form-control-no-border form-style text" placeholder="Oganization Name" ng-model="org_name" id="text" required>
-                     </div>
-                     <div class="form-group">
-                         <select class="form-control form-control-no-border form-style text" ng-model="org_type" required>
-                             <option value="1">International NGO</option>
-                             <option value="0">Local NGO</option>
-                         </select>
-                     </div>
-                     <div class="form-group">
-                         <p>{{ message }}</p>
-                      </div>
-                     <div class="btn-next">
-                        <button type="submit" class="btn btn-success" ng-click="sign_up(fullname, email, password, org_name, org_type)" ng-disabled="!signup_org.$valid">Sign up</button>
-                     </div>
-                  </form>
-               </div>
+      <div class="container">
+         <div class="col-xs-10 col-sm-8 col-md-5 col-lg-4 col-centered">
+            <div class="row">
+               <img src="assets/img/cartix-logo2.png">
             </div>
-            </form>
+            <div class="row form-cartix" ng-controller="signupCtrl">
+                <h1 class="text-center sign-in">Sign Up</h1>
+                <div class="user" ng-show="user">
+                    <form class="form form-horizontal" name="signup">
+                     <div class="form-group">
+                         <input type="text" id="username" class="form-control col-md-7" placeholder="Full name" ng-model="fullname" required>
+                      </div>
+                      <div class="form-group">
+                         <input type="text" id="username" class="form-control col-md-7" placeholder="Email" ng-model="email" required>
+                      </div>
+                      <div class="form-group">
+                         <input type="password" id="username" class="form-control col-md-7" placeholder="Password" ng-model="password" required>
+                      </div>
+                      <div class="form-group">
+                          <p class="text-center">Already have an account? <span><a href="#/signin">Sign in</a></span></p>
+                      </div>
+                      <div class="form-actions form-group">
+                         <button type="submit" class="btn btn-success"  ng-click="nextOrg(fullname, email, password)" ng-disabled="!signup.$valid">Next </button>
+                      </div>
+                   </form>
+                </div>
+                <div class="organisation" ng-show="organization">
+                    <form class="form form-horizontal" name="signup_org">
+                     <div class="form-group">
+                         <input type="text" id="username" class="form-control col-md-7" placeholder="Organisation" ng-model="org_name" required>
+                      </div>
+                      <div class="form-group">
+                           <select class="form-control col-md-7" ng-model="org_type" required>
+                               <option value="1">International NGO</option>
+                                <option value="0">Local NGO</option>
+                          </select>
+                        </div>
+                      
+                      <div class="form-actions form-group">
+                         <button type="submit" class="btn btn-success" ng-click="sign_up(fullname, email, password, org_name, org_type)" ng-disabled="!signup_org.$valid">Sign up </button>
+                      </div>
+                      <div class="form-group">
+                          <p class="text-center">By clicking in "sign up" you accept the terms and conditions of the service and the privacy policy.</p>
+                      </div>
+                   </form>
+                </div>
+            </div>
          </div>
       </div>
-   </div>
-   <div class="container">
-      <div class="row">
-         <p class="text_">Already have an account?<a href="#/signin"><span class="sign-up-style"> Log in</span></a></p>
-         <p class="text__">By clicking in <span class="sign-up-style">"sign up"</span>you accept the terms and conditions of the service and the privacy policy</p>
-         </a>
-      </div>
-   </div>
-   <footer>
-      <div class="container footer-contain">
-         <div class="row">
-            <p class="footer-text_">© Copyright cartix 2016</p>
-         </div>
-      </div>
-   </footer>
-</div>
+      
+      <footer class="footer">
+          <div class="container">
+              <p class="footer-text">© Copyright cartix 2016</p>
+          </div>
+       </footer>
