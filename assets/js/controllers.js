@@ -1,32 +1,6 @@
 var myapp = angular.module('cartixApp', ['ngRoute','ngFileUpload']);
 
-myapp.config(['$routeProvider', function($routeProvider){
-    $routeProvider
-    .when('/', {
-        templateUrl: 'views/sign/sign-in.html'
-    })
-    .when('/signin', {
-        templateUrl: 'views/sign/sign-in.html'
-    })
-    .when('/signup', {
-        templateUrl: 'views/sign/sign-up.html'
-    })
-    .when('/organisation', {
-        templateUrl: 'views/sign/organisation.html'
-    })
-    .when('/new-password', {
-        templateUrl: 'views/sign/pwd-recovery.html'
-    })
-    .when('/app/',{
-        templateUrl: 'views/cartix/index.html'
-    })
-    .when('/forget-password', {
-        templateUrl:'views/sign/recovery.html' 
-    })
-    .otherwise({
-        redirectTo: '/'    
-    })
-}]);
+
 
 myapp.controller('signupCtrl',['$scope','$http','$location', function($scope,$http,$location){
 	$scope.user = true;
@@ -51,7 +25,7 @@ myapp.controller('signupCtrl',['$scope','$http','$location', function($scope,$ht
         
         var data_ngo = '{"name":"'+org_name+'","category":"'+org_type+'"}';
         
-        $http.post('http://0.0.0.0:8000/api/v1/ngo', data_ngo, config)
+        $http.post('http://0.0.0.0:5000/api/v1/ngo', data_ngo, config)
         .success(function(data, status, header, config){
             if (data.auth){
                 var ngo_id = data.ngo.id
@@ -65,7 +39,7 @@ myapp.controller('signupCtrl',['$scope','$http','$location', function($scope,$ht
         });
         
         function addUser(data_user){
-            $http.post('http://0.0.0.0:8000/api/v1/user', data_user, config)
+            $http.post('http://0.0.0.0:5000/api/v1/user', data_user, config)
             .success(function(data, status, header, config){
                 console.log(data);
                 if (data.auth){
@@ -88,10 +62,9 @@ myapp.controller('signinCtrl', ['$scope', '$http','$location', function($scope,$
 				'Content-Type':'application/json'
 			}
         }
-         
         var data = '{"username":"'+username+'","password":"'+password+'"}';
         
-        $http.post('http://0.0.0.0:8000/api/v1/login/', data, config)
+        $http.post('http://0.0.0.0:5000/api/v1/login/', data, config)
         .success(function(data, status, header, config){
            console.log(data);
             if(data.auth == 1){
@@ -118,7 +91,7 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout','$window','$ht
     
 	$scope.upload_File = function(file) {
 		file.upload = Upload.upload({
-			url: 'http://0.0.0.0:8000/api/upload/',
+			url: 'http://0.0.0.0:5000/api/upload/',
 			data: {file: file},
 		});
 
@@ -136,7 +109,8 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout','$window','$ht
                     closeNav();
                     openNav1();
                     renderView(response.data);
-                    
+                    $scope.originalpath = response.data.originalpath;
+                    $scope.filename_save = response.data.filename;
                 }
 			});
 		}, function (response) {
@@ -161,10 +135,10 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout','$window','$ht
         
         var data = '{"original":"'+original+'","save":"'+save+'","user_id":"'+id+'","filename":"'+filename+'"}';
     
-        $http.post('http://0.0.0.0:8000/api/v1/file/save/', data, config)
+        $http.post('http://0.0.0.0:5000/api/v1/file/save/', data, config)
         .success(function(data, status, header, config){
             console.log(data);
-        })
+        });
     }
     
     
@@ -172,26 +146,27 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout','$window','$ht
         if(data.json.length == 1){
             
         }else{
+            console.log(data.json);
             multipleDataView(data.json);
         }
     }
     
     
     function multipleDataView(json_data){
-        var year = [], member = [], female = [], male = [], ngo = [], partner = [], saved = [], loan = [], sg = [], status = [];
+        var year = [], member = [], female = [], male = [], ngo = [], partner = [], saved = [], loan = [], sg = [], status = [], location = [];
         
         $.each(json_data, function(key, value){
+            item = [];
+            item.push(value['province'], value['district'], value['sector']);
+            location.push(item);
             ngo.push(value['funding_ngo']);
             partner.push(value['partner_ngo']);
-            
             if(value['saved_amount_as_of_december_2014'] != 'N/A'){
                 saved.push(parseInt(value['saved_amount_as_of_december_2014']));
             }
-            
             if(value['outstanding_loans_as_of_december_2014'] != 'N/A'){
                 loan.push(parseInt(value['outstanding_loans_as_of_december_2014']));
             }
-
             sg.push(value['saving_group_name']);
             female.push(parseInt(value['sgs_members__female']));
             male.push(parseInt(value['sgs_members__male_']));
@@ -225,6 +200,7 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout','$window','$ht
         
        console.log(loan);
        console.log(saved);
+       console.log(location);
         
     }
     
@@ -243,6 +219,39 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout','$window','$ht
     }
 
     
+    $scope.saveData = function(originalpath, filename){
+        var config = {
+			headers:{
+				'Content-Type':'application/json'
+			}
+		}
+        var user_id =  restoreUser();
+        
+        var data = '{"original":"'+originalpath+'","save":"","user_id":"'+user_id+'","filename":"'+filename+'"}';
+    
+        $http.post('http://0.0.0.0:5000/api/v1/file/user/', data, config)
+        .success(function(data, status, header, config){
+            
+            if(data.auth){
+                console.log(data);
+                $("#side-content-data").hide();
+                $("#side-content-saved").show();
+            }
+        });
+        
+    
+    }
+    
+    
+    $scope.signout = function(){
+        var destroy = destroyUser();
+        if(destroy){
+            
+            window.location = "/"
+            
+        }
+
+    }
     
     
 }]);
@@ -269,6 +278,12 @@ function restoreUser(){
 	return user_id;
 }
 
+function destroyUser(){
+	localStorage.removeItem('u___');
+	return 1;
+}
+
+
 
 
 function openNav() {
@@ -292,6 +307,6 @@ function openNav1() {
 function closeNav_() {
     document.getElementById("mySidenav1").style.width = "0";
     document.body.style.backgroundColor = "#fff";
-    document.getElementById("call-opacity").className = "opacity";
+    document.getElementById("call-opacity").className = "";
 }
 
