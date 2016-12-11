@@ -1,6 +1,7 @@
 .body-login{
      background-image: url(../img/bg-image.jpg);
     background-size: cover;
+     -webkit-background-size: cover; 
     background-attachment: fixed;
     background-repeat: no-repeat;
 }
