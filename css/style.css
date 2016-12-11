@@ -132,7 +132,7 @@ td {
     height: 34px;
 }
 .logo-center img {
-    max-width: 110px;
+    /*max-width: 110px;*/
     max-height: 36px;
     margin-top: 20px;
 }
@@ -224,14 +224,14 @@ h2 {
     color: white;
 }
 .sign-up-style:hover {
-    color: #E0E0E0;
+    color: #bdbdbd;
 }
 .forgot-password_ {
     font-weight: bold;
     color: white;
 }
 .forgot-password_:hover {
-    color: #1A237E;
+    color: #bdbdbd;
 }
 .login {
     color: white;
