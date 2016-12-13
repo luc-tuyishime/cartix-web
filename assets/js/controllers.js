@@ -1,6 +1,6 @@
 var myapp = angular.module('cartixApp', ['ngRoute','ngFileUpload']);
 
-
+var option = "";
 
 myapp.controller('signupCtrl',['$scope','$http','$location', function($scope,$http,$location){
 	$scope.user = true;
@@ -25,7 +25,7 @@ myapp.controller('signupCtrl',['$scope','$http','$location', function($scope,$ht
         
         var data_ngo = '{"name":"'+org_name+'","category":"'+org_type+'"}';
         
-        $http.post('http://0.0.0.0:5000/api/v1/ngo', data_ngo, config)
+        $http.post('http://178.62.11.94:5000/api/v1/ngo', data_ngo, config)
         .success(function(data, status, header, config){
             if (data.auth){
                 var ngo_id = data.ngo.id
@@ -39,7 +39,7 @@ myapp.controller('signupCtrl',['$scope','$http','$location', function($scope,$ht
         });
         
         function addUser(data_user){
-            $http.post('http://0.0.0.0:5000/api/v1/user', data_user, config)
+            $http.post('http://178.62.11.94:5000/api/v1/user', data_user, config)
             .success(function(data, status, header, config){
                 console.log(data);
                 if (data.auth){
@@ -64,11 +64,12 @@ myapp.controller('signinCtrl', ['$scope', '$http','$location', function($scope,$
         }
         var data = '{"username":"'+username+'","password":"'+password+'"}';
         
-        $http.post('http://0.0.0.0:5000/api/v1/login/', data, config)
+        $http.post('http://178.62.11.94:5000/api/v1/login/', data, config)
         .success(function(data, status, header, config){
            console.log(data);
             if(data.auth == 1){
                 var store_id = storeUser(data.user.id);
+                var store_ngo = storeNgo(data.user.ngo_id);
                 $location.path('/app/');
                 $("#change-bg").removeClass('body-login');
                 $("#change-bg").addClass('body-app');
@@ -84,6 +85,19 @@ myapp.controller('signinCtrl', ['$scope', '$http','$location', function($scope,$
 
 myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout','$window','$http','$location', function ($scope, Upload, $timeout, $window, $http, $location) {
     
+    var ngo_id =  restoreNgo();
+    var url ="http://178.62.11.94:5000/api/v1/ngo/"+ngo_id;
+    
+    $http.get(url).success(function(data,status, header, config){
+		$scope.ngo_name = data.ngo.name;
+	})
+	.error(function(data, status, header, config){
+		
+	});
+          
+    
+    
+    
     $scope.box_data_one = true;
     $scope.box_data_two = false;
     
@@ -91,7 +105,7 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout','$window','$ht
     
 	$scope.upload_File = function(file) {
 		file.upload = Upload.upload({
-			url: 'http://0.0.0.0:5000/api/upload/',
+			url: 'http://178.62.11.94:5000/api/upload/',
 			data: {file: file},
 		});
 
@@ -135,7 +149,7 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout','$window','$ht
         
         var data = '{"original":"'+original+'","save":"'+save+'","user_id":"'+id+'","filename":"'+filename+'"}';
     
-        $http.post('http://0.0.0.0:5000/api/v1/file/save/', data, config)
+        $http.post('http://178.62.11.94:5000/api/v1/file/save/', data, config)
         .success(function(data, status, header, config){
             console.log(data);
         });
@@ -229,7 +243,7 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout','$window','$ht
         
         var data = '{"original":"'+originalpath+'","save":"","user_id":"'+user_id+'","filename":"'+filename+'"}';
     
-        $http.post('http://0.0.0.0:5000/api/v1/file/user/', data, config)
+        $http.post('http://178.62.11.94:5000/api/v1/file/user/', data, config)
         .success(function(data, status, header, config){
             
             if(data.auth){
@@ -252,6 +266,13 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout','$window','$ht
         }
 
     }
+    
+    
+
+      
+    
+     
+   
     
     
 }]);
@@ -283,6 +304,14 @@ function destroyUser(){
 	return 1;
 }
 
+function storeNgo(id){
+    localStorage.setItem('n___', id);
+}
+
+function restoreNgo(){
+    var ngo_id = localStorage.getItem('n___');
+    return ngo_id;
+}
 
 
 
