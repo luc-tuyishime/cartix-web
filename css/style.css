@@ -249,13 +249,7 @@ a:hover {
 #Fname text {
     color: #FFF;
 }
-.footer-contain {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    padding: 1rem;
-}
+
 ::-webkit-input-placeholder {
     color: white;
     opacity: 2;
@@ -281,7 +275,6 @@ input:focus::-webkit-input-placeholder {
     outline: none !important;
 }
 
-
 .text {
     font-size: 14.40px;
     border: 1px solid #212121;
@@ -289,6 +282,15 @@ input:focus::-webkit-input-placeholder {
     !important;
     color: white;
     opacity: 0.60;
+}
+.footer-contain {
+    /*position: relative;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    overflow:auto;*/
+    top: 0;
+    position:relative;
 }
 
 .footer-text {
