@@ -1,10 +1,19 @@
-var myapp = angular.module('cartixApp', ['ngRoute','ngFileUpload']);
 
-var option = "";
+myapp.controller('appBgCtrl', ['$scope', function($scope){
+    $("body").removeClass('body-login');
+    $("body").addClass('body-app');
+}]);
 
-myapp.controller('signupCtrl',['$scope','$http','$location', function($scope,$http,$location){
+myapp.controller('loginBgCtrl', ['$scope', function($scope){
+    $("body").removeClass('body-app');
+    $("body").addClass('body-login');
+}]);
+
+
+myapp.controller('signupCtrl',['$scope','$location','AuthService', function($scope, $location, AuthService){
 	$scope.user = true;
     $scope.organization = false
+    $scope.message = false;
     
     $scope.nextOrg = function(fullname, email, password){
         $scope.user = false;
@@ -15,78 +24,70 @@ myapp.controller('signupCtrl',['$scope','$http','$location', function($scope,$ht
     }
     
 	$scope.sign_up = function(fullname, email, password, org_name, org_type){
-        console.log(Array(fullname, email, password, org_name, org_type));
-        var config = {
-			headers:{
-				'Content-Type':'application/json'
-			}
-		}
         
+        $scope.error = false;
+        $scope.disable = true;
+        var status = false;
         
-        var data_ngo = '{"name":"'+org_name+'","category":"'+org_type+'"}';
-        
-        $http.post('http://178.62.11.94:5000/api/v1/ngo', data_ngo, config)
-        .success(function(data, status, header, config){
-            if (data.auth){
-                var ngo_id = data.ngo.id
-            }else{
-                var ngo_id = data.ngo
-            }
-            var data_user = '{"names":"'+fullname+'","email":"'+email+'","password":"'+password+'","ngo_id":"'+ngo_id+'"}';
-            
-            addUser(data_user);
-            
-        });
-        
-        function addUser(data_user){
-            $http.post('http://178.62.11.94:5000/api/v1/user', data_user, config)
-            .success(function(data, status, header, config){
-                console.log(data);
-                if (data.auth){
-                    $location.path('/signin');
-                }else{
-                    $scope.message = data.message
-                }
+        // call register service
+        AuthService.registerNgo(org_name, org_type)
+            // handle success
+            .then(function(){
+                $scope.disabled = false;
+                status = true;
+            })
+            // handle error
+            .catch(function(){
+                $scope.disabled = true;
             });
-        }
         
+        // call register user service
+        if (status){
+            var ngo_id = AuthService.getNgo();
+            AuthService.registerUser(fullname, email, password, ngo_id)
+                // handle success
+                .then(function(){
+                    $location.path('/signin'); 
+                })
+                // handle error
+                .catch(function(){
+                    $scope.message = true;
+                });
+        }
 	}
 	
 }]);
 
-myapp.controller('signinCtrl', ['$scope', '$http','$location', function($scope,$http,$location){
+myapp.controller('signinCtrl', ['$scope', '$http','$location','AuthService', function($scope,$http,$location,AuthService ){
+    $("body").removeClass('body-app');
+    $("body").addClass('body-login');
     $scope.message = false;
     $scope.sign_in = function(username, password){
-        var config = {
-			headers:{
-				'Content-Type':'application/json'
-			}
-        }
         var data = '{"username":"'+username+'","password":"'+password+'"}';
         
-        $http.post('http://178.62.11.94:5000/api/v1/login/', data, config)
-        .success(function(data, status, header, config){
-           console.log(data);
-            if(data.auth == 1){
-                var store_id = storeUser(data.user.id);
-                var store_ngo = storeNgo(data.user.ngo_id);
-                $location.path('/app/');
-                $("#change-bg").removeClass('body-login');
-                $("#change-bg").addClass('body-app');
-            }else{
-                $scope.message = true;
-            }
-        });
+        AuthService.login(data)
+            .then(function(){
+                $location.path('/app');
+            })
+            .catch(function(){
+               $scope.message = true;
+            });
     }
     
 }]);
 
 
 
-myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout','$window','$http','$location', function ($scope, Upload, $timeout, $window, $http, $location) {
+
+
+
+
+myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout','$window','$http','$location','AuthService', function ($scope, Upload, $timeout, $window, $http, $location, AuthService) {
+    $("body").removeClass('body-login');
+    $("body").addClass('body-app');
     
     var ngo_id =  restoreNgo();
-    var url ="http://178.62.11.94:5000/api/v1/ngo/"+ngo_id;
+    var url ="http://0.0.0.0:5000/api/v1/ngo/"+ngo_id;
     
     $http.get(url).success(function(data,status, header, config){
 		$scope.ngo_name = data.ngo.name;
@@ -97,15 +98,27 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout','$window','$ht
           
     
     
+    $scope.logout = function () {
+      // call logout from service
+       
+      AuthService.logout()
+        .then(function () {
+           alert("Remy");
+          $location.path('/signin');
+        });
+
+    };
+
     
-    $scope.box_data_one = true;
+    
+    $scope.box_data_one = true; 
     $scope.box_data_two = false;
     
     //$scope.sg_number = 100;
     
 	$scope.upload_File = function(file) {
 		file.upload = Upload.upload({
-			url: 'http://178.62.11.94:5000/api/upload/',
+			url: 'http://0.0.0.0:5000/api/upload/',
 			data: {file: file},
 		});
 
@@ -149,7 +162,7 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout','$window','$ht
         
         var data = '{"original":"'+original+'","save":"'+save+'","user_id":"'+id+'","filename":"'+filename+'"}';
     
-        $http.post('http://178.62.11.94:5000/api/v1/file/save/', data, config)
+        $http.post('http://0.0.0.0:5000/api/v1/file/save/', data, config)
         .success(function(data, status, header, config){
             console.log(data);
         });
@@ -243,7 +256,7 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout','$window','$ht
         
         var data = '{"original":"'+originalpath+'","save":"","user_id":"'+user_id+'","filename":"'+filename+'"}';
     
-        $http.post('http://178.62.11.94:5000/api/v1/file/user/', data, config)
+        $http.post('http://0.0.0.0:5000/api/v1/file/user/', data, config)
         .success(function(data, status, header, config){
             
             if(data.auth){
@@ -260,16 +273,11 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout','$window','$ht
     $scope.signout = function(){
         var destroy = destroyUser();
         if(destroy){
-            
-            window.location = "/"
+            $location.path("/logout")
             
         }
 
     }
-    
-    
-
-      
     
      
    
