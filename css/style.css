@@ -284,13 +284,10 @@ input:focus::-webkit-input-placeholder {
     opacity: 0.60;
 }
 .footer-contain {
-    /*position: relative;
+    position:fixed;
     left: 0;
     bottom: 0;
     right: 0;
-    overflow:auto;*/
-    top: 0;
-    position:relative;
 }
 
 .footer-text {
@@ -298,4 +295,10 @@ input:focus::-webkit-input-placeholder {
     font-size: 11px;
     color: #BDBDBD;
     padding: 1rem;
+}
+
+@media (max-width: 767px) {
+   .footer-contain {
+      display: none;
+   }
 }
