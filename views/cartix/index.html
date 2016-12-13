@@ -11,18 +11,32 @@
        </div>
     </footer>
     <section id="mySidenav" class="sidenav" >
-      <!--Upload Page--> 
-      <!-- <div id="side-content-upload"> -->
-      <nav class="navbar navbar-sidebar">
-         <div class="container-fluid">
-            <div class="navbar-header">
-               <a class="navbar-brand" href="#">
-               <img alt="" src="assets/img/cartix-icon.png">
-               </a>
+       <nav class="navbar navbar-cartix">
+            <div class="container-fluid">
+               <!-- Brand and toggle get grouped for better mobile display -->
+               <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  </button> 
+                  <a class="navbar-brand" href="#"><img src="assets/img/cartix-icon.png"></a>
+               </div>
+               <!-- Collect the nav links, forms, and other content for toggling -->
+               <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                  <div class="nav navbar-nav navbar-right">
+                         
+                      <a class="ngo_header">{{ ngo_name }}</a> 
+                       
+                      <a href="javascript:void(0)" onclick="closeNav()"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+                  </div>
+               </div>
+               
+               <!-- /.navbar-collapse -->
             </div>
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-         </div>
-      </nav>
+            <!-- /.container-fluid -->
+         </nav>
       <!--one -->
       <div class="box-container col-md-12">
          <div class="box-center ">
@@ -62,7 +76,7 @@
          <div class="row">
              <div class="col-md-12">
                  <div class="download-sample text-center">
-                    <p><a href="">Download Data compilation sheet Template here</a></p>
+                    <p><a href="http://cartix.io/uploads/template/Data_Compilation_Sheet_Template.xlsx">Download Data compilation sheet Template here</a></p>
                  </div>
              </div>
              
@@ -74,16 +88,30 @@
 </section>
 <section id="mySidenav1" class="sidenav" >
       <div id="side-content-saved">
-          <nav class="navbar navbar-sidebar">
-             <div class="container-fluid">
-                <div class="navbar-header">
-                   <a class="navbar-brand" href="#">
-                   <img alt="" src="assets/img/cartix-icon.png">
-                   </a>
-                </div>
-                <a href="javascript:void(0)" class="closebtn" onclick="closeNav_()">&times;</a>
-             </div>
-          </nav>
+          <nav class="navbar navbar-cartix">
+            <div class="container-fluid">
+               <!-- Brand and toggle get grouped for better mobile display -->
+               <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  </button> 
+                  <a class="navbar-brand" href="#"><img src="assets/img/cartix-icon.png"></a>
+               </div>
+               <!-- Collect the nav links, forms, and other content for toggling -->
+               <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                  <div class="nav navbar-nav navbar-right">
+                     <a class="ngo_header">{{ ngo_name }}</a> 
+                      <a href="javascript:void(0)" onclick="closeNav_()"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+                  </div>
+               </div>
+               
+               <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container-fluid -->
+         </nav>
           <div class="box-center-successful">
              <div class="circle">
                 <span class="glyphicon glyphicon-ok"></span>
@@ -94,26 +122,33 @@
    </div>
    
    <div id="side-content-data">
-      <nav class="navbar navbar-inner nav-side">
-         <div class="container-fluid">
-            <div class="row">
-               <div class="navbar-header cartix">
-                  <img alt="" src="assets/img/cartix-icon2.png">
+     
+     <nav class="navbar navbar-cartix">
+            <div class="container-fluid">
+               <!-- Brand and toggle get grouped for better mobile display -->
+               <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  </button> 
+                  <a class="navbar-brand" href="#"><img src="assets/img/cartix-icon.png"></a>
                </div>
-               <a href="javascript:void(0)" class="closebtn_2" onclick="closeNav_()">&times;</a>
-               <div class="collapse navbar-collapse" id="myNavbar">
+               <!-- Collect the nav links, forms, and other content for toggling -->
+               <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                  <div class="nav navbar-nav navbar-right">
+                      <a class="ngo_header">{{ ngo_name }}</a> 
+                      <a href="javascript:void(0)" onclick="closeNav()"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+                  </div>
                </div>
-                 <div class="from-selection">
+               
+             <!--  <div class="from-selection">
                    <div class="col-md-4 option-select">
                   <div class="form-group">
                      <h5>Province</h5>
-                     <select id="province" multiple="multiple">
-                        <option value="1">Option 1</option>
-                        <option value="2">Option 2</option>
-                        <option value="3">Option 3</option>
-                        <option value="4">Option 4</option>
-                        <option value="5">Option 5</option>
-                        <option value="6">Option 6</option>
+                     <select id="province" multiple="multiple" ng-model="selectedProvince">
+                         
                      </select>
                   </div>
                </div>
@@ -121,12 +156,7 @@
                   <div class="form-group">
                      <h5>District</h5>
                      <select id="district" multiple="multiple">
-                        <option value="1">Option 1</option>
-                        <option value="2">Option 2</option>
-                        <option value="3">Option 3</option>
-                        <option value="4">Option 4</option>
-                        <option value="5">Option 5</option>
-                        <option value="6">Option 6</option>
+                        
                      </select>
                   </div>
                </div>
@@ -134,19 +164,17 @@
                   <div class="form-group">
                      <h5>Sectors</h5>
                      <select id="sector" multiple="multiple">
-                        <option value="1">Option 1</option>
-                        <option value="2">Option 2</option>
-                        <option value="3">Option 3</option>
-                        <option value="4">Option 4</option>
-                        <option value="5">Option 5</option>
-                        <option value="6">Option 6</option>
+                        
                      </select>
                   </div>
                </div>
-                </div> 
+                </div> -->
+               <!-- /.navbar-collapse -->
             </div>
-         
-      </nav>
+            <!-- /.container-fluid -->
+         </nav>
+     
+      
       
          <div class="table-center">
             <div class="table">
@@ -228,31 +256,3 @@
 
 </div>
 
-
-<script>
-    $(function() {
-            $('#province').change(function() {
-                console.log($(this).val());
-            }).multipleSelect({
-                width: '100%',
-                placeholder: "Province"
-            });
-            
-            $('#district').change(function() {
-                console.log($(this).val());
-            }).multipleSelect({
-                width: '100%',
-                placeholder: "District",
-                option: 'finance'
-            });
-            
-            $('#sector').change(function() {
-                console.log($(this).val());
-            }).multipleSelect({
-                width: '100%',
-                placeholder: "Sector"
-            });
-            
-            
-        });
-</script>
