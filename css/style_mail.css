@@ -1,10 +1,12 @@
 body {
 font: 20px Montserrat, sans-serif;
 line-height: 1.8;
+padding-top: 30px;
 background-color:#EEEEEE;
 }
 .bg-1 {
 background-color: #560034;
+margin-top: 30px;
 }
 .bg-2{
 background-color: white;

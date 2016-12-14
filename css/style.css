@@ -250,17 +250,21 @@ a:hover {
     color: #FFF;
 }
 
-::-webkit-input-placeholder {
-    color: white;
-    opacity: 2;
-    font-size: 13px;
-    font-weight: bold;
-}
+/*Form style*/
 input[placeholder]:focus {
     font-weight: bold;
     color: white;
     opacity: 2;
 }
+.text {
+    font-size: 14.40px;
+    border: 1px solid #212121;
+    background-color: #212121;
+    !important;
+    color: white;
+    opacity: 0.60;
+}
+
 input:focus::-webkit-input-placeholder {
     color: #FAFAFA;
 }
@@ -275,16 +279,8 @@ input:focus::-webkit-input-placeholder {
     outline: none !important;
 }
 
-.text {
-    font-size: 14.40px;
-    border: 1px solid #212121;
-    background-color: #212121;
-    !important;
-    color: white;
-    opacity: 0.60;
-}
 .footer-contain {
-    position:fixed;
+    position:absolute;
     left: 0;
     bottom: 0;
     right: 0;
