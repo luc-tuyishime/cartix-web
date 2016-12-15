@@ -19,7 +19,11 @@ myapp.factory('AuthService', ['$q', '$timeout', '$http', function($q, $timeout, 
         login: login,
         logout: logout,
         getUserStatus: getUserStatus,
-        getNgo: getNgo
+        getNgo: getNgo,
+        destroyUser: destroyUser,
+        Key: Key,
+        changePassword: changePassword,
+        recover:recover
     });
 
 
@@ -36,7 +40,7 @@ myapp.factory('AuthService', ['$q', '$timeout', '$http', function($q, $timeout, 
         var deferred = $q.defer();
 
         // send a post request to the server
-        $http.post('http://0.0.0.0:5000/api/v1/login/', data, config)
+        $http.post('http://178.62.11.94:5000/api/v1/login/', data, config)
             // handle success
             .success(function(data, status) {
                 if (status == 200 && data.result) {
@@ -48,15 +52,12 @@ myapp.factory('AuthService', ['$q', '$timeout', '$http', function($q, $timeout, 
                     console.log(user);
                     deferred.reject();
                 }
-                console.log(data.result);
             })
             .error(function(data) {
                 user = false;
                 console.log(user);
                 deferred.reject();
             });
-
-        console.log(user);
 
         // return promise object
         return deferred.promise;
@@ -91,12 +92,12 @@ myapp.factory('AuthService', ['$q', '$timeout', '$http', function($q, $timeout, 
         // send a post request data ngo
         var data = '{"name":"' + org_name + '","category":"' + org_type + '"}';
 
-        $http.post('http://0.0.0.0:5000/api/v1/ngo/', data, config)
+        $http.post('http://178.62.11.94:5000/api/v1/ngo/', data, config)
             .success(function(data, status) {
-                console.log(data.result);
                 if (status == 200 && data.result) {
                     saveNgo(data.result);
                     deferred.resolve();
+                    console.log(data.result);
                 } else {
                     deferred.reject();
                 }
@@ -109,6 +110,70 @@ myapp.factory('AuthService', ['$q', '$timeout', '$http', function($q, $timeout, 
 
 
     }
+    
+    
+    function Key(email, key){
+        var deferred = $q.defer();
+        
+        // send a put request
+        var link = 'http://178.62.11.94:5000/api/v1/check/key/'+email+'/'+key;
+        $http.get(link)
+            .success(function(data,status){
+                if(status == 200 && data.result){
+                  deferred.resolve();  
+                } else{
+                    deferred.reject();
+                }
+            })
+            .error(function(){
+                deferred.reject();
+            });
+        return deferred.promise;
+            
+        
+    }
+    
+    function changePassword(password, email){
+        var deferred = $q.defer();
+        
+        var data = '{"password":"'+password+'", "email":"'+email+'"}';
+        
+        //send post request 
+        $http.put('http://178.62.11.94:5000/api/v1/change/password', data, config)
+            .success(function(data, status){
+                if(status == 200 && data.result){
+                    console.log(data.result);
+                    deferred.resolve();
+                }else{
+                    deferred.reject();
+                }
+            })
+            .error(function(){
+                deferred.reject();
+            });
+        return deferred.promise;
+    }
+    
+    
+    function recover(email){
+        var deferred = $q.defer();
+        var link = 'http://178.62.11.94:5000/api/v1/recover/'+email;
+        
+        //send get request
+        $http.get(link)
+            .success(function(data, status){
+                if(status == 200 && data.result){
+                    console.log(data.result);
+                    deferred.resolve();
+                }else{
+                    deferred.reject();
+                }
+            })
+            .error(function(){
+                deferred.reject();
+            });
+        return deferred.promise;
+    }
 
     function registerUser(fullname, email, password, ngo_id) {
         // create new instance of deferred
@@ -116,7 +181,7 @@ myapp.factory('AuthService', ['$q', '$timeout', '$http', function($q, $timeout, 
 
         // send a post request data ngo
         var data = '{"names":"' + fullname + '","email":"' + email + '","password":"' + password + '", "ngo_id":"' + ngo_id + '"}';
-        $http.post('http://0.0.0.0:5000/api/v1/user/', data, config)
+        $http.post('http://178.62.11.94:5000/api/v1/user/', data, config)
             .success(function(data, status) {
                 if (status == 200 && data.result) {
                     deferred.resolve();
@@ -156,7 +221,7 @@ myapp.factory('AuthService', ['$q', '$timeout', '$http', function($q, $timeout, 
 
     function storeUser(User) {
         localStorage.setItem('u___', User);
-        return 1;
+        return true;
     }
 
     function restoreUser() {
@@ -170,7 +235,7 @@ myapp.factory('AuthService', ['$q', '$timeout', '$http', function($q, $timeout, 
 
     function destroyUser() {
         localStorage.removeItem('u___');
-        return 1;
+        return true;
     }
 
 }]);
