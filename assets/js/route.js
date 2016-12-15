@@ -1,5 +1,8 @@
 var myapp = angular.module('cartixApp', ['ngRoute','ngFileUpload']);
-myapp.config(['$routeProvider', function($routeProvider){
+myapp.config(['$routeProvider', '$locationProvider' ,function($routeProvider, $locationProvider){
+    
+    
+    
     $routeProvider
     .when('/', {
         templateUrl: 'views/sign/sign-in.html',
@@ -56,10 +59,26 @@ myapp.config(['$routeProvider', function($routeProvider){
             private: true
       }
     })
+    .when('/recover/:email/:keyu', {
+        template: '',
+        controller: 'keyController',
+        data: {
+            private: false
+        }
+    })
+    .when('/new-password/:email',{
+        templateUrl: 'views/sign/recovery-pass.html',
+        data: {
+            private: false
+        }
+    })
     .otherwise({
         redirectTo: '/'    
-    })
+    });
+    
+    
 }]);
+
 
 
 
@@ -70,7 +89,6 @@ myapp.run(function ($rootScope, $location, $route, AuthService) {
     function (event, next, current) {
         if(!AuthService.getUserStatus()){
             if (next.data.private && !AuthService.isLoggedIn()){
-              console.log(next.data.private + " "+ AuthService.isLoggedIn());
               $location.path('/');
               $route.reload();
             }
