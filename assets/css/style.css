@@ -11,7 +11,7 @@
     margin: 0 auto;
 }
 
-img{
+.logo img{
     display:block;
     margin:auto;
     width: 50%;
@@ -47,7 +47,7 @@ img{
 
 
 .form .form-control{
-    background-color: rgba(0,0,0,0.7);
+    background-color: rgba(0,0,0,0.5);
     border: #111;
     color: #bdbdbd;
 }
