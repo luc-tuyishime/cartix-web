@@ -42,14 +42,16 @@
          <div class="box-center ">
             <div class="form-style">
                <form name="uploadfile">
-                 <div class="form-group">
-                     <input type="file" ngf-select ng-model="efile" name="file"
-                        accept=".xlsx,.csv,.xls" ng-drop ngf-max-size="10MB" required
-                        ngf-model-invalid="errorFile">
-                  </div>
-                  <div class="form-group">
-                     <button class="btn btn-default" ng-disabled="!uploadfile.$valid" 
-                        ng-click="upload_File(efile)">upload</button>
+                 <div ng-show="uploadInput">
+                     <div class="form-group">
+                         <input type="file" ngf-select ng-model="efile" name="file"
+                            accept=".xlsx,.csv,.xls" ng-drop ngf-max-size="10MB" required
+                            ngf-model-invalid="errorFile">
+                      </div>
+                      <div class="form-group">
+                         <button class="btn btn-default" ng-disabled="!uploadfile.$valid" 
+                            ng-click="upload_File(efile)">upload</button>
+                      </div>
                   </div>
                   <div class="form-group">
                       <div class="progress" ng-show="efile.progress >= 0">
@@ -57,14 +59,19 @@
                           </div>
                        </div>
                   </div>
+                  <div class="form-group loading" ng-show="spinLoad">
+                      <div class="row">
+                          <div class="col-md-4"><img src="assets/img/spin.gif" style="width:32px;"></div>
+                          <div class="col-md-8 text-left">checking for error in excel file</div>
+                      </div>
+                   </div>
                   <div class="form-group">
                         <div ng-show="box_data_one">
                             <p>Upload the field Data compilation sheet here</p>
                             <p>Format: csv, xls, xlsx</p>
                         </div>
                         <div ng-show="box_data_two">
-                            <p>The file contains some wrong data</p>
-                            <p><a ng-href="{{ savepath }}">{{filename}}</a></p>
+                            <p>Your file contains errors, consider revising the highlighted fields. download it here: <a ng-href="{{ savepath }}">{{filename}}</a></p>
                         </div>
                    </div>
                </form>
