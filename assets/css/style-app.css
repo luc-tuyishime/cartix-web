@@ -248,3 +248,12 @@ input[type=file] {
     color: #BDBDBD;
     padding: 1rem;
 }
+
+.loading{
+    padding-top: 30px;
+}
+
+.loading img{
+    float: right;
+    margin-top: -10px;
+}
