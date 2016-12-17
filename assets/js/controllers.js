@@ -132,7 +132,7 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$
     $("body").addClass('body-app');
 
     var ngo_id = restoreNgo();
-    var url = "http://178.62.11.94:5000/api/v1/ngo/" + ngo_id;
+    var url = "http://api.cartix.io/api/v1/ngo/" + ngo_id;
 
     $http.get(url).success(function(data, status, header, config) {
             $scope.ngo_name = data.ngo.name;
@@ -163,7 +163,7 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$
 
     $scope.upload_File = function(file) {
         file.upload = Upload.upload({
-            url: 'http://178.62.11.94:5000/api/upload/',
+            url: 'http://api.cartix.io/api/upload/',
             data: {
                 file: file
             },
@@ -213,7 +213,7 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$
 
         var data = '{"original":"' + original + '","save":"' + save + '","user_id":"' + id + '","filename":"' + filename + '"}';
 
-        $http.post('http://178.62.11.94:5000/api/v1/file/save/', data, config)
+        $http.post('http://api.cartix.io/api/v1/file/save/', data, config)
             .success(function(data, status, header, config) {
                 console.log(data);
             });
@@ -317,7 +317,7 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$
 
         var data = '{"original":"' + originalpath + '","save":"","user_id":"' + user_id + '","filename":"' + filename + '"}';
 
-        $http.post('http://178.62.11.94:5000/api/v1/file/user/', data, config)
+        $http.post('http://api.cartix.io/api/v1/file/user/', data, config)
             .success(function(data, status, header, config) {
 
                 if (data.auth) {
