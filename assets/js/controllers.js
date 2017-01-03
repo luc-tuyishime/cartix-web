@@ -34,7 +34,7 @@ myapp.controller('signupCtrl', ['$scope', '$location', 'AuthService', function($
             .then(function() {
                 $scope.disabled = false;
                 status = true;
-                
+
                 var ngo_id = AuthService.getNgo();
                 AuthService.registerUser(fullname, email, password, ngo_id)
                     // handle success
@@ -60,9 +60,9 @@ myapp.controller('signinCtrl', ['$scope', '$http', '$location', 'AuthService', f
     $("body").removeClass('body-app');
     $("body").addClass('body-login');
     $scope.message = false;
-    
+
     AuthService.destroyUser();
-    
+
     $scope.sign_in = function(username, password) {
         var data = '{"username":"' + username + '","password":"' + password + '"}';
 
@@ -72,38 +72,38 @@ myapp.controller('signinCtrl', ['$scope', '$http', '$location', 'AuthService', f
             })
             .catch(function() {
                 $scope.message = true;
-            
+
             });
     }
 
 }]);
 
 
-myapp.controller('keyController', ['$scope','$http','$location','$routeParams','AuthService', function($scope,$http,$location,$routeParams,AuthService){
+myapp.controller('keyController', ['$scope', '$http', '$location', '$routeParams', 'AuthService', function($scope, $http, $location, $routeParams, AuthService) {
     console.log($routeParams.email, $routeParams.keyu);
     AuthService.Key($routeParams.email, $routeParams.keyu)
-        .then(function(){
+        .then(function() {
             console.log("edddee");
-            var link = "/new-password/"+$routeParams.email;
+            var link = "/new-password/" + $routeParams.email;
             $location.path(link);
         })
-        .catch(function(){
+        .catch(function() {
             $location.path('/signin');
         });
 }]);
 
 
-myapp.controller('changePasswordCtrl', ['$scope','$http','$location','$routeParams','AuthService', function($scope, $http, $location, $routeParams, AuthService){
+myapp.controller('changePasswordCtrl', ['$scope', '$http', '$location', '$routeParams', 'AuthService', function($scope, $http, $location, $routeParams, AuthService) {
     $scope.message = false;
-    $scope.changePass= function(password, cpassword){
-        if(password != cpassword){
+    $scope.changePass = function(password, cpassword) {
+        if (password != cpassword) {
             $scope.message = true;
-        }else{
+        } else {
             AuthService.changePassword(password, $routeParams.email)
-                .then(function(){
+                .then(function() {
                     $location.path('/signin');
                 })
-                .catch(function(){
+                .catch(function() {
                     $scope.message = true;
                 })
         }
@@ -111,16 +111,16 @@ myapp.controller('changePasswordCtrl', ['$scope','$http','$location','$routePara
 }]);
 
 
-myapp.controller('forgetCtrl', ['$scope','$location','AuthService', function($scope, $location, AuthService){
+myapp.controller('forgetCtrl', ['$scope', '$location', 'AuthService', function($scope, $location, AuthService) {
     $scope.notValid = false;
     $scope.valid = false;
-    $scope.recoverPass = function(email){
+    $scope.recoverPass = function(email) {
         console.log(email);
         AuthService.recover(email)
-            .then(function(){
+            .then(function() {
                 $scope.valid = true;
             })
-            .catch(function(){
+            .catch(function() {
                 $scope.notValid = true;
             })
     }
@@ -132,7 +132,7 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$
     $("body").addClass('body-app');
 
     var ngo_id = restoreNgo();
-    var url = "http://127.0.0.1:5000/api/v1/ngo/" + ngo_id;
+    var url = "http://api.cartix.io/api/v1/ngo/" + ngo_id;
 
     $http.get(url).success(function(data, status, header, config) {
             $scope.ngo_name = data.ngo.name;
@@ -154,6 +154,50 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$
     };
 
 
+
+    function doRequest(task_id, originalpath, savepath, filename) {
+        var url = 'http://api.cartix.io/api/v1/status/' + task_id;
+        $http.get(url)
+            .success(function(data, status) {
+                if (data.status == 'SUCCESS') {
+                    var fileStatus = data.data[0];
+                    if (!fileStatus) {
+                        postFailFile(originalpath, savepath, filename)
+                        $scope.box_data_one = false;
+                        $scope.box_data_two = true;
+                        $scope.uploadInput = true;
+                        $scope.savepath = savepath;
+                        $scope.filename = filename;
+                    } else {
+                        closeNav();
+                        openNav1();
+                        renderView(data.data[1]);
+                        $scope.originalpath = originalpath;
+                        $scope.filename_save = filename;
+                    }
+
+
+                    console.log(data);
+                    return true;
+
+                } else if (data.status == 'FAILURE') {
+                    console.log(data);
+                    return false;
+                } else {
+                    console.log(data);
+                    setTimeout(function() {
+                        doRequest(task_id, originalpath, savepath, filename);
+                    }, 10000);
+                }
+
+            })
+            .error(function(data) {
+
+            });
+    }
+
+
+
     $scope.uploadInput = true;
     $scope.box_data_one = true;
     $scope.box_data_two = false;
@@ -161,31 +205,22 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$
 
     //$scope.sg_number = 100;
 
-    $scope.upload_File = function(file) {
+    $scope.upload_File = function(file, AuthService) {
         file.upload = Upload.upload({
-            url: 'http://127.0.0.1:5000/api/upload/',
+            url: 'http://api.cartix.io/api/upload/',
             data: {
                 file: file
             },
         });
 
         file.upload.then(function(response) {
+
             $timeout(function() {
                 $scope.spinLoad = false;
                 $scope.uploadInput = true;
                 if (!response.data.status) {
-                    postFailFile(response.data.originalpath, response.data.savepath, response.data.filename)
-                    $scope.box_data_one = false;
-                    $scope.box_data_two = true;
-                    $scope.uploadInput = true;
-                    $scope.savepath = response.data.savepath;
-                    $scope.filename = response.data.filename;
-                } else {
-                    closeNav();
-                    openNav1();
-                    renderView(response.data);
-                    $scope.originalpath = response.data.originalpath;
-                    $scope.filename_save = response.data.filename;
+                    console.log(response.data);
+                    doRequest(response.data.task_id, response.data.originalpath, response.data.savepath, response.data.filename);
                 }
             });
         }, function(response) {
@@ -194,7 +229,7 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$
         }, function(evt, response) {
             // Math.min is to fix IE which reports 200% sometimes
             file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
-            if (file.progress == 100){
+            if (file.progress == 100) {
                 file.progress = -1;
                 $scope.spinLoad = true;
                 $scope.box_data_one = false;
@@ -213,7 +248,7 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$
 
         var data = '{"original":"' + original + '","save":"' + save + '","user_id":"' + id + '","filename":"' + filename + '"}';
 
-        $http.post('http://127.0.0.1:5000/api/v1/file/save/', data, config)
+        $http.post('http://api.cartix.io/api/v1/file/save/', data, config)
             .success(function(data, status, header, config) {
                 console.log(data);
             });
@@ -221,11 +256,11 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$
 
 
     function renderView(data) {
-        if (data.json.length == 1) {
+        if (data.length == 1) {
 
         } else {
-            console.log(data.json);
-            multipleDataView(data.json);
+            console.log(data);
+            multipleDataView(data);
         }
     }
 
@@ -317,7 +352,7 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$
 
         var data = '{"original":"' + originalpath + '","save":"","user_id":"' + user_id + '","filename":"' + filename + '"}';
 
-        $http.post('http://127.0.0.1:5000/api/v1/file/user/', data, config)
+        $http.post('http://api.cartix.io/api/v1/file/user/', data, config)
             .success(function(data, status, header, config) {
 
                 if (data.auth) {

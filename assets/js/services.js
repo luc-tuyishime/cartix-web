@@ -23,9 +23,33 @@ myapp.factory('AuthService', ['$q', '$timeout', '$http', function($q, $timeout, 
         destroyUser: destroyUser,
         Key: Key,
         changePassword: changePassword,
-        recover:recover
+        recover:recover,
+        excelStatus:excelStatus
     });
-
+    
+    
+    function excelStatus(task_id){
+        // create new instance for deferred
+        var deferred = $q.defer();
+        
+        // send a get request to the server
+        
+        var url = 'http://api.cartix.io/api/v1/status/'+task_id;
+        $http.get(url)
+            .success(function(data, status){
+                if (status == 200){
+                    console.log(data);
+                    deferred.resolve();
+                    return data;
+                }else{
+                    deferred.resolve();
+                }
+            })
+            .error(function(data){
+                deferred.reject();
+            });
+    }
+    
 
     function isLoggedIn() {
         if (user) {
@@ -40,7 +64,7 @@ myapp.factory('AuthService', ['$q', '$timeout', '$http', function($q, $timeout, 
         var deferred = $q.defer();
 
         // send a post request to the server
-        $http.post('http://127.0.0.1:5000/api/v1/login/', data, config)
+        $http.post('http://api.cartix.io/api/v1/login/', data, config)
             // handle success
             .success(function(data, status) {
                 if (status == 200 && data.result) {
@@ -93,7 +117,7 @@ myapp.factory('AuthService', ['$q', '$timeout', '$http', function($q, $timeout, 
         // send a post request data ngo
         var data = '{"name":"' + org_name + '","category":"' + org_type + '"}';
 
-        $http.post('http://127.0.0.1:5000/api/v1/ngo/', data, config)
+        $http.post('http://api.cartix.io/api/v1/ngo/', data, config)
             .success(function(data, status) {
                 if (status == 200 && data.result) {
                     saveNgo(data.result);
@@ -117,7 +141,7 @@ myapp.factory('AuthService', ['$q', '$timeout', '$http', function($q, $timeout, 
         var deferred = $q.defer();
         
         // send a put request
-        var link = 'http://127.0.0.1:5000/api/v1/check/key/'+email+'/'+key;
+        var link = 'http://api.cartix.io/api/v1/check/key/'+email+'/'+key;
         $http.get(link)
             .success(function(data,status){
                 if(status == 200 && data.result){
@@ -140,7 +164,7 @@ myapp.factory('AuthService', ['$q', '$timeout', '$http', function($q, $timeout, 
         var data = '{"password":"'+password+'", "email":"'+email+'"}';
         
         //send post request 
-        $http.put('http://127.0.0.1:5000/api/v1/change/password', data, config)
+        $http.put('http://api.cartix.io/api/v1/change/password', data, config)
             .success(function(data, status){
                 if(status == 200 && data.result){
                     console.log(data.result);
@@ -158,7 +182,7 @@ myapp.factory('AuthService', ['$q', '$timeout', '$http', function($q, $timeout, 
     
     function recover(email){
         var deferred = $q.defer();
-        var link = 'http://127.0.0.1:5000/api/v1/recover/'+email;
+        var link = 'http://api.cartix.io/api/v1/recover/'+email;
         
         //send get request
         $http.get(link)
@@ -182,7 +206,7 @@ myapp.factory('AuthService', ['$q', '$timeout', '$http', function($q, $timeout, 
 
         // send a post request data ngo
         var data = '{"names":"' + fullname + '","email":"' + email + '","password":"' + password + '", "ngo_id":"' + ngo_id + '"}';
-        $http.post('http://127.0.0.1:5000/api/v1/user/', data, config)
+        $http.post('http://api.cartix.io/api/v1/user/', data, config)
             .success(function(data, status) {
                 if (status == 200 && data.result) {
                     deferred.resolve();
