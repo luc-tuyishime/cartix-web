@@ -251,33 +251,15 @@ h2 {
     text-align: center;
 }
 .progress {
+    display: block;
+    margin: 0 auto;
     margin-top: 20px;
+    width: 80%;
 }
 .uploading-box {
     margin-top: 50px;
 }
-/*.loader {
-  margin-top: 30px;
-  display: block;
-  margin: 0 auto;
-  border: 16px solid #f3f3f3;
-  border-radius: 50%;
-  border-top: 16px solid #424242;
-  width: 90px;
-  height: 90px;
-  -webkit-animation: spin 2s linear infinite;
-  animation: spin 2s linear infinite;
-}
 
-@-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}*/
 
 .circle {
     border-radius: 50%;
