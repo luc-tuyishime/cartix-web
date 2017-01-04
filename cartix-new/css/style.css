@@ -1,0 +1,99 @@
+
+.logo-center img {
+    /*max-width: 110px;*/
+    max-height: 36px;
+    margin-top: 20px;
+}
+h1 {
+    text-align: center;
+    margin-top: 150px;
+}
+
+.forgot-password {
+    text-align: center;
+    color: white;
+    font-size: 13px;
+    color: #BDBDBD;
+    margin-top: 25px;
+}
+
+.btn-success {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #009710!important;
+    border-radius: 20px;
+    width: 90px;
+    height: 37px;
+    margin-top: 15px;
+    
+}
+
+.btn-pwd:hover {
+    color: white;
+}
+
+.forgot-password_ {
+    font-weight: bold;
+    color: white;
+}
+.forgot-password_:hover {
+    color: #bdbdbd;
+}
+.login {
+    color: white;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+/*Form style*/
+input[placeholder]:focus {
+    font-weight: bold;
+    color: white;
+    opacity: 2;
+}
+.form-group{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.text {
+    font-size: 14.40px;
+    border: 1px solid #212121;
+    background-color: #212121;
+    !important;
+    color: white;
+    opacity: 0.60;
+}
+
+.form-control-no-border:focus {
+    border-color: #212121;
+    outline: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+.btn:focus,
+.btn:active {
+    outline: none !important;
+}
+
+.footer-contain {
+    position:absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.footer-text {
+    text-align: center;
+    font-size: 11px;
+    color: #BDBDBD;
+    padding: 1rem;
+}
+
+@media (max-width: 767px) {
+   .footer-contain {
+      display: none;
+   }
+}

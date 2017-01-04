@@ -64,7 +64,7 @@ body {
 }
 
 .download-data p {
-    margin-top: 50px;
+    margin-top: 15px;
     color: #3D5AFE;
     font-weight: bold;
 }
@@ -102,53 +102,70 @@ body {
     margin-top: 190px;
     padding: 120px;
 }
+
+#file-input{
+    display: none;
+}
+
+.image-upload i{
+  cursor: pointer;
+}
+
 .text_1 {
     font-weight: bold;
     color: #757575;
-    font-size: 13px;
+    font-size: 12px;
     margin-top: 10px;
 }
+
 .text_2 {
-    font-size: 15px;
+    font-size: 13px;
     font-family: 'Open Sans', sans-serif;
-    margin-top: 0px;
+    margin-top: -12px;
 }
+
 .uploading-text_1{
   font-size: 24px;
 }
+
 .uploading-text_2{
   color: #757575;
-
 }
+
 .navbar-sidebar {
     background-color: #4C0014;
     border-radius: 0px !important;
     height: 94px;
     margin-top: -60px;
 }
+
 .nav-side {
     background-color: #4C0014;
     border-radius: 0px !important;
     margin-top: -60px;
     margin-left: auto;
 }
+
 .select-box {
     margin-bottom: 35px;
 }
+
 .select-box h5 {
     color: white;
     font-size: 15px;
     font-weight: bold;
-
 }
+
 #ddlCars2 {
     text-align: left;
 }
+
 .navbar-brand img {
     width: 25px;
     height: 27.6px;
     margin-left: 25px;
 }
+
 .cartix img {
     margin-bottom: 40px;
     margin-top: 50px;
@@ -168,29 +185,29 @@ margin: 0 auto;
 .box-center {
     width: 650px;
     height: 300px;
-    background: #EBEBEB;
+    background: #F5F5F5;
     text-align: center;
 }
 
-.box-center-ok {
+.box-center-progress {
+    width: 650px;
+    height: 300px;
+    padding: 20px;
+    background: #F1F8E9;
+    text-align: center;
+}
+
+.box-center-successful{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     width: 650px;
     height: 300px;
     padding: 20px;
     background: #E8F5E9;
     text-align: center;
 }
-.box-center-successful{
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 650px;
-  height: 300px;
-  padding: 20px;
-  background: #E8F5E9;
-  text-align: center;
-}
-
 
 .circle {
     border-radius: 50%;
@@ -201,25 +218,28 @@ margin: 0 auto;
     margin: auto;
     margin-top: 50px;
 }
+
 .text-saved {
     display: block;
     margin: auto;
     margin-top: 10px;
     font-size: 30px;
 }
+
 .glyphicon-ok {
     font-size: 45px;
     margin-top: 25px;
     color: white;
 }
+
 input[type=file] {
-    display: block;
-    margin: 0 auto;
-    padding-top: 40px;
+  display: block;
+  margin: 0 auto;
+  padding-top: 40px;
   }
 
 .table {
-    padding-top: 12px;
+  padding-top: 12px;
 }
 
 .side-content-saved{

@@ -42,26 +42,20 @@
          <div class="box-container">
              <div class="row">
             <div class="box-center">
-               <div class="form-style">
-                  <form action="">
-                     <input type="file" name="pic" accept="image/*">
-                     <button type="button" class="btn btn-default">Upload</button>
-                  </form>
-               </div>
-               <p class="text_1">Upload the field Data compilation sheet here</p>
-               <p class="text_2">Format: csv, xls, xlsx</p>
-                  <div class="download-data">
-                     <a href="" style="text-decoration:none">
-                        <p>Download Data compilation sheet Template here</p>
-                     </a>
-               </div>
+                 <div class="image-upload">
+                         <label for="file-input">
+                            <i class="fa fa-upload"style="color:#9E9E9E" aria-hidden="true"></i>
+                         </label>
+                         <input id="file-input"  type="file"/>
+                      </div>
+                   <p class="text_1">Upload the field Data compilation sheet here</p>
+                   <p class="text_2">Format: csv, xls, xlsx</p>
             </div>
             </div>
             <br>
             <!--Two-->
               <div class="row">
-            <div class="box-center-ok">
-
+              <div class="box-center-progress">
                <div class="uploading-box">
                   <p class="uploading-text_1">Upload Complete:<span class="uploading-text_2"> Data_compilation_sheet.xlsx</span></p>
                   <div class="progress">
@@ -73,25 +67,17 @@
                      <button id="button-save-file" type="button" class="btn btn-success btn-cartix_" onclick="openNav1()">Save</button>
                   </div>
                </div>
-            </div>
-         </div>
-       </div>
-
-         <footer class="footer">
-            <div class="container">
-               <div class="row">
-                  <div class="col-md-4">
-                     <p class="footer-text">© Copyright cartix 2016</p>
-                  </div>
-                  <div class="col-md-4">
-                     <p class="footer-text">Hope Rwanda<span class="glyphicon glyphicon-user"></span></p>
-                  </div>
-               </div>
-            </div>
-         </footer>
+             </div>
+            <div class="download-data">
+               <a href="" style="text-decoration:none">
+                  <p>Download Data compilation sheet Template here</p>
+               </a>
          </div>
          </div>
-      </section>
+         </div>
+         </div>
+         </div>
+       </section>
 
       <!--Three-->
       <section id="mySidenav1" class="sidenav">
@@ -113,18 +99,7 @@
                </div>
                <p class="text-saved">successfull saved</p>
             </div>
-            <footer class="footer">
-               <div class="container">
-                  <div class="row">
-                     <div class="col-md-4">
-                        <p class="footer-text">© Copyright cartix 2016</p>
-                     </div>
-                     <div class="col-md-4">
-                        <p class="footer-text">Hope Rwanda<span class="glyphicon glyphicon-user"></span></p>
-                     </div>
-                  </div>
-               </div>
-            </footer>
+
          </div>
          <!--Data Displayed-->
          <!--Three-->
@@ -245,27 +220,13 @@
                               </tr>
                            </tbody>
                      </table>
+                     <div class="button-save">
+                           <button id="button-save" type="button" class="btn btn-success btn-cartix_">Save</button>
+                     </div>
                    </div>
                   </div>
                </div>
             </div>
-            <div class="button-save">
-               <div class="col-md-12">
-                  <button id="button-save" type="button" class="btn btn-success btn-cartix_">Save</button>
-               </div>
-            </div>
-            <footer class="footer">
-               <div class="container">
-                  <div class="row">
-                     <div class="col-md-2">
-                        <div class="footer-text">© Copyright cartix 2016</div>
-                     </div>
-                     <div class="col-md-10">
-                        <div class="footer-text">Hope Rwanda<span class="glyphicon glyphicon-user"></span></div>
-                     </div>
-                  </div>
-               </div>
-            </footer>
          </div>
       </section>
       <script src="js/jquery.min.js"></script>
