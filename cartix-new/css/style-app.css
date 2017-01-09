@@ -7,6 +7,32 @@ body {
     font-family: 'Open Sans', sans-serif;
     background-size: 100% 100%;
 }
+/*Index Style*/
+.care-style{
+  text-align: right;
+}
+.profile{
+  margin: -12px 10px;
+  float: right;
+}
+.profile-name{
+  color: #9e9e9e;
+
+}
+a:hover ul  { text-decoration: none }
+
+.caret-up {
+    width: 0;
+    height: 0;
+    border-left: 4px solid rgba(0, 0, 0, 0);
+    border-right: 4px solid rgba(0, 0, 0, 0);
+    border-bottom: 4px solid;
+
+    display: inline-block;
+    margin-left: 2px;
+    vertical-align: middle;
+}
+
 /*Notification Content*/
 
 .dropdown-box {
@@ -126,6 +152,9 @@ footer {
     color: white;
     border: 2px solid #4C0014;
     margin-top: 20px;
+}
+.download-data p{
+  margin-top: 12px;
 }
 .download-data p:hover {
     color: #1A237E;

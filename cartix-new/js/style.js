@@ -33,7 +33,37 @@ $(function () {
       includeSelectAllOption: true
   });
 
+  $('#ddlCars10').multiselect({
+      includeSelectAllOption: true
+  });
+
+  $('#ddlCars11').multiselect({
+      includeSelectAllOption: true
+  });
+
+  $('#ddlCars12').multiselect({
+      includeSelectAllOption: true
+  });
+
+  $('#ddlCars13').multiselect({
+      includeSelectAllOption: true
+  });
+
+  $('#ddlCars14').multiselect({
+      includeSelectAllOption: true
+  });
+
+  $('#ddlCars15').multiselect({
+      includeSelectAllOption: true
+  });
+
+  $('#ddlCars16').multiselect({
+      includeSelectAllOption: true
+  });
+
 });
+
+
 
 
 /*Hide and SHow Page*/
