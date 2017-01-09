@@ -241,7 +241,8 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$
             loan = [],
             sg = [],
             status = [],
-            location = [];
+            location = [],
+            year_amount;
 
         $.each(json_data, function(key, value) {
             item = [];
@@ -249,11 +250,11 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$
             location.push(item);
             ngo.push(value['funding_ngo']);
             partner.push(value['partner_ngo']);
-            if (value['saved_amount_as_of_december_2014'] != 'N/A') {
-                saved.push(parseInt(value['saved_amount_as_of_december_2014']));
+            if (value['saved_amount'] != 'N/A') {
+                saved.push(parseInt(value['saved_amount']));
             }
-            if (value['outstanding_loans_as_of_december_2014'] != 'N/A') {
-                loan.push(parseInt(value['outstanding_loans_as_of_december_2014']));
+            if (value['outstanding_loans'] != 'N/A') {
+                loan.push(parseInt(value['outstanding_loans']));
             }
             sg.push(value['saving_group_name']);
             female.push(parseInt(value['sgs_members__female']));
@@ -261,29 +262,46 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$
             member.push(parseInt(value['sgs_members_total']));
             status.push(value['sgs_status']);
             year.push(parseInt(value['sgs_year_of_creation']));
+            year_amount = value['year_amount'];
         });
 
         $scope.sg_number = sg.length;
         var min_year = Math.min.apply(Math, year);
         var max_year = Math.max.apply(Math, year);
-        $scope.year_creation = min_year + " to " + max_year;
-        $scope.total_member = member.reduce(add, 0);
-        $scope.total_female = female.reduce(add, 0);
-        $scope.total_male = male.reduce(add, 0);
-        $scope.partner_number = unique(partner).length;
-        $scope.ngo_number = unique(ngo).length;
-        $scope.total_loan = loan.reduce(add, 0);
-        $scope.total_saved = saved.reduce(add, 0);
+        if (min_year == max_year){
+             $scope.year_creation = min_year;
+        }else{
+             $scope.year_creation = min_year + " to " + max_year;
+        }
+       
+        $scope.total_member = numeral(member.reduce(add, 0)).format();
+        $scope.total_female = numeral(female.reduce(add, 0)).format();
+        $scope.total_male = numeral(male.reduce(add, 0)).format();
+        
+        if(unique(partner) == 'N/A'){
+            $scope.partner_number = 'N/A';
+        }else{
+            $scope.partner_number = unique(partner).length;
+        }
+        
+        if (unique(ngo).length == 1){
+            $scope.ngo_number = unique(ngo)[0];   
+        }else{
+            $scope.ngo_number = unique(ngo).length;
+        }
+        
+        $scope.total_loan = numeral(loan.reduce(add, 0)).format();
+        $scope.total_saved = numeral(saved.reduce(add, 0)).format();
         var status_dump = compressArray(status);
         console.log(status_dump);
         if (status_dump[0].value == 'Supervised') {
-            $scope.supervised_num = status_dump[0].count;
-            $scope.graduated_num = status_dump[1].count;
+            $scope.supervised_num = numeral(status_dump[0].count).format();
+            $scope.graduated_num = numeral(status_dump[1].count).format();
         } else {
-            $scope.supervised_num = status_dump[1].count;
-            $scope.graduated_num = status_dump[0].count;
+            $scope.supervised_num = numeral(status_dump[1].count).format();
+            $scope.graduated_num = numeral(status_dump[0].count).format();
         }
-
+        $scope.year_amount = year_amount; 
 
 
         console.log(loan);
@@ -294,7 +312,7 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$
 
 
     function add(a, b) {
-        return a + b;
+        return parseInt(a) + parseInt(b);
     }
 
 
