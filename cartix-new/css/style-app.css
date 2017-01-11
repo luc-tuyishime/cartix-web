@@ -1,14 +1,105 @@
 body {
     /*background-image: url(../img/cartix-pic_.jpg) !important;*/
-
+    height: 100%;
     width: 100%;
     background-size: cover;
     background-attachment: fixed;
     font-family: 'Open Sans', sans-serif;
     background-size: 100% 100%;
 }
-/*Notification Content*/
+/*Index Style*/
+.care-style{
+  font-size: 23px;
+  text-align: right;
+  color: #616161;
+}
+.profile{
+  margin: -12px 10px;
+  float: right;
+}
+.profile-name{
+  color: #9e9e9e;
+}
+.analytics_text{
+  display: block;
+  margin: 0 auto;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+}
+.style1{
+  margin-top: 30px;
+}
+a:hover ul  { text-decoration: none }
 
+.caret-up {
+    width: 0;
+    height: 0;
+    border-left: 4px solid rgba(0, 0, 0, 0);
+    border-right: 4px solid rgba(0, 0, 0, 0);
+    border-bottom: 4px solid;
+    display: inline-block;
+    margin-left: 2px;
+    vertical-align: middle;
+}
+.saving-text{
+  text-align: center;
+  font-size: 22px;
+
+}
+.alert-default{
+	/*position: absolute;
+	bottom: 0px;
+	left: 0px;
+	width: 100%;
+  border-radius:0px;*/
+  background-color: #550034;
+}
+.alert-link {
+  text-align: center;
+  color: white;
+}
+.text-right{
+  float: right;
+}
+.text-1{
+  color: #616161;
+  font-weight: bold;
+  font-size: 12px;
+}
+.text-2{
+  color: #550034;
+  font-weight: bold;
+}
+.text-center{
+  font-size: 18px;
+}
+.text-center-ngo{
+  text-align: center;
+  font-weight : bold;
+}
+.text-center-3{
+  font-size: 12px;
+  text-align: justify;
+  color: #616161;
+}
+.text-center-4{
+  text-align: center;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 12px;
+}
+.map-box{
+  background-color: black;
+  background-size: cover;
+}
+.graph-box{
+  background-color:#fafafa;
+}
+.afr-logo{
+  height: 50px;
+}
+/*Notification Content*/
 .dropdown-box {
     background-color: #FAFAFA;
 }
@@ -54,6 +145,15 @@ body {
 }
 .file-logo {
     float: left;
+}
+.dropdown-menu {
+  left: 50%;
+  right: auto;
+  text-align: center;
+  transform: translate(-50%, 0);
+}
+li a{
+  float: left;
 }
 footer {
     float: left;
@@ -126,6 +226,9 @@ footer {
     color: white;
     border: 2px solid #4C0014;
     margin-top: 20px;
+}
+.download-data p{
+  margin-top: 12px;
 }
 .download-data p:hover {
     color: #1A237E;
