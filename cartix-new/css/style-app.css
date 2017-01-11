@@ -1,6 +1,6 @@
-body {
-    /*background-image: url(../img/cartix-pic_.jpg) !important;*/
 
+/*------------------------Right side CSS-------------------------------------*/
+body {
     height: 100%;
     width: 100%;
     background-size: cover;
@@ -8,7 +8,6 @@ body {
     font-family: 'Open Sans', sans-serif;
     background-size: 100% 100%;
 }
-/*Index Style*/
 
 .care-style {
     font-size: 23px;
@@ -102,8 +101,11 @@ a:hover ul {
 .map-box {
     position: fixed;
 }
-/*Notification Content*/
 
+
+/*------------------------left sidebar CSS----------------------------------*/
+
+/*Notification Content*/
 .dropdown-box {
     background-color: #FAFAFA;
 }
@@ -164,8 +166,8 @@ footer {
     margin-bottom: 35px;
     margin-top: 12px;
 }
-/*Sidebar*/
 
+/*------------------------Sidebar------------------------*/
 .sidenav {
     height: 100%;
     width: 0;
@@ -277,8 +279,8 @@ footer {
     font-size: 15px;
     font-weight: bold;
 }
-/*upload box */
 
+/*----------------------Upload Box----------------------*/
 .box-center-browse {
     float: none;
     margin: 0 auto;
@@ -347,8 +349,8 @@ h2 {
 .browse-text {
     margin: 50px;
 }
-/*Upload progress*/
 
+/*-----------------Upload Progress----------------------------*/
 .box-center {
     display: table;
     margin: 0 auto;
