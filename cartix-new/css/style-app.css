@@ -47,12 +47,15 @@ a:hover ul  { text-decoration: none }
   font-size: 22px;
 
 }
-.alert-default{
-	/*position: absolute;
-	bottom: 0px;
-	left: 0px;
-	width: 100%;
-  border-radius:0px;*/
+.alert{
+    /*position: absolute;
+    z-index: 101;
+    top: 0;
+    left: 0;
+    right: 0;
+    text-align: center;*/
+  height: 50px;
+  border-radius:0px;
   background-color: #550034;
 }
 .alert-link {
@@ -94,10 +97,14 @@ a:hover ul  { text-decoration: none }
   background-size: cover;
 }
 .graph-box{
-  background-color:#fafafa;
+  background-color:#fff;
+  float: right;
 }
 .afr-logo{
   height: 50px;
+}
+.map-box{
+  position: fixed;
 }
 /*Notification Content*/
 .dropdown-box {
@@ -204,9 +211,7 @@ footer {
     position: absolute;
     bottom: 0;
 }
-.footer .btn-cartix-bottom {
-    margin-left: 50px;
-}
+
 .btn-cartix {
     border-radius: 20px;
     width: 100px;
@@ -217,6 +222,11 @@ footer {
     color: white;
     border: 2px solid #4C0014;
     z-index: 100;
+    margin-bottom: 30px;
+    margin-left: 19px;
+    position: fixed;
+    bottom: 0;
+
 }
 .btn_cartix {
     border-radius: 30px;
