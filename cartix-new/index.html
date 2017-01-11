@@ -10,31 +10,72 @@
       <link href="css/bootstrap-multiselect.css" rel="stylesheet" type="text/css"/>
       <link rel="stylesheet" media="screen and (min-width:300px)" href="css/style-app.css" type="text/css">
       <link rel="shortcut icon" href="img/cartix-favicon.png" type="image/x-icon">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <script src="https://code.highcharts.com/highcharts.js"></script>
+      <script src="https://code.highcharts.com/modules/exporting.js"></script>
    </head>
    <body>
       <div class="container-fluid">
-      <div class="" id="call-opacity"></div>
-       <div class="row">
-        <div class="col-md-9"></div>
-        <div class="col-md-3">
-         <h2 class="care-style">Care International</h2>
-         <div class="profile">
-           <div class="dropdown">
-             <a href="" class="dropdown-toggle" data-toggle="dropdown"><img src="img/yellow.png" height="50px"/> <span class="profile-name">Uwimana Jean</span> <b class="caret"></b></a>
-             <ul class="dropdown-menu dropdown-menu-right">
-               <li><a href="#gsdk">Settings</a></li>
-               <li><a href="#gsdk">Help</a></li>
-               <li><a href="#gsdk">Report a problem</a></li>
-               <li class="divider"></li>
-               <li><a href="#gsdk">Log Out</a></li>
-             </ul>
-           </div>
-       </div>
+         <div class="row">
+            <div class="" id="call-opacity"></div>
+            <!--Map Part-->
+            <div class="col-md-9 map-box">
+               <img alt="" src="img/afr-logo.png" class="afr-logo">
+            </div>
+            <!--Chart Part-->
+            <div class="col-md-3 graph-box">
+               <p class="care-style">Care International</p>
+               <div class="profile">
+                  <div class="dropdown">
+                     <a href="" class="dropdown-toggle" data-toggle="dropdown"><img src="img/lightgray.png" height="30px"/><span class="profile-name">Uwimana Jean</span> <b class="caret"></b></a>
+                     <ul class="dropdown-menu dropdown-menu-right">
+                        <li><a href="#gsdk">Settings</a></li>
+                        <li><a href="#gsdk">Help</a></li>
+                        <li><a href="#gsdk">Report a problem</a></li>
+                        <li><a href="#gsdk">Log Out</a></li>
+                     </ul>
+                  </div>
+               </div>
+               <hr class="style1">
+               <p class="saving-text">Saving Groups</p>
+               <div class="alert alert-default" role="alert">
+                  <div class="dropdown">
+                     <a href="" class="dropdown-toggle" data-toggle="dropdown"><span class="analytics_text">Analytics <b class="caret"></b></span> </a>
+                     <ul class="dropdown-menu">
+                        <li><a href="#gsdk">Settings</a></li>
+                        <li><a href="#gsdk">Help</a></li>
+                        <li><a href="#gsdk">Report a problem</a></li>
+                        <li><a href="#gsdk">Log Out</a></li>
+                     </ul>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-md-5">
+                     <p class="text-1">Total Saving Groups</p>
+                     <p class="text-2">28,023</p>
+                     <img alt="" src="img/command.png" class="file-logo">
+                     <p class="text-1">Total Membership</p>
+                     <p class="text-2">669,751</p>
+                  </div>
+                  <!-- <hr class="vertical"/> -->
+                  <div class="col-md-5 text-right">
+                     <p class="text-1">Total Savings</p>
+                     <p class="text-2">13,869,727,965</p>
+                     <p class="text-1">Total Membership</p>
+                     <p class="text-2">11,031,815,669</p>
+                  </div>
+               </div>
+               <p class="text-center">Membership per gender in rwanda</p>
+               <p class="text-center-ngo">Selected International NGO:</p>
+               <p class="text-center-3">CARE Rwanda, CRS, FHI 360/ROADS, Global Communities
+                  Rwanda, HAC, HOPE Rwanda, KNH, Plan International
+                  Rwanda TEARFUND, USAID/Direct Funding, World Relief
+                  Rwanda, Word tVision Rwanda.
+               </p>
+               <p class="text-center-4">Rwanda Saving Groups Mapping Project (2010­-2014)</p>
+               <div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+            </div>
+         </div>
       </div>
-     </div>
-    </div>
-
       <footer class="footer">
          <div class="container-fluid">
             <div class="row">
@@ -44,6 +85,7 @@
             </div>
          </div>
       </footer>
+      <!--Sidebar-->
       <section id="mySidenav" class="sidenav">
          <div id="notification">
             <div class="navbar-sidebar">
@@ -184,9 +226,6 @@
                      </footer>
                   </div>
                </div>
-
-
-
                <div class="container-fluid dropdown-box">
                   <div class="row">
                      <div class="col-md-4">
@@ -302,9 +341,7 @@
                </div>
             </div>
          </div>
-
-
-         <!-- <div class="container" > -->
+      
          <div class="navbar-sidebar" id="second-container">
             <nav class="navbar">
                <div class="container-fluid">
@@ -327,7 +364,6 @@
                </div>
                <p class="download_data_text"><a href="">Download Data compilation sheet Template here</a></p>
             </div>
-
             <div class="upload-box">
                <h2>Submit Your File</h2>
                <p class="small-text">Small description</p>
@@ -343,7 +379,6 @@
                <p class="download_data_text"><a href="">Download Data compilation sheet Template here</a></p>
             </div>
          </div>
-
          <div class="navbar-sidebar" id="third-container">
             <nav class="navbar ">
                <div class="container-fluid">
@@ -378,10 +413,9 @@
                <div class="row">
                   <div class="box-center">
                      <div class="uploading-box">
-                           <h2>Checking for errors</h2>
-                           <p class="small-text">SG_Data_xls</p>
-                           <i class="fa fa-spinner fa-spin" style="font-size:50px"></i>
-
+                        <h2>Checking for errors</h2>
+                        <p class="small-text">SG_Data_xls</p>
+                        <i class="fa fa-spinner fa-spin" style="font-size:50px"></i>
                         <p class="small-text_">this might take a while</p>
                         <div class="button-save">
                            <button id="button-save-file" type="button" class="btn btn-success btn-cartix_" onclick="openNav1()">Save</button>
@@ -541,9 +575,6 @@
                   </div>
                </div>
             </div>
-
-
-
             <div class="container-fluid dropdown-box">
                <div class="row">
                   <div class="col-md-3">
@@ -673,25 +704,24 @@
                </div>
             </div>
          </div>
-
          </div>
          <div id="side-content-saved">
-               <nav class="navbar navbar-sidebar">
-                  <div class="container-fluid">
-                     <div class="navbar-header">
-                        <a class="navbar-brand" href="#">
-                        <img alt="" src="img/cartix-icon.png">
-                        </a>
-                     </div>
-                     <a href="javascript:void(0)" class="closebtn" onclick="closeNav_()">&times;</a>
+            <nav class="navbar navbar-sidebar">
+               <div class="container-fluid">
+                  <div class="navbar-header">
+                     <a class="navbar-brand" href="#">
+                     <img alt="" src="img/cartix-icon.png">
+                     </a>
                   </div>
-               </nav>
-               <div class="box-center-successful">
-                  <div class="circle">
-                     <i class="fa fa-check" aria-hidden="true" style="font-size:40px"></i>
-                  </div>
-                  <h2>Sucessfully saved!</h2>
+                  <a href="javascript:void(0)" class="closebtn" onclick="closeNav_()">&times;</a>
                </div>
+            </nav>
+            <div class="box-center-successful">
+               <div class="circle">
+                  <i class="fa fa-check" aria-hidden="true" style="font-size:40px"></i>
+               </div>
+               <h2>Sucessfully saved!</h2>
+            </div>
          </div>
       </section>
       <script src="js/jquery.min.js"></script>
