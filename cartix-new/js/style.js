@@ -94,7 +94,7 @@ $(function () {
     $("#download-data_").click(function(e){
          event.preventDefault();
         $("#sidebar_data").hide();
-         $(".successfull-saved").show();
+         $("#saved").show();
     });
  });
 
