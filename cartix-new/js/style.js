@@ -81,15 +81,22 @@ $(function () {
          $("#third-container").show();
     });
  });
+ // $(document).ready(function(){
+ //    $("#download-data").click(function(e){
+ //         event.preventDefault();
+ //         $("#sidebar_data").hide();
+ //         $(".successfull-saved").show();
+ //    });
+ // });
+
+
  $(document).ready(function(){
-    $("#download-data").click(function(e){
+    $("#download-data_").click(function(e){
          event.preventDefault();
-         $("#sidebar_data").hide();
-         $("#side-content-saved").show();
+        $("#sidebar_data").hide();
+         $(".successfull-saved").show();
     });
  });
-
-
 
  //DropzoneJS snippet - js
  $(function(){
@@ -100,23 +107,23 @@ $(function () {
  });
 
 
-$(document).ready(function() {});
-
- // $(document).ready(function(){
- //    $("#button-save").click(function(e){
- //         event.preventDefault();
- //        $("#side-content-data").hide();
- //         $("#side-content-saved").show();
- //    });
- // });
- //
- // $(document).ready(function(){
- //    $("#button-save-file").click(function(e){
- //         event.preventDefault();
- //        $("#side-upload-complete").hide();
- //         $("#side-content-data").show();
- //    });
- // });
+// $(document).ready(function() {});
+//
+//   $(document).ready(function(){
+//      $("#button-save").click(function(e){
+//          event.preventDefault();
+//          $("#side-content-data").hide();
+//           $("#side-content-saved").show();
+//      });
+//   });
+//
+//   $(document).ready(function(){
+//      $("#button-save-file").click(function(e){
+//           event.preventDefault();
+//          $("#side-upload-complete").hide();
+//           $("#side-content-data").show();
+//      });
+//   });
 
 
 
