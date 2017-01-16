@@ -1,6 +1,21 @@
 
 /*Select box Script*/
 $(function () {
+
+  $('#ddlCars01').multiselect({
+      includeSelectAllOption: true
+
+  });
+  $('#ddlCars02').multiselect({
+      includeSelectAllOption: true
+  });
+  $('#ddlCars03').multiselect({
+      includeSelectAllOption: true
+  });
+  $('#ddlCars04').multiselect({
+      includeSelectAllOption: true
+  });
+
   $('#ddlCars2').multiselect({
       includeSelectAllOption: true
   });
@@ -61,10 +76,9 @@ $(function () {
       includeSelectAllOption: true
   });
 
+
 });
-
-
-
+ 
 
 /*Hide and SHow Page*/
  $(document).ready(function(){
@@ -72,25 +86,14 @@ $(function () {
        event.preventDefault();
       $("#notification").hide();
        $("#second-container").show();
-    });
- });
- $(document).ready(function(){
-    $("#upload-progress").click(function(e){
-         event.preventDefault();
-        $("#second-container").hide();
-         $("#third-container").show();
-    });
- });
- // $(document).ready(function(){
- //    $("#download-data").click(function(e){
- //         event.preventDefault();
- //         $("#sidebar_data").hide();
- //         $(".successfull-saved").show();
- //    });
- // });
 
+       $("#upload-progress").click(function(e){
+            event.preventDefault();
+           $("#second-container").hide();
+            $("#third-container").show();
+       });
 
- $(document).ready(function(){
+    });
     $("#download-data_").click(function(e){
          event.preventDefault();
         $("#sidebar_data").hide();
@@ -98,7 +101,7 @@ $(function () {
     });
  });
 
- //DropzoneJS snippet - js
+ //Upload file
  $(function(){
  $("#upload_link").on('click', function(e){
      e.preventDefault();
