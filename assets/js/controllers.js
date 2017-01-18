@@ -34,7 +34,7 @@ myapp.controller('signupCtrl', ['$scope', '$location', 'AuthService', function($
             .then(function() {
                 $scope.disabled = false;
                 status = true;
-                
+
                 var ngo_id = AuthService.getNgo();
                 AuthService.registerUser(fullname, email, password, ngo_id)
                     // handle success
@@ -60,9 +60,9 @@ myapp.controller('signinCtrl', ['$scope', '$http', '$location', 'AuthService', f
     $("body").removeClass('body-app');
     $("body").addClass('body-login');
     $scope.message = false;
-    
+
     AuthService.destroyUser();
-    
+
     $scope.sign_in = function(username, password) {
         var data = '{"username":"' + username + '","password":"' + password + '"}';
 
@@ -72,38 +72,38 @@ myapp.controller('signinCtrl', ['$scope', '$http', '$location', 'AuthService', f
             })
             .catch(function() {
                 $scope.message = true;
-            
+
             });
     }
 
 }]);
 
 
-myapp.controller('keyController', ['$scope','$http','$location','$routeParams','AuthService', function($scope,$http,$location,$routeParams,AuthService){
+myapp.controller('keyController', ['$scope', '$http', '$location', '$routeParams', 'AuthService', function($scope, $http, $location, $routeParams, AuthService) {
     console.log($routeParams.email, $routeParams.keyu);
     AuthService.Key($routeParams.email, $routeParams.keyu)
-        .then(function(){
+        .then(function() {
             console.log("edddee");
-            var link = "/new-password/"+$routeParams.email;
+            var link = "/new-password/" + $routeParams.email;
             $location.path(link);
         })
-        .catch(function(){
+        .catch(function() {
             $location.path('/signin');
         });
 }]);
 
 
-myapp.controller('changePasswordCtrl', ['$scope','$http','$location','$routeParams','AuthService', function($scope, $http, $location, $routeParams, AuthService){
+myapp.controller('changePasswordCtrl', ['$scope', '$http', '$location', '$routeParams', 'AuthService', function($scope, $http, $location, $routeParams, AuthService) {
     $scope.message = false;
-    $scope.changePass= function(password, cpassword){
-        if(password != cpassword){
+    $scope.changePass = function(password, cpassword) {
+        if (password != cpassword) {
             $scope.message = true;
-        }else{
+        } else {
             AuthService.changePassword(password, $routeParams.email)
-                .then(function(){
+                .then(function() {
                     $location.path('/signin');
                 })
-                .catch(function(){
+                .catch(function() {
                     $scope.message = true;
                 })
         }
@@ -111,16 +111,16 @@ myapp.controller('changePasswordCtrl', ['$scope','$http','$location','$routePara
 }]);
 
 
-myapp.controller('forgetCtrl', ['$scope','$location','AuthService', function($scope, $location, AuthService){
+myapp.controller('forgetCtrl', ['$scope', '$location', 'AuthService', function($scope, $location, AuthService) {
     $scope.notValid = false;
     $scope.valid = false;
-    $scope.recoverPass = function(email){
+    $scope.recoverPass = function(email) {
         console.log(email);
         AuthService.recover(email)
-            .then(function(){
+            .then(function() {
                 $scope.valid = true;
             })
-            .catch(function(){
+            .catch(function() {
                 $scope.notValid = true;
             })
     }
@@ -194,7 +194,7 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$
         }, function(evt, response) {
             // Math.min is to fix IE which reports 200% sometimes
             file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
-            if (file.progress == 100){
+            if (file.progress == 100) {
                 file.progress = -1;
                 $scope.spinLoad = true;
                 $scope.box_data_one = false;
@@ -268,28 +268,28 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$
         $scope.sg_number = sg.length;
         var min_year = Math.min.apply(Math, year);
         var max_year = Math.max.apply(Math, year);
-        if (min_year == max_year){
-             $scope.year_creation = min_year;
-        }else{
-             $scope.year_creation = min_year + " to " + max_year;
+        if (min_year == max_year) {
+            $scope.year_creation = min_year;
+        } else {
+            $scope.year_creation = min_year + " to " + max_year;
         }
-       
+
         $scope.total_member = numeral(member.reduce(add, 0)).format();
         $scope.total_female = numeral(female.reduce(add, 0)).format();
         $scope.total_male = numeral(male.reduce(add, 0)).format();
-        
-        if(unique(partner) == 'N/A'){
+
+        if (unique(partner) == 'N/A') {
             $scope.partner_number = 'N/A';
-        }else{
+        } else {
             $scope.partner_number = unique(partner).length;
         }
-        
-        if (unique(ngo).length == 1){
-            $scope.ngo_number = unique(ngo)[0];   
-        }else{
+
+        if (unique(ngo).length == 1) {
+            $scope.ngo_number = unique(ngo)[0];
+        } else {
             $scope.ngo_number = unique(ngo).length;
         }
-        
+
         $scope.total_loan = numeral(loan.reduce(add, 0)).format();
         $scope.total_saved = numeral(saved.reduce(add, 0)).format();
         var status_dump = compressArray(status);
@@ -301,7 +301,7 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$
             $scope.supervised_num = numeral(status_dump[1].count).format();
             $scope.graduated_num = numeral(status_dump[0].count).format();
         }
-        $scope.year_amount = year_amount; 
+        $scope.year_amount = year_amount;
 
 
         console.log(loan);
@@ -358,6 +358,12 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$
 
     }
 
+    
+    
+    // Function to call in excelfileCTRL
+    
+    chartFunction();
+    selectBox()
 
 
 
@@ -421,3 +427,138 @@ function closeNav_() {
     document.getElementById("call-opacity").className = "";
     location.reload();
 }
+
+
+
+
+
+function chartFunction() {
+        Highcharts.chart('container', {
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+            },
+            title: {
+                text: 'Browser market shares January, 2015 to May, 2015'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: false
+                    },
+                    showInLegend: true
+                }
+            },
+            series: [{
+                name: 'Brands',
+                colorByPoint: true,
+                data: [{
+                    name: 'Microsoft Internet Explorer',
+                    y: 56.33
+                }, {
+                    name: 'Chrome',
+                    y: 24.03,
+                    sliced: true,
+                    selected: true
+                }, {
+                    name: 'Firefox',
+                    y: 10.38
+                }, {
+                    name: 'Safari',
+                    y: 4.77
+                }, {
+                    name: 'Opera',
+                    y: 0.91
+                }, {
+                    name: 'Proprietary or Undetectable',
+                    y: 0.2
+                }]
+            }]
+        });
+    }
+
+
+
+function selectBox() {
+        $('#ddlCars01').multiselect({
+            includeSelectAllOption: true
+
+        });
+        $('#ddlCars02').multiselect({
+            includeSelectAllOption: true
+        });
+        $('#ddlCars03').multiselect({
+            includeSelectAllOption: true
+        });
+        $('#ddlCars04').multiselect({
+            includeSelectAllOption: true
+        });
+
+        $('#ddlCars2').multiselect({
+            includeSelectAllOption: true
+        });
+
+        $('#ddlCars3').multiselect({
+            includeSelectAllOption: true
+        });
+
+        $('#ddlCars4').multiselect({
+            includeSelectAllOption: true
+        });
+
+        $('#ddlCars5').multiselect({
+            includeSelectAllOption: true
+        });
+
+        $('#ddlCars6').multiselect({
+            includeSelectAllOption: true
+        });
+
+        $('#ddlCars7').multiselect({
+            includeSelectAllOption: true
+        });
+
+        $('#ddlCars8').multiselect({
+            includeSelectAllOption: true
+        });
+
+        $('#ddlCars9').multiselect({
+            includeSelectAllOption: true
+        });
+
+        $('#ddlCars10').multiselect({
+            includeSelectAllOption: true
+        });
+
+        $('#ddlCars11').multiselect({
+            includeSelectAllOption: true
+        });
+
+        $('#ddlCars12').multiselect({
+            includeSelectAllOption: true
+        });
+
+        $('#ddlCars13').multiselect({
+            includeSelectAllOption: true
+        });
+
+        $('#ddlCars14').multiselect({
+            includeSelectAllOption: true
+        });
+
+        $('#ddlCars15').multiselect({
+            includeSelectAllOption: true
+        });
+
+        $('#ddlCars16').multiselect({
+            includeSelectAllOption: true
+        });
+
+    }
