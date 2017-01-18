@@ -78,27 +78,24 @@ $(function () {
 
 
 });
- 
+
 
 /*Hide and SHow Page*/
  $(document).ready(function(){
-    $("#btn_cartix").click(function(e){
-       event.preventDefault();
-      $("#notification").hide();
-       $("#second-container").show();
 
-       $("#upload-progress").click(function(e){
-            event.preventDefault();
-           $("#second-container").hide();
-            $("#third-container").show();
-       });
 
-    });
-    $("#download-data_").click(function(e){
-         event.preventDefault();
-        $("#sidebar_data").hide();
-         $("#saved").show();
-    });
+      //  $("#upload-progress").click(function(e){
+      //       event.preventDefault();
+      //      $("#second-container").hide();
+      //       $("#third-container").show();
+      //  });
+
+
+    // $("#download-data_").click(function(e){
+    //      event.preventDefault();
+    //     $("#sidebar_data").hide();
+    //      $("#saved").show();
+    // });
  });
 
  //Upload file
@@ -110,15 +107,13 @@ $(function () {
  });
 
 
-// $(document).ready(function() {});
-//
-//   $(document).ready(function(){
-//      $("#button-save").click(function(e){
-//          event.preventDefault();
-//          $("#side-content-data").hide();
-//           $("#side-content-saved").show();
-//      });
-//   });
+   $(document).ready(function(){
+      $("#download_data").click(function(e){
+          event.preventDefault();
+          $("#sidebar_data").hide();
+           $("#saved").show();
+      });
+   });
 //
 //   $(document).ready(function(){
 //      $("#button-save-file").click(function(e){

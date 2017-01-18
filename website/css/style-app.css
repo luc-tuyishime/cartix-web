@@ -211,19 +211,6 @@ select {
     padding-top: 60px;
     text-align: center;
 }
-.sidenav2 {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 200;
-    top: 0;
-    left: 0;
-    background-color: white;
-    overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 60px;
-    text-align: center;
-}
 .sidenav .closebtn {
     position: absolute;
     top: 0;
@@ -233,13 +220,13 @@ select {
     margin-right: 24px;
     color: white;
 }
-.sidenav2 .closebtn_2 {
+.sidenav .closebtn_2 {
     position: absolute;
     top: 0;
     right: 25px;
-    font-size: 26px;
+    font-size: 36px;
     color: white;
-    margin-top: 10px;
+    margin-top: 40px;
     margin-right: 38px;
 }
 .app .opacity {
@@ -452,6 +439,6 @@ select {
  .side-content-saved {
     display: none;
 }
- #saved{
+ .successfull-saved{
   display: none;
 }
