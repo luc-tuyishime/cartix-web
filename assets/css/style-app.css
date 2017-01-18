@@ -14,7 +14,7 @@ body {
 }
 .checkbox-list{
   margin-top: 12px;
-  float: right;
+    right:400px;
 }
 select {
   -webkit-appearance: none;
@@ -123,19 +123,27 @@ select {
     font-size: 12px;
 }
 .app .map-box {
-    background-color: black;
-    background-size: cover;
+    position: fixed;
+    z-index: 1000;
 }
 .app .graph-box {
     background-color: #fff;
     float: right;
 }
 .app .afr-logo {
-    height: 50px;
+    height: 80px;
+    padding-left: 0px;
 }
 .app .map-box {
     position: fixed;
 }
+
+.app .headerOnMap{
+    z-index: 1000;
+    position: fixed;
+    width: 100%;
+}
+
 .app .membership{
   font-size: 16px;
   color: #212121;
@@ -246,6 +254,18 @@ select {
     margin-right: 24px;
     color: white;
 }
+
+.sidenav .closebtn:hover {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 26px;
+    margin-top: 8px;
+    margin-right: 24px;
+    color: white;
+    text-decoration: none;
+}
+
 .sidenav2 .closebtn_2 {
     position: absolute;
     top: 0;
@@ -472,5 +492,18 @@ select {
 
 
 
-/* DROPDOWN */
+/* MAPPPP*/
+#map-cartix{
+    display: block;
+    margin: auto;
+    position: fixed;
+}
+
+.app .container-fluid{
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
 
