@@ -1,274 +1,751 @@
-<div ng-controller="excelFileCtrl">
-   <div class="" id="call-opacity"></div>
-   
-   
-   
-    <footer class="footer">
-       <div class="container-fluid">
-          <div class="row">
-             <div class="col-md-12 btn-cartix-bottom">
-                <button type="button" class="btn btn-default btn-cartix" onclick="openNav()">Data</button>
-                <button ng-click="logout()" class="btn btn-default btn-cartix">Sign out</button>
-             </div>
-          </div>
-       </div>
-    </footer>
-    <section id="mySidenav" class="sidenav" >
-       <nav class="navbar navbar-cartix">
-            <div class="container-fluid">
-               <!-- Brand and toggle get grouped for better mobile display -->
-               <div class="navbar-header">
-                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                  <span class="sr-only">Toggle navigation</span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  </button> 
-                  <a class="navbar-brand" href="#"><img src="assets/img/cartix-icon.png"></a> 
-               </div>
-               <!-- Collect the nav links, forms, and other content for toggling -->
-               <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                  <div class="nav navbar-nav navbar-right">
-                         
-                      <a class="ngo_header">{{ ngo_name }}</a> 
-                       
-                      <a href="javascript:void(0)" onclick="closeNav()"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
-                  </div>
-               </div>
-               
-               <!-- /.navbar-collapse -->
-            </div>
-            <!-- /.container-fluid -->
-         </nav>
-      <!--one -->
-      <div class="box-container col-md-12">
-         <div class="box-center ">
-            <div class="form-style">
-               <form name="uploadfile">
-                 <div ng-show="uploadInput">
-                     <div class="form-group">
-                         <input type="file" ngf-select ng-model="efile" name="file"
-                            accept=".xlsx,.csv,.xls" ng-drop ngf-max-size="10MB" required
-                            ngf-model-invalid="errorFile">
-                      </div>
-                      <div class="form-group">
-                         <button class="btn btn-default" ng-disabled="!uploadfile.$valid" 
-                            ng-click="upload_File(efile)">upload</button>
-                      </div>
-                  </div>
-                  <div class="form-group">
-                      <div class="progress" ng-show="efile.progress >= 0">
-                          <div class="progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:{{efile.progress}}%" ng-bind="efile.progress + '%'">
-                          </div>
-                       </div>
-                  </div>
-                  <div class="form-group loading" ng-show="spinLoad">
-                      <div class="row">
-                          <div class="col-md-4"><img src="assets/img/spin.gif" style="width:32px;"></div>
-                          <div class="col-md-8 text-left">checking for error in excel file<br>This might take a while, seat back and relax</div>
-                      </div>
-                   </div>
-                  <div class="form-group">
-                        <div ng-show="box_data_one">
-                            <p>Upload the field Data compilation sheet here</p>
-                            <p>Format: csv, xls, xlsx</p>
-                        </div>
-                        <div ng-show="box_data_two">
-                            <p>Your file contains errors, consider revising the highlighted fields. download it here: <a ng-href="{{ savepath }}">{{filename}}</a></p>
-                        </div>
-                   </div>
-               </form>
-               
-            </div>
-            
-         </div>
-         
+
+     <div class="app">
+      <div class="container-fluid">
          <div class="row">
-             <div class="col-md-6">
-                 <div class="download-sample text-center">
-                    <p><a href="http://savinggroup.cartix.io/uploads/templates/Data_Compilation_Sheet_Template_2015.xlsx">Data_Compilation_Sheet_Template_2015</a></p>
-                 </div>
-             </div>
-             
-             <div class="col-md-6">
-                 <div class="download-sample text-center">
-                    <p><a href="http://savinggroup.cartix.io/uploads/templates/Data_Compilation_Sheet_Template_2016.xlsx">Data_Compilation_Sheet_Template_2016</a></p>
-                 </div>
-             </div>
-             
-         </div>
-         
-      </div>
-      <!--Three-->
-      
-</section>
-<section id="mySidenav1" class="sidenav" >
-      <div id="side-content-saved">
-          <nav class="navbar navbar-cartix">
-            <div class="container-fluid">
-               <!-- Brand and toggle get grouped for better mobile display -->
-               <div class="navbar-header">
-                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                  <span class="sr-only">Toggle navigation</span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  </button> 
-                  <a class="navbar-brand" href="#"><img src="assets/img/cartix-icon.png"></a>
-               </div>
-               <!-- Collect the nav links, forms, and other content for toggling -->
-               <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                  <div class="nav navbar-nav navbar-right">
-                     <a class="ngo_header">{{ ngo_name }}</a> 
-                      <a href="javascript:void(0)" onclick="closeNav_()"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+            <div class="" id="call-opacity"></div>
+            <div class="col-md-9 map-box">
+               <img alt="" src="assets/img/afr-logo.png" class="afr-logo">
+               <div class="container-fluid checkbox-list">
+                         <div class="row">
+                        <div class="select-box">
+
+                           <select class="multiselect"  data-placeholder="National"  id="ddlCars01" multiple="multiple">
+                              <option value="1">Option 1</option>
+                              <option value="2">Option 2</option>
+                              <option value="3">Option 3</option>
+                              <option value="4">Option 4</option>
+                              <option value="5">Option 5</option>
+                              <option value="6">Option 6</option>
+                           </select>
+
+                      </div>
+                        <div class="select-box">
+
+                           <select data-placeholder="Provinces" id="ddlCars02" multiple="multiple">
+                              <option value="1">Option 1</option>
+                              <option value="2">Option 2</option>
+                              <option value="3">Option 3</option>
+                              <option value="4">Option 4</option>
+                              <option value="5">Option 5</option>
+                              <option value="6">Option 6</option>
+                           </select>
+                     </div>
+                        <div class="select-box">
+
+                           <select data-placeholder="District" id="ddlCars03" multiple="multiple">
+                              <option value="1">Option 1</option>
+                              <option value="2">Option 2</option>
+                              <option value="3">Option 3</option>
+                              <option value="4">Option 4</option>
+                              <option value="5">Option 5</option>
+                              <option value="6">Option 6</option>
+                           </select>
+                        </div>
+                        <div class="select-box">
+
+                           <select data-placeholder="Saving Groups" id="ddlCars04" multiple="multiple">
+                              <option value="1">Option 1</option>
+                              <option value="2">Option 2</option>
+                              <option value="3">Option 3</option>
+                              <option value="4">Option 4</option>
+                              <option value="5">Option 5</option>
+                              <option value="6">Option 6</option>
+                          </select>
+                        </div>
+                     </div>
                   </div>
-               </div>
-               
-               <!-- /.navbar-collapse -->
+
             </div>
-            <!-- /.container-fluid -->
-         </nav>
-          <div class="box-center-successful">
-             <div class="circle">
-                <span class="glyphicon glyphicon-ok"></span>
-             </div>
-             <p class="text-saved">successfull saved</p>
-          </div>
+            <div class="col-md-3 graph-box">
+               <p class="care-style">Care International</p>
+               <div class="profile">
+                  <div class="dropdown">
+                     <a href="" class="dropdown-toggle" data-toggle="dropdown"><img src="assets/img/lightgray.png" height="30px"/><span class="profile-name">Uwimana Jean</span> <b class="caret"></b></a>
+                     <ul class="dropdown-menu dropdown-menu-right">
+                        <li><a href="#gsdk">Settings</a></li>
+                        <li><a href="#gsdk">Help</a></li>
+                        <li><a href="#gsdk">Report a problem</a></li>
+                        <li><a href="#gsdk">Log Out</a></li>
+                     </ul>
+                  </div>
+               </div>
+               <hr class="style1">
+               <p class="saving-text">Saving Groups</p>
+               <div class="row">
+                  <div class="alert alert-default" role="alert">
+                     <div class="dropdown">
+                        <a href="" class="dropdown-toggle" data-toggle="dropdown"><span class="analytics_text">Analytics <b class="caret"></b></span> </a>
+                        <ul class="dropdown-menu">
+                           <li><a href="#gsdk">Saving groups per International NGO</a></li>
+                           <li><a href="#gsdk">Saving groups per International NGO</a></li>
+                           <li><a href="#gsdk">Saving groups per International NGO</a></li>
+                           <li><a href="#gsdk">Saving groups per International NGO</a></li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+               <div class="text-left">
+                   <img alt="" src="assets/img/groups.png" class="file-logo">
+                  <p class="text-1">Total Saving Groups<span class="text-right text-1"><img style alt="" src="assets/img/savings.png" class="file-logo">Total Savings</span></p>
 
-   </div>
-   
-   <div id="side-content-data">
-     
-     <nav class="navbar navbar-cartix">
-            <div class="container-fluid">
-               <!-- Brand and toggle get grouped for better mobile display -->
-               <div class="navbar-header">
-                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                  <span class="sr-only">Toggle navigation</span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  </button> 
-                  <a class="navbar-brand" href="#"><img src="assets/img/cartix-icon.png"></a>
+                  <p class="text-2">28,023 <span class="text-right text-2">13,869,727,965</span></p>
+                  <img alt="" src="assets/img/member.png" class="file-logo">
+                  <p class="text-1">Total Membership<span class="text-right text-1"><img alt="" src="assets/img/dot.png" class="file-logo">Total Membership</span></p>
+                  <p class="text-2">669,751<span class="text-right text-2">11,031,815,669</span></p>
                </div>
-               <!-- Collect the nav links, forms, and other content for toggling -->
-               <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                  <div class="nav navbar-nav navbar-right">
-                      <a class="ngo_header">{{ ngo_name }}</a> 
-                      <a href="javascript:void(0)" onclick="closeNav_()"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
-                  </div>
-               </div>
-               
-             <!--  <div class="from-selection">
-                   <div class="col-md-4 option-select">
-                  <div class="form-group">
-                     <h5>Province</h5>
-                     <select id="province" multiple="multiple" ng-model="selectedProvince">
-                         
-                     </select>
-                  </div>
-               </div>
-               <div class="col-md-4">
-                  <div class="form-group">
-                     <h5>District</h5>
-                     <select id="district" multiple="multiple">
-                        
-                     </select>
-                  </div>
-               </div>
-               <div class="col-md-4">
-                  <div class="form-group">
-                     <h5>Sectors</h5>
-                     <select id="sector" multiple="multiple">
-                        
-                     </select>
-                  </div>
-               </div>
-                </div> -->
-               <!-- /.navbar-collapse -->
+               <p class="text-center membership">Membership per gender in rwanda</p>
+               <p class="text-center-ngo">Selected International NGO:</p>
+               <p class="text-center-3">CARE Rwanda, CRS, FHI 360/ROADS, Global Communities
+                  Rwanda, HAC, HOPE Rwanda, KNH, Plan International
+                  Rwanda TEARFUND, USAID/Direct Funding, World Relief
+                  Rwanda, Word tVision Rwanda.
+               </p>
+               <p class="text-center-4">Rwanda Saving Groups Mapping Project (2010­-2014)</p>
+               <div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+
             </div>
-            <!-- /.container-fluid -->
-         </nav>
-     
-      
-      
-         <div class="table-center">
-            <div class="table">
-               <div class="col-md-12">
-                   
-                  <table class="table table-hover">
-                     <thead>
-                        <tr>
-                           <td class="text-left">Saving Group :</td>
-                           <td class="text-right">{{sg_number}}</td>
-                        </tr>
-                     </thead>
-                     <tbody>
-                        <tr>
-                           <td class="text-left">SGs Year of creation:</td>
-                           
-                           <td class="text-right">{{year_creation}}</td>
-                        </tr>
-                        <tr>
-                           <td class="text-left">SGs members Total:</td>
-                        
-                           <td class="text-right">{{ total_member }}</td>
-                        </tr>
-                        <tr>
-                           <td class="text-left">SGs members- Female:</td>
-                           
-                           <td class="text-right">{{ total_female }}</td>
-                        </tr>
-                        <tr>
-                           <td class="text-left">SGs members- Male:</td>
-                           
-                           <td class="text-right">{{ total_male }}</td>
-                        </tr>
-                        <tr>
-                           <td class="text-left">Funding NGO:</td>
-                           
-                           <td class="text-right">{{ ngo_number }}</td>
-                        </tr>
-                        <tr>
-                           <td class="text-left">Partner NGO:</td>
-                           
-                           <td class="text-right">{{ partner_number }}</td>
-                        </tr>
-                        <tr>
-                           <td class="text-left">SGs Status/ supervised</td>
-                          
-                           <td class="text-right">{{ supervised_num }}</td>
-                        </tr>
-                        <tr>
-                           <td class="text-left">SGs Status/ graduated</td>
-                        
-                           <td class="text-right">{{ graduated_num }}</td>
-                        </tr>
-                        <tr>
-                           <td class="text-left">Saved Amount as of December {{ year_amount }} ( In Rwf ):</td>
-                          
-                           <td class="text-right">{{ total_saved }}</td>
-                        </tr>
-                        <tr>
-                           <td class="text-left">Outstanding Loans as of December {{ year_amount }} ( In Rwf ):</td>
-                          
-                           <td class="text-right">{{ total_loan }}</td>
-                        </tr>
-                     </tbody>
-               </table>
+            <div class="btn-cartix-bottom">
+               <button type="button" class="btn btn-default btn-cartix" onclick="openNav()">Data</button>
+            </div>
+         </div>
+      </div>
+      <section id="mySidenav" class="sidenav">
+         <div id="notification">
+            <div class="navbar-sidebar">
+               <nav class="navbar">
+                  <div class="container-fluid">
+                     <div class="navbar-header">
+                        <a class="navbar-brand" href="#">
+                        <img alt="" src="assets/img/cartix_logo.png">
+                        </a>
+                     </div>
+                     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                  </div>
+               </nav>
+               <div class="container-fluid dropdown-box">
+                  <div class="row">
+                     <div class="col-md-3">
+                        <div class="select-box">
+                           <p>International NG0</p>
+                           <select  id="ddlCars2" multiple="multiple">
+                              <option value="1">Option 1</option>
+                              <option value="2">Option 2</option>
+                              <option value="3">Option 3</option>
+                              <option value="4">Option 4</option>
+                              <option value="5">Option 5</option>
+                              <option value="6">Option 6</option>
+                           </select>
+                        </div>
+                     </div>
+                     <div class="col-md-3">
+                        <div class="select-box">
+                           <p>Local NGO</p>
+                           <select id="ddlCars3" multiple="multiple">
+                              <option value="1">Option 1</option>
+                              <option value="2">Option 2</option>
+                              <option value="3">Option 3</option>
+                              <option value="4">Option 4</option>
+                              <option value="5">Option 5</option>
+                              <option value="6">Option 6</option>
+                           </select>
+                        </div>
+                     </div>
+                     <div class="col-md-3">
+                        <div class="select-box">
+                           <p>Year</p>
+                           <select id="ddlCars4" multiple="multiple">
+                              <option value="1">Option 1</option>
+                              <option value="2">Option 2</option>
+                              <option value="3">Option 3</option>
+                              <option value="4">Option 4</option>
+                              <option value="5">Option 5</option>
+                              <option value="6">Option 6</option>
+                           </select>
+                        </div>
+                     </div>
+                     <div class="col-md-3">
+                        <div class="select-box">
+                           <p>Status</p>
+                           <select id="ddlCars5" multiple="multiple">
+                              <option value="1">Option 1</option>
+                              <option value="2">Option 2</option>
+                              <option value="3">Option 3</option>
+                              <option value="4">Option 4</option>
+                              <option value="5">Option 5</option>
+                              <option value="6">Option 6</option>
+                           </select>
+                        </div>
+                     </div>
+                  </div>
                </div>
-            </div> 
+               <div class="container text-icon">
+                  <img alt="" src="assets/img/red.png" class="red-icon">
+                  <p class="care-rwanda">Care Rwanda<span> Dec,14th,201610:34 AM</span></p>
+                  <span class="text-uploaded">Uploaded a file</span><br>
+                  <span class="text-uploaded">Lorem Ipsum is simply dummy text of the printing and typesetting.</span><br>
+                  <div class="container">
+                     <div class="panel panel-danger">
+                        <div class="panel-body">
+                           <img alt="" src="assets/img/file.png" class="file-logo">
+                           <p class="SG-text"><span> SG_Test</span></p>
+                           <span class="text-uploaded">1MB excel spreadsheet</span>
+                           <div class="danger-icon">
+                              <img alt="" src="assets/img/danger.png">
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <img alt="" src="assets/img/yellow.png" class="red-icon">
+                  <p class="care-rwanda">International NGO<span> Dec,14th,201610:34 AM</span></p>
+                  <span class="text-uploaded">Uploaded a file</span><br>
+                  <span class="text-uploaded">Lorem Ipsum is simply dummy text of the printing and typesetting.</span><br>
+                  <div class="container">
+                     <div class="panel panel-default">
+                        <div class="panel-body">
+                           <img alt="" src="assets/img/file.png" class="file-logo">
+                           <p class="SG-text"><span> SG_Test</span></p>
+                           <span class="text-uploaded">1MB excel spreadsheet</span>
+                           <div class="danger-icon">
+                              <img alt="" src="assets/img/success.png">
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <img alt="" src="assets/img/green.png" class="red-icon">
+                  <p class="care-rwanda">Care Rwanda<span> Dec,14th,201610:34 AM</span></p>
+                  <span class="text-uploaded">Uploaded a file</span><br>
+                  <span class="text-uploaded">Lorem Ipsum is simply dummy text of the printing and typesetting.</span><br>
+                  <div class="container">
+                     <div class="panel panel-default">
+                        <div class="panel-body">
+                           <img alt="" src="assets/img/file.png" class="file-logo">
+                           <p class="SG-text"><span> SG_Test</span></p>
+                           <span class="text-uploaded">1MB excel spreadsheet</span>
+                           <div class="danger-icon">
+                              <img alt="" src="assets/img/success.png">
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <img alt="" src="assets/img/blue.png" class="red-icon">
+                  <p class="care-rwanda">Care Rwanda<span> Dec,14th,201610:34 AM</span></p>
+                  <span class="text-uploaded">Uploaded a file</span><br>
+                  <span class="text-uploaded">Lorem Ipsum is simply dummy text of the printing and typesetting.</span><br>
+                  <div class="container">
+                     <div class="panel panel-warning">
+                        <div class="panel-body">
+                           <img alt="" src="assets/img/file.png" class="file-logo">
+                           <p class="SG-text"><span> SG_Test</span></p>
+                           <span class="text-uploaded">1MB excel spreadsheet</span>
+                           <div class="danger-icon">
+                              <img alt="" src="assets/img/pending.png">
+                           </div>
+                        </div>
+                     </div>
+                     <footer>
+                        <button type="button" class="btn btn-default btn_cartix" id="btn_cartix">Upload</button>
+                        <button type="button" class="btn btn-default btn_cartix" onclick="openNav()">View Data</button>
+                     </footer>
+                  </div>
+               </div>
+               <div class="container-fluid dropdown-box">
+                  <div class="row">
+                     <div class="col-md-4">
+                        <div class="select-box">
+                           <p>Local NGO</p>
+                           <select  id="ddlCars10" multiple="multiple">
+                              <option value="1">Option 1</option>
+                              <option value="2">Option 2</option>
+                              <option value="3">Option 3</option>
+                              <option value="4">Option 4</option>
+                              <option value="5">Option 5</option>
+                              <option value="6">Option 6</option>
+                           </select>
+                        </div>
+                     </div>
+                     <div class="col-md-4">
+                        <div class="select-box">
+                           <p>Year</p>
+                           <select id="ddlCars11" multiple="multiple">
+                              <option value="1">Option 1</option>
+                              <option value="2">Option 2</option>
+                              <option value="3">Option 3</option>
+                              <option value="4">Option 4</option>
+                              <option value="5">Option 5</option>
+                              <option value="6">Option 6</option>
+                           </select>
+                        </div>
+                     </div>
+                     <div class="col-md-4">
+                        <div class="select-box">
+                           <p>Status</p>
+                           <select id="ddlCars12" multiple="multiple">
+                              <option value="1">Option 1</option>
+                              <option value="2">Option 2</option>
+                              <option value="3">Option 3</option>
+                              <option value="4">Option 4</option>
+                              <option value="5">Option 5</option>
+                              <option value="6">Option 6</option>
+                           </select>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="container text-icon">
+                  <img alt="" src="assets/img/red.png" class="red-icon">
+                  <p class="care-rwanda">Care Rwanda<span> Dec,14th,201610:34 AM</span></p>
+                  <span class="text-uploaded">Uploaded a file</span><br>
+                  <span class="text-uploaded">Lorem Ipsum is simply dummy text of the printing and typesetting.</span><br>
+                  <div class="container">
+                     <div class="panel panel-danger">
+                        <div class="panel-body">
+                           <img alt="" src="assets/img/file.png" class="file-logo">
+                           <p class="SG-text"><span> SG_Test</span></p>
+                           <span class="text-uploaded">1MB excel spreadsheet</span>
+                           <div class="danger-icon">
+                              <img alt="" src="assets/img/danger.png">
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <img alt="" src="assets/img/yellow.png" class="red-icon">
+                  <p class="care-rwanda">International NGO<span> Dec,14th,201610:34 AM</span></p>
+                  <span class="text-uploaded">Uploaded a file</span><br>
+                  <span class="text-uploaded">Lorem Ipsum is simply dummy text of the printing and typesetting.</span><br>
+                  <div class="container">
+                     <div class="panel panel-default">
+                        <div class="panel-body">
+                           <img alt="" src="assets/img/file.png" class="file-logo">
+                           <p class="SG-text"><span> SG_Test</span></p>
+                           <span class="text-uploaded">1MB excel spreadsheet</span>
+                           <div class="danger-icon">
+                              <img alt="" src="assets/img/success.png">
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <img alt="" src="assets/img/green.png" class="red-icon">
+                  <p class="care-rwanda">Care Rwanda<span> Dec,14th,201610:34 AM</span></p>
+                  <span class="text-uploaded">Uploaded a file</span><br>
+                  <span class="text-uploaded">Lorem Ipsum is simply dummy text of the printing and typesetting.</span><br>
+                  <div class="container">
+                     <div class="panel panel-default">
+                        <div class="panel-body">
+                           <img alt="" src="assets/img/file.png" class="file-logo">
+                           <p class="SG-text"><span> SG_Test</span></p>
+                           <span class="text-uploaded">1MB excel spreadsheet</span>
+                           <div class="danger-icon">
+                              <img alt="" src="assets/img/success.png">
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <img alt="" src="assets/img/blue.png" class="red-icon">
+                  <p class="care-rwanda">Care Rwanda<span> Dec,14th,201610:34 AM</span></p>
+                  <span class="text-uploaded">Uploaded a file</span><br>
+                  <span class="text-uploaded">Lorem Ipsum is simply dummy text of the printing and typesetting.</span><br>
+                  <div class="container">
+                     <div class="panel panel-warning">
+                        <div class="panel-body">
+                           <img alt="" src="assets/img/file.png" class="file-logo">
+                           <p class="SG-text"><span> SG_Test</span></p>
+                           <span class="text-uploaded">1MB excel spreadsheet</span>
+                           <div class="danger-icon">
+                              <img alt="" src="assets/img/pending.png">
+                           </div>
+                        </div>
+                     </div>
+                     <footer>
+                        <button type="button" class="btn btn-default btn_cartix" id="btn_cartix">Upload</button>
+                        <button type="button" class="btn btn-default btn_cartix" onclick="openNav()">View Data</button>
+                     </footer>
+                  </div>
+               </div>
+            </div>
          </div>
-      
-      <div class="button-save">
-         <div class="col-md-12">
-            <button id="button-save" type="button" class="btn btn-success btn-cartix_" ng-click="saveData(originalpath, filename_save)">Save</button>
+         <div class="navbar-sidebar" id="second-container">
+            <nav class="navbar">
+               <div class="container-fluid">
+                  <div class="navbar-header">
+                     <a class="navbar-brand" href="#">
+                     <img alt="" src="assets/img/cartix_logo.png">
+                     </a>
+                  </div>
+                  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+               </div>
+            </nav>
+            <div class="upload-box">
+               <h2>Submit Your File</h2>
+               <p class="small-text">Small description</p>
+               <img alt="" src="assets/img/files-xls.png">
+               <div class="drop-box">
+                  <input id="upload" type="file"/>
+                  <p class="browse-text">Drag a file here or <a href="" id="upload_link">browse</a> for a upload</p>
+                  <button type="button" class="btn btn-success" id="upload-progress">Upload</button>
+               </div>
+               <p class="download_data_text"><a href="">Download Data compilation sheet Template here</a></p>
+            </div>
+            <!---UPload Part2--->
+            <div class="upload-box">
+               <h2>Submit Your File</h2>
+               <p class="small-text">Small description</p>
+               <img alt="" src="assets/img/files-xls.png">
+               <div class="drop-box">
+                  <input id="upload" type="file"/>
+                  <p class="browse-text">Drag a file here or <a href="" id="upload_link">browse</a> for a upload</p>
+               </div>
+               <img alt="" src="assets/img/danger.png" class="icon-danger">
+               <p class="error_message_text">You file contains errors, consider revising highlighted fields.
+                  Download it here:<a href=""> SG_Data.Xlsx</a>
+               </p>
+               <p class="download_data_text"><a href="">Download Data compilation sheet Template here</a></p>
+            </div>
          </div>
-      </div>
-      </div>
+         <div class="navbar-sidebar" id="third-container">
+            <nav class="navbar ">
+               <div class="container-fluid">
+                  <div class="navbar-header">
+                     <a class="navbar-brand" href="#">
+                     <img alt="" src="assets/img/cartix_logo.png">
+                     </a>
+                  </div>
+                  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+               </div>
+            </nav>
+            <br>
+
+            <div class="box-container">
+               <div class="box-center">
+                  <h2>Uploading file</h2>
+                  <p class="small-text">SG_Data_xls</p>
+                  <img alt="" src="assets/img/file.png">
+                  <div class="progress">
+                     <div class="progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                        100%
+                     </div>
+                  </div>
+               </div>
+               <div class="download-data">
+                  <a href="" style="text-decoration:none">
+                     <p>Download Data compilation sheet Template here</p>
+                  </a>
+               </div>
+               <br>
+               <div class="row">
+                  <div class="box-center">
+                     <div class="uploading-box">
+                        <h2>Checking for errors</h2>
+                        <p class="small-text">SG_Data_xls</p>
+                        <i class="fa fa-spinner fa-spin" style="font-size:50px"></i>
+                        <p class="small-text_">this might take a while</p>
+                        <div class="button-save">
+                           <button id="button-save-file" type="button" class="btn btn-success btn-cartix_" onclick="openNav1()">Save</button>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="download-data">
+                     <a href="" style="text-decoration:none">
+                        <p>Download Data compilation sheet Template here</p>
+                     </a>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <section id="mySidenav1" class="sidenav">
+
+         <div id="sidebar_data">
+            <div class="navbar-sidebar">
+               <nav class="navbar">
+                  <div class="container-fluid">
+                     <div class="navbar-header">
+                        <a class="navbar-brand" href="#">
+                        <img alt="" src="assets/img/cartix_logo.png">
+                        </a>
+                     </div>
+                     <a href="javascript:void(0)" class="closebtn" onclick="closeNav_()">&times;</a>
+                  </div>
+               </nav>
+               <!--one -->
+               <div class="container-fluid dropdown-box">
+                  <div class="row">
+                     <div class="col-md-3">
+                        <div class="select-box">
+                           <p>Province</p>
+                           <select  id="ddlCars6" multiple="multiple">
+                              <option value="1">Option 1</option>
+                              <option value="2">Option 2</option>
+                              <option value="3">Option 3</option>
+                              <option value="4">Option 4</option>
+                              <option value="5">Option 5</option>
+                              <option value="6">Option 6</option>
+                           </select>
+                        </div>
+                     </div>
+                     <div class="col-md-3">
+                        <div class="select-box">
+                           <p>District</p>
+                           <select id="ddlCars7" multiple="multiple">
+                              <option value="1">Option 1</option>
+                              <option value="2">Option 2</option>
+                              <option value="3">Option 3</option>
+                              <option value="4">Option 4</option>
+                              <option value="5">Option 5</option>
+                              <option value="6">Option 6</option>
+                           </select>
+                        </div>
+                     </div>
+                     <div class="col-md-3">
+                        <div class="select-box">
+                           <p>Sector</p>
+                           <select id="ddlCars8" multiple="multiple">
+                              <option value="1">Option 1</option>
+                              <option value="2">Option 2</option>
+                              <option value="3">Option 3</option>
+                              <option value="4">Option 4</option>
+                              <option value="5">Option 5</option>
+                              <option value="6">Option 6</option>
+                           </select>
+                        </div>
+                     </div>
+                     <div class="col-md-3">
+                        <div class="select-box">
+                           <p>Local NGO</p>
+                           <select id="ddlCars9" multiple="multiple">
+                              <option value="1">Option 1</option>
+                              <option value="2">Option 2</option>
+                              <option value="3">Option 3</option>
+                              <option value="4">Option 4</option>
+                              <option value="5">Option 5</option>
+                              <option value="6">Option 6</option>
+                           </select>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="container-fluid">
+               <div class="table-center">
+                  <div class="table">
+                     <div class="col-md-12">
+                        <table class="table table-hover">
+                           <thead>
+                              <tr>
+                                 <td class="text-left">Saving Group name:</td>
+                                 <th></th>
+                                 <td class="text-right">ABAREWI</td>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr>
+                                 <td class="text-left">SGs Year of creation:</td>
+                                 <td></td>
+                                 <td class="text-right">2013</td>
+                              </tr>
+                              <tr>
+                                 <td class="text-left">SGs members Total:</td>
+                                 <td></td>
+                                 <td style="text-align: right">17</td>
+                              </tr>
+                              <tr>
+                                 <td class="text-left">SGs members- Female:</td>
+                                 <td></td>
+                                 <td style="text-align: right">9</td>
+                              </tr>
+                              <tr>
+                                 <td class="text-left">SGs members- Male:</td>
+                                 <td></td>
+                                 <td style="text-align: right">8</td>
+                              </tr>
+                              <tr>
+                                 <td class="text-left">Funding NGO:</td>
+                                 <td></td>
+                                 <td style="text-align: right">HOPE Rwanda</td>
+                              </tr>
+                              <tr>
+                                 <td class="text-left">Partner NGO:</td>
+                                 <td></td>
+                                 <td style="text-align: right">ADEPR</td>
+                              </tr>
+                              <tr>
+                                 <td class="text-left">SGs Status/ supervised</td>
+                                 <td></td>
+                                 <td style="text-align: right">654</td>
+                              </tr>
+                              <tr>
+                                 <td class="text-left">SGs Status/ graduated</td>
+                                 <td></td>
+                                 <td style="text-align: right">1000</td>
+                              </tr>
+                              <tr>
+                                 <td class="text-left">Saved Amount as of December 2014( In Rwf ):</td>
+                                 <td></td>
+                                 <td style="text-align: right">N/A</td>
+                              </tr>
+                              <tr>
+                                 <td class="text-left">Outstanding Loans as of December 2014 ( In Rwf ):</td>
+                                 <td></td>
+                                 <td style="text-align: right">N/A</td>
+                              </tr>
+                           </tbody>
+                        </table>
+                        <footer>
+                           <button type="button" class="btn btn-default btn_cartix" id="download-data_">Download</button>
+                           <button type="button" class="btn btn-default btn_cartix">Upload</button>
+                        </footer>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="container-fluid dropdown-box">
+               <div class="row">
+                  <div class="col-md-3">
+                     <div class="select-box">
+                        <p>Province</p>
+                        <select  id="ddlCars13" multiple="multiple">
+                           <option value="1">Option 1</option>
+                           <option value="2">Option 2</option>
+                           <option value="3">Option 3</option>
+                           <option value="4">Option 4</option>
+                           <option value="5">Option 5</option>
+                           <option value="6">Option 6</option>
+                        </select>
+                     </div>
+                  </div>
+                  <div class="col-md-3">
+                     <div class="select-box">
+                        <p>District</p>
+                        <select id="ddlCars14" multiple="multiple">
+                           <option value="1">Option 1</option>
+                           <option value="2">Option 2</option>
+                           <option value="3">Option 3</option>
+                           <option value="4">Option 4</option>
+                           <option value="5">Option 5</option>
+                           <option value="6">Option 6</option>
+                        </select>
+                     </div>
+                  </div>
+                  <div class="col-md-3">
+                     <div class="select-box">
+                        <p>Sector</p>
+                        <select id="ddlCars15" multiple="multiple">
+                           <option value="1">Option 1</option>
+                           <option value="2">Option 2</option>
+                           <option value="3">Option 3</option>
+                           <option value="4">Option 4</option>
+                           <option value="5">Option 5</option>
+                           <option value="6">Option 6</option>
+                        </select>
+                     </div>
+                  </div>
+                  <div class="col-md-3">
+                     <div class="select-box">
+                        <p>International NGO</p>
+                        <select id="ddlCars16" multiple="multiple">
+                           <option value="1">Option 1</option>
+                           <option value="2">Option 2</option>
+                           <option value="3">Option 3</option>
+                           <option value="4">Option 4</option>
+                           <option value="5">Option 5</option>
+                           <option value="6">Option 6</option>
+                        </select>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+         <div class="container-fluid">
+            <div class="table-center">
+               <div class="table">
+                  <div class="col-md-12">
+                    <table class="table table-hover">
+                       <thead>
+                          <tr>
+                             <td class="text-left">Saving Group name:</td>
+                             <th></th>
+                             <td class="text-right">ABAREWI</td>
+                          </tr>
+                       </thead>
+                       <tbody>
+                          <tr>
+                             <td class="text-left">SGs Year of creation:</td>
+                             <td></td>
+                             <td class="text-right">2013</td>
+                          </tr>
+                          <tr>
+                             <td class="text-left">SGs members Total:</td>
+                             <td></td>
+                             <td style="text-align: right">17</td>
+                          </tr>
+                          <tr>
+                             <td class="text-left">SGs members- Female:</td>
+                             <td></td>
+                             <td style="text-align: right">9</td>
+                          </tr>
+                          <tr>
+                             <td class="text-left">SGs members- Male:</td>
+                             <td></td>
+                             <td style="text-align: right">8</td>
+                          </tr>
+                          <tr>
+                             <td class="text-left">Funding NGO:</td>
+                             <td></td>
+                             <td style="text-align: right">HOPE Rwanda</td>
+                          </tr>
+                          <tr>
+                             <td class="text-left">Partner NGO:</td>
+                             <td></td>
+                             <td style="text-align: right">ADEPR</td>
+                          </tr>
+                          <tr>
+                             <td class="text-left">SGs Status/ supervised</td>
+                             <td></td>
+                             <td style="text-align: right">654</td>
+                          </tr>
+                          <tr>
+                             <td class="text-left">SGs Status/ graduated</td>
+                             <td></td>
+                             <td style="text-align: right">1000</td>
+                          </tr>
+                          <tr>
+                             <td class="text-left">Saved Amount as of December 2014( In Rwf ):</td>
+                             <td></td>
+                             <td style="text-align: right">N/A</td>
+                          </tr>
+                          <tr>
+                             <td class="text-left">Outstanding Loans as of December 2014 ( In Rwf ):</td>
+                             <td></td>
+                             <td style="text-align: right">N/A</td>
+                          </tr>
+                       </tbody>
+                      </table>
+                     <footer>
+                        <button type="button" class="btn btn-default btn_cartix" id="">Download</button>
+                     </footer>
+                  </div>
+               </div>
+            </div>
+         </div>
+        </div>
+         <div id="saved" class="successfull-saved">
+            <nav class="navbar navbar-sidebar">
+               <div class="container-fluid">
+                  <div class="navbar-header">
+                     <a class="navbar-brand" href="#">
+                     <img alt="" src="assets/img/cartix-icon.png">
+                     </a>
+                  </div>
+                  <a href="javascript:void(0)" class="closebtn" onclick="closeNav_()">&times;</a>
+               </div>
+            </nav>
+            <div class="box-center-successful">
+               <div class="circle">
+                   <i class="fa fa-check" aria-hidden="true" style="font-size:40px"></i>
+               </div>
+               <h2>Sucessfully saved!</h2>
+            </div>
+         </div>
+
+      </section>
+
      
-</section>
-
-
-</div>
-
