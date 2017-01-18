@@ -16,8 +16,14 @@ body {
   margin-top: 12px;
   float: right;
 }
+select {
+  -webkit-appearance: none;
+  -webkit-border-radius: 0px;
+}
+
 .multiselect{
   padding-right: 60px;
+
 }
 .multiselect b.caret {
   position: absolute;
@@ -205,6 +211,19 @@ body {
     padding-top: 60px;
     text-align: center;
 }
+.sidenav2 {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 200;
+    top: 0;
+    left: 0;
+    background-color: white;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    text-align: center;
+}
 .sidenav .closebtn {
     position: absolute;
     top: 0;
@@ -214,13 +233,13 @@ body {
     margin-right: 24px;
     color: white;
 }
-.sidenav .closebtn_2 {
+.sidenav2 .closebtn_2 {
     position: absolute;
     top: 0;
     right: 25px;
-    font-size: 36px;
+    font-size: 26px;
     color: white;
-    margin-top: 40px;
+    margin-top: 10px;
     margin-right: 38px;
 }
 .app .opacity {
@@ -433,6 +452,6 @@ body {
  .side-content-saved {
     display: none;
 }
- .successfull-saved{
+ #saved{
   display: none;
 }
