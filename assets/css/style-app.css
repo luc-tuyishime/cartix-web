@@ -31,9 +31,9 @@ select {
   right: 8px;
 }
 
-.container{
-    margin-right: 20px;
-    margin-left: 20px;
+.container-data{
+    margin-right: 30px;
+    margin-left: 30px;
 }
 
 .checkbox-list{
