@@ -1,52 +1,9 @@
 <div class="app" ng-controller="excelFileCtrl">
-   <div class="" id="call-opacity"></div>
-    <div class="container-fluid">
+    <div class="container-fluid" id="call-opacity"></div>
         <div class="row">
-            <div class="col-md-9 map-box">
-                <img alt="" src="assets/img/afr-logo.png" class="afr-logo">
-                <div class="container-fluid checkbox-list">
-                    <div class="row">
-                        <div class="select-box">
-                            <select class="multiselect"  data-placeholder="National"  id="ddlCars01" multiple="multiple">
-                                <option value="1">Option 1</option>
-                                <option value="2">Option 2</option>
-                                <option value="3">Option 3</option>
-                                <option value="4">Option 4</option>
-                                <option value="5">Option 5</option>
-                                <option value="6">Option 6</option>
-                            </select>
-                        </div>
-                        <div class="select-box ">
-                            <select data-placeholder="Provinces" id="ddlCars02" multiple="multiple">
-                                <option value="1">Option 1</option>
-                                <option value="2">Option 2</option>
-                                <option value="3">Option 3</option>
-                                <option value="4">Option 4</option>
-                                <option value="5">Option 5</option>
-                                <option value="6">Option 6</option>
-                            </select>
-                        </div>
-                        <div class="select-box ">
-                            <select data-placeholder="District" id="ddlCars03" multiple="multiple">
-                                <option value="1">Option 1</option>
-                                <option value="2">Option 2</option>
-                                <option value="3">Option 3</option>
-                                <option value="4">Option 4</option>
-                                <option value="5">Option 5</option>
-                                <option value="6">Option 6</option>
-                            </select>
-                        </div>
-                        <div class="select-box ">
-                            <select data-placeholder="Saving Groups" id="ddlCars04" multiple="multiple">
-                                <option value="1">Option 1</option>
-                                <option value="2">Option 2</option>
-                                <option value="3">Option 3</option>
-                                <option value="4">Option 4</option>
-                                <option value="5">Option 5</option>
-                                <option value="6">Option 6</option>
-                            </select>
-                        </div>
-                    </div>
+            <div class="col-md-9">
+                <div id="map-cartix">
+                          
                 </div>
             </div>
             <div class="col-md-3 graph-box">
@@ -99,7 +56,7 @@
                 <button type="button" class="btn btn-default btn-cartix" onclick="openNav()">Data</button>
             </div>
         </div>
-    </div>
+   
     <!--NOTIFICATION SLIDE-->
     <section id="mySidenav" class="sidenav">
         <div id="notification">
@@ -114,255 +71,252 @@
                         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                     </div>
                 </nav>
-                
                 <div class="row">
-                <div class="container-fluid dropdown-box">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <div class="select-box">
-                                <p>International NG0</p>
-                                <select  id="ddlCars2" multiple="multiple">
-                                    <option value="1">Option 1</option>
-                                    <option value="2">Option 2</option>
-                                    <option value="3">Option 3</option>
-                                    <option value="4">Option 4</option>
-                                    <option value="5">Option 5</option>
-                                    <option value="6">Option 6</option>
-                                </select>
+                    <div class="container-fluid dropdown-box">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="select-box">
+                                    <p>International NG0</p>
+                                    <select  id="ddlCars2" multiple="multiple">
+                                        <option value="1">Option 1</option>
+                                        <option value="2">Option 2</option>
+                                        <option value="3">Option 3</option>
+                                        <option value="4">Option 4</option>
+                                        <option value="5">Option 5</option>
+                                        <option value="6">Option 6</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="select-box">
+                                    <p>Local NGO</p>
+                                    <select id="ddlCars3" multiple="multiple">
+                                        <option value="1">Option 1</option>
+                                        <option value="2">Option 2</option>
+                                        <option value="3">Option 3</option>
+                                        <option value="4">Option 4</option>
+                                        <option value="5">Option 5</option>
+                                        <option value="6">Option 6</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="select-box">
+                                    <p>Year</p>
+                                    <select id="ddlCars4" multiple="multiple">
+                                        <option value="1">Option 1</option>
+                                        <option value="2">Option 2</option>
+                                        <option value="3">Option 3</option>
+                                        <option value="4">Option 4</option>
+                                        <option value="5">Option 5</option>
+                                        <option value="6">Option 6</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="select-box">
+                                    <p>Status</p>
+                                    <select id="ddlCars5" multiple="multiple">
+                                        <option value="1">Option 1</option>
+                                        <option value="2">Option 2</option>
+                                        <option value="3">Option 3</option>
+                                        <option value="4">Option 4</option>
+                                        <option value="5">Option 5</option>
+                                        <option value="6">Option 6</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <div class="select-box">
-                                <p>Local NGO</p>
-                                <select id="ddlCars3" multiple="multiple">
-                                    <option value="1">Option 1</option>
-                                    <option value="2">Option 2</option>
-                                    <option value="3">Option 3</option>
-                                    <option value="4">Option 4</option>
-                                    <option value="5">Option 5</option>
-                                    <option value="6">Option 6</option>
-                                </select>
+                    </div>
+                    <div class="container container-data text-icon">
+                        <img alt="" src="assets/img/red.png" class="red-icon">
+                        <p class="care-rwanda">Care Rwanda<span> Dec,14th,201610:34 AM</span></p>
+                        <span class="text-uploaded">Uploaded a file</span><br>
+                        <span class="text-uploaded">Lorem Ipsum is simply dummy text of the printing and typesetting.</span><br>
+                        <div class="container">
+                            <div class="panel panel-danger">
+                                <div class="panel-body">
+                                    <img alt="" src="assets/img/file.png" class="file-logo">
+                                    <p class="SG-text"><span> SG_Test</span></p>
+                                    <span class="text-uploaded">1MB excel spreadsheet</span>
+                                    <div class="danger-icon">
+                                        <img alt="" src="assets/img/danger.png">
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <div class="select-box">
-                                <p>Year</p>
-                                <select id="ddlCars4" multiple="multiple">
-                                    <option value="1">Option 1</option>
-                                    <option value="2">Option 2</option>
-                                    <option value="3">Option 3</option>
-                                    <option value="4">Option 4</option>
-                                    <option value="5">Option 5</option>
-                                    <option value="6">Option 6</option>
-                                </select>
+                        <img alt="" src="assets/img/yellow.png" class="red-icon">
+                        <p class="care-rwanda">International NGO<span> Dec,14th,201610:34 AM</span></p>
+                        <span class="text-uploaded">Uploaded a file</span><br>
+                        <span class="text-uploaded">Lorem Ipsum is simply dummy text of the printing and typesetting.</span><br>
+                        <div class="container">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <img alt="" src="assets/img/file.png" class="file-logo">
+                                    <p class="SG-text"><span> SG_Test</span></p>
+                                    <span class="text-uploaded">1MB excel spreadsheet</span>
+                                    <div class="danger-icon">
+                                        <img alt="" src="assets/img/success.png">
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <div class="select-box">
-                                <p>Status</p>
-                                <select id="ddlCars5" multiple="multiple">
-                                    <option value="1">Option 1</option>
-                                    <option value="2">Option 2</option>
-                                    <option value="3">Option 3</option>
-                                    <option value="4">Option 4</option>
-                                    <option value="5">Option 5</option>
-                                    <option value="6">Option 6</option>
-                                </select>
+                        <img alt="" src="assets/img/green.png" class="red-icon">
+                        <p class="care-rwanda">Care Rwanda<span> Dec,14th,201610:34 AM</span></p>
+                        <span class="text-uploaded">Uploaded a file</span><br>
+                        <span class="text-uploaded">Lorem Ipsum is simply dummy text of the printing and typesetting.</span><br>
+                        <div class="container">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <img alt="" src="assets/img/file.png" class="file-logo">
+                                    <p class="SG-text"><span> SG_Test</span></p>
+                                    <span class="text-uploaded">1MB excel spreadsheet</span>
+                                    <div class="danger-icon">
+                                        <img alt="" src="assets/img/success.png">
+                                    </div>
+                                </div>
                             </div>
+                        </div>
+                        <img alt="" src="assets/img/blue.png" class="red-icon">
+                        <p class="care-rwanda">Care Rwanda<span> Dec,14th,201610:34 AM</span></p>
+                        <span class="text-uploaded">Uploaded a file</span><br>
+                        <span class="text-uploaded">Lorem Ipsum is simply dummy text of the printing and typesetting.</span><br>
+                        <div class="container">
+                            <div class="panel panel-warning">
+                                <div class="panel-body">
+                                    <img alt="" src="assets/img/file.png" class="file-logo">
+                                    <p class="SG-text"><span> SG_Test</span></p>
+                                    <span class="text-uploaded">1MB excel spreadsheet</span>
+                                    <div class="danger-icon">
+                                        <img alt="" src="assets/img/pending.png">
+                                    </div>
+                                </div>
+                            </div>
+                            <footer>
+                                <button type="button" class="btn btn-default btn_cartix" onclick="openNav1()">Upload</button>
+                                <button type="button" class="btn btn-default btn_cartix" onclick="openNav()">View Data</button>
+                            </footer>
                         </div>
                     </div>
                 </div>
-                <div class="container container-data text-icon">
-                    <img alt="" src="assets/img/red.png" class="red-icon">
-                    <p class="care-rwanda">Care Rwanda<span> Dec,14th,201610:34 AM</span></p>
-                    <span class="text-uploaded">Uploaded a file</span><br>
-                    <span class="text-uploaded">Lorem Ipsum is simply dummy text of the printing and typesetting.</span><br>
-                    <div class="container">
-                        <div class="panel panel-danger">
-                            <div class="panel-body">
-                                <img alt="" src="assets/img/file.png" class="file-logo">
-                                <p class="SG-text"><span> SG_Test</span></p>
-                                <span class="text-uploaded">1MB excel spreadsheet</span>
-                                <div class="danger-icon">
-                                    <img alt="" src="assets/img/danger.png">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <img alt="" src="assets/img/yellow.png" class="red-icon">
-                    <p class="care-rwanda">International NGO<span> Dec,14th,201610:34 AM</span></p>
-                    <span class="text-uploaded">Uploaded a file</span><br>
-                    <span class="text-uploaded">Lorem Ipsum is simply dummy text of the printing and typesetting.</span><br>
-                    <div class="container">
-                        <div class="panel panel-default">
-                            <div class="panel-body">
-                                <img alt="" src="assets/img/file.png" class="file-logo">
-                                <p class="SG-text"><span> SG_Test</span></p>
-                                <span class="text-uploaded">1MB excel spreadsheet</span>
-                                <div class="danger-icon">
-                                    <img alt="" src="assets/img/success.png">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <img alt="" src="assets/img/green.png" class="red-icon">
-                    <p class="care-rwanda">Care Rwanda<span> Dec,14th,201610:34 AM</span></p>
-                    <span class="text-uploaded">Uploaded a file</span><br>
-                    <span class="text-uploaded">Lorem Ipsum is simply dummy text of the printing and typesetting.</span><br>
-                    <div class="container">
-                        <div class="panel panel-default">
-                            <div class="panel-body">
-                                <img alt="" src="assets/img/file.png" class="file-logo">
-                                <p class="SG-text"><span> SG_Test</span></p>
-                                <span class="text-uploaded">1MB excel spreadsheet</span>
-                                <div class="danger-icon">
-                                    <img alt="" src="assets/img/success.png">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <img alt="" src="assets/img/blue.png" class="red-icon">
-                    <p class="care-rwanda">Care Rwanda<span> Dec,14th,201610:34 AM</span></p>
-                    <span class="text-uploaded">Uploaded a file</span><br>
-                    <span class="text-uploaded">Lorem Ipsum is simply dummy text of the printing and typesetting.</span><br>
-                    <div class="container">
-                        <div class="panel panel-warning">
-                            <div class="panel-body">
-                                <img alt="" src="assets/img/file.png" class="file-logo">
-                                <p class="SG-text"><span> SG_Test</span></p>
-                                <span class="text-uploaded">1MB excel spreadsheet</span>
-                                <div class="danger-icon">
-                                    <img alt="" src="assets/img/pending.png">
-                                </div>
-                            </div>
-                        </div>
-                        <footer>
-                            <button type="button" class="btn btn-default btn_cartix" onclick="openNav1()">Upload</button>
-                            <button type="button" class="btn btn-default btn_cartix" onclick="openNav()">View Data</button>
-                        </footer>
-                    </div>
-                </div>
-            </div>
                 <div class="row">
-                <div class="container-fluid dropdown-box">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="select-box">
-                                <p>Local NGO</p>
-                                <select  id="ddlCars10" multiple="multiple">
-                                    <option value="1">Option 1</option>
-                                    <option value="2">Option 2</option>
-                                    <option value="3">Option 3</option>
-                                    <option value="4">Option 4</option>
-                                    <option value="5">Option 5</option>
-                                    <option value="6">Option 6</option>
-                                </select>
+                    <div class="container-fluid dropdown-box">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="select-box">
+                                    <p>Local NGO</p>
+                                    <select  id="ddlCars10" multiple="multiple">
+                                        <option value="1">Option 1</option>
+                                        <option value="2">Option 2</option>
+                                        <option value="3">Option 3</option>
+                                        <option value="4">Option 4</option>
+                                        <option value="5">Option 5</option>
+                                        <option value="6">Option 6</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="select-box">
+                                    <p>Year</p>
+                                    <select id="ddlCars11" multiple="multiple">
+                                        <option value="1">Option 1</option>
+                                        <option value="2">Option 2</option>
+                                        <option value="3">Option 3</option>
+                                        <option value="4">Option 4</option>
+                                        <option value="5">Option 5</option>
+                                        <option value="6">Option 6</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="select-box">
+                                    <p>Status</p>
+                                    <select id="ddlCars12" multiple="multiple">
+                                        <option value="1">Option 1</option>
+                                        <option value="2">Option 2</option>
+                                        <option value="3">Option 3</option>
+                                        <option value="4">Option 4</option>
+                                        <option value="5">Option 5</option>
+                                        <option value="6">Option 6</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="select-box">
-                                <p>Year</p>
-                                <select id="ddlCars11" multiple="multiple">
-                                    <option value="1">Option 1</option>
-                                    <option value="2">Option 2</option>
-                                    <option value="3">Option 3</option>
-                                    <option value="4">Option 4</option>
-                                    <option value="5">Option 5</option>
-                                    <option value="6">Option 6</option>
-                                </select>
+                    </div>
+                    <div class="container container-data text-icon">
+                        <img alt="" src="assets/img/red.png" class="red-icon">
+                        <p class="care-rwanda">Care Rwanda<span> Dec,14th,201610:34 AM</span></p>
+                        <span class="text-uploaded">Uploaded a file</span><br>
+                        <span class="text-uploaded">Lorem Ipsum is simply dummy text of the printing and typesetting.</span><br>
+                        <div class="container">
+                            <div class="panel panel-danger">
+                                <div class="panel-body">
+                                    <img alt="" src="assets/img/file.png" class="file-logo">
+                                    <p class="SG-text"><span> SG_Test</span></p>
+                                    <span class="text-uploaded">1MB excel spreadsheet</span>
+                                    <div class="danger-icon">
+                                        <img alt="" src="assets/img/danger.png">
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="select-box">
-                                <p>Status</p>
-                                <select id="ddlCars12" multiple="multiple">
-                                    <option value="1">Option 1</option>
-                                    <option value="2">Option 2</option>
-                                    <option value="3">Option 3</option>
-                                    <option value="4">Option 4</option>
-                                    <option value="5">Option 5</option>
-                                    <option value="6">Option 6</option>
-                                </select>
+                        <img alt="" src="assets/img/yellow.png" class="red-icon">
+                        <p class="care-rwanda">International NGO<span> Dec,14th,201610:34 AM</span></p>
+                        <span class="text-uploaded">Uploaded a file</span><br>
+                        <span class="text-uploaded">Lorem Ipsum is simply dummy text of the printing and typesetting.</span><br>
+                        <div class="container">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <img alt="" src="assets/img/file.png" class="file-logo">
+                                    <p class="SG-text"><span> SG_Test</span></p>
+                                    <span class="text-uploaded">1MB excel spreadsheet</span>
+                                    <div class="danger-icon">
+                                        <img alt="" src="assets/img/success.png">
+                                    </div>
+                                </div>
                             </div>
+                        </div>
+                        <img alt="" src="assets/img/green.png" class="red-icon">
+                        <p class="care-rwanda">Care Rwanda<span> Dec,14th,201610:34 AM</span></p>
+                        <span class="text-uploaded">Uploaded a file</span><br>
+                        <span class="text-uploaded">Lorem Ipsum is simply dummy text of the printing and typesetting.</span><br>
+                        <div class="container">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <img alt="" src="assets/img/file.png" class="file-logo">
+                                    <p class="SG-text"><span> SG_Test</span></p>
+                                    <span class="text-uploaded">1MB excel spreadsheet</span>
+                                    <div class="danger-icon">
+                                        <img alt="" src="assets/img/success.png">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <img alt="" src="assets/img/blue.png" class="red-icon">
+                        <p class="care-rwanda">Care Rwanda<span> Dec,14th,201610:34 AM</span></p>
+                        <span class="text-uploaded">Uploaded a file</span><br>
+                        <span class="text-uploaded">Lorem Ipsum is simply dummy text of the printing and typesetting.</span><br>
+                        <div class="container">
+                            <div class="panel panel-warning">
+                                <div class="panel-body">
+                                    <img alt="" src="assets/img/file.png" class="file-logo">
+                                    <p class="SG-text"><span> SG_Test</span></p>
+                                    <span class="text-uploaded">1MB excel spreadsheet</span>
+                                    <div class="danger-icon">
+                                        <img alt="" src="assets/img/pending.png">
+                                    </div>
+                                </div>
+                            </div>
+                            <footer>
+                                <button type="button" class="btn btn-default btn_cartix" >Upload</button>
+                                <button type="button" class="btn btn-default btn_cartix">View Data</button>
+                            </footer>
                         </div>
                     </div>
                 </div>
-                <div class="container container-data text-icon">
-                    <img alt="" src="assets/img/red.png" class="red-icon">
-                    <p class="care-rwanda">Care Rwanda<span> Dec,14th,201610:34 AM</span></p>
-                    <span class="text-uploaded">Uploaded a file</span><br>
-                    <span class="text-uploaded">Lorem Ipsum is simply dummy text of the printing and typesetting.</span><br>
-                    <div class="container">
-                        <div class="panel panel-danger">
-                            <div class="panel-body">
-                                <img alt="" src="assets/img/file.png" class="file-logo">
-                                <p class="SG-text"><span> SG_Test</span></p>
-                                <span class="text-uploaded">1MB excel spreadsheet</span>
-                                <div class="danger-icon">
-                                    <img alt="" src="assets/img/danger.png">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <img alt="" src="assets/img/yellow.png" class="red-icon">
-                    <p class="care-rwanda">International NGO<span> Dec,14th,201610:34 AM</span></p>
-                    <span class="text-uploaded">Uploaded a file</span><br>
-                    <span class="text-uploaded">Lorem Ipsum is simply dummy text of the printing and typesetting.</span><br>
-                    <div class="container">
-                        <div class="panel panel-default">
-                            <div class="panel-body">
-                                <img alt="" src="assets/img/file.png" class="file-logo">
-                                <p class="SG-text"><span> SG_Test</span></p>
-                                <span class="text-uploaded">1MB excel spreadsheet</span>
-                                <div class="danger-icon">
-                                    <img alt="" src="assets/img/success.png">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <img alt="" src="assets/img/green.png" class="red-icon">
-                    <p class="care-rwanda">Care Rwanda<span> Dec,14th,201610:34 AM</span></p>
-                    <span class="text-uploaded">Uploaded a file</span><br>
-                    <span class="text-uploaded">Lorem Ipsum is simply dummy text of the printing and typesetting.</span><br>
-                    <div class="container">
-                        <div class="panel panel-default">
-                            <div class="panel-body">
-                                <img alt="" src="assets/img/file.png" class="file-logo">
-                                <p class="SG-text"><span> SG_Test</span></p>
-                                <span class="text-uploaded">1MB excel spreadsheet</span>
-                                <div class="danger-icon">
-                                    <img alt="" src="assets/img/success.png">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <img alt="" src="assets/img/blue.png" class="red-icon">
-                    <p class="care-rwanda">Care Rwanda<span> Dec,14th,201610:34 AM</span></p>
-                    <span class="text-uploaded">Uploaded a file</span><br>
-                    <span class="text-uploaded">Lorem Ipsum is simply dummy text of the printing and typesetting.</span><br>
-                    <div class="container">
-                        <div class="panel panel-warning">
-                            <div class="panel-body">
-                                <img alt="" src="assets/img/file.png" class="file-logo">
-                                <p class="SG-text"><span> SG_Test</span></p>
-                                <span class="text-uploaded">1MB excel spreadsheet</span>
-                                <div class="danger-icon">
-                                    <img alt="" src="img/pending.png">
-                                </div>
-                            </div>
-                        </div>
-                        <footer>
-                            <button type="button" class="btn btn-default btn_cartix" >Upload</button>
-                            <button type="button" class="btn btn-default btn_cartix">View Data</button>
-                        </footer>
-                    </div>
-                </div>
-            </div>
             </div>
         </div>
     </section>
-    
-    
     <!--SECTION DISPLAY DATA ON UPLOAD-->
     <section id="mySidenav1" class="sidenav2">
         <!--SUCESSFULLY SAVED-->
@@ -387,7 +341,7 @@
                 </nav>
                 <div class="container-fluid">
                     <div class="box">
-                       <!-- UPLOAD FILE -->
+                        <!-- UPLOAD FILE -->
                         <div class="row">
                             <!--UPLOAD FILE_1-->
                             <div class="upload-box">
@@ -402,8 +356,7 @@
                                 <p class="download_data_text"><a href="">Download Data compilation sheet Template here</a></p>
                             </div>
                         </div>
-                        
-                         <!--UPLOADING PROGRESS-->
+                        <!--UPLOADING PROGRESS-->
                         <div class="row">
                             <div class="box-container">
                                 <div class="box-center">
@@ -423,9 +376,7 @@
                                 </div>
                             </div>
                         </div>
-                        
                         <!--UPLOADING CHECKING ERRORS-->
-                        
                         <div class="row">
                             <div class="box-container">
                                 <div class="row">
@@ -448,7 +399,6 @@
                                 </div>
                             </div>
                         </div>
-                        
                         <!--UPLOAD FILE_ERROR -->
                         <div class="row">
                             <div class="upload-box">
@@ -466,8 +416,6 @@
                                 <p class="download_data_text"><a href="">Download Data compilation sheet Template here</a></p>
                             </div>
                         </div>
-                        
-                       
                         <!--DATA DISPLAY_LOCAL_NGO NGO-->
                         <div class="row">
                             <div class="dropdown-box">
@@ -732,8 +680,4 @@
             </div>
         </div>
     </section>
-    
-    
- 
-    
 </div>
