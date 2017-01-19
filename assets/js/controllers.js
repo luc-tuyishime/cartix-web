@@ -364,15 +364,19 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$
     
     // Function to call in excelfileCTRL
     
-    chartFunction();
-    selectBox()
-
+    //chartFunction();
     backgroudHeight();
-    leafletCartix();
+    
 
 }]);
 
 
+
+
+myapp.controller('mapCtrl', ['$scope','$http', function($scope, $http){
+    leafletCartix();
+    selectBox();
+}]);
 
 
 
@@ -416,24 +420,32 @@ function restoreNgo() {
 
 
 function openNav() {
+      var windowHeight = ($(window).height());
+     $("#call-opacity").css("height", windowHeight);
     document.getElementById("mySidenav").style.width = "50%";
     document.body.style.backgroundColor = "#fff";
     document.getElementById("call-opacity").className = "opacity";
 }
 
 function closeNav() {
+     var windowHeight = ($(window).height());
+     $("#call-opacity").css("height", 0);
     document.getElementById("mySidenav").style.width = "0";
     document.body.style.backgroundColor = "white";
     document.getElementById("call-opacity").className = "";
 }
 
 function openNav1() {
+    var windowHeight = ($(window).height());
+     $("#call-opacity").css("height", windowHeight);
     document.getElementById("mySidenav1").style.width = "50%";
     document.body.style.backgroundColor = "#fff";
     document.getElementById("call-opacity").className = "opacity";
 }
 
 function closeNav_() {
+    var windowHeight = ($(window).height());
+     $("#call-opacity").css("height", 0);
     document.getElementById("mySidenav1").style.width = "0";
     document.body.style.backgroundColor = "#fff";
     document.getElementById("call-opacity").className = "";
@@ -499,17 +511,17 @@ function chartFunction() {
 
 
 function selectBox() {
-        $('#ddlCars01').multiselect({
+        $('#national_map').multiselect({
             includeSelectAllOption: true
 
         });
-        $('#ddlCars02').multiselect({
+        $('#province_map').multiselect({
             includeSelectAllOption: true
         });
-        $('#ddlCars03').multiselect({
+        $('#district_map').multiselect({
             includeSelectAllOption: true
         });
-        $('#ddlCars04').multiselect({
+        $('#saving_group_map').multiselect({
             includeSelectAllOption: true
         });
 
@@ -582,17 +594,13 @@ function selectBox() {
 
 function leafletCartix() {
     
-    $("#map-cartix").html("<div id='map'></div>");
+    $("#map-cartix").html('<div id="map"> <div class="container-fluid headerOnMap"> <div class="row"> <div class="col-md-2"><img alt="" src="assets/img/afr-logo.png" class="afr-logo"> </div><div class="col-md-10 selectBox"> <div class="select-box"> <select class="multiselect" data-placeholder="National" id="national_map" multiple="multiple"> <option value="1">Option 1</option> <option value="2">Option 2</option> <option value="3">Option 3</option> <option value="4">Option 4</option> <option value="5">Option 5</option> <option value="6">Option 6</option> </select> </div><div class="select-box "> <select data-placeholder="Provinces" id="province_map" multiple="multiple"> <option value="1">Option 1</option> <option value="2">Option 2</option> <option value="3">Option 3</option> <option value="4">Option 4</option> <option value="5">Option 5</option> <option value="6">Option 6</option> </select> </div><div class="select-box "> <select data-placeholder="District" id="district_map" multiple="multiple"> <option value="1">Option 1</option> <option value="2">Option 2</option> <option value="3">Option 3</option> <option value="4">Option 4</option> <option value="5">Option 5</option> <option value="6">Option 6</option> </select> </div><div class="select-box "> <select data-placeholder="Saving Groups" id="saving_group_map" multiple="multiple"> <option value="1">Option 1</option> <option value="2">Option 2</option> <option value="3">Option 3</option> <option value="4">Option 4</option> <option value="5">Option 5</option> <option value="6">Option 6</option> </select> </div><div class="select-box "> <select data-placeholder="Year" id="year" multiple="multiple"> <option value="1">Option 1</option> <option value="2">Option 2</option> <option value="3">Option 3</option> <option value="4">Option 4</option> <option value="5">Option 5</option> <option value="6">Option 6</option> </select> </div></div></div><div class="row"> <div class="btn-cartix-bottom"> <button type="button" class="btn btn-default btn-cartix" onclick="openNav()">Data</button> </div></div></div></div>');
     
     var windowHeight = ($(window).height());
     var width = ($(window).width());
 
     $("#map").css("height", windowHeight);
-    $("#map").css("width", width * 0.75);
-
-
-
-    $("#sel").css("right", width * 0.26);
+    
 
     var geojson;
     var map = L.map('map', {
