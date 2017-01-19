@@ -128,7 +128,6 @@ select {
 }
 .app .graph-box {
     background-color: #fff;
-    float: right;
 }
 .app .afr-logo {
     height: 80px;
@@ -297,7 +296,7 @@ select {
     border: 2px solid #4C0014;
     z-index: 100;
     margin-bottom: 30px;
-    margin-left: 19px;
+    margin-left: 32px;
     position: fixed;
     bottom: 0;
 }
@@ -493,17 +492,55 @@ select {
 
 
 /* MAPPPP*/
-#map-cartix{
-    display: block;
-    margin: auto;
-    position: fixed;
-}
 
-.app .container-fluid{
+.app .bg-map{
     padding-right: 0px;
     padding-left: 0px;
-    margin-right: auto;
-    margin-left: auto;
+}
+
+#map-cartix{
+    display: block;
+    margin: 0 0 0 0;
+    position: fixed;
+    width: 75%;
+    
+}
+
+.app .bg-side{
+    background-color: #fff;
+}
+
+
+
+.app .headerOnMap{
+    background: rgba(0, 0, 0, 0);
+    padding: 0px;
+    position: fixed;
+    top: 15px;
+    z-index: 1000;
+    width: 100%;
+}
+
+.app .headerOnMap .selectBox{
+    margin-top: 10px;
+}
+
+.app .headerOnMap .afr-logo {
+    height: 80px;
+    margin-top: -10px;
+    margin-left: 30px;
+}
+
+.app .headerOnMap .multiselect{
+    width: 151px;
+}
+
+.app .leaflet-top .leaflet-control {
+    margin-top: 160px;
+}
+
+.headerOnMap .container-fluid img   {
+    margin-left: 32px;
 }
 
 
