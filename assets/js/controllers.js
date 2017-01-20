@@ -364,7 +364,7 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$
     
     // Function to call in excelfileCTRL
     
-    //chartFunction();
+    chartFunction();
     backgroudHeight();
     
 
