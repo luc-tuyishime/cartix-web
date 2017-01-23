@@ -378,12 +378,10 @@ myapp.controller('mapCtrl', ['$scope','$http', function($scope, $http){
     selectBox();
     
     
-    // loadProvinceSelectBox()
+    // loadProvinceSelectBox
     loadProvinceSelectBox();
     
-    // loadDistrictSelectBox()
-    var district_id = $scope.province_map.split(",")[0];
-    console.log(district_id);
+    
     
     
     
@@ -406,8 +404,17 @@ myapp.controller('mapCtrl', ['$scope','$http', function($scope, $http){
         });
     }
     
-    function loadDistrictSelectBox(){
-        
+    // loadDistrictSelectBox()
+    /*console.log($scope.province_map);
+    var district_id = $scope.province_map.split(",")[0];
+    console.log(district_id);*/
+    
+    $("#province_map").change(function(){
+        alert($("#province_map").val());
+    });
+    
+    $scope.loadDistrict = function (){
+        alert($scope.province_map);
         
     }
     
@@ -629,7 +636,7 @@ function selectBox() {
 
 function leafletCartix() {
     
-    $("#map-cartix").html('<div id="map"> <div class="container-fluid headerOnMap"> <div class="row"> <div class="col-md-2"><img alt="" src="assets/img/afr-logo.png" class="afr-logo"> </div><div class="col-md-10 selectBox"> <div class="select-box"> <select class="multiselect" ng-model="national" data-placeholder="National" id="national_map" > <option value="provinces">Provinces</option> <option value="districts">Districts</option> <option value="sectors">Sectors</option> </select> </div><div class="select-box "> <select data-placeholder="Provinces" ng-model="province_map" ng-options="province for province in provinces" id="province_map" > </select> </div><div class="select-box "> <select data-placeholder="District" id="district_map" ng-model="district_map" ng-options="district for district in districts" multiple="multiple"> </select> </div><div class="select-box "> <select data-placeholder="Saving Groups" id="saving_group_map" ng-model="ngo_list" ng-options="ngo for ngo in ngos" multiple="multiple"> </select> </div><div class="select-box "> <select data-placeholder="Year" id="year" ng-model="year" ng-options="year for year in years" multiple="multiple"> </select> </div></div></div><div class="row"> <div class="btn-cartix-bottom"> <button type="button" class="btn btn-default btn-cartix" onclick="openNav()">Data</button> </div></div></div></div>');
+    $("#map-cartix").html('<div id=map><div class="container-fluid headerOnMap"><div class=row><div class=col-md-2><img alt=""class=afr-logo src=assets/img/afr-logo.png></div><div class="col-md-10 selectBox"><div class=select-box><select data-placeholder=National id=national_map multiple ng-model=national class=multiselect><option value=provinces>Provinces<option value=districts>Districts<option value=sectors>Sectors</select></div><div class=select-box><select data-placeholder=Provinces id=province_map ng-model=province_map></select></div><div class=select-box><select data-placeholder=District id=district_map multiple ng-model=district_map ng-options="district for district in districts"></select></div><div class=select-box><select data-placeholder="Saving Groups"id=saving_group_map multiple ng-model=ngo_list ng-options="ngo for ngo in ngos"></select></div><div class=select-box><select data-placeholder=Year id=year multiple ng-model=year ng-options="year for year in years"></select></div></div></div><div class=row><div class=btn-cartix-bottom><button class="btn btn-cartix btn-default"onclick=openNav() type=button>Data</button></div></div></div></div>');
     
     var windowHeight = ($(window).height());
     var width = ($(window).width());
