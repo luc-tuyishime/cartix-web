@@ -439,6 +439,14 @@ myapp.controller('mapCtrl', ['$scope','$http', function($scope, $http){
         $http.get('http://127.0.0.1:5000/api/v1/saving_year/')
             .success(function(data, status, header, config){
                 console.log(data);
+                var options = '';
+                $.each(data, function(key, value){
+                    options+= "<option>"+value+"</option>";
+                });
+                
+                $("#year").html(options);
+                $("#year").multiselect('rebuild');
+                
             });
     }
     
