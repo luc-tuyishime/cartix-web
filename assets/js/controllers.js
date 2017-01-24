@@ -432,6 +432,16 @@ myapp.controller('mapCtrl', ['$scope','$http', function($scope, $http){
             });
     }
     
+    // loading saving year
+    loadSavingYear();
+    
+    function loadSavingYear(){
+        $http.get('http://127.0.0.1:5000/api/v1/saving_year/')
+            .success(function(data, status, header, config){
+                console.log(data);
+            });
+    }
+    
 }]);
 
 
