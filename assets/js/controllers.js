@@ -393,29 +393,43 @@ myapp.controller('mapCtrl', ['$scope','$http', function($scope, $http){
            console.log(data); 
             var options = "";
             $.each(data, function(key, value){
-                 options+= "<option value="+[value.id, value.name]+" >"+value.name+"</option>"
+                 options+= "<option value="+[value.id, value.name]+" >"+value.name+"</option>";
             });
             $("#province_map").html(options);
             $('#province_map').multiselect('rebuild');
             $('#province_map').multiselect({
-                includeSelectAllOption: false
+                includeSelectAllOption: true
             });
 
         });
     }
     
     // loadDistrictSelectBox()
-    /*console.log($scope.province_map);
-    var district_id = $scope.province_map.split(",")[0];
-    console.log(district_id);*/
+    /*var district_id = $("#province_map").val().split(",")[0];
+    loadDistrictSelectBox(district_id);*/
     
     $("#province_map").change(function(){
-        alert($("#province_map").val());
+        var district_id = $("#province_map").val().split(",")[0];
+        loadDistrictSelectBox(district_id);
     });
     
-    $scope.loadDistrict = function (){
-        alert($scope.province_map);
-        
+    function loadDistrictSelectBox(district_id){
+        $http.get('http://127.0.0.1:5000/api/v1/kenessa/province/district/'+district_id)
+            .success(function(data, status, header, config){
+                var options = "";
+                $.each(data, function(key, value){
+                    $.each(value[0].district, function(k,v){
+                        options+= "<option value="+[v.id, v.name]+" >"+v.name+"</option>";
+                    });
+                });
+                
+                $("#district_map").html(options);
+                $("#district_map").multiselect('rebuild');
+                $("#district_map").multiselect({
+                    includeSelectAllOption: false
+                });
+            
+            });
     }
     
 }]);
@@ -636,7 +650,7 @@ function selectBox() {
 
 function leafletCartix() {
     
-    $("#map-cartix").html('<div id=map><div class="container-fluid headerOnMap"><div class=row><div class=col-md-2><img alt=""class=afr-logo src=assets/img/afr-logo.png></div><div class="col-md-10 selectBox"><div class=select-box><select data-placeholder=National id=national_map multiple ng-model=national class=multiselect><option value=provinces>Provinces<option value=districts>Districts<option value=sectors>Sectors</select></div><div class=select-box><select data-placeholder=Provinces id=province_map ng-model=province_map></select></div><div class=select-box><select data-placeholder=District id=district_map multiple ng-model=district_map ng-options="district for district in districts"></select></div><div class=select-box><select data-placeholder="Saving Groups"id=saving_group_map multiple ng-model=ngo_list ng-options="ngo for ngo in ngos"></select></div><div class=select-box><select data-placeholder=Year id=year multiple ng-model=year ng-options="year for year in years"></select></div></div></div><div class=row><div class=btn-cartix-bottom><button class="btn btn-cartix btn-default"onclick=openNav() type=button>Data</button></div></div></div></div>');
+    $("#map-cartix").html('<div id=map><div class="container-fluid headerOnMap"><div class=row><div class=col-md-2><img alt=""class=afr-logo src=assets/img/afr-logo.png></div><div class="col-md-10 selectBox"><div class=select-box><select data-placeholder=National id=national_map ng-model=national class=multiselect><option value=provinces>Provinces<option value=districts>Districts<option value=sectors>Sectors</select></div><div class=select-box><select data-placeholder=Provinces id=province_map ng-model=province_map></select></div><div class=select-box><select data-placeholder=District id=district_map ng-model=district_map ng-options="district for district in districts"></select></div><div class=select-box><select data-placeholder="Saving Groups"id=saving_group_map multiple ng-model=ngo_list ng-options="ngo for ngo in ngos"></select></div><div class=select-box><select data-placeholder=Year id=year multiple ng-model=year ng-options="year for year in years"></select></div></div></div><div class=row><div class=btn-cartix-bottom><button class="btn btn-cartix btn-default"onclick=openNav() type=button>Data</button></div></div></div></div>');
     
     var windowHeight = ($(window).height());
     var width = ($(window).width());
