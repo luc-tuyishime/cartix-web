@@ -384,8 +384,7 @@ myapp.controller('mapCtrl', ['$scope','$http', function($scope, $http){
     
     
     
-    
-    
+    console.log($("#province_map").val());
     
     function loadProvinceSelectBox(){
         $http.get('http://127.0.0.1:5000/api/v1/kenessa/province/province/all')
@@ -393,7 +392,7 @@ myapp.controller('mapCtrl', ['$scope','$http', function($scope, $http){
            console.log(data); 
             var options = "";
             $.each(data, function(key, value){
-                 options+= "<option value="+[value.id, value.name]+" >"+value.name+"</option>";
+                 options+= "<option selected value="+[value.id, value.name]+" >"+value.name+"</option>";
             });
             $("#province_map").html(options);
             $('#province_map').multiselect('rebuild');
@@ -469,6 +468,15 @@ myapp.controller('mapCtrl', ['$scope','$http', function($scope, $http){
     }
     
 }]);
+
+
+
+
+
+myapp.controller('notificationCtrl', ['$scope','$http', function($scope, $http){
+    
+}]);
+
 
 
 
