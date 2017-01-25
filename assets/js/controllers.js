@@ -450,6 +450,24 @@ myapp.controller('mapCtrl', ['$scope','$http', function($scope, $http){
             });
     }
     
+    
+    // load int_ngo
+    loadIntNgo();
+    
+    function loadIntNgo(){
+        $http.get('http://127.0.0.1:5000/api/v1/int_ngo/')
+            .success(function(data, status, header, config){
+                console.log(data);
+                var options = "";
+                $.each(data, function(key, value){
+                   options += "<option value='"+value.id+"'>"+value.name+"</option>" 
+                });
+                
+                $("#saving_group_map").html(options);
+                $("#saving_group_map").multiselect('rebuild');
+            });
+    }
+    
 }]);
 
 
@@ -668,7 +686,7 @@ function selectBox() {
 
 function leafletCartix() {
     
-    $("#map-cartix").html('<div id=map><div class="container-fluid headerOnMap"><div class=row><div class=col-md-2><img alt=""class=afr-logo src=assets/img/afr-logo.png></div><div class="col-md-10 selectBox"><div class=select-box><select data-placeholder=National id=national_map ng-model=national class=multiselect><option value=provinces>Provinces<option value=districts>Districts<option value=sectors>Sectors</select></div><div class=select-box><select data-placeholder=Provinces id=province_map ng-model=province_map></select></div><div class=select-box><select data-placeholder=District id=district_map ng-model=district_map ng-options="district for district in districts"></select></div><div class=select-box><select data-placeholder="Saving Groups"id=saving_group_map multiple ng-model=ngo_list ng-options="ngo for ngo in ngos"></select></div><div class=select-box><select data-placeholder=Year id=year multiple ng-model=year ng-options="year for year in years"></select></div></div></div><div class=row><div class=btn-cartix-bottom><button class="btn btn-cartix btn-default"onclick=openNav() type=button>Data</button></div></div></div></div>');
+    $("#map-cartix").html('<div id=map><div class="container-fluid headerOnMap"><div class=row><div class=col-md-2><img alt=""class=afr-logo src=assets/img/afr-logo.png></div><div class="col-md-10 selectBox"><div class=select-box><select data-placeholder=National id=national_map ng-model=national class=multiselect><option value=provinces>Provinces<option value=districts>Districts<option value=sectors>Sectors</select></div><div class=select-box><select data-placeholder=Provinces id=province_map ng-model=province_map></select></div><div class=select-box><select data-placeholder=District id=district_map ng-model=district_map ng-options="district for district in districts"></select></div><div class=select-box><select data-placeholder="Saving Groups" id=saving_group_map multiple ></select></div><div class=select-box><select data-placeholder=Year id=year multiple ng-model=year ng-options="year for year in years"></select></div></div></div><div class=row><div class=btn-cartix-bottom><button class="btn btn-cartix btn-default"onclick=openNav() type=button>Data</button></div></div></div></div>');
     
     var windowHeight = ($(window).height());
     var width = ($(window).width());
