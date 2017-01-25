@@ -23,7 +23,8 @@ myapp.factory('AuthService', ['$q', '$timeout', '$http', function($q, $timeout, 
         destroyUser: destroyUser,
         Key: Key,
         changePassword: changePassword,
-        recover:recover
+        recover:recover,
+        ngoStatus:ngoStatus
     });
 
 
@@ -195,7 +196,26 @@ myapp.factory('AuthService', ['$q', '$timeout', '$http', function($q, $timeout, 
             });
         return deferred.promise;
     }
-
+    
+    function ngoStatus(ngo_id){
+        // create new instance of deferred
+        var deferred = $q.defer();
+        
+        // send a get request checking status
+        var url = 'http://127.0.0.1:5000/api/v1/ngo_status/'+ngo_id
+        $http.get(url)
+            .success(function(data, status){
+                if (status == 200 && data.status){
+                    deferred.resolve();
+                }else{
+                    deferred.reject();
+                }
+            })
+            .error(function(){
+                 deferred.reject();
+            });
+        return deferred.promise;
+    }
 
     function getUserStatus() {
         var restore = restoreUser();
