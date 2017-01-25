@@ -473,7 +473,17 @@ myapp.controller('mapCtrl', ['$scope','$http', function($scope, $http){
 
 
 
-myapp.controller('notificationCtrl', ['$scope','$http', function($scope, $http){
+myapp.controller('notificationCtrl', ['$scope','$http', 'AuthService', function($scope, $http, AuthService){
+    
+    // NGO Status
+    var ngo_id = AuthService.getNgo()
+    console.log(ngo_id);
+    AuthService.ngoStatus(ngo_id)
+        .then(function(){
+            console.log("Int ngo");
+        }).catch(function(){
+            console.log("Local Ngo");
+        });
     
 }]);
 
