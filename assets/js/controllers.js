@@ -231,6 +231,8 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$
 
 
     function multipleDataView(json_data) {
+        $scope.disabled = false;
+        $scope.savedValue = "Save";
         var year = [],
             member = [],
             female = [],
@@ -337,6 +339,8 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$
 
 
     $scope.saveData = function(originalpath, filename) {
+        $scope.disabled = true;
+        $scope.savedValue = "Saving ...";
         var config = {
             headers: {
                 'Content-Type': 'application/json'
