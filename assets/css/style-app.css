@@ -552,3 +552,10 @@ select {
     width: 100%;
 }
 
+.app .drop-notif .dropdown-menu {
+    left: 80%;
+    right: auto;
+    text-align: center;
+    transform: translate(-50%, 0);
+}
+
