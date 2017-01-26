@@ -365,7 +365,7 @@
                            </div>
                         </div>
                         <footer>
-                           <button type="button" class="btn btn-default btn_cartix" >Upload</button>
+                           <button type="button" class="btn btn-default btn_cartix">Upload</button>
                            <button type="button" class="btn btn-default btn_cartix">View Data</button>
                         </footer>
                      </div>
@@ -395,11 +395,10 @@
                      </div>
                      <a href="javascript:void(0)" class="closebtn_2" onclick="closeNav_()">&times;</a>
                   </nav>
-                  <div class="container-fluid">
+
                      <div class="box">
-                        <div class="row">
                            <!--UPLOAD FILE_1-->
-                           <div class="upload-box">
+                           <div class="upload">
                               <h2>Submit Your File</h2>
                               <p class="small-text">Small description</p>
                               <img alt="" src="img/files-xls.png">
@@ -411,7 +410,7 @@
                               <p class="download_data_text"><a href="">Download Data compilation sheet Template here</a></p>
                            </div>
                            <!--UPLOAD FILE_2-->
-                           <div class="upload-box">
+                           <div class="upload">
                               <h2>Submit Your File</h2>
                               <p class="small-text">Small description</p>
                               <img alt="" src="img/files-xls.png">
@@ -427,7 +426,7 @@
                            </div>
                            <br>
                            <!--UPLOADING PROGRESS-->
-                           <div class="box-container">
+                           <div class="upload-progress">
                               <div class="box-center">
                                  <h2>Uploading file</h2>
                                  <p class="small-text">SG_Data_xls</p>
@@ -443,8 +442,10 @@
                                     <p>Download Data compilation sheet Template here</p>
                                  </a>
                               </div>
-                              <br>
+                            </div>
+                           <br>
                               <!--UPLOADING CHECKING ERRORS-->
+                              <div class="upload-check-errors">
                               <div class="row">
                                  <div class="box-center">
                                     <div class="uploading-box">
@@ -464,6 +465,7 @@
                                  </div>
                               </div>
                            </div>
+
                            <!--DATA DISPLAY_1-->
                            <div class="dropdown-box">
                               <div class="row">
@@ -520,8 +522,7 @@
                                     </div>
                                  </div>
                               </div>
-                           </div>
-                        </div>
+
                         <div class="table-center">
                            <div class="table">
                               <div class="col-md-12">
@@ -593,9 +594,10 @@
                               </div>
                            </div>
                         </div>
+                      </div>
+
                         <!--DISPLAY DATA_2-->
                         <div class="dropdown-box">
-                           <div class="row">
                               <div class="col-md-3">
                                  <div class="select-box">
                                     <p>Province</p>
@@ -648,8 +650,6 @@
                                     </select>
                                  </div>
                               </div>
-                           </div>
-                        </div>
                         <div class="table-center">
                            <div class="table">
                               <div class="col-md-12">
@@ -713,8 +713,8 @@
                                           <td style="text-align: right">N/A</td>
                                        </tr>
                                     </tbody>
-                                 </table>
-                                 <footer>
+                                   </table>
+                                   <footer>
                                     <button type="button" class="btn btn-default btn_cartix" id="">Download</button>
                                  </footer>
                               </div>
@@ -724,8 +724,9 @@
                   </div>
                </div>
             </div>
-      </div>
+          </div>
       </section>
+      </div>
       <script src="js/jquery.min.js"></script>
       <script src="js/bootstrap.min.js"></script>
       <script src="js/style.js"></script>

@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <title>Anac</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <link href="bootstrap3/css/font-awesome.css" rel="stylesheet">
+      <link rel="stylesheet" href="css/style.css" type="text/css">
+          <link rel="stylesheet" href="css/bootstrap-toggle.css" type="text/css">
+      <link href="css/bootstrap-multiselect.css" rel="stylesheet" type="text/css"/>
+      <link rel="stylesheet" media="screen and (min-width:300px)" href="css/style-app.css" type="text/css">
+
+   </head>
+   <body>
+      <div class="container-fluid">
+       <div class="row">
+         <div class="col-md-6">
+            <section id="formulaire1" class="formulaire1">
+           <p class="text-1">FORMULAIRE DE DEMANDE: LICENCE D’AGENT TECHNIQUE D’EXPLOITATION (ATE)-
+              DEMANDE INITIALE, VALIDATION, CONVERSION.<br><span class="text-2">Flight Operations Officer/Flight Dispatcher License,Conversion or Validation Certificate Application
+              </span></p>
+              <p class="text-3">A.Demande de / (Application for):</p>
+
+
+              <div class="checkbox">
+                <label><input type="checkbox" value="">Delivrance Initiale / Original issuance</label>
+                   <label><input type="checkbox" value="">Renouvellement / Renewal</label>
+                      <label><input type="checkbox" value="">Conversion / Conversion</label>
+            </div>
+              <div class="checkbox">
+                <label><input type="checkbox" value="">Reemission / Reissue</label>
+                   <label><input type="checkbox" value="">Validation / validation</label>
+            </div>
+
+
+              <p class="text-3">B.License / B.License</p>
+              <div class="checkbox">
+                <label><input type="checkbox" value="">License d’agent Technique d’exploitation(ATE) flight operations officer/Aircraft dispatcher</label>
+            </div>
+               <p class="text-3">II.Information sur le candidat / Applicant Information</p>
+               <p>Nom complet<br><span class="small-text">Legal name(last, first, middle)<span></p>
+
+   <form class="form-horizontal">
+     <div class="row">
+       <div class="col-md-4">
+  <div class="form-group">
+    <label class="control-label"></label>
+    <div class="col-sm-12">
+      <input class="form-control" id="focusedInput" type="text" placeholder="remy...">
+    </div>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="form-group has-error has-feedback">
+    <label class=" control-label" for="inputError"></label>
+    <div class="col-sm-12">
+      <input type="text" class="form-control" id="inputError">
+      <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+    </div>
+  </div>
+</div>
+</div>
+</form>
+   <p>Numero Passeport/ Carte d’identite
+    <br><span class="small-text">identification number(e.g: driver’s license, passport)<span></p>
+      <form class="form-horizontal">
+     <div class="form-group">
+       <label class="control-label"></label>
+       <div class="col-sm-6">
+         <input class="form-control" id="focusedInput" type="text" placeholder="remy...">
+       </div>
+      </form>
+     </div>
+     <p>Date de naissance
+      <br><span class="small-text">Date of birth (Month/Day/Year)<span></p>
+
+      <form id="dateRangeForm" method="post" class="form-horizontal">
+      <div class="form-group">
+        <form class="form-horizontal">
+            <div class="col-md-4">
+          <input class="form-control" type="date" name="bday" min="2000-01-02"><br><br>
+      </form>
+    </div>
+    </div>
+    <p class="date-text">Addresse permanente
+     <br><span class="small-text">permanent mailing address(number and street)<span></p>
+       <form class="form-horizontal">
+      <div class="form-group">
+        <label class="control-label"></label>
+        <div class="col-sm-6">
+          <input class="form-control" id="focusedInput" type="text" placeholder="Addresse...">
+        </div>
+       </form>
+
+         </div>
+
+           <button type="button" class="btn btn-default style-button">Precedent</button>
+           <button type="button" class="btn btn-default style-button" id="button1">Suivant</button>
+
+
+         </section>
+          <section id="formulaire2" class="formulaire2">
+            <p class="nom-complet">Ville et Etat/Province<br><span class="small-text-name">City and state/Province<span></p>
+              <form class="form-horizontal">
+                <div class="row">
+                  <div class="col-md-4">
+             <div class="form-group">
+               <label class="control-label"></label>
+               <div class="col-sm-12">
+                 <input class="form-control" id="focusedInput" type="text" placeholder="Enter text...">
+               </div>
+             </div>
+           </div>
+           <div class="col-md-4">
+             <div class="form-group">
+               <label class="control-label"></label>
+               <div class="col-sm-12">
+                 <input class="form-control" id="focusedInput" type="text" placeholder="Enter text...">
+               </div>
+             </div>
+           </div>
+           </div>
+           </form>
+           <p class="nom-complet2">Pays et code Postal<br><span class="small-text-name">Country and postal code<span></p>
+             <form class="form-horizontal">
+               <div class="row">
+                 <div class="col-md-4">
+            <div class="form-group">
+              <label class="control-label"></label>
+              <div class="col-sm-12">
+                <input class="form-control" id="focusedInput" type="text" placeholder="Enter text...">
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="control-label"></label>
+              <div class="col-sm-12">
+                <input class="form-control" id="focusedInput" type="text" placeholder="Enter text...">
+              </div>
+            </div>
+          </div>
+          </div>
+          </form>
+
+          <p class="nom-complet2">Lieu de naissance(Ville, Etat / province, Pays)<br><span class="small-text-name">Place of birth( city , state / province , country)<span></p>
+            <form class="form-horizontal">
+              <div class="row">
+                <div class="col-md-8">
+           <div class="form-group">
+             <label class="control-label"></label>
+             <div class="col-sm-12">
+               <input class="form-control" id="focusedInput" type="text" placeholder="Enter text...">
+             </div>
+           </div>
+         </div>
+
+         </div>
+         </form>
+
+         <p class="nom-complet2">Numero de telephone<br><span class="small-text-name">telephone number<span></p>
+           <form class="form-horizontal">
+             <div class="row">
+               <div class="col-md-8">
+          <div class="form-group">
+            <label class="control-label"></label>
+            <div class="col-sm-12">
+              <input class="form-control" id="focusedInput" type="text" placeholder="Enter Tel...">
+            </div>
+          </div>
+        </div>
+
+        </div>
+        </form>
+
+        <p class="nom-complet2">Courriel<br><span class="small-text-name">E-mail address<span></p>
+          <form class="form-horizontal">
+            <div class="row">
+              <div class="col-md-8">
+         <div class="form-group">
+           <label class="control-label"></label>
+           <div class="col-sm-12">
+             <input class="form-control" id="focusedInput" type="text" placeholder="Enter Email...">
+           </div>
+         </div>
+       </div>
+
+       </div>
+       </form>
+
+       <p class="nom-complet2">Nationalite<br><span class="small-text-name">Nationality<span></p>
+         <form class="form-horizontal">
+           <div class="row">
+             <div class="col-md-8">
+        <div class="form-group">
+          <label class="control-label"></label>
+          <div class="col-sm-12">
+            <input class="form-control" id="focusedInput" type="text" placeholder="Enter text...">
+          </div>
+        </div>
+      </div>
+
+      </div>
+      </form>
+
+      <p class="nom-complet2">Poids<br><span class="small-text-name">Weight (kg)<span></p>
+        <form class="form-horizontal">
+          <div class="row">
+            <div class="col-md-8">
+       <div class="form-group">
+         <label class="control-label"></label>
+         <div class="col-sm-12">
+           <input class="form-control" id="focusedInput" type="text" placeholder="Enter weight...">
+         </div>
+       </div>
+     </div>
+
+     </div>
+     </form>
+
+       <button type="button" class="btn btn-default style-button">Precedent</button>
+       <button type="button" class="btn btn-default style-button" id="button2">Suivant</button>
+
+      </section>
+        <section id="formulaire3" class="formulaire3">
+
+     <form class="form-horizontal form-gender">
+       <div class="row">
+         <div class="col-sm-3">
+        <label>Genre / Gender</label>
+      <select class="form-control" id="gender1">
+        <option>Male</option>
+        <option>Female</option>
+      </select>
+
+  </div>
+
+  <div class="col-sm-3">
+    <div class="form-group ">
+        <label>Cheveux / Hair</label>
+        <input type="text" class="form-control" id="inputError"  placeholder="cheveux....">
+
+    </div>
+  </div>
+
+  <div class="col-sm-3">
+  <label>Yeux / Eyes</label>
+        <input type="text" class="form-control" id="inputError" placeholder="yeux....">
+
+  </div>
+  </div>
+  </form>
+  <p class="text-3">Detenez vous presentement ou avez vous detenu une licence beninoise?<br>
+     Do you now hold or have you ever held, a Benenese CAA license?
+  </p>
+  <label class="switch">
+      <input type="checkbox"  checked>
+      <div class="slider round"></div>
+ </label>
+<div class="row">
+<div class="col-md-7">
+ <p class="text-3">Si oui, votre licence a t-elle jamais ete suspendue ou revoquee?<br>
+if yes, has your license ever been suspended or revoked?</p>
+</div>
+<div class="col-md-5">
+  <p>Date Donnee:
+   <br><span class="small-text">Date given:<span></p>
+ <form id="dateRangeForm" method="post" class="form-horizontal">
+ <div class="form-group">
+   <form class="form-horizontal">
+       <div class="col-md-10">
+     <input class="form-control" type="date" name="bday" min="2000-01-02">
+ </form>
+</div>
+</div>
+</div>
+</div>
+<p class="text-3">Si oui, votre licence a t-elle jamais ete suspendue ou revoquee?<br>
+                  if yes, has your license ever been suspended or revoked?
+</p>
+<label class="switch">
+    <input type="checkbox" checked>
+    <div class="slider round"></div>
+</label>
+
+<p>Type de license
+ <br><span class="small-text">Type of license<span></p>
+   <form class="form-horizontal">
+  <div class="form-group">
+    <label class="control-label"></label>
+    <div class="col-sm-6">
+      <input class="form-control" id="focusedInput" type="text" placeholder="remy...">
+    </div>
+   </form>
+  </div>
+
+  <p>Numero de la licence
+   <br><span class="small-text">Licence number<span></p>
+     <form class="form-horizontal">
+    <div class="form-group">
+      <label class="control-label"></label>
+      <div class="col-sm-6">
+        <input class="form-control" id="focusedInput" type="text" placeholder="remy...">
+      </div>
+     </form>
+    </div>
+
+    <p>Date de delivrance
+     <br><span class="small-text">Date issued(mm/dd/yyyy)<span></p>
+   <form id="dateRangeForm" method="post" class="form-horizontal">
+   <div class="form-group">
+     <form class="form-horizontal">
+         <div class="col-md-6">
+       <input class="form-control" type="date" name="bday" min="2000-01-02">
+   </form>
+  </div>
+  </div>
+  <p class="text-3">Comprenez vous et parlez vous couramment le fon?<br>
+                   Do you speak and understand the language of Benenese?
+  </p>
+  <div class="klkls">
+  <label class="switch">
+      <input type="checkbox">
+      <div class="slider round"></div>
+ </label>
+</div>
+
+   <button type="button" class="btn btn-default style-button3">Precedent</button>
+   <button type="button" class="btn btn-default style-button3" id="button3">Suivant</button>
+
+  </section>
+
+      <section id="formulaire4" class="formulaire4">
+        <p class="text-1">Demande de License,de Conversion ou de validation faite sur la base de:/License, Conversion
+        or Validation Certificate Applied on the Basis of:
+        <br><span class="text-2">Flight Operations Officer/Flight Dispatcher License,Conversion or Validation Certificate Application
+           </span></p>
+        <p class="text-4">A. Test de Connaissance Theorique / Knowledge test <img src="img/ok.svg"></p>
+
+        <p>Candidature a un test de connaissance de:
+         <br><span class="small-text">Knowledge test applied for<span></p>
+           <form class="form-horizontal">
+          <div class="form-group">
+            <label class="control-label"></label>
+            <div class="col-sm-6">
+              <input class="form-control" id="focusedInput" type="text" placeholder="Enter text...">
+            </div>
+           </form>
+          </div>
+
+          <p>Test de connaissance theorique reussi pour:
+           <br><span class="small-text">Knowledge test successfully completed for:<span></p>
+             <form class="form-horizontal">
+            <div class="form-group">
+              <label class="control-label"></label>
+              <div class="col-sm-6">
+                <input class="form-control" id="focusedInput" type="text" placeholder="Enter text...">
+              </div>
+             </form>
+            </div>
+
+            <p>Date de delivrance
+             <br><span class="small-text">Date issued(mm/dd/yyyy)<span></p>
+           <form id="dateRangeForm" method="post" class="form-horizontal">
+           <div class="form-group">
+             <form class="form-horizontal">
+                 <div class="col-md-6">
+               <input class="form-control" type="date" name="bday" min="2000-01-02">
+           </form>
+          </div>
+          </div>
+          <p class="text-4">B. Test pratique/ Skill Test <img src="img/ok.svg"></p>
+
+          <p>Aeronef a utiliser (si examen en vol requis):
+           <br><span class="small-text">Aircraft to be used (if flight test required):<span></p>
+             <form class="form-horizontal">
+            <div class="form-group">
+              <label class="control-label"></label>
+              <div class="col-sm-6">
+                <input class="form-control" id="focusedInput" type="text" placeholder="Enter text...">
+              </div>
+             </form>
+            </div>
+
+            <p>Nombre d’heures de vol effectues dans ce type d'avion:
+             <br><span class="small-text">Total time in this aircraft:<span></p>
+               <form class="form-horizontal">
+              <div class="form-group">
+                <label class="control-label"></label>
+                <div class="col-sm-6">
+                  <input class="form-control" id="focusedInput" type="text" placeholder="Enter text...">
+                </div>
+               </form>
+              </div>
+
+              <button type="button" class="btn btn-default style-button3">Precedent</button>
+              <button type="button" class="btn btn-default style-button3" id="button4">Suivant</button>
+      </section>
+
+      <section id="formulaire5" class="formulaire5">
+        <p class="text-5">Total des Heures de vol en qualite de Commandant de bord sur ce type avion:
+         <br><span class="small-text">Pilot-in-command time in this aircraft<span></p>
+           <form class="form-horizontal">
+          <div class="form-group">
+            <label class="control-label"></label>
+            <div class="col-sm-6">
+              <input class="form-control" id="focusedInput" type="text" placeholder="Enter text...">
+            </div>
+           </form>
+          </div>
+
+       <p class="text-4">C.Eleve sorti(e) d’un organisme de formation aeronotique agree par<br>
+                         l’ANAC(ATO)/ Graduate of an Approved Training Organisation(ATO) <img src="img/ok.svg"></p>
+       <p class="text-5">Nom de l’organisme de Formation Aeronitique agree et addresse(ville, Etat/Province,Pays):
+        <br><span class="small-text">ATO name and location(city,state/province,country)<span></p>
+          <form class="form-horizontal">
+            <div class="row">
+              <div class="col-md-3">
+         <div class="form-group">
+           <label class="control-label"></label>
+           <div class="col-sm-12">
+             <input class="form-control" id="focusedInput" type="text" placeholder="text...">
+           </div>
+         </div>
+       </div>
+
+       <div class="col-md-3">
+         <div class="form-group">
+           <label class="control-label"></label>
+           <div class="col-sm-12">
+             <input class="form-control" id="focusedInput" type="text" placeholder="text...">
+           </div>
+         </div>
+       </div>
+
+       <div class="col-md-3">
+         <div class="form-group">
+           <label class="control-label"></label>
+           <div class="col-sm-12">
+             <input class="form-control" id="focusedInput" type="text" placeholder="text...">
+           </div>
+         </div>
+       </div>
+
+       <div class="col-md-3">
+         <div class="form-group">
+           <label class="control-label"></label>
+           <div class="col-sm-12">
+             <input class="form-control" id="focusedInput" type="text" placeholder="text...">
+           </div>
+         </div>
+       </div>
+       </div>
+       </form>
+
+       <p class="text-5">Numero d’agreement de l’Organisme de Formation Aeronotique:
+        <br><span class="small-text">ATO certificate number<span></p>
+          <form class="form-horizontal">
+         <div class="form-group">
+           <label class="control-label"></label>
+           <div class="col-sm-6">
+             <input class="form-control" id="focusedInput" type="text" placeholder="Enter text...">
+           </div>
+          </form>
+         </div>
+
+         <p class="text-5">Intitule de la formation suivie:
+          <br><span class="small-text">Course from which graduated<span></p>
+            <form class="form-horizontal">
+           <div class="form-group">
+             <label class="control-label"></label>
+             <div class="col-sm-6">
+               <input class="form-control" id="focusedInput" type="text" placeholder="Enter text...">
+             </div>
+            </form>
+           </div>
+
+           <p>Date de la fin de formation
+            <br><span class="small-text">Graduated date (dd/mm/yyyy)<span></p>
+          <form id="dateRangeForm" method="post" class="form-horizontal">
+          <div class="form-group">
+            <form class="form-horizontal">
+                <div class="col-md-6">
+              <input class="form-control" type="date" name="bday" min="2000-01-02">
+          </form>
+         </div>
+         </div>
+       </form>
+
+           <p class="text-4">D. Detenteur d’une licence etrangere/ Holder of a foreign License <img src="img/ok.svg"></p>
+              <form class="form-horizontal">
+                <div class="row">
+                  <div class="col-md-4">
+             <div class="form-group">
+               <label class="control-label"></label>
+               <div class="col-sm-12">
+                 <input class="form-control" id="focusedInput" type="text" placeholder="Pays/Country...">
+               </div>
+             </div>
+           </div>
+
+           <div class="col-md-4">
+             <div class="form-group">
+               <label class="control-label"></label>
+               <div class="col-sm-12">
+                 <input class="form-control" id="focusedInput" type="text" placeholder="Type de licence...">
+               </div>
+             </div>
+           </div>
+
+           <div class="col-md-4">
+             <div class="form-group">
+               <label class="control-label"></label>
+               <div class="col-sm-12">
+                 <input class="form-control" id="focusedInput" type="text" placeholder="Numero de licence...">
+               </div>
+             </div>
+           </div>
+           </div>
+           </form>
+
+           <button type="button" class="btn btn-default style-button3">Precedent</button>
+           <button type="button" class="btn btn-default style-button3" id="button5">Suivant</button>
+      </section>
+
+      <section id="formulaire6" class="formulaire6">
+        <p class="text-5">Qualifications/ Ratings</p>
+        <p class="text-4">E. Competences Militaire /Military Competence <img src="img/ok.svg"></p>
+         <p>Service/Service<br></p>
+           <div class="row">
+        <form class="form-horizontal">
+
+            <div class="col-md-6">
+       <div class="form-group">
+         <label class="control-label"></label>
+         <div class="col-sm-12">
+           <input class="form-control" id="focusedInput" type="text" placeholder="Pays/Country...">
+         </div>
+       </div>
+     </div>
+   </form>
+   <div class="col-md-6">
+    <p>Service/Service</p>
+    <form id="dateRangeForm" method="post" class="form-horizontal">
+    <div class="form-group">
+      <form class="form-horizontal">
+           <label class="control-label"></label>
+          <div class="col-md-12">
+        <input class="form-control" type="date" name="bday" min="2000-01-02">
+    </form>
+   </div>
+   </div>
+   </div>
+</div>
+
+
+      </section>
+
+      <section id="formulaire7" class="formulaire7">
+      </section>
+
+      <section id="formulaire8" class="formulaire8">
+      </section>
+
+      <section id="formulaire9" class="formulaire9">
+      </section>
+
+      <section id="formulaire10" class="formulaire10">
+      </section>
+
+      <section id="formulaire11" class="formulaire11">
+      </section>
+
+      <section id="formulaire12" class="formulaire12">
+      </section>
+
+      <section id="formulaire13" class="formulaire13">
+      </section>
+
+      <section id="formulaire14" class="formulaire14">
+      </section>
+          </div>
+
+         <div class="col-md-6 anac-box">
+           <div class="row">  <img class="cartix-icon" src="img/letter-logo1.png">
+
+            <button type="button" class="btn btn-default style-button-connect">Se Connecter</button>
+              <img class="anac-img" src="img/watermark.png">
+         </div>
+      </div>
+
+
+      <div class="col-md-3"></div>
+    </div>
+      <script src="js/jquery.min.js"></script>
+      <script src="js/bootstrap.min.js"></script>
+      <script src="js/style.js"></script>
+      <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+      <script src="js/bootstrap-multiselect.js" type="text/javascript"></script>
+      <script>
+
+   </script>
+   </body>
+</html>

@@ -1,0 +1,270 @@
+
+body {
+    font: 30px Montserrat, sans-serif;
+    /*line-height: 1.8;*/
+    color: #f5f6f7;
+}
+p {font-size: 13px;}
+.margin {
+  font-weight: bold;
+  margin-top: 190px;
+}
+.bg-4 {
+    background-color: black;
+    color: #ffffff;
+}
+
+.container-fluid {
+    padding-top: 48px;
+    padding-bottom: 44px;
+}
+.navbar {
+    padding-bottom: 15px;
+    border: 0;
+    border-radius: 0;
+    margin-bottom: 0;
+    font-size: 16px;
+    font-weight: bold;
+
+}
+
+.style-login{
+  border-radius: 60px;
+  border: 2px solid #fff;
+  /*line-height:19px;*/
+}
+
+
+
+.bg-1 {
+background: url("../img/map.jpg") no-repeat center center fixed;
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+}
+.navbar-defaults .navbar-toggle .icon-bar {
+  background-color: #fff;
+}
+.navbar-defaults .navbar-nav > li > a, .navbar-default .navbar-nav > li > a:focus {
+  color: white;
+}
+.navbar-defaults .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+  background-color: transparent;
+  color: lightgray;
+}
+.cartix-logo{
+height: 40px;
+float: left;
+}
+.cartix-logo2{
+  height: 50px;
+  float: left;
+}
+.exuux_location{
+font-weight: bold;
+margin-top: 60px;
+}
+.exuux_location2{
+font-weight: normal;
+font-size: 10px;
+}
+.location-img{
+  font-size: 2px;
+}
+.coming-soon-text{
+margin-top: 30px;
+}
+@media only screen and (max-width: 500px) {
+  .download-image {
+     width: 80%;
+     height: auto;
+  }
+}
+
+
+#bottom{
+background-color: black;
+color: #ffffff;
+  height: 100%;
+  /*width: 300px;*/
+}
+.down-arrow{
+height: 45px;
+position: relative;
+top: 30px;
+}
+.kiwi1 {
+fill: white;
+}
+.kiwi2{
+fill: white;
+}
+.footer-link{
+text-align: justify;
+font-weight: bold;
+color: #fff;
+}
+.footer-link1{
+text-align: justify;
+color: #fff;
+}
+.footer-link:hover{
+color: #757575;
+}
+a:hover{
+outline: none !important;
+}
+a{
+  outline: none !important;
+}
+/*.bg-02 {
+background-image: url("../img/cash.svg")no-repeat center center fixed;
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+
+}*/
+
+
+/*  SECTIONS  */
+.section {
+clear: both;
+padding: 0px;
+margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+display: block;
+float:left;
+margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+/*  GROUPING  */
+.group:before,
+.group:after { content:""; display:table; }
+.group:after { clear:both;}
+.group { zoom:1; /* For IE 6/7 */ }
+
+/*  GRID OF FIVE  */
+.span_5_of_5 {
+width: 100%;
+}
+.span_4_of_5 {
+width: 79.68%;
+}
+.span_3_of_5 {
+width: 59.36%;
+}
+.span_2_of_5 {
+width: 39.04%;
+}
+.span_1_of_5 {
+width: 18.72%;
+}
+
+/*  GO FULL WIDTH BELOW 480 PIXELS */
+@media only screen and (max-width: 450px) {
+.col {  margin: 1% 0 1% 0%; }
+.span_1_of_5, .span_2_of_5, .span_3_of_5, .span_4_of_5, .span_5_of_5 { width: 100%; }
+}
+.class1{
+color: #ff5722;
+}
+.class1:hover{
+  color:#ff5722;
+}
+
+.cartix-text{
+  font-weight: bold;
+  color: #880e4f;
+  font-size: 45px;
+}
+.down-arrow2{
+  position: relative;
+  top: 0px;
+}
+img{
+  display: block;
+  margin: 0 auto;
+}
+
+@media only screen and (max-width: 500px) {
+  #Layer_01{
+     width: 100%;
+  }
+}
+@media only screen and (max-width: 500px) {
+  #Layer_02{
+     width: 100%;
+  }
+}
+@media only screen and (max-width: 500px) {
+.comunity-img{
+     width: 100%;
+  }
+}
+@media only screen and (max-width: 500px) {
+.customer-img{
+     width: 100%;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+.blog-img{
+     width: 100%;
+  }
+}
+@media only screen and (max-width: 500px) {
+.calendar-svg{
+     width: 100%;
+
+  }
+}
+@media only screen and (max-width: 500px) {
+  /*img{
+    width: 100%;
+    height: auto;
+  }*/
+}
+
+.partners-img{
+width: 100%;
+height: auto;
+}
+
+.text2{
+  position: relative;
+  bottom: 140px;
+  right: 70px;
+}
+.text3{
+  position: relative;
+  top: -10px;
+  left:   -150px;
+}
+.calendar-svg2{
+  position: relative;
+top: 110px;
+right: 320px;
+}
+
+.calendar-svg3{
+position: relative;
+top: 110px;
+right: 150px;
+}
+.carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+      width: 70%;
+      margin: auto;
+  }
+  .carousel-control.left, .carousel-control.right {
+      background-image: none;
+  }
+  .sr-only{
+    color: #fff;
+  }
