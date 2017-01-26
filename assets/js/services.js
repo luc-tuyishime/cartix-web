@@ -24,7 +24,8 @@ myapp.factory('AuthService', ['$q', '$timeout', '$http', function($q, $timeout, 
         Key: Key,
         changePassword: changePassword,
         recover:recover,
-        ngoStatus:ngoStatus
+        ngoStatus:ngoStatus,
+        userRole:userRole
     });
 
 
@@ -213,6 +214,27 @@ myapp.factory('AuthService', ['$q', '$timeout', '$http', function($q, $timeout, 
             })
             .error(function(){
                  deferred.reject();
+            });
+        return deferred.promise;
+    }
+    
+    
+    function userRole(user_id){
+        // create new instance of deferred
+        var deferred = $q.defer();
+        
+        // send a get request for user role
+        var url = 'http://127.0.0.1:5000/api/v1/user_role/'+user_id;
+        $http.get(url)
+            .success(function(data, status){
+                if (status == 200 && data.status){
+                    deferred.resolve();
+                }else{
+                    deferred.reject();
+                }
+            }).
+            error(function(){
+                deferred.reject();
             });
         return deferred.promise;
     }
