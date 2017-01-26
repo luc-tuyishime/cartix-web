@@ -248,8 +248,8 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$
             item = [];
             item.push(value['province'], value['district'], value['sector']);
             location.push(item);
-            ngo.push(value['funding_ngo']);
-            partner.push(value['partner_ngo']);
+            ngo.push(value['international_ngo']);
+            partner.push(value['local_ngo']);
             if (value['saved_amount'] != 'N/A') {
                 saved.push(parseInt(value['saved_amount']));
             }
@@ -260,7 +260,7 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$
             female.push(parseInt(value['sgs_members__female']));
             male.push(parseInt(value['sgs_members__male_']));
             member.push(parseInt(value['sgs_members_total']));
-            status.push(value['sgs_status']);
+            status.push(value['sgs_status_(supervised/graduated)']);
             year.push(parseInt(value['sgs_year_of_creation']));
             year_amount = value['year_amount'];
         });
@@ -294,13 +294,24 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$
         $scope.total_saved = numeral(saved.reduce(add, 0)).format();
         var status_dump = compressArray(status);
         console.log(status_dump);
-        if (status_dump[0].value == 'Supervised') {
-            $scope.supervised_num = numeral(status_dump[0].count).format();
-            $scope.graduated_num = numeral(status_dump[1].count).format();
-        } else {
-            $scope.supervised_num = numeral(status_dump[1].count).format();
-            $scope.graduated_num = numeral(status_dump[0].count).format();
+        if (status_dump.length == 1){
+            if (status_dump[0].value == 'Supervised') {
+                $scope.supervised_num = numeral(status_dump[0].count).format();
+                $scope.graduated_num = numeral(0).format();
+            } else {
+                $scope.supervised_num = numeral(0).format();
+                $scope.graduated_num = numeral(status_dump[0].count).format();
+            }  
+        }else{
+            if (status_dump[0].value == 'Supervised') {
+                $scope.supervised_num = numeral(status_dump[0].count).format();
+                $scope.graduated_num = numeral(status_dump[1].count).format();
+            } else {
+                $scope.supervised_num = numeral(status_dump[1].count).format();
+                $scope.graduated_num = numeral(status_dump[0].count).format();
+            }  
         }
+        
         $scope.year_amount = year_amount; 
 
 
