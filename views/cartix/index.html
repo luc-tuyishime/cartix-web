@@ -62,7 +62,7 @@
                   <div class="form-group loading" ng-show="spinLoad">
                       <div class="row">
                           <div class="col-md-4"><img src="assets/img/spin.gif" style="width:32px;"></div>
-                          <div class="col-md-8 text-left">checking for error in excel file</div>
+                          <div class="col-md-8 text-left">checking for error in excel file.<br>This might take a while, sit back and relax</div>
                       </div>
                    </div>
                   <div class="form-group">
@@ -222,12 +222,12 @@
                            <td class="text-right">{{ total_male }}</td>
                         </tr>
                         <tr>
-                           <td class="text-left">Funding NGO:</td>
+                           <td class="text-left">Internation NGO:</td>
                            
                            <td class="text-right">{{ ngo_number }}</td>
                         </tr>
                         <tr>
-                           <td class="text-left">Partner NGO:</td>
+                           <td class="text-left">Local NGO:</td>
                            
                            <td class="text-right">{{ partner_number }}</td>
                         </tr>
@@ -259,7 +259,7 @@
       
       <div class="button-save">
          <div class="col-md-12">
-            <button id="button-save" type="button" class="btn btn-success btn-cartix_" ng-click="saveData(originalpath, filename_save)">Save</button>
+            <button id="button-save" type="button" class="btn btn-success btn-cartix_" ng-disabled="disabled" ng-click="saveData(originalpath, filename_save)">{{ savedValue }}</button>
          </div>
       </div>
       </div>
