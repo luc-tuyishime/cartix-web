@@ -473,17 +473,69 @@ myapp.controller('mapCtrl', ['$scope','$http', function($scope, $http){
 
 
 
-myapp.controller('notificationCtrl', ['$scope','$http', 'AuthService', function($scope, $http, AuthService){
+myapp.controller('notificationCtrl', ['$scope','$http', 'AuthService','$q', function($scope, $http, AuthService, $q){
+    
+    $scope.notifAdmin = true;
+    $scope.notifNgo = false;
+    
+    // User role
+    var user_id = localStorage.getItem('u___');
+    AuthService.userRole(user_id)
+        .then(function(){
+            adminController();
+        }).catch(function(){
+            ngoStatus();
+        });
+    
     
     // NGO Status
-    var ngo_id = AuthService.getNgo()
-    console.log(ngo_id);
-    AuthService.ngoStatus(ngo_id)
-        .then(function(){
-            console.log("Int ngo");
-        }).catch(function(){
-            console.log("Local Ngo");
-        });
+    function ngoStatus(){
+        $scope.notifAdmin = false;
+        $scope.notifNgo = true;
+        var ngo_id = AuthService.getNgo()
+        console.log(ngo_id);
+        AuthService.ngoStatus(ngo_id)
+            .then(function(){
+                intlNgoHandler(ngo_id);
+            }).catch(function(){
+                localNgoHandler(ngo_id);
+            });
+        
+    }
+    
+    
+    function adminController(){
+        $scope.notifAdmin = true;
+        $scope.notifNgo = false;
+        
+        
+        // load all ngos
+        loadIntNgo()
+        function loadIntNgo(){
+        $http.get('http://127.0.0.1:5000/api/v1/int_ngo/')
+            .success(function(data, status, header, config){
+                console.log(data);
+                var options = "";
+                $.each(data, function(key, value){
+                   options += "<option value='"+value.id+"'>"+value.name+"</option>" 
+                });
+                
+                $("#int_ngo").html(options);
+                $("#int_ngo").multiselect('rebuild');
+            });
+    }
+    }
+    
+    
+    function intlNgoHandler(ngo_id){
+        
+
+        
+    }
+    
+    function localNgoHandler(ngo_id){
+        
+    }
     
 }]);
 
@@ -635,31 +687,31 @@ function selectBox() {
             includeSelectAllOption: true
         });
 
-        $('#ddlCars2').multiselect({
+        $('#int_ngo').multiselect({
             includeSelectAllOption: true
         });
 
-        $('#ddlCars3').multiselect({
+        $('#local_ngo').multiselect({
             includeSelectAllOption: true
         });
 
-        $('#ddlCars4').multiselect({
+        $('#year_ngo').multiselect({
             includeSelectAllOption: true
         });
 
-        $('#ddlCars5').multiselect({
+        $('#status_ngo').multiselect({
             includeSelectAllOption: true
         });
 
-        $('#ddlCars6').multiselect({
+        $('#local_ngo_admin').multiselect({
             includeSelectAllOption: true
         });
 
-        $('#ddlCars7').multiselect({
+        $('#year_admin').multiselect({
             includeSelectAllOption: true
         });
 
-        $('#ddlCars8').multiselect({
+        $('#status_admin').multiselect({
             includeSelectAllOption: true
         });
 
