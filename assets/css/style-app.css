@@ -33,7 +33,7 @@ select {
 
 .container-data{
     margin-right: 30px;
-    margin-left: 30px;
+    margin-left: 15px;
 }
 
 .checkbox-list{
@@ -559,3 +559,11 @@ select {
     transform: translate(-50%, 0);
 }
 
+.app .dropdown a:hover{
+    text-decoration: none;
+}
+
+.app .container-data .container{
+    margin-left: 0;
+    padding-right: 60px;
+}
