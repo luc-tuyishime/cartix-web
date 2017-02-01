@@ -478,6 +478,39 @@ myapp.controller('mapCtrl', ['$scope','$http', function($scope, $http){
             });
     }
     
+    
+    
+    // logged NGO name
+    
+    function loggedNgoName(){
+        var ngo_id = restoreNgo();
+        var url = "http://127.0.0.1:5000/api/v1/ngo/" + ngo_id;
+
+        $http.get(url).success(function(data, status, header, config) {
+                $scope.ngo_name = data.ngo.name;
+            })
+            .error(function(data, status, header, config) {
+
+            });
+    }
+    
+    
+    // logged user name 
+    loggedUserName();
+    function loggedUserName(){
+        var user_id = localStorage.getItem('u___');
+        var url = 'http://127.0.0.1:5000/api/v1/user/'+ user_id;
+        
+        $http.get(url)
+            .success(function(data, status, header, config){
+                console.log(data);
+                $scope.usernames_p = data.user.names;
+            }).error(function(data, status, header, config){
+            
+            });
+    }
+    
+    
 }]);
 
 
