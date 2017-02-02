@@ -81,7 +81,7 @@
                             <div class="col-md-3">
                                 <div class="select-box drop-notif">
                                     <p>International NG0</p>
-                                    <select id="int_ngo" multiple="multiple">
+                                    <select id="int_ngo" multiple="multiple" ng-model="int_ngo_filter">
                                         
                                     </select>
                                 </div>
@@ -89,7 +89,7 @@
                                             
                             <div class="col-md-3">
                                 <div class="select-box">
-                                    <p>Local NGO</p>
+                                    <p>Local NGO {{ int_ngo_filter }}</p>
                                     <select id="local_ngo_admin" multiple="multiple">
                                         <option value="1">Option 1</option>
                                         <option value="2">Option 2</option>
@@ -173,69 +173,48 @@
                         
                     </div>
                     <div class="container container-data text-icon">
-                        <img alt="" src="assets/img/red.png" class="red-icon">
-                        <p class="care-rwanda">Care Rwanda<span> Dec,14th,201610:34 AM</span></p>
-                        <span class="text-uploaded">Uploaded a file</span><br>
-                        <span class="text-uploaded">Lorem Ipsum is simply dummy text of the printing and typesetting.</span><br>
-                        <div class="container">
-                            <div class="panel panel-danger">
-                                <div class="panel-body">
-                                    <img alt="" src="assets/img/file.png" class="file-logo">
-                                    <p class="SG-text"><span> SG_Test</span></p>
-                                    <span class="text-uploaded">1MB excel spreadsheet</span>
-                                    <div class="danger-icon">
-                                        <img alt="" src="assets/img/danger.png">
+                      <!-- <div class="error">
+                            <img alt="" src="assets/img/red.png" class="red-icon">
+                            <p class="care-rwanda">Care Rwanda<span> Dec,14th,201610:34 AM</span></p>
+                            <span class="text-uploaded">Uploaded a file</span><br>
+                            <span class="text-uploaded">Lorem Ipsum is simply dummy text of the printing and typesetting.</span><br>
+                            <div class="container">
+                                <div class="panel panel-danger">
+                                    <div class="panel-body">
+                                        <img alt="" src="assets/img/file.png" class="file-logo">
+                                        <p class="SG-text"><span> SG_Test</span></p>
+                                        <span class="text-uploaded">1MB excel spreadsheet</span>
+                                        <div class="danger-icon">
+                                            <img alt="" src="assets/img/danger.png">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                        
+                        <div class="success" ng-repeat="file in files">
+                            <img alt="" src="assets/img/yellow.png" class="red-icon">
+                            
+                            <p class="care-rwanda">{{ file.user.ngo.name }}<span> {{ file.regDate }}</span></p>
+                            <span class="text-uploaded">Uploaded a file</span><br>
+                            <!--<span class="text-uploaded">Lorem Ipsum is simply dummy text of the printing and typesetting.</span>--><br>
+                            <div class="container">
+                                <div class="panel {{ file.status ? 'panel-success' : 'panel-danger' }}">
+                                    <div class="panel-body">
+                                        <img alt="" src="assets/img/file.png" class="file-logo">
+                                        <p class="SG-text"><span> {{ file.filename }}</span></p>
+                                        <span class="text-uploaded">1MB excel spreadsheet</span>
+                                        <div class="danger-icon">
+                                            <img alt="" src="{{ file.status ? 'assets/img/success.png' : 'assets/img/danger.png' }}">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <img alt="" src="assets/img/yellow.png" class="red-icon">
-                        <p class="care-rwanda">International NGO<span> Dec,14th,201610:34 AM</span></p>
-                        <span class="text-uploaded">Uploaded a file</span><br>
-                        <span class="text-uploaded">Lorem Ipsum is simply dummy text of the printing and typesetting.</span><br>
+                        
+                        
+                        
                         <div class="container">
-                            <div class="panel panel-default">
-                                <div class="panel-body">
-                                    <img alt="" src="assets/img/file.png" class="file-logo">
-                                    <p class="SG-text"><span> SG_Test</span></p>
-                                    <span class="text-uploaded">1MB excel spreadsheet</span>
-                                    <div class="danger-icon">
-                                        <img alt="" src="assets/img/success.png">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <img alt="" src="assets/img/green.png" class="red-icon">
-                        <p class="care-rwanda">Care Rwanda<span> Dec,14th,201610:34 AM</span></p>
-                        <span class="text-uploaded">Uploaded a file</span><br>
-                        <span class="text-uploaded">Lorem Ipsum is simply dummy text of the printing and typesetting.</span><br>
-                        <div class="container">
-                            <div class="panel panel-default">
-                                <div class="panel-body">
-                                    <img alt="" src="assets/img/file.png" class="file-logo">
-                                    <p class="SG-text"><span> SG_Test</span></p>
-                                    <span class="text-uploaded">1MB excel spreadsheet</span>
-                                    <div class="danger-icon">
-                                        <img alt="" src="assets/img/success.png">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <img alt="" src="assets/img/blue.png" class="red-icon">
-                        <p class="care-rwanda">Care Rwanda<span> Dec,14th,201610:34 AM</span></p>
-                        <span class="text-uploaded">Uploaded a file</span><br>
-                        <span class="text-uploaded">Lorem Ipsum is simply dummy text of the printing and typesetting.</span><br>
-                        <div class="container">
-                            <div class="panel panel-warning">
-                                <div class="panel-body">
-                                    <img alt="" src="assets/img/file.png" class="file-logo">
-                                    <p class="SG-text"><span> SG_Test</span></p>
-                                    <span class="text-uploaded">1MB excel spreadsheet</span>
-                                    <div class="danger-icon">
-                                        <img alt="" src="assets/img/pending.png">
-                                    </div>
-                                </div>
-                            </div>
                             <footer>
                                 <button type="button" class="btn btn-default btn_cartix" onclick="openNav1()">Upload</button>
                                 <button type="button" class="btn btn-default btn_cartix" onclick="openNav()">View Data</button>
