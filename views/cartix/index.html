@@ -173,24 +173,7 @@
                         
                     </div>
                     <div class="container container-data text-icon">
-                      <!-- <div class="error">
-                            <img alt="" src="assets/img/red.png" class="red-icon">
-                            <p class="care-rwanda">Care Rwanda<span> Dec,14th,201610:34 AM</span></p>
-                            <span class="text-uploaded">Uploaded a file</span><br>
-                            <span class="text-uploaded">Lorem Ipsum is simply dummy text of the printing and typesetting.</span><br>
-                            <div class="container">
-                                <div class="panel panel-danger">
-                                    <div class="panel-body">
-                                        <img alt="" src="assets/img/file.png" class="file-logo">
-                                        <p class="SG-text"><span> SG_Test</span></p>
-                                        <span class="text-uploaded">1MB excel spreadsheet</span>
-                                        <div class="danger-icon">
-                                            <img alt="" src="assets/img/danger.png">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
+                      
                         
                         <div class="success" ng-repeat="file in files">
                             <img alt="" src="assets/img/yellow.png" class="red-icon">
@@ -200,14 +183,14 @@
                             <!--<span class="text-uploaded">Lorem Ipsum is simply dummy text of the printing and typesetting.</span>--><br>
                             <div class="container">
                                 <div class="panel {{ file.status ? 'panel-success' : 'panel-danger' }}">
-                                    <div class="panel-body">
+                                    <a href="{{ file.saved}}"><div class="panel-body">
                                         <img alt="" src="assets/img/file.png" class="file-logo">
                                         <p class="SG-text"><span> {{ file.filename }}</span></p>
                                         <span class="text-uploaded">1MB excel spreadsheet</span>
                                         <div class="danger-icon">
                                             <img alt="" src="{{ file.status ? 'assets/img/success.png' : 'assets/img/danger.png' }}">
                                         </div>
-                                    </div>
+                                        </div></a>
                                 </div>
                             </div>
                         </div>
