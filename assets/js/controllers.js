@@ -64,6 +64,7 @@ myapp.controller('signinCtrl', ['$scope', '$http', '$location', 'AuthService', f
     AuthService.destroyUser();
 
     $scope.sign_in = function(username, password) {
+        alert(password);
         var data = '{"username":"' + username + '","password":"' + password + '"}';
 
         AuthService.login(data)
@@ -581,7 +582,9 @@ myapp.controller('notificationCtrl', ['$scope','$http', 'AuthService','$q', func
                 })
                 .error(function(data, status, header, config){
                 
-                })
+                });
+            
+            
         }
     }
     
