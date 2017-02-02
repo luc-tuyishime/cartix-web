@@ -556,18 +556,33 @@ myapp.controller('notificationCtrl', ['$scope','$http', 'AuthService','$q', func
         // load all ngos
         loadIntNgo()
         function loadIntNgo(){
-        $http.get('http://127.0.0.1:5000/api/v1/int_ngo/')
-            .success(function(data, status, header, config){
-                console.log(data);
-                var options = "";
-                $.each(data, function(key, value){
-                   options += "<option value='"+value.id+"'>"+value.name+"</option>" 
+            $http.get('http://127.0.0.1:5000/api/v1/int_ngo/')
+                .success(function(data, status, header, config){
+                    console.log(data);
+                    var options = "";
+                    $.each(data, function(key, value){
+                       options += "<option value='"+value.id+"'>"+value.name+"</option>" 
+                    });
+
+                    $("#int_ngo").html(options);
+                    $("#int_ngo").multiselect('rebuild');
                 });
+        }
+        
+        
+        // LoadAll files
+        loadNgoFiles()
+        function loadNgoFiles(){
+            var url = "http://127.0.0.1:5000/api/v1/files";
+            $http.get(url)
+                .success(function(data, status, header, config){
+                    console.log(data);
+                    $scope.files = data;
+                })
+                .error(function(data, status, header, config){
                 
-                $("#int_ngo").html(options);
-                $("#int_ngo").multiselect('rebuild');
-            });
-    }
+                })
+        }
     }
     
     
