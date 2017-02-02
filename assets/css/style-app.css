@@ -168,7 +168,7 @@ select {
 }
 .app .care-rwanda {
     text-align: left;
-    margin-top: 12px;
+    margin-top: 20px;
     font-size: 13px;
     font-weight: bold;
 }
@@ -566,4 +566,8 @@ select {
 .app .container-data .container{
     margin-left: 0;
     padding-right: 60px;
+}
+
+.app .header-ngo{
+    margin-top: 10px;
 }
