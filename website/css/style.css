@@ -15,8 +15,8 @@ p {font-size: 13px;}
 }
 
 .container-fluid {
-    padding-top: 48px;
-    padding-bottom: 44px;
+    padding-top: 23px;
+    /*padding-bottom: 10px;*/
 }
 .navbar {
     padding-bottom: 15px;
@@ -182,10 +182,17 @@ color: #ff5722;
   font-weight: bold;
   color: #880e4f;
   font-size: 45px;
+  margin-top: 23px;
+}
+.cartix-home{
+  margin-top: 20px;
 }
 .down-arrow2{
   position: relative;
-  top: 0px;
+  top: 20px;
+}
+.bounce{
+  margin-top: 70px;
 }
 img{
   display: block;

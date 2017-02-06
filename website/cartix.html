@@ -7,8 +7,10 @@
       <link rel="stylesheet" href="css/bootstrap-min.css">
       <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <link rel="shortcut icon" href="img/cartix-favicon.png" type="image/x-icon">
       <script src="js/bootstrap.min.js"></script>
       <link rel="stylesheet" href="css/style.css">
+
       <style>
          .bg-01 {
          background-color: #fafafa; /* Green */
@@ -21,18 +23,15 @@
          .logo-bourgogne{
          height: 50px;
          }
-         .container-fluid {
-         /*padding-top: 70px;
-         padding-bottom: 70px;*/
-         }
+
          .navbar {
          position: fixed;
          top: 0;
          left: 0;
          z-index: 9999;
          width: 100%;
-         padding-top: 15px;
-         padding-bottom: 15px;
+         /*padding-top: 15px;
+         padding-bottom: 15px;*/
          border: 0;
          border-radius: 0;
          margin-bottom: 0;
@@ -114,7 +113,7 @@
    <body>
       <!-- Navbar -->
       <nav class="navbar navbar-default">
-         <div class="container">
+         <div class="container-fluid">
             <div class="navbar-header">
                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
                <span class="icon-bar"></span>
@@ -125,7 +124,7 @@
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                <ul class="nav navbar-nav navbar-right">
-                  <li><a href="#about">About</a></li>
+                  <li><a href="index.html">Home</a></li>
                   <li><a href="#pricing">Pricing</a></li>
                   <li><a href="#support">Support</a></li>
                   <li><a href="#">Log in</a></li>
@@ -135,8 +134,9 @@
       </nav>
       <!-- First Container -->
       <div class="container-fluid bg-01 text-center" id="about">
+        <div class="cartix-home">
          <svg version="1.1" id="Layer_01" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-            width="446.054px" height="370.022px" viewBox="-72.473 -60.489 602 478" enable-background="new -72.473 -60.489 602 478"
+            width="446.054px" height="370.022px" viewBox="-72.473 -150.489 602 478" enable-background="new -72.473 -60.489 602 478"
             xml:space="preserve">
             <g>
                <g>
@@ -791,6 +791,7 @@
          </p>
          <img src="img/down-arrow1.png" class="down-arrow2">
       </div>
+    </div>
       <!-- Second Container -->
       <div class="container bg-02 text-center" id="pricing">
          <h1 style="color:#757575;margin-top:50px;font-weight:bold;" class="">Our pricing</h1>

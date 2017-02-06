@@ -46,6 +46,15 @@
      });
 
   });
+
+  $(document).ready(function(){
+     $("#sauvegarder").click(function(e){
+          event.preventDefault();
+         $(".anac-background").hide();
+          $("#table-display").show();
+     });
+
+  });
  // $(document).ready(function(){
  //    $("#download-data").click(function(e){
  //         event.preventDefault();

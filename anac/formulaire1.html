@@ -80,7 +80,7 @@
       <div class="form-group">
         <form class="form-horizontal">
             <div class="col-md-4">
-          <input class="form-control" type="date" name="bday" min="2000-01-02"><br><br>
+          <input class="form-control" type="date" name="bday" min="2000-01-02">
       </form>
     </div>
     </div>
@@ -253,38 +253,41 @@
   </div>
   </div>
   </form>
-  <p class="text-3">Detenez vous presentement ou avez vous detenu une licence beninoise?<br>
+  <p class="text-6">Detenez vous presentement ou avez vous detenu une licence beninoise?<br>
      Do you now hold or have you ever held, a Benenese CAA license?
   </p>
   <label class="switch">
       <input type="checkbox"  checked>
       <div class="slider round"></div>
  </label>
+ <form class="form-horizontal form-gender">
+
 <div class="row">
-<div class="col-md-7">
- <p class="text-3">Si oui, votre licence a t-elle jamais ete suspendue ou revoquee?<br>
-if yes, has your license ever been suspended or revoked?</p>
+  <div class="col-md-8">
+  <p class="text-6">Si oui, votre licence a t-elle jamais ete suspendue ou revoquee?<br>
+                    if yes, has your license ever been suspended or revoked?
+  </p>
+  <label class="switch">
+      <input type="checkbox" checked>
+      <div class="slider round"></div>
+  </label>
 </div>
-<div class="col-md-5">
-  <p>Date Donnee:
-   <br><span class="small-text">Date given:<span></p>
- <form id="dateRangeForm" method="post" class="form-horizontal">
+ <div class="col-md-4">
+   <p>Date Donnee:</p>
+ <form id="dateRangeForm" method="post" class="form-horizontal_">
  <div class="form-group">
-   <form class="form-horizontal">
-       <div class="col-md-10">
+   <form class="form-horizontal date-form">
+       <div class="col-sm-10">
      <input class="form-control" type="date" name="bday" min="2000-01-02">
  </form>
 </div>
 </div>
+</form>
+
 </div>
 </div>
-<p class="text-3">Si oui, votre licence a t-elle jamais ete suspendue ou revoquee?<br>
-                  if yes, has your license ever been suspended or revoked?
-</p>
-<label class="switch">
-    <input type="checkbox" checked>
-    <div class="slider round"></div>
-</label>
+</form>
+
 
 <p>Type de license
  <br><span class="small-text">Type of license<span></p>
@@ -318,7 +321,7 @@ if yes, has your license ever been suspended or revoked?</p>
    </form>
   </div>
   </div>
-  <p class="text-3">Comprenez vous et parlez vous couramment le fon?<br>
+  <p class="text-6">Comprenez vous et parlez vous couramment le fon?<br>
                    Do you speak and understand the language of Benenese?
   </p>
   <div class="klkls">
@@ -338,7 +341,11 @@ if yes, has your license ever been suspended or revoked?</p>
         or Validation Certificate Applied on the Basis of:
         <br><span class="text-2">Flight Operations Officer/Flight Dispatcher License,Conversion or Validation Certificate Application
            </span></p>
-        <p class="text-4">A. Test de Connaissance Theorique / Knowledge test <img src="img/ok.svg"></p>
+        <p class="text-4">A. Test de Connaissance Theorique / Knowledge test
+
+    <input type="checkbox" id="test1" />
+    <label for="test1"></label>
+  </p>
 
         <p>Candidature a un test de connaissance de:
          <br><span class="small-text">Knowledge test applied for<span></p>
@@ -372,7 +379,8 @@ if yes, has your license ever been suspended or revoked?</p>
            </form>
           </div>
           </div>
-          <p class="text-4">B. Test pratique/ Skill Test <img src="img/ok.svg"></p>
+          <p class="text-4">B. Test pratique/ Skill Test <input type="checkbox" id="test2" />
+          <label for="test2"></label></p>
 
           <p>Aeronef a utiliser (si examen en vol requis):
            <br><span class="small-text">Aircraft to be used (if flight test required):<span></p>
@@ -413,7 +421,8 @@ if yes, has your license ever been suspended or revoked?</p>
           </div>
 
        <p class="text-4">C.Eleve sorti(e) d’un organisme de formation aeronotique agree par<br>
-                         l’ANAC(ATO)/ Graduate of an Approved Training Organisation(ATO) <img src="img/ok.svg"></p>
+                         l’ANAC(ATO)/ Graduate of an Approved Training Organisation(ATO) <input type="checkbox" id="test3" />
+                         <label for="test3"></label></p>
        <p class="text-5">Nom de l’organisme de Formation Aeronitique agree et addresse(ville, Etat/Province,Pays):
         <br><span class="small-text">ATO name and location(city,state/province,country)<span></p>
           <form class="form-horizontal">
@@ -490,7 +499,8 @@ if yes, has your license ever been suspended or revoked?</p>
          </div>
        </form>
 
-           <p class="text-4">D. Detenteur d’une licence etrangere/ Holder of a foreign License <img src="img/ok.svg"></p>
+           <p class="text-4">D. Detenteur d’une licence etrangere/ Holder of a foreign License <input type="checkbox" id="test4" />
+           <label for="test4"></label></p>
               <form class="form-horizontal">
                 <div class="row">
                   <div class="col-md-4">
@@ -527,36 +537,76 @@ if yes, has your license ever been suspended or revoked?</p>
       </section>
 
       <section id="formulaire6" class="formulaire6">
+        <div class="text-margin">
         <p class="text-5">Qualifications/ Ratings</p>
-        <p class="text-4">E. Competences Militaire /Military Competence <img src="img/ok.svg"></p>
-         <p>Service/Service<br></p>
-           <div class="row">
-        <form class="form-horizontal">
-
-            <div class="col-md-6">
-       <div class="form-group">
-         <label class="control-label"></label>
-         <div class="col-sm-12">
-           <input class="form-control" id="focusedInput" type="text" placeholder="Pays/Country...">
+        <p class="text-4">E. Competences Militaire /Military Competence  	<input type="checkbox" id="test5" />
+        <label for="test5"></label></p>
+         <div class="row">
+         <div class="col-md-4">
+           <div class="form-group">
+             <div class="col-sm-12">
+                 <p>Service/Service</p>
+               <input class="form-control" id="focusedInput" type="text" placeholder="Numero de licence...">
+             </div>
+           </div>
+         </div>
+         <div class="col-md-4">
+            <p>Date de qualification:</p>
+          <form id="dateRangeForm" method="post" class="form-horizontal">
+          <div class="form-group">
+            <form class="form-horizontal">
+                <div class="col-md-10">
+              <input class="form-control" type="date" name="bday" min="2000-01-02">
+          </form>
+         </div>
+       </form>
+         </div>
+         </div>
          </div>
        </div>
-     </div>
-   </form>
-   <div class="col-md-6">
-    <p>Service/Service</p>
-    <form id="dateRangeForm" method="post" class="form-horizontal">
-    <div class="form-group">
-      <form class="form-horizontal">
-           <label class="control-label"></label>
-          <div class="col-md-12">
-        <input class="form-control" type="date" name="bday" min="2000-01-02">
-    </form>
-   </div>
-   </div>
-   </div>
-</div>
+         <p class="text-6">Echelon ou grade et Numero de service:
+          <br><span class="small-text-name">Rank or grade and service number:<span></p>
+            <form class="form-horizontal">
+           <div class="form-group">
+             <label class="control-label"></label>
+             <div class="col-sm-6">
+               <input class="form-control" id="focusedInput" type="text" placeholder="Enter text...">
+             </div>
+            </form>
+           </div>
 
+           <p class="text-6">J’atteste avoir effectue au moins 10 heures de vol en qualite de commandant de bord  <br>
+            sur les avions militaires de types suivants:<br>
+          <span class="small-text-name">Has flown at least 10 hours as pilot in command during the past 12 months<br> in the following military aircraft:<span></p>
+              <form class="form-horizontal">
+             <div class="form-group">
+               <label class="control-label"></label>
+               <div class="col-sm-5">
+                 <input class="form-control" id="focusedInput" type="text" placeholder="Enter text...">
+               </div>
+              </form>
+             </div>
+             <p class="text-6">Date du dernier controle de competence en vol (au cours des 12 derniers mois):<br>
+            <span class="small-text-name">Date of last flight check (past 12 months) (dd/mm/yyyy)<span></p>
+           <form id="dateRangeForm" method="post" class="form-horizontal">
+           <div class="form-group">
+             <form class="form-horizontal">
+                 <div class="col-md-4">
+               <input class="form-control" type="date" name="bday" min="2000-01-02">
+           </form>
+          </div>
+        </form>
+          </div>
 
+          <p class="text-1">V. Attestation du Candidat/ Applicant’s Certification</p>
+          <p class="small-text-name2"> <input type="checkbox" id="test6" />
+          <label for="test6"></label> Je certifie sur l’honneur que les informations fournies dans ce
+                                    formulaire sont exactes<br><span style="font-size:13px;color:#757575">I certify that the statements made by me on this application are true</span></p>
+
+                                    <button type="button" class="btn btn-primary" id="sauvegarder">Sauvegarder</button>
+                                    <button type="button" class="btn btn-danger">Annuler</button><br>
+
+                                     <button type="button" class="btn btn-default style-button3 btn-3">Precedent</button>
       </section>
 
       <section id="formulaire7" class="formulaire7">
@@ -585,14 +635,157 @@ if yes, has your license ever been suspended or revoked?</p>
           </div>
 
          <div class="col-md-6 anac-box">
-           <div class="row">  <img class="cartix-icon" src="img/letter-logo1.png">
-
+           <div class="row">
+             <div class="anac-background">
+              <img class="cartix-icon" src="img/letter-logo1.png">
             <button type="button" class="btn btn-default style-button-connect">Se Connecter</button>
               <img class="anac-img" src="img/watermark.png">
-         </div>
-      </div>
+            </div>
+             <div id="table-display">
+               <img class="cartix-icon" src="img/letter-logo1.png">
+                 <button type="button" class="btn btn-default style-button-connect">Se Connecter</button>
+              <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>No</th>
+                    <th>Question</th>
+                    <th></th>
+                    <th></th>
+                    <th>Réponse</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="active">
+                    <td></td>
+                    <td></td>
+                    <td>Licence ATE:</td>
+                    <td></td>
+                    <td></td>
+                    <td>oui</td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td>Noms:</td>
+                    <td></td>
+                    <td></td>
+                    <td>AGBASSE Charlie</td>
+                  </tr>
+                    <tr class="active">
+                      <td></td>
+                      <td></td>
+                      <td>Numero Passeport :</td>
+                      <td></td>
+                      <td></td>
+                      <td>BE 167480</td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td>Taille:</td>
+                    <td></td>
+                    <td></td>
+                    <td>200</td>
+                  </tr>
+                    <tr class="active">
+                      <td></td>
+                      <td></td>
+                      <td>Date de naissance:</td>
+                      <td></td>
+                      <td></td>
+                      <td>18/7/1950</td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td>Addresse permanente:</td>
+                    <td></td>
+                    <td></td>
+                    <td>Route da-Cotonou</td>
+                  </tr>
+                    <tr class="active">
+                      <td></td>
+                      <td></td>
+                      <td>Ville:</td>
+                      <td></td>
+                      <td></td>
+                      <td>cotonou</td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td>Nationalite:</td>
+                    <td></td>
+                    <td></td>
+                    <td>Beninoise</td>
+                  </tr>
+                    <tr class="active">
+                      <td></td>
+                      <td></td>
+                      <td>Etat:</td>
+                      <td></td>
+                      <td></td>
+                      <td>Cotonou</td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td>Pays postal:</td>
+                    <td></td>
+                    <td></td>
+                    <td>Benin</td>
+                  </tr>
+                    <tr class="active">
+                      <td></td>
+                      <td></td>
+                      <td>Code Postal:</td>
+                      <td></td>
+                      <td></td>
+                      <td>01BP 305</td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td>Lieu de naissance:</td>
+                    <td></td>
+                    <td></td>
+                    <td>Dakar</td>
+                  </tr>
+                    <tr class="active">
+                      <td></td>
+                      <td></td>
+                      <td>Numero de Telephone:</td>
+                      <td></td>
+                      <td></td>
+                      <td>+229 9547</td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td>Courriel:</td>
+                    <td></td>
+                    <td></td>
+                    <td>test@anac.b</td>
+                  </tr>
+                   <tr class="active">
+                     <td></td>
+                     <td></td>
+                     <td>Demande de:</td>
+                     <td></td>
+                     <td></td>
+                     <td>Delivrance Initiale</td>
+                  </tr>
+                </tbody>
+              </table>
+  <button type="button" class="btn btn-success btn-succes">Envoyer</button>
+  </div>
 
-
+</div>
+</div>
+</div>
+</div>
       <div class="col-md-3"></div>
     </div>
       <script src="js/jquery.min.js"></script>

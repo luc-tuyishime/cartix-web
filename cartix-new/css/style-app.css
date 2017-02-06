@@ -148,9 +148,14 @@ select {
 }
 .app .care-rwanda {
     text-align: left;
-    margin-top: 12px;
+    margin-top: 15px;
     font-size: 13px;
     font-weight: bold;
+    margin-bottom: 12px;
+}
+.app .care-rwanda p {
+    position: relative;
+    top: 10px;
 }
 .app .SG-text {
     text-align: left;
@@ -168,7 +173,7 @@ select {
     font-weight: normal;
 }
 .app .text-uploaded {
-    margin-top: -10px;
+    /*margin-top: -10px;*/
     float: left;
 }
 .app .text_ {
