@@ -5,9 +5,10 @@ body {
     color: #f5f6f7;
 }
 p {font-size: 13px;}
+
 .margin {
   font-weight: bold;
-  margin-top: 190px;
+  margin-top: 240px;
 }
 .bg-4 {
     background-color: black;
@@ -33,7 +34,22 @@ p {font-size: 13px;}
   border: 2px solid #fff;
   /*line-height:19px;*/
 }
-
+.btn-login{
+  color: #333;
+    background-color: transparent;
+    border: 1px solid #ccc;
+    border-radius: 40px;
+    height: 44px;
+    line-height: 10px !important;
+}
+.btn-login2{
+  color: #333;
+    background-color: transparent;
+    border: 1px solid #880e4f;
+    border-radius: 40px;
+    height: 44px;
+    line-height: 10px !important;
+}
 
 
 .bg-1 {
@@ -43,16 +59,37 @@ background: url("../img/map.jpg") no-repeat center center fixed;
 -o-background-size: cover;
 background-size: cover;
 }
-.navbar-defaults .navbar-toggle .icon-bar {
+.navbar-inverse .navbar-toggle .icon-bar {
   background-color: #fff;
+    outline: none;
 }
-.navbar-defaults .navbar-nav > li > a, .navbar-default .navbar-nav > li > a:focus {
+.navbar-inverses .navbar-toggle .icon-bar {
+  background-color: #fff;
+    outline: none;
+}
+.navbar-inverse .navbar-nav > li > a, .navbar-default .navbar-nav > li > a:focus {
   color: white;
+    outline: none;
 }
-.navbar-defaults .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+.navbar-inverses .navbar-nav > li > a, .navbar-default .navbar-nav > li > a:focus {
+  color: white;
+    outline: none;
+}
+.navbar-inverse .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
   background-color: transparent;
   color: lightgray;
+  outline: none;
 }
+.navbar-inverse{
+  background-color: none;
+  color: white;
+}
+
+.navbar-inverse .navbar-collapse,
+.navbar-inverse .navbar-form {
+  border-color: #fff;
+}
+
 .cartix-logo{
 height: 40px;
 float: left;
@@ -63,8 +100,9 @@ float: left;
 }
 .exuux_location{
 font-weight: bold;
-margin-top: 60px;
+
 }
+
 .exuux_location2{
 font-weight: normal;
 font-size: 10px;
@@ -74,6 +112,7 @@ font-size: 10px;
 }
 .coming-soon-text{
 margin-top: 30px;
+font:16px "greatests";
 }
 @media only screen and (max-width: 500px) {
   .download-image {
@@ -81,7 +120,9 @@ margin-top: 30px;
      height: auto;
   }
 }
-
+a{
+  outline: none;
+}
 
 #bottom{
 background-color: black;
@@ -107,14 +148,44 @@ color: #fff;
 }
 .footer-link1{
 text-align: justify;
-color: #fff;
+color: #e0e0e0;
+font:14px "greatests";
 }
+.touch{
+  font:14px "greatests";
+}
+.touch2{
+  font:16px "greatests";
+}
+.support_text{
+  font:16px "greatests";
+}
+@font-face {
+    font-family: greatest;
+    src: url('../font/Campton-BoldDEMO.otf');
+}
+
+@font-face {
+    font-family: greatests;
+    src: url('../font/Campton-LightDEMO.otf');
+}
+h1,.cartix-text{
+  font: 45px "greatest";
+}
+
+.text00{
+  font:16px "greatests";
+  color: #e0e0e0;
+}
+
 .footer-link:hover{
 color: #757575;
 }
+
 a:hover{
 outline: none !important;
 }
+
 a{
   outline: none !important;
 }
@@ -199,6 +270,7 @@ img{
   margin: 0 auto;
 }
 
+
 @media only screen and (max-width: 500px) {
   #Layer_01{
      width: 100%;
@@ -275,3 +347,7 @@ right: 150px;
   .sr-only{
     color: #fff;
   }
+.section-group{
+  padding-top: 30px;
+  padding-bottom:60px;
+}
