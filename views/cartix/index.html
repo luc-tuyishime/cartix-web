@@ -81,7 +81,7 @@
                             <div class="col-md-3">
                                 <div class="select-box drop-notif">
                                     <p>International NG0</p>
-                                    <select id="int_ngo" multiple="multiple" ng-model="int_ngo_filter">
+                                    <select id="int_ngo" multiple="multiple" ng-model="int_ngo_filter" ng-change="loadLocalNgo(int_ngo_filter)">
                                         
                                     </select>
                                 </div>
@@ -89,14 +89,9 @@
                                             
                             <div class="col-md-3">
                                 <div class="select-box">
-                                    <p>Local NGO {{ int_ngo_filter }}</p>
-                                    <select id="local_ngo_admin" multiple="multiple">
-                                        <option value="1">Option 1</option>
-                                        <option value="2">Option 2</option>
-                                        <option value="3">Option 3</option>
-                                        <option value="4">Option 4</option>
-                                        <option value="5">Option 5</option>
-                                        <option value="6">Option 6</option>
+                                    <p>Local NGO </p>
+                                    <select id="local_ngo_admin" multiple="multiple" ng-model="localNgoFilter" >
+                                        
                                     </select>
                                 </div>
                             </div>
