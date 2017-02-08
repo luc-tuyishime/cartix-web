@@ -571,6 +571,25 @@ myapp.controller('notificationCtrl', ['$scope','$http', 'AuthService','$q', func
         }
         
         
+        $scope.loadLocalNgo = function(int_ngo_filter){
+            //console.log(int_ngo_filter);
+            var url = 'http://127.0.0.1:5000/api/v1/int_ngo/partner/'+int_ngo_filter;
+            $http.get(url)
+                .success(function(data, status, header, config){
+                    var options = "";
+                    $.each(data, function(key, value){
+                       options += "<option value='"+value.id+"'>"+value.name+"</option>";
+                    });
+
+                    $("#local_ngo_admin").html(options);
+                    $("#local_ngo_admin").multiselect('rebuild');
+                }).error(function(data, status, header, config){
+                
+                })
+        }
+        
+        
+        
         // LoadAll files
         loadNgoFiles()
         function loadNgoFiles(){
