@@ -629,8 +629,63 @@ myapp.controller('notificationCtrl', ['$scope','$http', 'AuthService','$q', func
     
     
     function intlNgoHandler(ngo_id){
+        $scope.notifAdmin = false;
+        $scope.notifNgo = true;
+        var user_id = localStorage.getItem('u___');
         
+        // LoadAll files
+        loadNgoFiles(user_id)
+        function loadNgoFiles(user_id){
+            var url = "http://127.0.0.1:5000/api/v1/files/user/"+user_id;
+            $http.get(url)
+                .success(function(data, status, header, config){
+                    console.log(data);
+                    $scope.files = data;
+                })
+                .error(function(data, status, header, config){
+                
+                });  
+        }
+        
+        //loadInternational local Partner
+        loadLocalPartner(ngo_id);
+        function loadLocalPartner(ngo_id){
+            console.log(ngo_id);
+            var url = 'http://127.0.0.1:5000/api/v1/int_ngo/partner/'+ngo_id;
+            $http.get(url)
+                .success(function(data, status, header, config){
+                    var options = "";
+                    $.each(data, function(key, value){
+                       options += "<option value='"+value.id+"'>"+value.name+"</option>";
+                    });
 
+                    $("#local_ngo").html(options);
+                    $("#local_ngo").multiselect('rebuild');
+                }).error(function(data, status, header, config){
+                
+                })
+        }
+        
+        // Load years
+        loadFilesYear()
+        function loadFilesYear(){
+            var url = "http://127.0.0.1:5000/api/v1/saving_year";
+            $http.get(url)
+                .success(function(data, status, header, config){
+                    console.log(data);
+                    var options = "";
+                    $.each(data, function(key, value){
+                       options += "<option value='"+value+"'>"+value+"</option>";
+                    });
+
+                    $("#year_ngo").html(options);
+                    $("#year_ngo").multiselect('rebuild');
+                }).error(function(){
+                
+                });
+        }
+        
+        
         
     }
     
