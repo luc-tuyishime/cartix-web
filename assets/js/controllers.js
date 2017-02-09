@@ -162,6 +162,7 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$
 
 
     $scope.uploadInput = true;
+    $scope.img_upl = true;
     $scope.uploadTitle = "Submit Your File";
     $scope.box_data_one = true;
     $scope.box_data_two = false;
@@ -187,7 +188,9 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$
                     postFailFile(response.data.originalpath, response.data.savepath, response.data.filename)
                     $scope.box_data_one = false;
                     $scope.box_data_two = true;
+                    $scope.uploadTitle = "File error !";
                     $scope.uploadInput = true;
+                    $scope.img_upl = false;
                     $scope.savepath = response.data.savepath;
                     $scope.filename = response.data.filename;
                 } else {
@@ -207,7 +210,8 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$
             if (file.progress == 100) {
                 file.progress = -1;
                 $scope.spinLoad = true;
-                $scope
+                $scope.img_upl = false;
+                $scope.uploadTitle = "Checking for errors";
                 $scope.box_data_one = false;
                 $scope.uploadInput = false;
             }
