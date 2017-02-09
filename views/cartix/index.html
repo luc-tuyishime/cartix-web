@@ -205,81 +205,55 @@
                 </nav>
                 <div class="container-fluid">
                     <div class="box">
-                        <!-- UPLOAD FILE -->
-                        <div class="row">
-                            <!--UPLOAD FILE_1-->
+                        <!-- UPLOAD FILE_1 -->
+                        <div class="row" ng-show="uploadInput">
                             <div class="upload-box">
-                                <h2>Submit Your File</h2>
-                                <p class="small-text">Small description</p>
+                                <!-- upload title Submit Your File / Uploading files / Checking for errors -->
+                                <h2>{{ uploadTitle }}</h2>
+                                <!-- filename -->
+                                <p class="small-text">{{ filename }}</p>
+                                
+                                <!-- image type  "assets/img/files-xls.png" | assets/img/file.png -->
                                 <img alt="" src="assets/img/files-xls.png">
                                 <div class="drop-box">
                                     <input id="upload" type="file"/>
                                     <p class="browse-text">Drag a file here or <a href="" id="upload_link">browse</a> for a upload</p>
                                     <button type="button" class="btn btn-success" id="upload-progress">Upload</button>
                                 </div>
-                                <p class="download_data_text"><a href="">Download Data compilation sheet Template here</a></p>
-                            </div>
-                        </div>
-                        <!--UPLOADING PROGRESS-->
-                        <div class="row">
-                            <div class="box-container">
-                                <div class="box-center">
-                                    <h2>Uploading file</h2>
-                                    <p class="small-text">SG_Data_xls</p>
-                                    <img alt="" src="assets/img/file.png">
-                                    <div class="progress">
-                                        <div class="progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                                
+                                <!-- Progress -->
+                                <div class="progress">
+                                    <div class="progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:100%">
                                             100%
-                                        </div>
                                     </div>
                                 </div>
-                                <div class="download-data">
-                                    <a href="" style="text-decoration:none">
-                                        <p>Download Data compilation sheet Template here</p>
-                                    </a>
+                                <!-- Save succed file -->
+                                <div class="uploading-box">
+                                    <div class="button-save">
+                                        <button id="button-save-file" type="button" class="btn btn-success btn-cartix_" onclick="openNav1()">Save</button>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <!--UPLOADING CHECKING ERRORS-->
-                        <div class="row">
-                            <div class="box-container">
+                                
+                                <!-- file error -->
+                                
+                                <div class="error">
+                                    <img alt="" src="assets/img/danger.png" class="icon-danger">
+                                    <p class="error_message_text">You file contains errors, consider revising highlighted fields.
+                                        Download it here:<a href=""> SG_Data.Xlsx</a>
+                                    </p>
+                                </div>
+                                
+                                <!-- download template file -->
+                                
                                 <div class="row">
-                                    <div class="box-center">
-                                        <div class="uploading-box">
-                                            <h2>Checking for errors</h2>
-                                            <p class="small-text">SG_Data_xls</p>
-                                            <i class="fa fa-spinner fa-spin" style="font-size:50px"></i>
-                                            <p class="small-text_">this might take a while</p>
-                                            <div class="button-save">
-                                                <button id="button-save-file" type="button" class="btn btn-success btn-cartix_" onclick="openNav1()">Save</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="download-data">
-                                        <a href="" style="text-decoration:none">
-                                            <p>Download Data compilation sheet Template here</p>
-                                        </a>
-                                    </div>
+                                    <p class="download_data_text"><a href="">Download Data compilation sheet Template here</a></p>
                                 </div>
+                                
                             </div>
                         </div>
-                        <!--UPLOAD FILE_ERROR -->
-                        <div class="row">
-                            <div class="upload-box">
-                                <h2>Submit Your File</h2>
-                                <p class="small-text">Small description</p>
-                                <img alt="" src="assets/img/files-xls.png">
-                                <div class="drop-box">
-                                    <input id="upload" type="file"/>
-                                    <p class="browse-text">Drag a file here or <a href="" id="upload_link">browse</a> for a upload</p>
-                                </div>
-                                <img alt="" src="assets/img/danger.png" class="icon-danger">
-                                <p class="error_message_text">You file contains errors, consider revising highlighted fields.
-                                    Download it here:<a href=""> SG_Data.Xlsx</a>
-                                </p>
-                                <p class="download_data_text"><a href="">Download Data compilation sheet Template here</a></p>
-                            </div>
-                        </div>
+                        
+                        
+                        
                         <!--DATA DISPLAY_LOCAL_NGO NGO-->
                         <div class="row">
                             <div class="dropdown-box">
