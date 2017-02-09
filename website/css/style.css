@@ -407,7 +407,8 @@ background-size: cover;
     top: 50px;
 }
 .bounce {
-    margin-top: 100px;
+    margin-top: 90px;
+    height: 50px;
 }
 img {
     display: block;
