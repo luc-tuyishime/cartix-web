@@ -132,6 +132,10 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$
     $("body").removeClass('body-login');
     $("body").addClass('body-app');
     
+    $('#upload_link').click(function(e){
+        e.preventDefault();
+        $("#upload").trigger( "click" );
+    });
     
     
     var ngo_id = restoreNgo();
@@ -158,12 +162,15 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$
 
 
     $scope.uploadInput = true;
+    $scope.uploadTitle = "Submit Your File";
     $scope.box_data_one = true;
     $scope.box_data_two = false;
     $scope.spinLoad = false;
 
     //$scope.sg_number = 100;
 
+    
+    
     $scope.upload_File = function(file) {
         file.upload = Upload.upload({
             url: 'http://127.0.0.1:5000/api/upload/',
@@ -200,6 +207,7 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$
             if (file.progress == 100) {
                 file.progress = -1;
                 $scope.spinLoad = true;
+                $scope
                 $scope.box_data_one = false;
                 $scope.uploadInput = false;
             }
