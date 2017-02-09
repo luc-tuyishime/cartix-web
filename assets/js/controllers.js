@@ -589,6 +589,26 @@ myapp.controller('notificationCtrl', ['$scope','$http', 'AuthService','$q', func
         }
         
         
+        // Load years
+        loadFilesYear()
+        function loadFilesYear(){
+            var url = "http://127.0.0.1:5000/api/v1/saving_year";
+            $http.get(url)
+                .success(function(data, status, header, config){
+                    console.log(data);
+                    var options = "";
+                    $.each(data, function(key, value){
+                       options += "<option value='"+value+"'>"+value+"</option>";
+                    });
+
+                    $("#year_admin").html(options);
+                    $("#year_admin").multiselect('rebuild');
+                }).error(function(){
+                
+                });
+        }
+        
+        
         
         // LoadAll files
         loadNgoFiles()
