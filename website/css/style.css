@@ -419,6 +419,10 @@ img {
         width: 100%;
     }
 }
+.adresse{
+  position: relative;
+  bottom: 20px;
+}
 @media only screen and (max-width: 500px) {
     .home-icon {
         width: 100%;
