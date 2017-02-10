@@ -194,14 +194,21 @@
                                 <!-- filename -->
                                 <p class="small-text">{{ filename }}</p>
                                 <!-- image type  "assets/img/files-xls.png" | assets/img/file.png -->
-                                <img alt="" src="assets/img/files-xls.png">
-                                <!-- upload -->
                                 
+                                <div class="error" ng-show="box_data_two">
+                                    <img alt="" src="assets/img/danger.png" class="icon-danger">
+                                    <p class="error_message_text">You file contains errors, consider revising highlighted fields.
+                                        Download it here: <a ng-href="{{ savepath }}">{{filename}}</a>
+                                    </p>
+                                </div>
+                        
+                                <img alt="" src="assets/img/files-xls.png" ng-show="img_upl">
+                                <!-- upload -->
                                     <form name="uploadfile">
                                        <div class="drop-box" ng-show="uploadInput">
-                                        <input id="upload" type="file" ngf-select ng-model="efile" name="file" accept=".xlsx,.csv,.xls" ng-drop ngf-max-size="10MB" required ngf-model-invalid="errorFile"/>
-                                        <p class="browse-text">Drag a file here or <a href="" id="upload_link">browse</a> for a upload</p>
-                                        <button type="button" class="btn btn-success" id="upload-progress" ng-disabled="!uploadfile.$valid"                ng-click="upload_File(efile)">Upload</button>
+                                            <input id="upload" type="file" ngf-select ng-model="efile" name="file" accept=".xlsx,.csv,.xls" ng-drop ngf-max-size="10MB" required ngf-model-invalid="errorFile"/>
+                                            <p class="browse-text">Drag a file here or <a href="" id="upload_link">browse</a> for a upload</p>
+                                            <button type="button" class="btn btn-success" id="upload-progress" ng-disabled="!uploadfile.$valid"                ng-click="upload_File(efile)">Upload</button>
                                         </div>
                                         
                                         <!-- Progress -->
@@ -211,47 +218,21 @@
                                         </div>
                                         
                                         <div class="row" ng-show="spinLoad">
-                                            <div class="col-md-4"><img src="assets/img/spin.gif" style="width:32px;"></div>
-                                            <div class="col-md-8 text-left">checking for error in excel file.<br>This might take a while, sit back and relax</div>
+                                            <i class="fa fa-spinner fa-spin" style="font-size:40px"></i>
+                                           <p class="small-text_">this might take a while</p>
                                         </div>
                                     </form>
                                 
-                                
-                            <div class="upload-check-errors">
-                              <div class="row">
-                                 <div class="box-center">
-                                    <div class="uploading-box">
-                                       <h2>Checking for errors</h2>
-                                       <p class="small-text">SG_Data_xls</p>
-                                       <i class="fa fa-spinner fa-spin" style="font-size:50px"></i>
-                                       <p class="small-text_">this might take a while</p>
-                                       <div class="button-save">
-                                          <button id="button-save-file" type="button" class="btn btn-success btn-cartix_" onclick="openNav1()">Save</button>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="download-data">
-                                    <a href="" style="text-decoration:none">
-                                       <p>Download Data compilation sheet Template here</p>
-                                    </a>
-                                 </div>
-                              </div>
-                           </div>
-                                
-                                
-                                <!-- Save succed file -->
+                                    
+                                <!-- Save succed file 
                                 <div class="uploading-box">
                                     <div class="button-save">
                                         <button id="button-save-file" type="button" class="btn btn-success btn-cartix_" onclick="openNav1()">Save</button>
                                     </div>
-                                </div>
+                                </div> -->
+                                
                                 <!-- file error -->
-                                <div class="error">
-                                    <img alt="" src="assets/img/danger.png" class="icon-danger">
-                                    <p class="error_message_text">You file contains errors, consider revising highlighted fields.
-                                        Download it here:<a href=""> SG_Data.Xlsx</a>
-                                    </p>
-                                </div>
+                                
                                 <!-- download template file -->
                                 <div class="row">
                                     <p class="download_data_text"><a href="">Download Data compilation sheet Template here</a></p>
