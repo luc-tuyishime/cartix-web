@@ -164,15 +164,6 @@
     </section>
     <!--SECTION DISPLAY DATA ON UPLOAD-->
     <section id="mySidenav1" class="sidenav2">
-        <!--SUCESSFULLY SAVED-->
-        <div id="saved" class="successfull-saved">
-            <div class="box-center-successful">
-                <div class="circle">
-                    <i class="fa fa-check" aria-hidden="true" style="font-size:40px"></i>
-                </div>
-                <h2>Sucessfully saved!</h2>
-            </div>
-        </div>
         <!--SECTION DISPLAY DATA-->
         <div id="sidebar_data">
             <div class="navbar-sidebar">
@@ -194,236 +185,225 @@
                                 <!-- filename -->
                                 <p class="small-text">{{ filename }}</p>
                                 <!-- image type  "assets/img/files-xls.png" | assets/img/file.png -->
-                                
                                 <div class="error" ng-show="box_data_two">
                                     <img alt="" src="assets/img/danger.png" class="icon-danger">
                                     <p class="error_message_text">You file contains errors, consider revising highlighted fields.
                                         Download it here: <a ng-href="{{ savepath }}">{{filename}}</a>
                                     </p>
                                 </div>
-                        
                                 <img alt="" src="assets/img/files-xls.png" ng-show="img_upl">
                                 <!-- upload -->
-                                    <form name="uploadfile">
-                                       <div class="drop-box" ng-show="uploadInput">
-                                            <input id="upload" type="file" ngf-select ng-model="efile" name="file" accept=".xlsx,.csv,.xls" ng-drop ngf-max-size="10MB" required ngf-model-invalid="errorFile"/>
-                                            <p class="browse-text">Drag a file here or <a href="" id="upload_link">browse</a> for a upload</p>
-                                            <button type="button" class="btn btn-success" id="upload-progress" ng-disabled="!uploadfile.$valid"                ng-click="upload_File(efile)">Upload</button>
-                                        </div>
-                                        
-                                        <!-- Progress -->
-                                        <div class="progress" ng-show="efile.progress >= 0">
-                                            <div class="progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:{{efile.progress}}%" ng-bind="efile.progress + '%'">   
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="row" ng-show="spinLoad">
-                                            <i class="fa fa-spinner fa-spin" style="font-size:40px"></i>
-                                           <p class="small-text_">this might take a while</p>
-                                        </div>
-                                    </form>
-                                
-                                    
-                                <!-- Save succed file 
-                                <div class="uploading-box">
-                                    <div class="button-save">
-                                        <button id="button-save-file" type="button" class="btn btn-success btn-cartix_" onclick="openNav1()">Save</button>
+                                <form name="uploadfile">
+                                    <div class="drop-box" ng-show="uploadInput">
+                                        <input id="upload" type="file" ngf-select ng-model="efile" name="file" accept=".xlsx,.csv,.xls" ng-drop ngf-max-size="10MB" required ngf-model-invalid="errorFile"/>
+                                        <p class="browse-text">Drag a file here or <a href="" id="upload_link">browse</a> for a upload</p>
+                                        <button type="button" class="btn btn-success" id="upload-progress" ng-disabled="!uploadfile.$valid"                ng-click="upload_File(efile)">Upload</button>
                                     </div>
-                                </div> -->
-                                
+                                    <!-- Progress -->
+                                    <div class="progress" ng-show="efile.progress >= 0">
+                                        <div class="progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:{{efile.progress}}%" ng-bind="efile.progress + '%'">   
+                                        </div>
+                                    </div>
+                                    <div class="row" ng-show="spinLoad">
+                                        <i class="fa fa-spinner fa-spin" style="font-size:40px"></i>
+                                        <p class="small-text_">this might take a while</p>
+                                    </div>
+                                </form>
+                                <!-- Save succed file 
+                                    <div class="uploading-box">
+                                        <div class="button-save">
+                                            <button id="button-save-file" type="button" class="btn btn-success btn-cartix_" onclick="openNav1()">Save</button>
+                                        </div>
+                                    </div> -->
                                 <!-- file error -->
-                                
                                 <!-- download template file -->
                                 <div class="row">
                                     <p class="download_data_text"><a href="">Download Data compilation sheet Template here</a></p>
                                 </div>
                             </div>
                         </div>
-                        
-                            <div class="row" ng-show="showDataUlploaded">
+                        <div class="row" ng-show="showDataUlploaded">
                             <!--    <div class="dropdown-box">
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <div class="select-box">
-                                                <p>Province</p>
-                                                <select  id="ddlCars6" multiple="multiple">
-                                                    <option value="1">Option 1</option>
-                                                    <option value="2">Option 2</option>
-                                                    <option value="3">Option 3</option>
-                                                    <option value="4">Option 4</option>
-                                                    <option value="5">Option 5</option>
-                                                    <option value="6">Option 6</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="select-box">
-                                                <p>District</p>
-                                                <select id="ddlCars7" multiple="multiple">
-                                                    <option value="1">Option 1</option>
-                                                    <option value="2">Option 2</option>
-                                                    <option value="3">Option 3</option>
-                                                    <option value="4">Option 4</option>
-                                                    <option value="5">Option 5</option>
-                                                    <option value="6">Option 6</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="select-box">
-                                                <p>Sector</p>
-                                                <select id="ddlCars8" multiple="multiple">
-                                                    <option value="1">Option 1</option>
-                                                    <option value="2">Option 2</option>
-                                                    <option value="3">Option 3</option>
-                                                    <option value="4">Option 4</option>
-                                                    <option value="5">Option 5</option>
-                                                    <option value="6">Option 6</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="select-box">
-                                                <p>Local NGO</p>
-                                                <select id="ddlCars9" multiple="multiple">
-                                                    <option value="1">Option 1</option>
-                                                    <option value="2">Option 2</option>
-                                                    <option value="3">Option 3</option>
-                                                    <option value="4">Option 4</option>
-                                                    <option value="5">Option 5</option>
-                                                    <option value="6">Option 6</option>
-                                                </select>
-                                            </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="select-box">
+                                            <p>Province</p>
+                                            <select  id="ddlCars6" multiple="multiple">
+                                                <option value="1">Option 1</option>
+                                                <option value="2">Option 2</option>
+                                                <option value="3">Option 3</option>
+                                                <option value="4">Option 4</option>
+                                                <option value="5">Option 5</option>
+                                                <option value="6">Option 6</option>
+                                            </select>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <div class="select-box">
-                                                <p>Province</p>
-                                                <select  id="ddlCars13" multiple="multiple">
-                                                    <option value="1">Option 1</option>
-                                                    <option value="2">Option 2</option>
-                                                    <option value="3">Option 3</option>
-                                                    <option value="4">Option 4</option>
-                                                    <option value="5">Option 5</option>
-                                                    <option value="6">Option 6</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="select-box">
-                                                <p>District</p>
-                                                <select id="ddlCars14" multiple="multiple">
-                                                    <option value="1">Option 1</option>
-                                                    <option value="2">Option 2</option>
-                                                    <option value="3">Option 3</option>
-                                                    <option value="4">Option 4</option>
-                                                    <option value="5">Option 5</option>
-                                                    <option value="6">Option 6</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="select-box">
-                                                <p>Sector</p>
-                                                <select id="ddlCars15" multiple="multiple">
-                                                    <option value="1">Option 1</option>
-                                                    <option value="2">Option 2</option>
-                                                    <option value="3">Option 3</option>
-                                                    <option value="4">Option 4</option>
-                                                    <option value="5">Option 5</option>
-                                                    <option value="6">Option 6</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="select-box">
-                                                <p>International NGO</p>
-                                                <select id="ddlCars16" multiple="multiple">
-                                                    <option value="1">Option 1</option>
-                                                    <option value="2">Option 2</option>
-                                                    <option value="3">Option 3</option>
-                                                    <option value="4">Option 4</option>
-                                                    <option value="5">Option 5</option>
-                                                    <option value="6">Option 6</option>
-                                                </select>
-                                            </div>
+                                    <div class="col-md-3">
+                                        <div class="select-box">
+                                            <p>District</p>
+                                            <select id="ddlCars7" multiple="multiple">
+                                                <option value="1">Option 1</option>
+                                                <option value="2">Option 2</option>
+                                                <option value="3">Option 3</option>
+                                                <option value="4">Option 4</option>
+                                                <option value="5">Option 5</option>
+                                                <option value="6">Option 6</option>
+                                            </select>
                                         </div>
                                     </div>
-                                </div> -->
-                                <div class="table-center">
-                                    <div class="table">
-                                        <div class="col-md-12">
-                                             <table class="table table-hover" style="width:100%;">
-                     <thead>
-                        <tr>
-                           <td class="text-left">Saving Group :</td>
-                           <td class="text-right">{{sg_number}}</td>
-                        </tr>
-                     </thead>
-                     <tbody>
-                        <tr>
-                           <td class="text-left">SGs Year of creation:</td>
-                           
-                           <td class="text-right">{{year_creation}}</td>
-                        </tr>
-                        <tr>
-                           <td class="text-left">SGs members Total:</td>
-                        
-                           <td class="text-right">{{ total_member }}</td>
-                        </tr>
-                        <tr>
-                           <td class="text-left">SGs members- Female:</td>
-                           
-                           <td class="text-right">{{ total_female }}</td>
-                        </tr>
-                        <tr>
-                           <td class="text-left">SGs members- Male:</td>
-                           
-                           <td class="text-right">{{ total_male }}</td>
-                        </tr>
-                        <tr>
-                           <td class="text-left">Funding NGO:</td>
-                           
-                           <td class="text-right">{{ ngo_number }}</td>
-                        </tr>
-                        <tr>
-                           <td class="text-left">Partner NGO:</td>
-                           
-                           <td class="text-right">{{ partner_number }}</td>
-                        </tr>
-                        <tr>
-                           <td class="text-left">SGs Status/ supervised</td>
-                          
-                           <td class="text-right">{{ supervised_num }}</td>
-                        </tr>
-                        <tr>
-                           <td class="text-left">SGs Status/ graduated</td>
-                        
-                           <td class="text-right">{{ graduated_num }}</td>
-                        </tr>
-                        <tr>
-                           <td class="text-left">Saved Amount as of December {{ year_amount }} ( In Rwf ):</td>
-                          
-                           <td class="text-right">{{ total_saved }}</td>
-                        </tr>
-                        <tr>
-                           <td class="text-left">Outstanding Loans as of December {{ year_amount }} ( In Rwf ):</td>
-                          
-                           <td class="text-right">{{ total_loan }}</td>
-                        </tr>
-                     </tbody>
-               </table>
-                                            <footer>
-                                                <button type="button" class="btn btn-default btn_cartix" id="download_data">Download</button>
-                                                <button type="button" class="btn btn-default btn_cartix">Upload</button>
-                                            </footer>
+                                    <div class="col-md-3">
+                                        <div class="select-box">
+                                            <p>Sector</p>
+                                            <select id="ddlCars8" multiple="multiple">
+                                                <option value="1">Option 1</option>
+                                                <option value="2">Option 2</option>
+                                                <option value="3">Option 3</option>
+                                                <option value="4">Option 4</option>
+                                                <option value="5">Option 5</option>
+                                                <option value="6">Option 6</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="select-box">
+                                            <p>Local NGO</p>
+                                            <select id="ddlCars9" multiple="multiple">
+                                                <option value="1">Option 1</option>
+                                                <option value="2">Option 2</option>
+                                                <option value="3">Option 3</option>
+                                                <option value="4">Option 4</option>
+                                                <option value="5">Option 5</option>
+                                                <option value="6">Option 6</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="select-box">
+                                            <p>Province</p>
+                                            <select  id="ddlCars13" multiple="multiple">
+                                                <option value="1">Option 1</option>
+                                                <option value="2">Option 2</option>
+                                                <option value="3">Option 3</option>
+                                                <option value="4">Option 4</option>
+                                                <option value="5">Option 5</option>
+                                                <option value="6">Option 6</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="select-box">
+                                            <p>District</p>
+                                            <select id="ddlCars14" multiple="multiple">
+                                                <option value="1">Option 1</option>
+                                                <option value="2">Option 2</option>
+                                                <option value="3">Option 3</option>
+                                                <option value="4">Option 4</option>
+                                                <option value="5">Option 5</option>
+                                                <option value="6">Option 6</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="select-box">
+                                            <p>Sector</p>
+                                            <select id="ddlCars15" multiple="multiple">
+                                                <option value="1">Option 1</option>
+                                                <option value="2">Option 2</option>
+                                                <option value="3">Option 3</option>
+                                                <option value="4">Option 4</option>
+                                                <option value="5">Option 5</option>
+                                                <option value="6">Option 6</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="select-box">
+                                            <p>International NGO</p>
+                                            <select id="ddlCars16" multiple="multiple">
+                                                <option value="1">Option 1</option>
+                                                <option value="2">Option 2</option>
+                                                <option value="3">Option 3</option>
+                                                <option value="4">Option 4</option>
+                                                <option value="5">Option 5</option>
+                                                <option value="6">Option 6</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div> -->
+                            <div class="table-center">
+                                <div class="table">
+                                    <div class="col-md-12">
+                                        <table class="table table-hover" style="width:100%;">
+                                            <thead>
+                                                <tr>
+                                                    <td class="text-left">Saving Group :</td>
+                                                    <td class="text-right">{{sg_number}}</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="text-left">SGs Year of creation:</td>
+                                                    <td class="text-right">{{year_creation}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-left">SGs members Total:</td>
+                                                    <td class="text-right">{{ total_member }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-left">SGs members- Female:</td>
+                                                    <td class="text-right">{{ total_female }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-left">SGs members- Male:</td>
+                                                    <td class="text-right">{{ total_male }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-left">Funding NGO:</td>
+                                                    <td class="text-right">{{ ngo_number }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-left">Partner NGO:</td>
+                                                    <td class="text-right">{{ partner_number }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-left">SGs Status/ supervised</td>
+                                                    <td class="text-right">{{ supervised_num }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-left">SGs Status/ graduated</td>
+                                                    <td class="text-right">{{ graduated_num }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-left">Saved Amount as of December {{ year_amount }} ( In Rwf ):</td>
+                                                    <td class="text-right">{{ total_saved }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-left">Outstanding Loans as of December {{ year_amount }} ( In Rwf ):</td>
+                                                    <td class="text-right">{{ total_loan }}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <footer>
+                                            <button id="button-save" type="button" class="btn btn-success btn-cartix_" ng-disabled="disabled" ng-click="saveData(originalpath, filename_save)">{{ savedValue }}</button>
+                                        </footer>
+                                    </div>
+                                </div>
                             </div>
-                        
-                      
+                        </div>
+                        <!--SUCESSFULLY SAVED-->
+                        <div class="row">
+                            <div class="successfull-saved" ng-show="successfullySaved">
+                                <div class="box-center-successful">
+                                    <div class="circle">
+                                        <i class="fa fa-check" aria-hidden="true" style="font-size:40px"></i>
+                                    </div>
+                                    <h2>Sucessfully saved!</h2>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
