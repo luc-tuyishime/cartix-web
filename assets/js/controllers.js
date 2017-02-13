@@ -392,7 +392,11 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$
 
     }
 
-    
+    // LoadViewAllData
+    viewAllData();
+    function viewAllData(){
+        
+    }
     
     // Function to call in excelfileCTRL
     
