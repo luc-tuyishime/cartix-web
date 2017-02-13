@@ -91,9 +91,7 @@ select {
     text-align: center;
     color: white;
 }
-.app .text-right {
-    float: right;
-}
+
 .app .text-1 {
     color: #616161;
     font-weight: bold;
