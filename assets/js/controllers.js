@@ -722,6 +722,46 @@ myapp.controller('notificationCtrl', ['$scope','$http', 'AuthService','$q', func
 
 
 
+myapp.controller('viewAlldataCtrl', ['$scope','$http','AuthService','$q', function($scope, $http, AuthService, $q){
+    var user_id = localStorage.getItem('u___');
+    AuthService.userRole(user_id)
+        .then(function(){
+            adminControllerData();
+        }).catch(function(){
+            ngoStatus();
+        });
+    
+    
+    // NGO Status
+    function ngoStatus(){
+        $scope.notifAdmin = false;
+        $scope.notifNgo = true;
+        var ngo_id = AuthService.getNgo()
+        console.log(ngo_id);
+        AuthService.ngoStatus(ngo_id)
+            .then(function(){
+                intlNgoHandler(ngo_id);
+            }).catch(function(){
+                localNgoHandler(ngo_id);
+            });
+        
+    }
+    
+    function adminControllerData(){
+        $scope.intlNgo = true;
+        $scope.localNgo = false;
+    }
+    
+    
+    function intlNgoHandler(ngo_id){
+        $scope.intlNgo = true;
+        $scope.localNgo = false;
+    }
+    
+}]);
+
+
+
 function backgroudHeight(){
     $(".map-box").css("height", function(height){
         return $(document).height();
