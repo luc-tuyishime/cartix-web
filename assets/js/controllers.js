@@ -160,6 +160,8 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$
     };
 
 
+    $scope.viewData = false;
+    
     $scope.uploadInput = true;
     $scope.img_upl = true;
     $scope.uploadTitle = "Submit Your File";
@@ -169,6 +171,7 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$
     $scope.uploadProcess = true;
     $scope.showDataUlploaded = false;
     $scope.successfullySaved = false;
+    
 
     //$scope.sg_number = 100;
 
@@ -787,6 +790,20 @@ function closeNav_() {
     location.reload();
 }
 
+
+function openNav2(){
+    var windowHeight = ($(window).height());
+    $("#call-opacity").css("height", windowHeight);
+    $("#mySidenav2").css({"width":"50%", "background-color":"#fff"});
+    $("#call-opacity").addClass("opacity");
+}
+
+function closeNav2(){
+    var windowHeight = ($(window).height());
+    $("#call-opacity").css("height", windowHeight);
+    $("#mySidenav2").css({"width":"0%", "background-color":"#fff"});
+    $("#call-opacity").removeClass("opacity");
+}
 
 
 
