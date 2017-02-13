@@ -168,6 +168,7 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$
     $scope.spinLoad = false;
     $scope.uploadProcess = true;
     $scope.showDataUlploaded = false;
+    $scope.successfullySaved = false;
 
     //$scope.sg_number = 100;
 
@@ -247,6 +248,7 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$
 
 
     function multipleDataView(json_data) {
+        $scope.savedValue = "Save";
         var year = [],
             member = [],
             female = [],
@@ -353,6 +355,8 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$
 
 
     $scope.saveData = function(originalpath, filename) {
+        $scope.disabled = true;
+        $scope.savedValue = "Saving ...";
         var config = {
             headers: {
                 'Content-Type': 'application/json'
@@ -360,15 +364,15 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$
         }
         var user_id = restoreUser();
 
-        var data = '{"original":"' + originalpath + '","save":"","user_id":"' + user_id + '","filename":"' + filename + '"}';
+        var data = '{"original":"' + originalpath + '","saved":"","user_id":"' + user_id + '","filename":"' + filename + '"}';
 
         $http.post('http://127.0.0.1:5000/api/v1/file/user/', data, config)
             .success(function(data, status, header, config) {
 
                 if (data.auth) {
                     console.log(data);
-                    $("#side-content-data").hide();
-                    $("#side-content-saved").show();
+                    $scope.showDataUlploaded = false;
+                    $scope.successfullySaved = true;
                 }
             });
 
