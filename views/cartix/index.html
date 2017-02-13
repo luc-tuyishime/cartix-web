@@ -187,7 +187,7 @@
                 <div class="container-fluid">
                     <div class="box">
                         <!-- UPLOAD FILE_1 -->
-                        <div class="row">
+                        <div class="row" ng-show="uploadProcess">
                             <div class="upload-box">
                                 <!-- upload title Submit Your File / Uploading files / Checking for errors -->
                                 <h2>{{ uploadTitle }}</h2>
@@ -239,9 +239,9 @@
                                 </div>
                             </div>
                         </div>
-                        <!--DATA DISPLAY_LOCAL_NGO NGO
-                            <div class="row" ng-show="">
-                                <div class="dropdown-box">
+                        
+                            <div class="row" ng-show="showDataUlploaded">
+                            <!--    <div class="dropdown-box">
                                     <div class="row">
                                         <div class="col-md-3">
                                             <div class="select-box">
@@ -296,82 +296,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="table-center">
-                                    <div class="table">
-                                        <div class="col-md-12">
-                                            <table class="table table-hover">
-                                                <thead>
-                                                    <tr>
-                                                        <td class="text-left">Saving Group name:</td>
-                                                        <th></th>
-                                                        <td class="text-right">ABAREWI</td>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="text-left">SGs Year of creation:</td>
-                                                        <td></td>
-                                                        <td class="text-right">2013</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-left">SGs members Total:</td>
-                                                        <td></td>
-                                                        <td style="text-align: right">17</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-left">SGs members- Female:</td>
-                                                        <td></td>
-                                                        <td style="text-align: right">9</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-left">SGs members- Male:</td>
-                                                        <td></td>
-                                                        <td style="text-align: right">8</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-left">Funding NGO:</td>
-                                                        <td></td>
-                                                        <td style="text-align: right">HOPE Rwanda</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-left">Partner NGO:</td>
-                                                        <td></td>
-                                                        <td style="text-align: right">ADEPR</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-left">SGs Status/ supervised</td>
-                                                        <td></td>
-                                                        <td style="text-align: right">654</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-left">SGs Status/ graduated</td>
-                                                        <td></td>
-                                                        <td style="text-align: right">1000</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-left">Saved Amount as of December 2014( In Rwf ):</td>
-                                                        <td></td>
-                                                        <td style="text-align: right">N/A</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-left">Outstanding Loans as of December 2014 ( In Rwf ):</td>
-                                                        <td></td>
-                                                        <td style="text-align: right">N/A</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                            <footer>
-                                                <button type="button" class="btn btn-default btn_cartix" id="download_data">Download</button>
-                                                <button type="button" class="btn btn-default btn_cartix">Upload</button>
-                                            </footer>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> -->
-                        <!--DISPLAY DATA_2_INT_NGO ADMIN
-                            <div class="row">
-                                <div class="dropdown-box">
                                     <div class="row">
                                         <div class="col-md-3">
                                             <div class="select-box">
@@ -426,78 +350,80 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="table-center">
                                     <div class="table">
                                         <div class="col-md-12">
-                                            <table class="table table-hover">
-                                                <thead>
-                                                    <tr>
-                                                        <td class="text-left">Saving Group name:</td>
-                                                        <th></th>
-                                                        <td class="text-right">ABAREWI</td>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="text-left">SGs Year of creation:</td>
-                                                        <td></td>
-                                                        <td class="text-right">2013</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-left">SGs members Total:</td>
-                                                        <td></td>
-                                                        <td style="text-align: right">17</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-left">SGs members- Female:</td>
-                                                        <td></td>
-                                                        <td style="text-align: right">9</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-left">SGs members- Male:</td>
-                                                        <td></td>
-                                                        <td style="text-align: right">8</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-left">Funding NGO:</td>
-                                                        <td></td>
-                                                        <td style="text-align: right">HOPE Rwanda</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-left">Partner NGO:</td>
-                                                        <td></td>
-                                                        <td style="text-align: right">ADEPR</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-left">SGs Status/ supervised</td>
-                                                        <td></td>
-                                                        <td style="text-align: right">654</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-left">SGs Status/ graduated</td>
-                                                        <td></td>
-                                                        <td style="text-align: right">1000</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-left">Saved Amount as of December 2014( In Rwf ):</td>
-                                                        <td></td>
-                                                        <td style="text-align: right">N/A</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-left">Outstanding Loans as of December 2014 ( In Rwf ):</td>
-                                                        <td></td>
-                                                        <td style="text-align: right">N/A</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
+                                             <table class="table table-hover" style="width:100%;">
+                     <thead>
+                        <tr>
+                           <td class="text-left">Saving Group :</td>
+                           <td class="text-right">{{sg_number}}</td>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <td class="text-left">SGs Year of creation:</td>
+                           
+                           <td class="text-right">{{year_creation}}</td>
+                        </tr>
+                        <tr>
+                           <td class="text-left">SGs members Total:</td>
+                        
+                           <td class="text-right">{{ total_member }}</td>
+                        </tr>
+                        <tr>
+                           <td class="text-left">SGs members- Female:</td>
+                           
+                           <td class="text-right">{{ total_female }}</td>
+                        </tr>
+                        <tr>
+                           <td class="text-left">SGs members- Male:</td>
+                           
+                           <td class="text-right">{{ total_male }}</td>
+                        </tr>
+                        <tr>
+                           <td class="text-left">Funding NGO:</td>
+                           
+                           <td class="text-right">{{ ngo_number }}</td>
+                        </tr>
+                        <tr>
+                           <td class="text-left">Partner NGO:</td>
+                           
+                           <td class="text-right">{{ partner_number }}</td>
+                        </tr>
+                        <tr>
+                           <td class="text-left">SGs Status/ supervised</td>
+                          
+                           <td class="text-right">{{ supervised_num }}</td>
+                        </tr>
+                        <tr>
+                           <td class="text-left">SGs Status/ graduated</td>
+                        
+                           <td class="text-right">{{ graduated_num }}</td>
+                        </tr>
+                        <tr>
+                           <td class="text-left">Saved Amount as of December {{ year_amount }} ( In Rwf ):</td>
+                          
+                           <td class="text-right">{{ total_saved }}</td>
+                        </tr>
+                        <tr>
+                           <td class="text-left">Outstanding Loans as of December {{ year_amount }} ( In Rwf ):</td>
+                          
+                           <td class="text-right">{{ total_loan }}</td>
+                        </tr>
+                     </tbody>
+               </table>
                                             <footer>
-                                                <button type="button" class="btn btn-default btn_cartix" id="">Download</button>
+                                                <button type="button" class="btn btn-default btn_cartix" id="download_data">Download</button>
+                                                <button type="button" class="btn btn-default btn_cartix">Upload</button>
                                             </footer>
                                         </div>
                                     </div>
                                 </div>
-                            </div> -->
+                            </div>
+                        
+                      
                     </div>
                 </div>
             </div>
