@@ -64,7 +64,6 @@ myapp.controller('signinCtrl', ['$scope', '$http', '$location', 'AuthService', f
     AuthService.destroyUser();
 
     $scope.sign_in = function(username, password) {
-        alert(password);
         var data = '{"username":"' + username + '","password":"' + password + '"}';
 
         AuthService.login(data)
