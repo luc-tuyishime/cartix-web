@@ -167,6 +167,8 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$
     $scope.box_data_one = true;
     $scope.box_data_two = false;
     $scope.spinLoad = false;
+    $scope.uploadProcess = true;
+    $scope.showDataUlploaded = false;
 
     //$scope.sg_number = 100;
 
@@ -194,8 +196,8 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$
                     $scope.savepath = response.data.savepath;
                     $scope.filename = response.data.filename;
                 } else {
-                    closeNav();
-                    openNav1();
+                    $scope.uploadProcess = false;
+                    $scope.showDataUlploaded = true;
                     renderView(response.data);
                     $scope.originalpath = response.data.originalpath;
                     $scope.filename_save = response.data.filename;
