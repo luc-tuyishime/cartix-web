@@ -166,7 +166,7 @@
     
     
     <!--SECTION DISPLAY DATA ON UPLOAD-->
-    <section id="mySidenav1" class="sidenav2">
+    <section id="mySidenav1" class="sidenav2" ng-controller="excelFileCtrl">
         <!--SECTION DISPLAY DATA-->
         <div id="sidebar_data">
             <div class="navbar-sidebar">
@@ -305,7 +305,7 @@
     
     
     
-    <section id="mySidenav2" class="sidenav2">
+    <section id="mySidenav2" class="sidenav2" ng-controller="viewAlldataCtrl">
         <div id="sidebar_data">
             <div class="navbar-sidebar">
                 <nav class="navbar">
@@ -359,7 +359,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-3" ng-show="intlNgo">
                                 <div class="select-box">
                                     <p>International NGO</p>
                                     <select id="ddlCars16" multiple="multiple">
@@ -372,7 +372,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-3" ng-show="localNgo">
                                 <div class="select-box">
                                     <p>Local NGO</p>
                                     <select id="ddlCars9" multiple="multiple">
