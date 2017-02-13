@@ -415,29 +415,9 @@ myapp.controller('mapCtrl', ['$scope','$http', function($scope, $http){
     
     
     // loadProvinceSelectBox
-    loadProvinceSelectBox();
-    
-    
-    
-    
-    console.log($("#province_map").val());
-    
-    function loadProvinceSelectBox(){
-        $http.get('http://127.0.0.1:5000/api/v1/kenessa/province/province/all')
-            .success(function(data, status, header, config){
-           console.log(data); 
-            var options = "";
-            $.each(data, function(key, value){
-                 options+= "<option selected value="+[value.id, value.name]+" >"+value.name+"</option>";
-            });
-            $("#province_map").html(options);
-            $('#province_map').multiselect('rebuild');
-            $('#province_map').multiselect({
-                includeSelectAllOption: true
-            });
+    loadProvinceSelectBox('#province_map', $http);
 
-        });
-    }
+    
     
     // loadDistrictSelectBox()
     /*var district_id = $("#province_map").val().split(",")[0];
@@ -747,18 +727,64 @@ myapp.controller('viewAlldataCtrl', ['$scope','$http','AuthService','$q', functi
         
     }
     
+    
+    // Load Rwanda Administrative location
+    loadProvinceSelectBox('#ddlCars13', $http);
+    
+    $("#ddlCars13").change(function(e){
+        alert("changed");
+    });
+    
+    
+    
     function adminControllerData(){
         $scope.intlNgo = true;
         $scope.localNgo = false;
+        $("#dataNgoHandler #changeColClass").removeClass("col-md-4").addClass("col-md-3");
     }
     
     
     function intlNgoHandler(ngo_id){
         $scope.intlNgo = true;
         $scope.localNgo = false;
+        $("#dataNgoHandler #changeColClass").removeClass("col-md-4").addClass("col-md-3");
+    }
+    
+    function localNgoHandler(ngo_id){
+        $scope.intlNgo = false;
+        $scope.localNgo = false;
+        
+        $("#dataNgoHandler #changeColClass").removeClass("col-md-3").addClass("col-md-4");
+        
     }
     
 }]);
+
+
+
+
+
+// Provinces 
+
+
+function loadProvinceSelectBox(idBox, $http){
+        $http.get('http://127.0.0.1:5000/api/v1/kenessa/province/province/all')
+            .success(function(data, status, header, config){
+           console.log(data); 
+            var options = "";
+            $.each(data, function(key, value){
+                 options+= "<option selected value="+[value.id, value.name]+" >"+value.name+"</option>";
+            });
+            $(idBox).html(options);
+            $(idBox).multiselect('rebuild');
+            $(idBox).multiselect({
+                includeSelectAllOption: true
+            });
+
+        });
+    }
+
+
 
 
 
@@ -767,6 +793,7 @@ function backgroudHeight(){
         return $(document).height();
     })
 }
+
 
 
 
