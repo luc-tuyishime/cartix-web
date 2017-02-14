@@ -716,7 +716,7 @@ myapp.controller('viewAlldataCtrl', ['$scope','$http','AuthService','$q', functi
     
     $("#ddlCars13").change(function(e){
         var province_id = $("#ddlCars13").val().split(',')[0];
-        loadDistrictSelectBox(province_id, 'ddlCars14' ,$http)
+        loadDistrictSelectBox(province_id, '#ddlCars14' ,$http)
     });
     
     
@@ -778,6 +778,7 @@ function loadDistrictSelectBox(province_id, idBox, $http){
                 var options = "";
                 $.each(data, function(key, value){
                     $.each(value[0].district, function(k,v){
+                        console.log(v);
                         options+= "<option value="+[v.id, v.name]+" >"+v.name+"</option>";
                     });
                 });
