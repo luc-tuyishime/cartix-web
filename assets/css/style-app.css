@@ -570,3 +570,7 @@ select {
 .app .header-ngo{
     margin-top: 10px;
 }
+
+.app #dataNgoHandler .select-box {
+    width: 100%;
+}
