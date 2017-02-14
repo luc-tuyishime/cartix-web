@@ -424,28 +424,11 @@ myapp.controller('mapCtrl', ['$scope','$http', function($scope, $http){
     loadDistrictSelectBox(district_id);*/
     
     $("#province_map").change(function(){
-        var district_id = $("#province_map").val().split(",")[0];
-        loadDistrictSelectBox(district_id);
+        var province_id = $("#province_map").val().split(",")[0];
+        loadDistrictSelectBox(province_id, $http);
     });
     
-    function loadDistrictSelectBox(district_id){
-        $http.get('http://127.0.0.1:5000/api/v1/kenessa/province/district/'+district_id)
-            .success(function(data, status, header, config){
-                var options = "";
-                $.each(data, function(key, value){
-                    $.each(value[0].district, function(k,v){
-                        options+= "<option value="+[v.id, v.name]+" >"+v.name+"</option>";
-                    });
-                });
-                
-                $("#district_map").html(options);
-                $("#district_map").multiselect('rebuild');
-                $("#district_map").multiselect({
-                    includeSelectAllOption: false
-                });
-            
-            });
-    }
+    
     
     // loading saving year
     loadSavingYear();
@@ -732,7 +715,8 @@ myapp.controller('viewAlldataCtrl', ['$scope','$http','AuthService','$q', functi
     loadProvinceSelectBox('#ddlCars13', $http);
     
     $("#ddlCars13").change(function(e){
-        alert("changed");
+        var province_id = $("#ddlCars13").val().split(',')[0];
+        loadDistrictSelectBox(province_id, 'ddlCars14' ,$http)
     });
     
     
@@ -785,6 +769,27 @@ function loadProvinceSelectBox(idBox, $http){
     }
 
 
+
+function loadDistrictSelectBox(province_id, idBox, $http){
+      
+    $http.get('http://127.0.0.1:5000/api/v1/kenessa/province/district/'+province_id)
+            .success(function(data, status, header, config){
+                console.log(data);
+                var options = "";
+                $.each(data, function(key, value){
+                    $.each(value[0].district, function(k,v){
+                        options+= "<option value="+[v.id, v.name]+" >"+v.name+"</option>";
+                    });
+                });
+                
+                $(idBox).html(options);
+                $(idBox).multiselect('rebuild');
+                $(idBox).multiselect({
+                    includeSelectAllOption: false
+                });
+            
+            });
+    }
 
 
 
