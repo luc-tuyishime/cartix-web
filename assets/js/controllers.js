@@ -719,6 +719,10 @@ myapp.controller('viewAlldataCtrl', ['$scope','$http','AuthService','$q', functi
         loadDistrictSelectBox(province_id, '#ddlCars14' ,$http)
     });
     
+    $("#ddlCars14").change(function(e){
+        var district_id = $("#ddlCars14").val().split(',')[0];
+        loadSectorSelectBox(district_id, '#ddlCars15', $http);
+    });
     
     
     function adminControllerData(){
@@ -793,6 +797,15 @@ function loadDistrictSelectBox(province_id, idBox, $http){
     }
 
 
+
+function loadSectorSelectBox(district_id, idBox, $http){
+    alert(district_id);
+    var url = 'http://127..0.0.1:5000/api/v1/kenessa/district/sector/'+district_id;
+    $http.get(url)
+        .success(function(data, status, header, config){
+            console.log(data);
+        });
+}
 
 function backgroudHeight(){
     $(".map-box").css("height", function(height){
