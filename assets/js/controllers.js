@@ -542,20 +542,8 @@ myapp.controller('notificationCtrl', ['$scope','$http', 'AuthService','$q', func
         
         
         // load all ngos
-        loadIntNgo()
-        function loadIntNgo(){
-            $http.get('http://127.0.0.1:5000/api/v1/int_ngo/')
-                .success(function(data, status, header, config){
-                    console.log(data);
-                    var options = "";
-                    $.each(data, function(key, value){
-                       options += "<option value='"+value.id+"'>"+value.name+"</option>" 
-                    });
-
-                    $("#int_ngo").html(options);
-                    $("#int_ngo").multiselect('rebuild');
-                });
-        }
+        loadIntNgo("#int_ngo", $http)
+        
         
         
         $scope.loadLocalNgo = function(int_ngo_filter){
@@ -729,6 +717,10 @@ myapp.controller('viewAlldataCtrl', ['$scope','$http','AuthService','$q', functi
         $scope.intlNgo = true;
         $scope.localNgo = false;
         $("#dataNgoHandler #changeColClass").removeClass("col-md-4").addClass("col-md-3");
+        var idBox = "#ddlCars16";
+        loadIntNgo(idBox, $http);
+        
+        
     }
     
     
@@ -736,6 +728,8 @@ myapp.controller('viewAlldataCtrl', ['$scope','$http','AuthService','$q', functi
         $scope.intlNgo = true;
         $scope.localNgo = false;
         $("#dataNgoHandler #changeColClass").removeClass("col-md-4").addClass("col-md-3");
+        var idBox = "#ddlCars16";
+        loadIntNgo(idBox, $http);
     }
     
     function localNgoHandler(ngo_id){
@@ -749,11 +743,26 @@ myapp.controller('viewAlldataCtrl', ['$scope','$http','AuthService','$q', functi
 }]);
 
 
+// International NGO
+
+function loadIntNgo(idBox, $http){
+    $http.get('http://127.0.0.1:5000/api/v1/int_ngo/')
+        .success(function(data, status, header, config){
+            console.log(data);
+            var options = "";
+            $.each(data, function(key, value){
+                options += "<option value='"+value.id+"'>"+value.name+"</option>" 
+            });
+
+            $(idBox).html(options);
+            $(idBox).multiselect('rebuild');
+        });
+}
+
 
 
 
 // Provinces 
-
 
 function loadProvinceSelectBox(idBox, $http){
         $http.get('http://127.0.0.1:5000/api/v1/kenessa/province/province/all')
