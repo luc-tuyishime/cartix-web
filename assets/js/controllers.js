@@ -800,10 +800,20 @@ function loadDistrictSelectBox(province_id, idBox, $http){
 
 function loadSectorSelectBox(district_id, idBox, $http){
     alert(district_id);
-    var url = 'http://127..0.0.1:5000/api/v1/kenessa/district/sector/'+district_id;
+    var url = 'http://127.0.0.1:5000/api/v1/kenessa/district/sector/'+district_id;
     $http.get(url)
         .success(function(data, status, header, config){
             console.log(data);
+            var options = "";
+                $.each(data, function(key, value){
+                    options+= "<option value="+[value.id, value.name]+" >"+value.name+"</option>";
+                });
+                
+                $(idBox).html(options);
+                $(idBox).multiselect('rebuild');
+                $(idBox).multiselect({
+                    includeSelectAllOption: false
+                });
         });
 }
 
