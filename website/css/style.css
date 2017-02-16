@@ -1,15 +1,14 @@
 body {
     font: 30px Montserrat, sans-serif;
     /*line-height: 1.8;*/
-
     color: #f5f6f7;
 }
 p {
     font-size: 13px;
 }
-.margin {
+.index-box-text {
     font-weight: bold;
-    margin-top: 240px;
+    padding-top: 250px;
 }
 .bg-4 {
     background-color: black;
@@ -52,7 +51,7 @@ a {
     border: 1.99px solid #ccc;
     border-radius: 40px;
     height: 45px;
-    line-height: 15px !important;
+    line-height: 18px !important;
 }
 .btn-login2 {
     color: #333;
@@ -447,11 +446,11 @@ background-size: cover;
     top: 50px;
 }
 .bounce {
-    margin-top: 125px;
+
     height: 50px;
 }
 .down-arrow_2{
-  margin-top: 35px;
+  margin-top: 10px;
 }
 .social-network-icon{
   max-height: 30px;
