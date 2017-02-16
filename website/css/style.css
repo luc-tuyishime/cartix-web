@@ -19,9 +19,10 @@ a {
     color:
 }
 .container-fluid {
-    padding-top: 23px;
+      padding-top: 23px;
     /*padding-bottom: 10px;*/
 }
+
 .navbar {
     padding-bottom: 15px;
     border: 0;
@@ -134,8 +135,14 @@ a {
     font-size: 2px;
 }
 .coming-soon-text {
-    margin-top: 16px;
+    margin-top: 35px;
     font: 16px "greatests";
+}
+.coming-soon-text2{
+  font: 30px "greatest";
+  margin-top: 110px;
+  margin-bottom: 30px;
+  color: #f9a825;
 }
 @media only screen and (max-width: 500px) {
     .download-image {
@@ -143,6 +150,14 @@ a {
         height: auto;
     }
 }
+
+@media only screen and (max-width: 500px) {
+  .margin {
+      font-weight: bold;
+      margin-top: 90px;
+  }
+}
+
 .intelligence {
     font-weight: bold;
 }
@@ -153,12 +168,7 @@ a {
 a {
     outline: none;
 }
-#bottom {
-    background-color: black;
-    color: #ffffff;
-    height: 100%;
-    /*width: 300px;*/
-}
+
 .down-arrow {
     height: 45px;
     position: relative;
@@ -186,7 +196,7 @@ a {
 }
 .footer-link1 {
     text-align: justify;
-    color: #e0e0e0;
+    color: #fff;
     font: 14px "greatests";
 }
 .faqq {
@@ -195,11 +205,32 @@ a {
 .touch {
     font: 16px "greatests";
 }
+
+@media only screen and (max-width: 500px) {
+    .touch-comunity {
+        font-size: 15px;
+    }
+}
+@media only screen and (max-width: 500px) {
+    .bounce {
+        margin-top:10px;
+    }
+}
+@media only screen and (max-width: 500px) {
+    .download-apple {
+       width: 100%;
+    }
+}
+
 .touch2 {
     font: 16px "greatests";
 }
 .support_text {
     font: 16px "greatests";
+}
+.link-style{
+
+  color: #536dfe;
 }
 @font-face {
     font-family: greatest;
@@ -264,6 +295,12 @@ a {
     color: #424242;
     text-align: left;
 }
+.term-text2 {
+    font: 17px "greatests";
+    color: #424242;
+    text-align: left;
+    font-weight: bold;
+}
 .text-link {
     font-family: sans-serif;
 }
@@ -290,8 +327,11 @@ h1,
     font: 18px "greatests";
     color: #e0e0e0;
 }
-.footer-link:hover {
-    color: #757575;
+a:hover{
+  color: #616161;
+}
+.hover-style:hover{
+  color:
 }
 .support-div {
     padding-top: 35px;
@@ -407,21 +447,41 @@ background-size: cover;
     top: 50px;
 }
 .bounce {
-    margin-top: 90px;
+    margin-top: 125px;
     height: 50px;
 }
+.down-arrow_2{
+  margin-top: 35px;
+}
+.social-network-icon{
+  max-height: 30px;
+  max-width: 30px;
+}
+
+.icons-justify{
+  text-align: justify;
+}
+.social-network-icon{}
+
+
 img {
     display: block;
     margin: 0 auto;
 }
-.adresse {} @media only screen and (max-width: 500px) {
+ @media only screen and (max-width: 500px) {
     #Layer_01 {
         width: 100%;
     }
 }
+ @media only screen and (max-width: 500px) {
+  .bounce{
+    position: relative;
+    bottom: 125px;
+  }
+}
 .adresse{
   position: relative;
-  bottom: 20px;
+  bottom: 30px;
 }
 @media only screen and (max-width: 500px) {
     .home-icon {
@@ -497,7 +557,7 @@ img {
     color: #fff;
 }
 .section-group {
-    padding-top: 35px;
+    padding-top: 15px;
     padding-bottom: 70px;
 }
 a {
