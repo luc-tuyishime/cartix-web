@@ -130,13 +130,13 @@ myapp.controller('forgetCtrl', ['$scope', '$location', 'AuthService', function($
 myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$http', '$location', 'AuthService', function($scope, Upload, $timeout, $window, $http, $location, AuthService) {
     $("body").removeClass('body-login');
     $("body").addClass('body-app');
-    
-    $('#upload_link').click(function(e){
+
+    $('#upload_link').click(function(e) {
         e.preventDefault();
-        $("#upload").trigger( "click" );
+        $("#upload").trigger("click");
     });
-    
-    
+
+
     var ngo_id = restoreNgo();
     var url = "http://127.0.0.1:5000/api/v1/ngo/" + ngo_id;
 
@@ -161,7 +161,7 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$
 
 
     $scope.viewData = false;
-    
+
     $scope.uploadInput = true;
     $scope.img_upl = true;
     $scope.uploadTitle = "Submit Your File";
@@ -171,12 +171,12 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$
     $scope.uploadProcess = true;
     $scope.showDataUlploaded = false;
     $scope.successfullySaved = false;
-    
+
 
     //$scope.sg_number = 100;
 
-    
-    
+
+
     $scope.upload_File = function(file) {
         file.upload = Upload.upload({
             url: 'http://127.0.0.1:5000/api/upload/',
@@ -289,51 +289,51 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$
         $scope.sg_number = sg.length;
         var min_year = Math.min.apply(Math, year);
         var max_year = Math.max.apply(Math, year);
-        if (min_year == max_year){
-             $scope.year_creation = min_year;
-        }else{
-             $scope.year_creation = min_year + " to " + max_year;
+        if (min_year == max_year) {
+            $scope.year_creation = min_year;
+        } else {
+            $scope.year_creation = min_year + " to " + max_year;
         }
-       
+
         $scope.total_member = numeral(member.reduce(add, 0)).format();
         $scope.total_female = numeral(female.reduce(add, 0)).format();
         $scope.total_male = numeral(male.reduce(add, 0)).format();
-        
-        if(unique(partner) == 'N/A'){
+
+        if (unique(partner) == 'N/A') {
             $scope.partner_number = 'N/A';
-        }else{
+        } else {
             $scope.partner_number = unique(partner).length;
         }
-        
-        if (unique(ngo).length == 1){
-            $scope.ngo_number = unique(ngo)[0];   
-        }else{
+
+        if (unique(ngo).length == 1) {
+            $scope.ngo_number = unique(ngo)[0];
+        } else {
             $scope.ngo_number = unique(ngo).length;
         }
-        
+
         $scope.total_loan = numeral(loan.reduce(add, 0)).format();
         $scope.total_saved = numeral(saved.reduce(add, 0)).format();
         var status_dump = compressArray(status);
         console.log(status_dump);
-        if (status_dump.length == 1){
+        if (status_dump.length == 1) {
             if (status_dump[0].value == 'Supervised') {
                 $scope.supervised_num = numeral(status_dump[0].count).format();
                 $scope.graduated_num = numeral(0).format();
             } else {
                 $scope.supervised_num = numeral(0).format();
                 $scope.graduated_num = numeral(status_dump[0].count).format();
-            }  
-        }else{
+            }
+        } else {
             if (status_dump[0].value == 'Supervised') {
                 $scope.supervised_num = numeral(status_dump[0].count).format();
                 $scope.graduated_num = numeral(status_dump[1].count).format();
             } else {
                 $scope.supervised_num = numeral(status_dump[1].count).format();
                 $scope.graduated_num = numeral(status_dump[0].count).format();
-            }  
+            }
         }
-        
-        $scope.year_amount = year_amount; 
+
+        $scope.year_amount = year_amount;
 
 
         console.log(loan);
@@ -394,83 +394,106 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$
 
     // LoadViewAllData
     viewAllData();
-    function viewAllData(){
-        
+
+    function viewAllData() {
+
     }
-    
+
     // Function to call in excelfileCTRL
-    
+
     chartFunction();
     backgroudHeight();
-    
+
 
 }]);
 
 
 
 
-myapp.controller('mapCtrl', ['$scope','$http', function($scope, $http){
+myapp.controller('mapCtrl', ['$scope', '$http', function($scope, $http) {
     leafletCartix();
     selectBox();
-    
-    
+
+
     // loadProvinceSelectBox
     loadProvinceSelectBox('#province_map', $http);
-
     
     
-    // loadDistrictSelectBox()
-    /*var district_id = $("#province_map").val().split(",")[0];
-    loadDistrictSelectBox(district_id);*/
+    // load map
     
-    $("#province_map").change(function(){
-        var province_id = $("#province_map").val().split(",")[0];
-        loadDistrictSelectBox(province_id, $http);
+    var data = $("#national_map").val();
+    (new leafletCartix()).handlerNational(data);  
+    
+    $("#national_map").change(function() {
+        var data = $("#national_map").val();
+        (new leafletCartix()).handlerNational(data);  
     });
     
     
+
+    // loadDistrictSelectBox()
+    /*var district_id = $("#province_map").val().split(",")[0];
+    loadDistrictSelectBox(district_id);*/
+
+    $("#province_map").change(function() {
+        var province_id = $("#province_map").val().split(",")[0];
+        var province_name = $("#province_map").val().split(",")[1].toLowerCase();
+
+        loadDistrictSelectBox(province_id, '#district_map', $http);
+        (new leafletCartix()).handlerProvince(province_name);
+        
+        
+    });
     
+    $("#district_map").change(function(){
+        var district_name = $("#district_map").val().split(",")[1].toLowerCase();
+        (new leafletCartix()).handlerDistrict(district_name);
+        
+    });
+
+
+
     // loading saving year
     loadSavingYear();
-    
-    function loadSavingYear(){
+
+    function loadSavingYear() {
         $http.get('http://127.0.0.1:5000/api/v1/saving_year/')
-            .success(function(data, status, header, config){
+            .success(function(data, status, header, config) {
                 console.log(data);
                 var options = '';
-                $.each(data, function(key, value){
-                    options+= "<option>"+value+"</option>";
+                $.each(data, function(key, value) {
+                    options += "<option>" + value + "</option>";
                 });
-                
+
                 $("#year").html(options);
                 $("#year").multiselect('rebuild');
-                
+
             });
     }
-    
-    
+
+
     // load int_ngo
     loadIntNgo();
-    
-    function loadIntNgo(){
+
+    function loadIntNgo() {
         $http.get('http://127.0.0.1:5000/api/v1/int_ngo/')
-            .success(function(data, status, header, config){
+            .success(function(data, status, header, config) {
                 console.log(data);
                 var options = "";
-                $.each(data, function(key, value){
-                   options += "<option value='"+value.id+"'>"+value.name+"</option>" 
+                $.each(data, function(key, value) {
+                    options += "<option value='" + value.id + "'>" + value.name + "</option>"
                 });
-                
+
                 $("#saving_group_map").html(options);
                 $("#saving_group_map").multiselect('rebuild');
             });
     }
-    
-    
-    
+
+
+
     // logged NGO name
-    
-    function loggedNgoName(){
+
+    function loggedNgoName() {
         var ngo_id = restoreNgo();
         var url = "http://127.0.0.1:5000/api/v1/ngo/" + ngo_id;
 
@@ -481,277 +504,282 @@ myapp.controller('mapCtrl', ['$scope','$http', function($scope, $http){
 
             });
     }
-    
-    
+
+
     // logged user name 
     loggedUserName();
-    function loggedUserName(){
+
+    function loggedUserName() {
         var user_id = localStorage.getItem('u___');
-        var url = 'http://127.0.0.1:5000/api/v1/user/'+ user_id;
-        
+        var url = 'http://127.0.0.1:5000/api/v1/user/' + user_id;
+
         $http.get(url)
-            .success(function(data, status, header, config){
+            .success(function(data, status, header, config) {
                 console.log(data);
                 $scope.usernames_p = data.user.names;
-            }).error(function(data, status, header, config){
-            
+            }).error(function(data, status, header, config) {
+
             });
     }
-    
-    
+
+
 }]);
 
 
 
 
+myapp.controller('notificationCtrl', ['$scope', '$http', 'AuthService', '$q', function($scope, $http, AuthService, $q) {
 
-myapp.controller('notificationCtrl', ['$scope','$http', 'AuthService','$q', function($scope, $http, AuthService, $q){
-    
     $scope.notifAdmin = true;
     $scope.notifNgo = false;
-    
+
     // User role
     var user_id = localStorage.getItem('u___');
     AuthService.userRole(user_id)
-        .then(function(){
+        .then(function() {
             adminController();
-        }).catch(function(){
+        }).catch(function() {
             ngoStatus();
         });
-    
-    
+
+
     // NGO Status
-    function ngoStatus(){
+    function ngoStatus() {
         $scope.notifAdmin = false;
         $scope.notifNgo = true;
         var ngo_id = AuthService.getNgo()
         console.log(ngo_id);
         AuthService.ngoStatus(ngo_id)
-            .then(function(){
+            .then(function() {
                 intlNgoHandler(ngo_id);
-            }).catch(function(){
+            }).catch(function() {
                 localNgoHandler(ngo_id);
             });
-        
+
     }
-    
-    
-    function adminController(){
+
+
+    function adminController() {
         $scope.notifAdmin = true;
         $scope.notifNgo = false;
-        
-        
+
+
         // load all ngos
         loadIntNgo("#int_ngo", $http)
-        
-        
-        
-        $scope.loadLocalNgo = function(int_ngo_filter){
+
+
+
+        $scope.loadLocalNgo = function(int_ngo_filter) {
             //console.log(int_ngo_filter);
-            var url = 'http://127.0.0.1:5000/api/v1/int_ngo/partner/'+int_ngo_filter;
+            var url = 'http://127.0.0.1:5000/api/v1/int_ngo/partner/' + int_ngo_filter;
             $http.get(url)
-                .success(function(data, status, header, config){
+                .success(function(data, status, header, config) {
                     var options = "";
-                    $.each(data, function(key, value){
-                       options += "<option value='"+value.id+"'>"+value.name+"</option>";
+                    $.each(data, function(key, value) {
+                        options += "<option value='" + value.id + "'>" + value.name + "</option>";
                     });
 
                     $("#local_ngo_admin").html(options);
                     $("#local_ngo_admin").multiselect('rebuild');
-                }).error(function(data, status, header, config){
-                
+                }).error(function(data, status, header, config) {
+
                 })
         }
-        
-        
+
+
         // Load years
         loadFilesYear()
-        function loadFilesYear(){
+
+        function loadFilesYear() {
             var url = "http://127.0.0.1:5000/api/v1/saving_year";
             $http.get(url)
-                .success(function(data, status, header, config){
+                .success(function(data, status, header, config) {
                     console.log(data);
                     var options = "";
-                    $.each(data, function(key, value){
-                       options += "<option value='"+value+"'>"+value+"</option>";
+                    $.each(data, function(key, value) {
+                        options += "<option value='" + value + "'>" + value + "</option>";
                     });
 
                     $("#year_admin").html(options);
                     $("#year_admin").multiselect('rebuild');
-                }).error(function(){
-                
+                }).error(function() {
+
                 });
         }
-        
-        
-        
+
+
+
         // LoadAll files
         loadNgoFiles()
-        function loadNgoFiles(){
+
+        function loadNgoFiles() {
             var url = "http://127.0.0.1:5000/api/v1/files";
             $http.get(url)
-                .success(function(data, status, header, config){
+                .success(function(data, status, header, config) {
                     console.log(data);
                     $scope.files = data;
                 })
-                .error(function(data, status, header, config){
-                
+                .error(function(data, status, header, config) {
+
                 });
-            
-            
+
+
         }
     }
-    
-    
-    function intlNgoHandler(ngo_id){
+
+
+    function intlNgoHandler(ngo_id) {
         $scope.notifAdmin = false;
         $scope.notifNgo = true;
         var user_id = localStorage.getItem('u___');
-        
+
         // LoadAll files
         loadNgoFiles(user_id)
-        function loadNgoFiles(user_id){
-            var url = "http://127.0.0.1:5000/api/v1/files/user/"+user_id;
+
+        function loadNgoFiles(user_id) {
+            var url = "http://127.0.0.1:5000/api/v1/files/user/" + user_id;
             $http.get(url)
-                .success(function(data, status, header, config){
+                .success(function(data, status, header, config) {
                     console.log(data);
                     $scope.files = data;
                 })
-                .error(function(data, status, header, config){
-                
-                });  
+                .error(function(data, status, header, config) {
+
+                });
         }
-        
+
         //loadInternational local Partner
         loadLocalPartner(ngo_id);
-        function loadLocalPartner(ngo_id){
+
+        function loadLocalPartner(ngo_id) {
             console.log(ngo_id);
-            var url = 'http://127.0.0.1:5000/api/v1/int_ngo/partner/'+ngo_id;
+            var url = 'http://127.0.0.1:5000/api/v1/int_ngo/partner/' + ngo_id;
             $http.get(url)
-                .success(function(data, status, header, config){
+                .success(function(data, status, header, config) {
                     var options = "";
-                    $.each(data, function(key, value){
-                       options += "<option value='"+value.id+"'>"+value.name+"</option>";
+                    $.each(data, function(key, value) {
+                        options += "<option value='" + value.id + "'>" + value.name + "</option>";
                     });
 
                     $("#local_ngo").html(options);
                     $("#local_ngo").multiselect('rebuild');
-                }).error(function(data, status, header, config){
-                
+                }).error(function(data, status, header, config) {
+
                 })
         }
-        
+
         // Load years
         loadFilesYear()
-        function loadFilesYear(){
+
+        function loadFilesYear() {
             var url = "http://127.0.0.1:5000/api/v1/saving_year";
             $http.get(url)
-                .success(function(data, status, header, config){
+                .success(function(data, status, header, config) {
                     console.log(data);
                     var options = "";
-                    $.each(data, function(key, value){
-                       options += "<option value='"+value+"'>"+value+"</option>";
+                    $.each(data, function(key, value) {
+                        options += "<option value='" + value + "'>" + value + "</option>";
                     });
 
                     $("#year_ngo").html(options);
                     $("#year_ngo").multiselect('rebuild');
-                }).error(function(){
-                
+                }).error(function() {
+
                 });
         }
-        
-        
-        
+
+
+
     }
-    
-    function localNgoHandler(ngo_id){
-        
+
+    function localNgoHandler(ngo_id) {
+
     }
-    
+
 }]);
 
 
 
 
-myapp.controller('viewAlldataCtrl', ['$scope','$http','AuthService','$q', function($scope, $http, AuthService, $q){
+myapp.controller('viewAlldataCtrl', ['$scope', '$http', 'AuthService', '$q', function($scope, $http, AuthService, $q) {
     var user_id = localStorage.getItem('u___');
     AuthService.userRole(user_id)
-        .then(function(){
+        .then(function() {
             adminControllerData();
-        }).catch(function(){
+        }).catch(function() {
             ngoStatus();
         });
-    
-    
+
+
     // NGO Status
-    function ngoStatus(){
+    function ngoStatus() {
         $scope.notifAdmin = false;
         $scope.notifNgo = true;
         var ngo_id = AuthService.getNgo()
         console.log(ngo_id);
         AuthService.ngoStatus(ngo_id)
-            .then(function(){
+            .then(function() {
                 intlNgoHandler(ngo_id);
-            }).catch(function(){
+            }).catch(function() {
                 localNgoHandler(ngo_id);
             });
-        
+
     }
-    
-    
+
+
     // Load Rwanda Administrative location
     loadProvinceSelectBox('#ddlCars13', $http);
-    
-    $("#ddlCars13").change(function(e){
+
+    $("#ddlCars13").change(function(e) {
         var province_id = $("#ddlCars13").val().split(',')[0];
-        loadDistrictSelectBox(province_id, '#ddlCars14' ,$http)
+        loadDistrictSelectBox(province_id, '#ddlCars14', $http)
     });
-    
-    $("#ddlCars14").change(function(e){
+
+    $("#ddlCars14").change(function(e) {
         var district_id = $("#ddlCars14").val().split(',')[0];
         loadSectorSelectBox(district_id, '#ddlCars15', $http);
     });
-    
-    
-    function adminControllerData(){
+
+
+    function adminControllerData() {
         $scope.intlNgo = true;
         $scope.localNgo = false;
         $("#dataNgoHandler #changeColClass").removeClass("col-md-4").addClass("col-md-3");
         var idBox = "#ddlCars16";
         loadIntNgo(idBox, $http);
-        
-        
+
+
     }
-    
-    
-    function intlNgoHandler(ngo_id){
+
+
+    function intlNgoHandler(ngo_id) {
         $scope.intlNgo = true;
         $scope.localNgo = false;
         $("#dataNgoHandler #changeColClass").removeClass("col-md-4").addClass("col-md-3");
         var idBox = "#ddlCars16";
         loadIntNgo(idBox, $http);
     }
-    
-    function localNgoHandler(ngo_id){
+
+    function localNgoHandler(ngo_id) {
         $scope.intlNgo = false;
         $scope.localNgo = false;
-        
+
         $("#dataNgoHandler #changeColClass").removeClass("col-md-3").addClass("col-md-4");
-        
+
     }
-    
+
 }]);
 
 
 // International NGO
 
-function loadIntNgo(idBox, $http){
+function loadIntNgo(idBox, $http) {
     $http.get('http://127.0.0.1:5000/api/v1/int_ngo/')
-        .success(function(data, status, header, config){
+        .success(function(data, status, header, config) {
             console.log(data);
             var options = "";
-            $.each(data, function(key, value){
-                options += "<option value='"+value.id+"'>"+value.name+"</option>" 
+            $.each(data, function(key, value) {
+                options += "<option value='" + value.id + "'>" + value.name + "</option>"
             });
 
             $(idBox).html(options);
@@ -764,13 +792,13 @@ function loadIntNgo(idBox, $http){
 
 // Provinces 
 
-function loadProvinceSelectBox(idBox, $http){
-        $http.get('http://127.0.0.1:5000/api/v1/kenessa/province/province/all')
-            .success(function(data, status, header, config){
-           console.log(data); 
+function loadProvinceSelectBox(idBox, $http) {
+    $http.get('http://127.0.0.1:5000/api/v1/kenessa/province/province/all')
+        .success(function(data, status, header, config) {
+            console.log(data);
             var options = "";
-            $.each(data, function(key, value){
-                 options+= "<option selected value="+[value.id, value.name]+" >"+value.name+"</option>";
+            $.each(data, function(key, value) {
+                options += "<option selected value=" + [value.id, value.name] + " >" + value.name + "</option>";
             });
             $(idBox).html(options);
             $(idBox).multiselect('rebuild');
@@ -779,55 +807,56 @@ function loadProvinceSelectBox(idBox, $http){
             });
 
         });
-    }
+}
 
 
 
-function loadDistrictSelectBox(province_id, idBox, $http){
-      
-    $http.get('http://127.0.0.1:5000/api/v1/kenessa/province/district/'+province_id)
-            .success(function(data, status, header, config){
-                console.log(data);
-                var options = "";
-                $.each(data, function(key, value){
-                    $.each(value[0].district, function(k,v){
-                        console.log(v);
-                        options+= "<option value="+[v.id, v.name]+" >"+v.name+"</option>";
-                    });
-                });
-                
-                $(idBox).html(options);
-                $(idBox).multiselect('rebuild');
-                $(idBox).multiselect({
-                    includeSelectAllOption: false
-                });
-            
-            });
-    }
-
-
-
-function loadSectorSelectBox(district_id, idBox, $http){
-    alert(district_id);
-    var url = 'http://127.0.0.1:5000/api/v1/kenessa/district/sector/'+district_id;
-    $http.get(url)
-        .success(function(data, status, header, config){
+function loadDistrictSelectBox(province_id, idBox, $http) {
+    $http.get('http://127.0.0.1:5000/api/v1/kenessa/province/district/' + province_id)
+        .success(function(data, status, header, config) {
             console.log(data);
             var options = "";
-                $.each(data, function(key, value){
-                    options+= "<option value="+[value.id, value.name]+" >"+value.name+"</option>";
+            $.each(data, function(key, value) {
+                $.each(value[0].district, function(k, v) {
+                    console.log(v);
+                    options += "<option value=" + [v.id, v.name] + " >" + v.name + "</option>";
                 });
-                
-                $(idBox).html(options);
-                $(idBox).multiselect('rebuild');
-                $(idBox).multiselect({
-                    includeSelectAllOption: false
-                });
+            });
+
+            $(idBox).html(options);
+            $(idBox).multiselect('rebuild');
+            $(idBox).multiselect({
+                includeSelectAllOption: false
+            });
+
+        });
+    
+    return true;
+}
+
+
+
+function loadSectorSelectBox(district_id, idBox, $http) {
+    alert(district_id);
+    var url = 'http://127.0.0.1:5000/api/v1/kenessa/district/sector/' + district_id;
+    $http.get(url)
+        .success(function(data, status, header, config) {
+            console.log(data);
+            var options = "";
+            $.each(data, function(key, value) {
+                options += "<option value=" + [value.id, value.name] + " >" + value.name + "</option>";
+            });
+
+            $(idBox).html(options);
+            $(idBox).multiselect('rebuild');
+            $(idBox).multiselect({
+                includeSelectAllOption: false
+            });
         });
 }
 
-function backgroudHeight(){
-    $(".map-box").css("height", function(height){
+function backgroudHeight() {
+    $(".map-box").css("height", function(height) {
         return $(document).height();
     })
 }
@@ -867,16 +896,16 @@ function restoreNgo() {
 
 
 function openNav() {
-      var windowHeight = ($(window).height());
-     $("#call-opacity").css("height", windowHeight);
+    var windowHeight = ($(window).height());
+    $("#call-opacity").css("height", windowHeight);
     document.getElementById("mySidenav").style.width = "50%";
     document.body.style.backgroundColor = "#fff";
     document.getElementById("call-opacity").className = "opacity";
 }
 
 function closeNav() {
-     var windowHeight = ($(window).height());
-     $("#call-opacity").css("height", 0);
+    var windowHeight = ($(window).height());
+    $("#call-opacity").css("height", 0);
     document.getElementById("mySidenav").style.width = "0";
     document.body.style.backgroundColor = "white";
     document.getElementById("call-opacity").className = "";
@@ -884,7 +913,7 @@ function closeNav() {
 
 function openNav1() {
     var windowHeight = ($(window).height());
-     $("#call-opacity").css("height", windowHeight);
+    $("#call-opacity").css("height", windowHeight);
     document.getElementById("mySidenav1").style.width = "50%";
     document.body.style.backgroundColor = "#fff";
     document.getElementById("call-opacity").className = "opacity";
@@ -892,7 +921,7 @@ function openNav1() {
 
 function closeNav_() {
     var windowHeight = ($(window).height());
-     $("#call-opacity").css("height", 0);
+    $("#call-opacity").css("height", 0);
     document.getElementById("mySidenav1").style.width = "0";
     document.body.style.backgroundColor = "#fff";
     document.getElementById("call-opacity").className = "";
@@ -900,17 +929,23 @@ function closeNav_() {
 }
 
 
-function openNav2(){
+function openNav2() {
     var windowHeight = ($(window).height());
     $("#call-opacity").css("height", windowHeight);
-    $("#mySidenav2").css({"width":"50%", "background-color":"#fff"});
+    $("#mySidenav2").css({
+        "width": "50%",
+        "background-color": "#fff"
+    });
     $("#call-opacity").addClass("opacity");
 }
 
-function closeNav2(){
+function closeNav2() {
     var windowHeight = ($(window).height());
     $("#call-opacity").css("height", windowHeight);
-    $("#mySidenav2").css({"width":"0%", "background-color":"#fff"});
+    $("#mySidenav2").css({
+        "width": "0%",
+        "background-color": "#fff"
+    });
     $("#call-opacity").removeClass("opacity");
 }
 
@@ -918,150 +953,150 @@ function closeNav2(){
 
 
 function chartFunction() {
-        Highcharts.chart('container', {
-            chart: {
-                plotBackgroundColor: null,
-                plotBorderWidth: null,
-                plotShadow: false,
-                type: 'pie'
-            },
-            title: {
-                text: 'Browser market shares January, 2015 to May, 2015'
-            },
-            tooltip: {
-                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-            },
-            plotOptions: {
-                pie: {
-                    allowPointSelect: true,
-                    cursor: 'pointer',
-                    dataLabels: {
-                        enabled: false
-                    },
-                    showInLegend: true
-                }
-            },
-            series: [{
-                name: 'Brands',
-                colorByPoint: true,
-                data: [{
-                    name: 'Microsoft Internet Explorer',
-                    y: 56.33
-                }, {
-                    name: 'Chrome',
-                    y: 24.03,
-                    sliced: true,
-                    selected: true
-                }, {
-                    name: 'Firefox',
-                    y: 10.38
-                }, {
-                    name: 'Safari',
-                    y: 4.77
-                }, {
-                    name: 'Opera',
-                    y: 0.91
-                }, {
-                    name: 'Proprietary or Undetectable',
-                    y: 0.2
-                }]
+    Highcharts.chart('container', {
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'pie'
+        },
+        title: {
+            text: 'Browser market shares January, 2015 to May, 2015'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: false
+                },
+                showInLegend: true
+            }
+        },
+        series: [{
+            name: 'Brands',
+            colorByPoint: true,
+            data: [{
+                name: 'Microsoft Internet Explorer',
+                y: 56.33
+            }, {
+                name: 'Chrome',
+                y: 24.03,
+                sliced: true,
+                selected: true
+            }, {
+                name: 'Firefox',
+                y: 10.38
+            }, {
+                name: 'Safari',
+                y: 4.77
+            }, {
+                name: 'Opera',
+                y: 0.91
+            }, {
+                name: 'Proprietary or Undetectable',
+                y: 0.2
             }]
-        });
-    }
+        }]
+    });
+}
 
 
 
 function selectBox() {
-        $('#national_map').multiselect({
-            includeSelectAllOption: true
+    $('#national_map').multiselect({
+        includeSelectAllOption: true
 
-        });
-        $('#province_map').multiselect({
-            includeSelectAllOption: true
-        });
-        $('#district_map').multiselect({
-            includeSelectAllOption: true
-        });
-        $('#saving_group_map').multiselect({
-            includeSelectAllOption: true
-        });
+    });
+    $('#province_map').multiselect({
+        includeSelectAllOption: true
+    });
+    $('#district_map').multiselect({
+        includeSelectAllOption: true
+    });
+    $('#saving_group_map').multiselect({
+        includeSelectAllOption: true
+    });
 
-        $('#int_ngo').multiselect({
-            includeSelectAllOption: true
-        });
+    $('#int_ngo').multiselect({
+        includeSelectAllOption: true
+    });
 
-        $('#local_ngo').multiselect({
-            includeSelectAllOption: true
-        });
+    $('#local_ngo').multiselect({
+        includeSelectAllOption: true
+    });
 
-        $('#year_ngo').multiselect({
-            includeSelectAllOption: true
-        });
+    $('#year_ngo').multiselect({
+        includeSelectAllOption: true
+    });
 
-        $('#status_ngo').multiselect({
-            includeSelectAllOption: true
-        });
+    $('#status_ngo').multiselect({
+        includeSelectAllOption: true
+    });
 
-        $('#local_ngo_admin').multiselect({
-            includeSelectAllOption: true
-        });
+    $('#local_ngo_admin').multiselect({
+        includeSelectAllOption: true
+    });
 
-        $('#year_admin').multiselect({
-            includeSelectAllOption: true
-        });
+    $('#year_admin').multiselect({
+        includeSelectAllOption: true
+    });
 
-        $('#status_admin').multiselect({
-            includeSelectAllOption: true
-        });
+    $('#status_admin').multiselect({
+        includeSelectAllOption: true
+    });
 
-        $('#ddlCars9').multiselect({
-            includeSelectAllOption: true
-        });
+    $('#ddlCars9').multiselect({
+        includeSelectAllOption: true
+    });
 
-        $('#ddlCars10').multiselect({
-            includeSelectAllOption: true
-        });
+    $('#ddlCars10').multiselect({
+        includeSelectAllOption: true
+    });
 
-        $('#ddlCars11').multiselect({
-            includeSelectAllOption: true
-        });
+    $('#ddlCars11').multiselect({
+        includeSelectAllOption: true
+    });
 
-        $('#ddlCars12').multiselect({
-            includeSelectAllOption: true
-        });
+    $('#ddlCars12').multiselect({
+        includeSelectAllOption: true
+    });
 
-        $('#ddlCars13').multiselect({
-            includeSelectAllOption: true
-        });
+    $('#ddlCars13').multiselect({
+        includeSelectAllOption: true
+    });
 
-        $('#ddlCars14').multiselect({
-            includeSelectAllOption: true
-        });
+    $('#ddlCars14').multiselect({
+        includeSelectAllOption: true
+    });
 
-        $('#ddlCars15').multiselect({
-            includeSelectAllOption: true
-        });
+    $('#ddlCars15').multiselect({
+        includeSelectAllOption: true
+    });
 
-        $('#ddlCars16').multiselect({
-            includeSelectAllOption: true
-        });
-    
-        $('#year').multiselect({
-            includeSelectAllOption: true
-        });
+    $('#ddlCars16').multiselect({
+        includeSelectAllOption: true
+    });
 
-    }
+    $('#year').multiselect({
+        includeSelectAllOption: true
+    });
+
+}
 
 
 function leafletCartix() {
-    
-    $("#map-cartix").html('<div id=map><div class="container-fluid headerOnMap"><div class=row><div class=col-md-2><img alt=""class=afr-logo src=assets/img/afr-logo.png></div><div class="col-md-10 selectBox"><div class=select-box><select data-placeholder=National id=national_map ng-model=national class=multiselect><option value=provinces>Provinces<option value=districts>Districts<option value=sectors>Sectors</select></div><div class=select-box><select data-placeholder=Provinces id=province_map ng-model=province_map></select></div><div class=select-box><select data-placeholder=District id=district_map ng-model=district_map ng-options="district for district in districts"></select></div><div class=select-box><select data-placeholder="Saving Groups" id=saving_group_map multiple ></select></div><div class=select-box><select data-placeholder=Year id=year multiple ng-model=year ng-options="year for year in years"></select></div></div></div><div class=row><div class=btn-cartix-bottom><button class="btn btn-cartix btn-default"onclick=openNav() type=button>Data</button></div></div></div></div>');
-    
+
+    $("#map-cartix").html('<div id=map></div>');
+
     var windowHeight = ($(window).height());
     var width = ($(window).width());
 
     $("#map").css("height", windowHeight);
-    
+
 
     var geojson;
     var map = L.map('map', {
@@ -1072,11 +1107,16 @@ function leafletCartix() {
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png', {
         attribution: 'Map data &copy; ' + mapLink,
         maxZoom: 13,
-        minZoom: 9
+        minZoom: 2
     }).addTo(map);
 
 
 
+
+    var Jsonfile;
+    $.getJSON('/assets/geojson/stats.json', function(data) {
+        Jsonfile = data;
+    });
 
     function getColor(d) {
         return d > 5001 ? '#7f2704' :
@@ -1086,15 +1126,26 @@ function leafletCartix() {
             '#fd8d3c';
     }
 
+
+
     function style(feature) {
+
+        var density;
+
+        $.each(Jsonfile.Provinces, function(key, obj) {
+            if (obj.Province == feature.properties.Name) {
+                density = obj.Density;
+            }
+        });
         return {
-            fillColor: getColor(feature.properties.density),
+            fillColor: getColor(density),
             weight: 2,
             opacity: 10,
             color: 'white',
-            dashArray: '1',
+            dashArray: '3',
             fillOpacity: 10
         };
+
     }
 
     function Display(geofile) {
@@ -1133,31 +1184,35 @@ function leafletCartix() {
             mouseover: highlightFeature,
             mouseout: resetHighlight
         });
-        map.setView([-2.0334, 29.8993], 9);
+        map.setView([-1.9404, 29.8998], 9);
     }
 
     function highlightFeature(e) {
         var layer = e.target;
         layer.setStyle({
-            weight: 5,
-            color: '#666',
+            weight: 3,
+            color: '#fff',
             dashArray: '',
-            fillOpacity: 3
+            fillOpacity: 2
         });
         if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
             layer.bringToFront();
         }
 
-        $.getJSON('stats.json', function(data) {
-            $.each(data.Provinces, function(key, obj) {
-                if (obj.Province == layer.feature.properties.Name) {
-                    var mm = obj.Membership;
-                    var f = obj.Female;
-                    var ml = obj.Male;
-                    info.update(layer.feature.properties, mm, f, ml);
-                }
-            });
-
+        $.each(Jsonfile.Provinces, function(key, obj) {
+            if (obj.Province == layer.feature.properties.Name) {
+                var mm = obj.Membership;
+                var f = obj.Female;
+                var ml = obj.Male;
+                var dens = obj.Density;
+                var banks = obj.Male;
+                var mfi = obj.Male;
+                var nu = obj.Male;
+                var u = obj.Male;
+                var tl = obj.Male;
+                var ba = obj.Male;
+                info.update(layer.feature.properties, dens, mm, f, ml, banks, mfi, nu, u, tl, ba);
+            }
         });
 
     }
@@ -1177,10 +1232,10 @@ function leafletCartix() {
     };
 
     // method that we will use to update the control based on feature properties passed
-    info.update = function(props, membr, fem, male) {
+    info.update = function(props, density, membr, fem, male, banks, mfi, nu, u, tl, ba) {
 
         this._div.innerHTML = '<h4>Saving groups per Province</h4>' + (props ?
-            '<b>' + props.Name + ' Province</b><br />' + props.density + ' Saving groups<br/> <b> Total Membership: </b>' + membr + '<br/> <b> Total Female: </b>' + fem + ' <br/> <b>Total Male: </b>' + male + '</br>' :
+            '<b>' + props.Name + ' Province</b><br />' + density + ' Saving groups<br/> <b> Total Membership: </b>' + membr + '<br/> <b> Total Female: </b>' + fem + ' <br/> <b>Total Male: </b>' + male + '</br><b> Banks: </b>' + banks + '</br><b>MFIs: </b>' + mfi + '</br><b> Non-Umurenge: </b>' + nu + '</br><b> Umurenge:</b>' + u + '</br><b>Telco Agents: </b>' + tl + '</br><b>Bank Agents:</b>' + ba + '</br>' :
             'Hover over a province');
 
     };
@@ -1209,11 +1264,19 @@ function leafletCartix() {
             d > 501 ? '#f16913' :
             d > 0 ? '#fd8d3c' :
             '#fff5eb';
+
     }
 
     function styleP(feature) {
+        var density;
+
+        $.each(Jsonfile.Districts, function(key, obj) {
+            if (obj.District == feature.properties.Name) {
+                density = obj.Density;
+            }
+        });
         return {
-            fillColor: getColorP(feature.properties.density),
+            fillColor: getColorP(density),
             weight: 2,
             opacity: 10,
             color: 'white',
@@ -1299,33 +1362,36 @@ function leafletCartix() {
         });
         var bounds = layer.getBounds();
         map.fitBounds(bounds, {
-            maxZoom: 10
+            maxZoom: 11
         });
     }
 
     function highlightFeatureP(e) {
         var layer = e.target;
         layer.setStyle({
-            weight: 5,
-            color: '#666',
+            weight: 3,
+            color: '#fff',
             dashArray: '',
-            fillOpacity: 3
+            fillOpacity: 2
         });
         if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
             layer.bringToFront();
         }
 
-        $.getJSON('stats.json', function(data) {
-            $.each(data.Districts, function(key, obj) {
-                if (obj.District == layer.feature.properties.Name) {
-                    var mm1 = obj.Membership;
-                    var f1 = obj.Female;
-                    var ml1 = obj.Male;
-                    console.log(mm1);
-                    infoP.update(layer.feature.properties, mm1, f1, ml1);
-                }
-            });
-
+        $.each(Jsonfile.Districts, function(key, obj) {
+            if (obj.District == layer.feature.properties.Name) {
+                var mm1 = obj.Membership;
+                var f1 = obj.Female;
+                var ml1 = obj.Male;
+                var dens = obj.Density;
+                var banks = obj.Male;
+                var mfi = obj.Male;
+                var nu = obj.Male;
+                var u = obj.Male;
+                var tl = obj.Male;
+                var ba = obj.Male;
+                infoP.update(layer.feature.properties, dens, mm1, f1, ml1, banks, mfi, nu, u, tl, ba);
+            }
         });
 
     }
@@ -1345,9 +1411,9 @@ function leafletCartix() {
     };
 
     // method that we will use to update the control based on feature properties passed
-    infoP.update = function(props, membr, fem, male) {
+    infoP.update = function(props, density, membr, fem, male, banks, mfi, nu, u, tl, ba) {
         this._div.innerHTML = '<h4>Saving groups in each District per Province</h4>' + (props ?
-            '<b>' + props.Name + ' Province</b><br />' + props.density + ' Saving groups<br/> <b> Total Membership: </b>' + membr + '<br/> <b> Total Female: </b>' + fem + ' <br/> <b>Total Male: </b>' + male + '</br>' :
+            '<b>' + props.Name + ' Province</b><br />' + density + ' Saving groups<br/> <b> Total Membership: </b>' + membr + '<br/> <b> Total Female: </b>' + fem + ' <br/> <b>Total Male: </b>' + male + '</br><b> Banks: </b>' + banks + '</br><b>MFIs: </b>' + mfi + '</br><b> Non-Umurenge: </b>' + nu + '</br><b> Umurenge:</b>' + u + '</br><b>Telco Agents: </b>' + tl + '</br><b>Bank Agents:</b>' + ba + '</br>' :
             'Hover over a province');
 
     };
@@ -1381,8 +1447,16 @@ function leafletCartix() {
     }
 
     function styleD(feature) {
+        var density;
+
+        $.each(Jsonfile.Districts, function(key, obj) {
+            if (obj.District == feature.properties.Name) {
+                density = obj.Density;
+            }
+        });
         return {
-            fillColor: getColorD(feature.properties.density),
+
+            fillColor: getColorD(density),
             weight: 2,
             opacity: 10,
             color: 'white',
@@ -1433,28 +1507,31 @@ function leafletCartix() {
     function highlightFeatureD(e) {
         var layer = e.target;
         layer.setStyle({
-            weight: 5,
-            color: '#666',
+            weight: 3,
+            color: '#fff',
             dashArray: '',
-            fillOpacity: 3
+            fillOpacity: 2
         });
 
         if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
             layer.bringToFront();
         }
 
-        $.getJSON('stats.json', function(data) {
-            $.each(data.Districts, function(key, obj) {
-                if (obj.District == layer.feature.properties.Name) {
+        $.each(Jsonfile.Districts, function(key, obj) {
+            if (obj.District == layer.feature.properties.Name) {
 
-                    var mm = obj.Membership;
-                    var f = obj.Female;
-                    var ml = obj.Male;
-
-                    infoD.update(layer.feature.properties, mm, f, ml);
-                }
-            });
-
+                var mm = obj.Membership;
+                var f = obj.Female;
+                var ml = obj.Male;
+                var dens = obj.Density;
+                var banks = obj.Male;
+                var mfi = obj.Male;
+                var nu = obj.Male;
+                var u = obj.Male;
+                var tl = obj.Male;
+                var ba = obj.Male;
+                infoD.update(layer.feature.properties, dens, mm, f, ml, banks, mfi, nu, u, tl, ba);
+            }
         });
 
     }
@@ -1476,9 +1553,9 @@ function leafletCartix() {
     };
 
     // method that we will use to update the control based on feature properties passed
-    infoD.update = function(props, membr, fem, male) {
+    infoD.update = function(props, density, membr, fem, male, banks, mfi, nu, u, tl, ba) {
         this._div.innerHTML = '<h4>Saving groups per District</h4>' + (props ?
-            '<b>' + props.Name + ' District</b><br />' + props.density + ' Saving groups <br/> <b> Total Membership: </b>' + membr + '<br/> <b> Total Female: </b>' + fem + ' <br/> <b>Total Male: </b>' + male + '</br>' :
+            '<b>' + props.Name + ' District</b><br />' + density + ' Saving groups <br/> <b> Total Membership: </b>' + membr + '<br/> <b> Total Female: </b>' + fem + ' <br/> <b>Total Male: </b>' + male + '</br><b> Banks: </b>' + banks + '</br><b>MFIs: </b>' + mfi + '</br><b> Non-Umurenge: </b>' + nu + '</br><b> Umurenge:</b>' + u + '</br><b>Telco Agents: </b>' + tl + '</br><b>Bank Agents:</b>' + ba + '</br>' :
             'Hover over a district');
     };
     //legend
@@ -1513,14 +1590,55 @@ function leafletCartix() {
     }
 
     function styleS(feature) {
+        var density;
+
+        $.each(Jsonfile.Sectors, function(key, obj) {
+            if (obj.District == feature.properties.District) {
+                if (obj.Sector == feature.properties.Name) {
+                    density = obj.Density;
+                }
+            }
+        });
         return {
-            fillColor: getColorS(feature.properties.density),
+            fillColor: getColorS(density),
             weight: 2,
             opacity: 10,
             color: 'white',
             dashArray: '3',
             fillOpacity: 10
         };
+    }
+
+    function sector(geofile) {
+
+        if (geojson === undefined) {
+            $.getJSON(geofile, function(rwandaData) {
+                geojson = L.geoJson(rwandaData, {
+                    style: styleS,
+                    onEachFeature: onEachFeatureSS
+                }).addTo(map);
+            });
+        } else {
+            geojson.eachLayer(function(layer) {
+                map.removeLayer(layer);
+                map.removeControl(infoD);
+                map.removeControl(legendD);
+                map.removeControl(infoS);
+                map.removeControl(legendS);
+                map.removeControl(info);
+                map.removeControl(legend);
+                map.removeControl(infoP);
+                map.removeControl(legendP);
+            });
+
+            $.getJSON(geofile, function(rwandaData) {
+                geojson = L.geoJson(rwandaData, {
+                    style: styleS,
+                    onEachFeature: onEachFeatureSS
+                }).addTo(map);
+            });
+        }
+
     }
 
     function sectorDisplay(geofile) {
@@ -1611,32 +1729,45 @@ function leafletCartix() {
 
     }
 
+    function onEachFeatureSS(feature, layer) {
+
+        layer.on({
+            mouseover: highlightFeatureS,
+            mouseout: resetHighlightS
+        });
+        map.setView([-2.0334, 29.8993], 9);
+
+    }
+
     function highlightFeatureS(e) {
         var layer = e.target;
         layer.setStyle({
-            weight: 5,
-            color: '#666',
+            weight: 3,
+            color: '#fff',
             dashArray: '',
-            fillOpacity: 3
+            fillOpacity: 2
         });
 
         if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
             layer.bringToFront();
         }
 
-        $.getJSON('stats.json', function(data) {
-            $.each(data.Sectors, function(key, obj) {
-                if (obj.District == layer.feature.properties.District) {
-                    if (obj.Sector == layer.feature.properties.Name) {
-                        var mm = obj.Membership;
-                        var f = obj.Female;
-                        var ml = obj.Male;
-
-                        infoS.update(layer.feature.properties, mm, f, ml);
-                    }
+        $.each(Jsonfile.Sectors, function(key, obj) {
+            if (obj.District == layer.feature.properties.District) {
+                if (obj.Sector == layer.feature.properties.Name) {
+                    var mm = obj.Membership;
+                    var f = obj.Female;
+                    var ml = obj.Male;
+                    var dens = obj.Density;
+                    var banks = obj.Male;
+                    var mfi = obj.Male;
+                    var nu = obj.Male;
+                    var u = obj.Male;
+                    var tl = obj.Male;
+                    var ba = obj.Male;
+                    infoS.update(layer.feature.properties, dens, mm, f, ml, banks, mfi, nu, u, tl, ba);
                 }
-            });
-
+            }
         });
 
     }
@@ -1659,9 +1790,9 @@ function leafletCartix() {
     };
 
     // method that we will use to update the control based on feature properties passed
-    infoS.update = function(props, membr, fem, male) {
+    infoS.update = function(props, density, membr, fem, male, banks, mfi, nu, u, tl, ba) {
         this._div.innerHTML = '<h4>Saving groups per Sector</h4>' + (props ?
-            '<b>' + props.Name + ' Sector</b><br />' + props.density + ' Saving groups <br/> <b> Total Membership: </b>' + membr + '<br/> <b> Total Female: </b>' + fem + ' <br/> <b>Total Male: </b>' + male + '</br>' :
+            '<b>' + props.Name + ' Sector</b><br />' + density + ' Saving groups <br/> <b> Total Membership: </b>' + membr + '<br/> <b> Total Female: </b>' + fem + ' <br/> <b>Total Male: </b>' + male + '</br><b> Banks: </b>' + banks + '</br><b>MFIs: </b>' + mfi + '</br><b> Non-Umurenge: </b>' + nu + '</br><b> Umurenge:</b>' + u + '</br><b>Telco Agents: </b>' + tl + '</br><b>Bank Agents:</b>' + ba + '</br>' :
             'Hover over a Sector');
     };
     //legend
@@ -1685,51 +1816,58 @@ function leafletCartix() {
     };
 
 
-    function handler1() {
-        document.getElementById('ge').value = "";
-        document.getElementById('geo').value = "";
-        if (document.getElementById('pro')) {
-            switch (document.getElementById('pro').value) {
-                case "eastern":
-                    provinceDisplay("Eastern_Province.geojson");
+    this.handlerProvince = function(val) {
+        
+        document.getElementById('district_map').value = "";
+        document.getElementById('national_map').value = "";
+        if (val) {
+            switch (val) {
+                case "east":
+                    provinceDisplay("/assets/geojson/Eastern_Province.geojson");
                     break;
-                case "western":
-                    provinceDisplay("Western_Province.geojson");
+                case "west":
+                    provinceDisplay("/assets/geojson/Western_Province.geojson");
                     break;
-                case "kigali-city":
-                    kigaliProDisplay("Kigali_geojson.geojson");
+                case "kigali":
+                    kigaliProDisplay("/assets/geojson/Kigali_geojson.geojson");
                     break;
-                case "northen":
-                    provinceDisplay("Northern_Province.geojson");
+                case "north":
+                    provinceDisplay("/assets/geojson/Northern_Province.geojson");
                     break;
-                case "southern":
-                    provinceDisplay("Southern_Province.geojson");
+                case "south":
+                    provinceDisplay("/assets/geojson/Southern_Province.geojson");
                     break;
             }
+            
+            
+            
             legendP.addTo(map);
             infoP.addTo(map);
 
         }
+        
+        
     }
 
-    function handler() {
-        document.getElementById('pro').value = "";
-        document.getElementById('ge').value = "";
-
-        if (document.getElementById('geo')) {
-            switch (document.getElementById('geo').value) {
+    this.handlerNational = function(val) {
+        
+        document.getElementById('province_map').value = "";
+        document.getElementById('district_map').value = "";
+        
+        if (val) {
+            switch (val) {
                 case "provinces":
-                    Display("admin4.geojson");
+                    Display("/assets/geojson/admin4.geojson");
                     legend.addTo(map);
                     info.addTo(map);
                     break;
                 case "districts":
-                    districtDisplay("District_Rwanda.geojson");
+                    districtDisplay("/assets/geojson/District_Rwanda.geojson");
                     legendD.addTo(map);
                     infoD.addTo(map);
                     break;
                 case "sectors":
-                    sectorDisplay("Sector_Rwanda.geojson");
+                    sector("/assets/geojson/Sector_Rwanda.geojson");
                     legendS.addTo(map);
                     infoS.addTo(map);
                     break;
@@ -1738,108 +1876,110 @@ function leafletCartix() {
         }
     }
 
-    function handler2() {
-        document.getElementById('pro').value = "";
-        document.getElementById('geo').value = "";
 
-        if (document.getElementById('ge')) {
-            switch (document.getElementById('ge').value) {
+
+
+    this.handlerDistrict = function(val) {
+        document.getElementById('province_map').value = "";
+        document.getElementById('national_map').value = "";
+
+        if (val) {
+            switch (val) {
                 case "gasabo":
-                    kigaliDisplay("districts/Gasabo.geojson");
+                    kigaliDisplay("/assets/geojson/districts/Gasabo.geojson");
 
                     break;
                 case "kicukiro":
-                    kigaliDisplay("districts/Kicukiro.geojson");
+                    kigaliDisplay("/assets/geojson/districts/Kicukiro.geojson");
                     break;
                 case "nyarugenge":
-                    kigaliDisplay("districts/Nyarugenge.geojson");
+                    kigaliDisplay("/assets/geojson/districts/Nyarugenge.geojson");
                     break;
                 case "burera":
-                    sectorDisplay("districts/Burera.geojson");
+                    sectorDisplay("/assets/geojson/districts/Burera.geojson");
                     break;
                 case "gakenke":
-                    sectorDisplay("districts/Gakenke.geojson");
+                    sectorDisplay("/assets/geojson/districts/Gakenke.geojson");
                     break;
                 case "gicumbi":
-                    sectorDisplay("districts/Gicumbi.geojson");
+                    sectorDisplay("/assets/geojson/districts/Gicumbi.geojson");
                     break;
                 case "musanze":
-                    sectorDisplay("districts/Musanze.geojson");
+                    sectorDisplay("/assets/geojson/districts/Musanze.geojson");
                     break;
                 case "rulindo":
-                    sectorDisplay("districts/Rulindo.geojson");
+                    sectorDisplay("/assets/geojson/districts/Rulindo.geojson");
                     break;
                 case "gisagara":
-                    sectorDisplay("districts/Gisagara.geojson");
+                    sectorDisplay("/assets/geojson/districts/Gisagara.geojson");
                     break;
                 case "huye":
-                    sectorDisplay("districts/Huye.geojson");
+                    sectorDisplay("/assets/geojson/districts/Huye.geojson");
                     break;
                 case "kamonyi":
-                    sectorDisplay("districts/Kamonyi.geojson");
+                    sectorDisplay("/assets/geojson/districts/Kamonyi.geojson");
                     break;
                 case "muhanga":
-                    sectorDisplay("districts/Muhanga.geojson");
+                    sectorDisplay("/assets/geojson/districts/Muhanga.geojson");
                     break;
                 case "nyamagabe":
-                    sectorDisplay("districts/Nyamagabe.geojson");
+                    sectorDisplay("/assets/geojson/districts/Nyamagabe.geojson");
                     break;
                 case "nyanza":
-                    sectorDisplay("districts/Nyanza.geojson");
+                    sectorDisplay("/assets/geojson/districts/Nyanza.geojson");
                     break;
                 case "nyaruguru":
-                    sectorDisplay("districts/Nyaruguru.geojson");
+                    sectorDisplay("/assets/geojson/districts/Nyaruguru.geojson");
                     break;
                 case "ruhango":
-                    sectorDisplay("districts/Ruhango.geojson");
+                    sectorDisplay("/assets/geojson/districts/Ruhango.geojson");
                     break;
                 case "karongi":
-                    sectorDisplay("districts/Karongi.geojson");
+                    sectorDisplay("/assets/geojson/districts/Karongi.geojson");
                     break;
                 case "ngororero":
-                    sectorDisplay("districts/Ngororero.geojson");
+                    sectorDisplay("/assets/geojson/districts/Ngororero.geojson");
                     break;
                 case "nyabihu":
-                    sectorDisplay("districts/Nyabihu.geojson");
+                    sectorDisplay("/assets/geojson/districts/Nyabihu.geojson");
                     break;
                 case "nyamasheke":
-                    sectorDisplay("districts/Nyamasheke.geojson");
+                    sectorDisplay("/assets/geojson/districts/Nyamasheke.geojson");
                     break;
                 case "rubavu":
-                    sectorDisplay("districts/Rubavu.geojson");
+                    sectorDisplay("/assets/geojson/districts/Rubavu.geojson");
                     break;
                 case "rusizi":
-                    sectorDisplay("districts/Rusizi.geojson");
+                    sectorDisplay("/assets/geojson/districts/Rusizi.geojson");
                     break;
                 case "rutsiro":
-                    sectorDisplay("districts/Rutsiro.geojson");
+                    sectorDisplay("/assets/geojson/districts/Rutsiro.geojson");
                     break;
                 case "bugesera":
-                    sectorDisplay("districts/Bugesera.geojson");
+                    sectorDisplay("/assets/geojson/districts/Bugesera.geojson");
                     break;
                 case "gatsibo":
-                    sectorDisplay("districts/Gatsibo.geojson");
+                    sectorDisplay("/assets/geojson/districts/Gatsibo.geojson");
                     break;
                 case "kayonza":
-                    sectorDisplay("districts/Kayonza.geojson");
+                    sectorDisplay("/assets/geojson/districts/Kayonza.geojson");
                     break;
                 case "kirehe":
-                    sectorDisplay("districts/Kirehe.geojson");
+                    sectorDisplay("/assets/geojson/districts/Kirehe.geojson");
                     break;
                 case "ngoma":
-                    sectorDisplay("districts/Ngoma.geojson");
+                    sectorDisplay("/assets/geojson/districts/Ngoma.geojson");
                     break;
                 case "nyagatare":
-                    sectorDisplay("districts/Nyagatare.geojson");
+                    sectorDisplay("/assets/geojson/districts/Nyagatare.geojson");
                     break;
                 case "rwamagana":
-                    sectorDisplay("districts/Rwamagana.geojson");
+                    sectorDisplay("/assets/geojson/districts/Rwamagana.geojson");
                     break;
             }
 
             legendS.addTo(map);
             infoS.addTo(map);
-
         }
 
     }
