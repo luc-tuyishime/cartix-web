@@ -30,6 +30,7 @@
          left: 0;
          z-index: 9999;
          width: 100%;
+
          /*padding-top: 15px;
          padding-bottom: 15px;*/
          border: 0;
@@ -114,6 +115,10 @@
         .footer-link:hover{
            color: #01579b;
         }
+        .cartix-content{
+          margin-top: 200px;
+        }
+
       </style>
    </head>
    <body>
@@ -133,23 +138,32 @@
                   <li><a href="index.html">Home</a></li>
                   <li><a href="#pricing">Pricing</a></li>
                   <li><a href="#support">Support</a></li>
-                  <li class="btn-login2"><a href="#">Log in</a></li>
+                  <li ><a href="#" class="btn btn-default">Log in</a></li>
                </ul>
             </div>
          </div>
       </nav>
       <!-- First Container -->
       <div class="container-fluid bg-01 text-center" id="about">
+        <div class="cartix-content">
          <img src="img/homeicon.svg" class="home-icon">
          <p class="cartix-text">What<span class="opostrophe">'</span>s up with cartix</p>
          <p style="color:#424242;margin-top:15px;" class="touch2">Cartix is a  web platform that enables organizations to optimize operational performance, strategic investments,<br> and enhances everyday decision making processes through adequate, timely and advanced data exploitation.
          </p>
-         <p style="color:#424242;margin-top:15px;" class="touch2"><span class="intelligence">Mapping Intelligence</span>: With Cartix Engine —Our embeddable platform for web and soon to be available on mobile<br> apps allow users through intelligent mapping to quickly discover patterns, correlations, relationships,and trends<br> and analyze the unique characteristics that make up a specific phenomenon at both small and large scales.</p>
-         <p  style="color:#424242;margin-top:15px;" class="touch2"><span class="intelligence">Advanced Data Analytics</span>: Along with the mapping intelligence component, Cartix offers broader analytics<br> models that break down complex issues while extracting data and categorizing it to identify <br>and analyze behavioral data as well as patterns.</p>
+         <p style="color:#424242;margin-top:15px;" class="touch2"><span class="intelligence">Mapping Intelligence</span>:With Cartix Engine —Our embeddable platform for web and soon to be available on mobile<br> apps allows users through intelligent mapping to quickly discover patterns, correlations, relationships, and trends<br> to analyze the unique characteristics that make up a specific phenomenon at both small and large scales.</p>
+         <p  style="color:#424242;margin-top:15px;" class="touch2"><span class="intelligence">Advanced Data Analytics</span>:  Along with the mapping intelligence component, Cartix offers broader analytical<br> models that break down complex issues while extracting data and categorizing it to identify<br> and analyze behavioral data as well as patterns.</p>
          <!-- <img src="img/down-arrow1.png" class="down-arrow2"> -->
+
+         <div class="down-arrow_2">
+          <a href="#pricing">
+            <img src="img/drop2.svg" class="down-arrow">
+          </a>
+         </div>
+       </div>
       </div>
       <!-- Second Container -->
       <div class="container bg-02 text-center" id="pricing">
+
          <h1 style="color:#757575;margin-top:50px;font-weight:bold;" class="">Our pricing</h1>
          <div class="pricing-detail">
             <div class="row">
@@ -376,10 +390,10 @@
                <div class="col-md-6 support-div">
                   <h1 style="font-weight:bold;">Support</h1>
                   <p class="support_text">Your experience, our utmost reason of being!</p>
-                  <p class="support_text">With the client being at the center of everything we do and the client being the ultimate reason we do what we do, we always strive to make your experience with Cartix hustle-free in any possible way.</p>
-                  <p class="support_text">Our team is available 24 <span class="slash">/</span> 7 to assist you with any inquiry you might have with our platform as we help you have an enjoyable experience with the platform. With Cartix everybody suddenly becomes an expert in data handling</p>
+                  <p class="support_text">With the client being at the center of everything we do as well as being the ultimate reason we do what we do, we always strive to make your experience with Cartix hustle-free in any possible way.</p>
+                  <p class="support_text">Our team is available 24 <span class="slash">/</span> 7 to assist you with any inquiry you might have with our platform as we help you have an enjoyable experience with the platform. With Cartix everybody suddenly becomes an expert in data handling ;-) </p>
                   <p class="support_text">For personalized Inquiries e-mail us on <a href="" class="link-style">support@cartix.io</a>
-                     Feel free to also visit our <a href="faq.html" target="_blank" class="link-style">FAQ</a> or Demo sections for more insights.
+                     Feel free to also visit our <a href="faq.html" class="link-style">FAQ</a> or Demo sections for more insights.
                   </p>
                </div>
             </div>
@@ -392,7 +406,7 @@
                <div class="icons-justify">
                   <div class="col-md-3">
                      <p class="touch" style="color:#9e9e9e">Get in touch with us</p>
-                     <a href="">
+                     <a href="https://twitter.com/Cartix_io" target="_blank">
                         <svg version="1.1" id="Twitter_w_x2F__circle" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                            x="0px" y="0px"    width="25px" height="30px"  viewBox="0 0 20 20" fill="black" enable-background="new 0 0 49 49" xml:space="preserve">
                            <g>
@@ -409,7 +423,7 @@
                            </g>
                         </svg>
                      </a>
-                     <a href="">
+                     <a href="https://www.facebook.com/cartixIO/" target="_blank">
                         <svg version="1.1" id="Facebook_w_x2F__circle" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                            x="0px" y="0px"  width="25px" height="30px" viewBox="0 0 20 20" fill="black" enable-background="new 0 0 20 20" xml:space="preserve">
                            <g>
@@ -468,10 +482,32 @@
            // Add scrollspy to <body>
            $('body').scrollspy({target: ".navbar", offset: 50});
            // make responsive on all screen
-
+          $(".bg-01").css("margin-top", $(window).height()-950);
            $("").css("height", function(index){
                return $(window).height();
            })
+
+           $("a").on('click', function(event) {
+             // Make sure this.hash has a value before overriding default behavior
+             if (this.hash !== "") {
+               // Prevent default anchor click behavior
+               event.preventDefault();
+
+               // Store hash
+               var hash = this.hash;
+
+               // Using jQuery's animate() method to add smooth page scroll
+               // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+               $('html, body').animate({
+                 scrollTop: $(hash).offset().top
+               }, 900, function(){
+
+                 // Add hash (#) to URL when done scrolling (default click behavior)
+                 window.location.hash = hash;
+               });
+             }  // End if
+           });
+
            // Add smooth scrolling on all links inside the navbar
            $(".nav a").on('click', function(event) {
              // Make sure this.hash has a value before overriding default behavior
