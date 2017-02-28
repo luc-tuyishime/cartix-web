@@ -16,15 +16,15 @@
          .bg-001 {
          background-color: #87ad5d;
          }
+
          .navvv{
-            background-color: #87ad5d;
+            background:transparent;
             position: fixed;
             top: 0;
             left: 0;
             z-index: 9999;
             width: 100%;
-            padding-top: 25px;
-
+            padding-top: 15px;
             border: 0;
             border-radius: 0;
             padding: 19px;
@@ -72,7 +72,7 @@
          }
          .comunnity-text{
          font-weight:600px;
-           margin-top: 80px;
+           /*margin-top: 80px;*/
          }
          .blog-img{
          margin-top: 90px;
@@ -93,18 +93,19 @@
          .text-justify{
          float: right;
          }
-
          .contribute-link{
          color: #2962ff;
          }
+       .community-text_{
+        bottom: 85px;
+        }
 
       </style>
-
-
    </head>
    <body>
       <!-- Navbar -->
       <div class="container-fluid bg-001 text-center">
+        <div class="bg-one">
          <nav class="navbar navbar-inverses text-center">
            <div class="navvv">
               <div class="navbar-header">
@@ -119,42 +120,44 @@
                  <ul class="nav navbar-nav navbar-right">
                     <li><a href="index.html">home</a></li>
                     <li><a href="#customers">Customers</a></li>
+                    <li><a href="#customers">Blog</a></li>
                     <li><a href="#events">Events</a></li>
-                    <li class="btn-login"><a href="#">Log in</a></li>
+                    <li ><a href="http://savinggroup.cartix.io/#/" class="btn btn-default">Log in</a></li>
                  </ul>
               </div>
            </div>
-            <img src="img/com.svg" height="600px" width="600px" class="comunity-img">
-            <div style="position:relative;bottom:120px;" class="community-text" id="About">
+          </nav>
+          <div class="row">
+            <img src="img/com.svg" height="550px" width="930px" class="comunity-img">
+            <div class="community-text_" id="About">
                <h1  class="comunnity-text">Community</h1>
-               <p class="touch touch-comunity">Cartix is here to stay and to grow mainly through a community of open data enthusiasts driven by spirit of<br> collective effort and knowledge sharing. Our main goal is to sustainably spark a movement to grow a vibrant<br> community of expert in data science that spans various sectors in Rwanda and beyond.
+               <p class="touch touch-comunity">Cartix is here to stay and to grow mainly through a community of open data enthusiasts driven by the spirit of<br> collective effort and knowledge sharing. Our main goal is to sustainably spark a movement to grow a vibrant<br> community of expert in data science that spans various sectors in Rwanda and beyond.
                </p>
                <a href="#bottom">
                   <div class="down-arrow_2">
+                    <a href="#customers">
                      <img src="img/drop.svg" class="">
+                   </a>
                   </div>
                </a>
-         </nav>
          </div>
+       </div>
       </div>
+    </div>
       <!-- Second Container -->
       <div class="container bg-02 text-center" id="customers">
          <div class="row">
             <div class="col-md-6">
                <img src="img/customers.svg" width="300" height="302" class="blog-img">
                <h1 style="color:#757575;font-weight:bold;position:relative;bottom:70px;">Customers</h1>
-               <p class="touch" style="color:#757575;position:relative;bottom:65px;text-align:justify">Data is continually becoming an indispensable commodity in all sectors (public, private & civil society). Cartix is built in way to cater for all the users found in those three category.
-                  Our key added value is tailor-made dashboard.
-                  We have dashboards tailored for NGOs, MFIs, Printing Companies, Public Institutions, etc.
-                  For any dashboard customization, it is important that it be scoped in a manner to allow for high quality, well designed and properly tested application.
-                  At the beginning of every project, along with the ToRs, we first sit down with the party and figure out who will be the users of the product and how we can satisfy them. From this brainstorming we then can start driving towards a design that maximizes intended values.
+               <p class="touch" style="color:#757575;position:relative;bottom:65px;text-align:justify">Data is continually becoming an indispensable commodity in all sectors (public, private & civil society). Cartix is built in way to cater for all the users found in those three categories. Our key added value is tailor-made dashboard. We have dashboards tailored for NGOs, MFIs, Printing Companies, Public Institutions, etc. For any dashboard customization, it is important that it be scoped in a manner to allow for high quality, well designed and properly tested application. At the beginning of every project, along with the ToRs, we first sit down with the party and figure out who will be the users of the product and how we can satisfy them. From this brainstorming we then can start driving towards a design that maximizes intended values.
                </p>
             </div>
             <div class="col-md-6">
                <img src="img/blog.svg" width="300" height="302" class="blog-img">
                <h1 style="color:#757575;font-weight:bold;position:relative;bottom:65px;">Blog</h1>
-               <p class="touch" style="color:#757575;position:relative;bottom:65px;text-align:justify">Welcome to Cartix blogs, a place where everyone has a story to share. Stories shared on our blog include opinion, development, strides and challenges in the area of data science in Rwanda, the region and Africa at large.
-                  We are ware that data has no boundaries but on our platform the focus is Africa and we make sure all contributors asap their content to the African context while we think global and act local.
+               <p class="touch" style="color:#757575;position:relative;bottom:65px;text-align:justify">Welcome to Cartix blogs, a place where everyone has a story to share. Stories shared on our blog include opinions, development, strides and challenges in the area of data science in Rwanda, the region and Africa at large.
+                  We are aware that data has no boundaries but on our platform the focus is Africa and we make sure all contributors customize their content to the African context while we think global and act local.
                   It is your regular news on data science in Africa reimagined, straight from the people who are making and living it. Follow us as we help enrich your knowledge on topics related to data science in Rwanda, the EAC and Africa.
                   Are you a data enthusiast and willing to contribute to our blog? Don’t be shy, drop us a line.
                </p>
@@ -170,8 +173,8 @@
       <div class="container-fluid bg-3 text-center" id="events">
          <div class="container">
                <h1 style="color:#757575;font-weight:bold">Events <img src="img/alarm.svg" width="60" height="200" class="padlock"></h1>
-               <p class="touch" style="color:#757575;text-align:center;margin-top:25px;">Community event are instrumental to the development  of our agenda as we want to make it<br>  as inclusive as possible.<br><br>
-                Our events span from corporate events to social & information hangouts with a common<br> objective which is to grow and enrich the community of Data enthusiasts. Check our website &<br> social media handles for regular updates on what we’re cooking.
+               <p class="touch" style="color:#757575;text-align:center;margin-top:25px;">Community events are instrumental to the development  of our agenda as we want to make it<br>  as inclusive as possible.<br><br>
+                Our events span from corporate events to social & informal hangouts with a common<br> objective which is to grow and enrich the community of Data enthusiasts. Check our website &<br> social media handles for regular updates on what we’re cooking.
                </p>
                <p class="coming-soon-text2">Coming Soon</p>
          </div>
@@ -184,7 +187,7 @@
                <div class="icons-justify">
                   <div class="col-md-3">
                      <p class="touch" style="color:#9e9e9e">Get in touch with us</p>
-                     <a href="">
+                     <a href="https://twitter.com/Cartix_io" target="_blank">
                         <svg version="1.1" id="Twitter_w_x2F__circle" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                            x="0px" y="0px"    width="25px" height="30px"  viewBox="0 0 20 20" fill="black" enable-background="new 0 0 49 49" xml:space="preserve">
                            <g>
@@ -201,7 +204,7 @@
                            </g>
                         </svg>
                      </a>
-                     <a href="">
+                     <a href="https://www.facebook.com/cartixIO/" target="_blank">
                         <svg version="1.1" id="Facebook_w_x2F__circle" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                            x="0px" y="0px"  width="25px" height="30px" viewBox="0 0 20 20" fill="black" enable-background="new 0 0 20 20" xml:space="preserve">
                            <g>
@@ -261,9 +264,31 @@
            $('body').scrollspy({target: ".navbar", offset: 50});
            // make responsive on all screen
 
+
+           $(".community-text_").css("margin-top", $(window).height()-830);
            $(".bg-001").css("height", function(index){
                return $(window).height();
            })
+           $("a").on('click', function(event) {
+             // Make sure this.hash has a value before overriding default behavior
+             if (this.hash !== "") {
+               // Prevent default anchor click behavior
+               event.preventDefault();
+
+               // Store hash
+               var hash = this.hash;
+
+               // Using jQuery's animate() method to add smooth page scroll
+               // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+               $('html, body').animate({
+                 scrollTop: $(hash).offset().top
+               }, 900, function(){
+
+                 // Add hash (#) to URL when done scrolling (default click behavior)
+                 window.location.hash = hash;
+               });
+             }  // End if
+           });
            // Add smooth scrolling on all links inside the navbar
            $(".nav a").on('click', function(event) {
              // Make sure this.hash has a value before overriding default behavior
@@ -291,6 +316,20 @@
                  $(this).collapse('hide');
              }
          });
+
+         var scroll_start = 0;
+            var startchange = $('#About');
+            var offset = startchange.offset();
+             if (startchange.length){
+            $(document).scroll(function() {
+               scroll_start = $(this).scrollTop();
+               if(scroll_start > offset.top) {
+                   $(".navvv").css('background-color','#87ad5d');
+                } else {
+                   $('.navvv').css('background-color', 'transparent');
+                }
+            });
+             }
          });
       </script>
    </body>

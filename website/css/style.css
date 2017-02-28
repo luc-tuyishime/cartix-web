@@ -4,12 +4,20 @@ body {
     color: #f5f6f7;
 }
 p {
-    font-size: 13px;
+    font-size: 14px;
 }
 .index-box-text {
     font-weight: bold;
-    padding-top: 250px;
+    padding-top: 120px;
 }
+
+
+
+.adresse{
+  padding-top: 40px;
+}
+
+
 .bg-4 {
     background-color: black;
     color: #ffffff;
@@ -159,6 +167,8 @@ a {
 
 .intelligence {
     font-weight: bold;
+      color: #880e4f;
+    font-size: 17px;
 }
 .download-image {
     position: relative;
@@ -166,6 +176,14 @@ a {
 }
 a {
     outline: none;
+}
+.btn-default {
+    color: #333;
+    background-color: transparent;
+    border-color: #ccc;
+    border-radius: 40px;
+    height: 50px;
+    line-height: 20px !important;
 }
 
 .down-arrow {
@@ -222,7 +240,7 @@ a {
 }
 
 .touch2 {
-    font: 16px "greatests";
+    font: 14px "greatests";
 }
 .support_text {
     font: 16px "greatests";
@@ -253,14 +271,14 @@ a {
     src: url('../font/abeatbyKaiRegular.otf');
 }
 .class1 {
-    font: 13px "exuus";
+    font: 14px "exuus";
 }
 .opostrophe {
     font-family: apostrophe;
     src: url('../font/Mebinac regular.otf');
 }
 .slash {
-    font: 13px "apostrophe";
+    font: 14px "apostrophe";
 }
 .large {
     font: 17px "greatests";
@@ -323,7 +341,7 @@ h1,
     font: 45px "greatest";
 }
 .text00 {
-    font: 18px "greatests";
+    font: 14px "greatests";
     color: #e0e0e0;
 }
 a:hover{
@@ -441,16 +459,13 @@ background-size: cover;
     font: 35px "greatest";
     margin-top: 23px;
 }
-.cartix-home {} .down-arrow2 {
-    position: relative;
-    top: 50px;
-}
+
 .bounce {
 
     height: 50px;
 }
 .down-arrow_2{
-  margin-top: 10px;
+  /*margin-top: 10px;*/
 }
 .social-network-icon{
   max-height: 30px;
@@ -472,16 +487,8 @@ img {
         width: 100%;
     }
 }
- @media only screen and (max-width: 500px) {
-  .bounce{
-    position: relative;
-    bottom: 125px;
-  }
-}
-.adresse{
-  position: relative;
-  bottom: 30px;
-}
+
+
 @media only screen and (max-width: 500px) {
     .home-icon {
         width: 100%;
@@ -498,6 +505,7 @@ img {
         width: 100%;
     }
 }
+
 @media only screen and (max-width: 500px) {
     .customer-img {
         width: 100%;
