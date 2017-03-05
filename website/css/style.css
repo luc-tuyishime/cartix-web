@@ -15,7 +15,10 @@ p {
   .adresse{
     padding-top: 40px;
   }
-
+.comunity-img{
+   position: relative;
+   bottom: 99px;
+}
 .bg-4 {
     background-color: black;
     color: #ffffff;
@@ -57,8 +60,8 @@ p {
     border-radius: 40px;
     height: 40px;
     line-height: 10px !important;
-
 }
+
 .btn-responsive:hover,
 .btn-responsive:focus{
 outline:0 !important;
@@ -72,6 +75,7 @@ outline:0 !important;
     height: 44px;
     line-height: 10px !important;
 }
+
 .bg-1 {
     background: url("../img/map.jpg") no-repeat center center fixed;
     -webkit-background-size: cover;
@@ -79,62 +83,75 @@ outline:0 !important;
     -o-background-size: cover;
     background-size: cover;
 }
+
 .navbar-inverse .navbar-toggle .icon-bar {
     background-color: #fff;
     outline: none;
 }
+
 .navbar-default{
     outline: none;
 }
+
 .navbar-default > li > a:hover,
 .navbar-default > li > a:focus {
     background-color: transparent;
     outline: none;
     color: #fff;
 }
+
 .navbar-inverses .navbar-toggle .icon-bar {
     background-color: #fff;
     outline: none;
 }
+
 .navbar-inverse .navbar-nav > li > a,
 .navbar-inverse .navbar-nav > li > a:focus {
     color: white;
     outline: none;
 }
+
 .navbar-inverses .navbar-nav > li > a,
 .navbar-inverses .navbar-nav > li > a:focus {
     color: white;
     outline: none;
 }
+
 .navbar-inverse .navbar-nav > li > a:hover,
 .navbar-inverse .navbar-nav > li > a:focus {
     background-color: transparent;
     color: lightgray;
     outline: none;
 }
+
 .navbar-inverses .navbar-nav > li > a:hover,
 .navbar-inverses .navbar-nav > li > a:focus {
     background-color: transparent;
     color: lightgray;
     outline: none;
 }
+
 .navbar-inverse {
     background-color: none;
     color: white;
 }
+
 .navbar-inverses {
     background-color: none;
     color: white;
 }
+
 .navbar-inverse .navbar-collapse,
 .navbar-inverse .navbar-form {
     border-color: #fff;
 }
+
 .navbar-inverses .navbar-brand:hover,
 .navbar-inverses .navbar-brand:focus {
     background-color: transparent;
     color: #999999;
 }
+
 .cartix-logo {
     height: 40px;
     float: left;
@@ -164,10 +181,19 @@ outline:0 !important;
   margin-bottom: 30px;
   color: #f9a825;
 }
+
 @media only screen and (max-width: 500px) {
     .download-image {
         width: 80%;
         height: auto;
+    }
+    .comunity-img{
+      width: 100%;
+      height: auto;
+    }
+    .text-style-bottom{
+      position: relative;
+      top: 110px;
     }
 }
 
@@ -210,6 +236,7 @@ a {
 .kiwi1 {
     fill: white;
 }
+
 .kiwi2 {
     fill: white;
 }
@@ -516,46 +543,46 @@ img {
     display: block;
     margin: 0 auto;
 }
- @media only screen and (max-width: 500px) {
+ @media only screen and (max-width: 500px) and (max-width: 1024px) {
     #Layer_01 {
         width: 100%;
     }
 }
 
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 500px) and (max-width: 1024px) {
     .home-icon {
         width: 100%;
         height: auto;
     }
 }
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 500px) and (max-width: 1024px){
     #Layer_02 {
         width: 100%;
     }
 }
-@media only screen and (max-width: 500px) {
-    .comunity-img {
+@media only screen and (max-width: 500px) and (max-width: 1024px){
+    /*.comunity-img {
         width: 100%;
-    }
+    }*/
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 500px) and (max-width: 1024px){
     .customer-img {
         width: 100%;
     }
 }
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 500px) and (max-width: 1024px){
     .blog-img {
         width: 100%;
     }
 }
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 500px) and (max-width: 1024px){
     .calendar-svg {
         width: 100%;
     }
 }
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 500px) and (max-width: 1024px){
     /*img{
     width: 100%;
     height: auto;
@@ -618,7 +645,7 @@ a {
   display: none;
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 500px) and (min-width : 1024px) {
 .location{
   display:none;
 }
@@ -655,27 +682,29 @@ a{
 .small-view{
   color: black;
 }
-.coming-soon-text{
+/*.coming-soon-text{
   position: relative;
-  bottom: 53px;
-}
+  bottom: 50px;
+}*/
+/*.icons-justify{
+  position: relative;
+  top: 40px;
+}*/
 .data{
   position: relative;
-  : 0px;
+  bottom: 20px;
 }
-.community-text_{
-  position: relative;
-  top: 50px;
-}
+
 .collapse-community{
   background-color: #87ad5d;
 }
 .down-arrow_2{
   display: none;
 }
-.comunity-img{
-  margin-top: -170px;
-}
+/*.comunity-img{
+ position: relative;
+ bottom: 120px;
+}*/
 .moda-fade{
   margin: 5px;
 }
@@ -689,7 +718,7 @@ a{
     line-height: 10px !important;
 }
 .cartix-content2{
- padding-top: 220px;
+ padding-top: 180px;
 }
 .support-div {
     position: relative;
@@ -706,14 +735,105 @@ a{
      .footer-hide{
        display: none;
      }
+     .small-view{
+       color: gray;
+     }
+     .footer-link1{
+       color: gray;
+     }
+     .bounce{
+       display: none;
+     }
+     .down-arrow_2{
+       display: none;
+     }
+}
+    @media only screen and (max-width:732px) {
+  /* Styles for Portrait screen */
+  .location{
+    display:none;
+  }
+  .btn-responsive {
+      font: 17px "greatest";
+      color: #333;
+      background-color: transparent;
+      /*border: 1.99px solid #ccc;
+      border-radius: 40px;
+      height: 40px;
+      width: 100px;*/
+      line-height: 10px !important;
+  }
+
+  .down_arrow{
+      display: none;
+  }
+
+  .bottom_footer{
+    margin-top: 15px;
+  }
+
+  .index-box-text{
+  padding-top: 10px;
+  }
+
+  /*.data{
+    padding-bottom: 90px;
+  }*/
+
+  .footer-hide{
+    display: none;
+  }
+  a{
+    color: #fff;
+  }
+  .small-view{
+    color: black;
+  }
+  .coming-soon-text{
+    position: relative;
+    bottom: 60px;
+  }
+  .data{
+    position: relative;
+    : 0px;
+  }
+
+  .collapse-community{
+    background-color: #87ad5d;
+  }
+  .down-arrow_2{
+    display: none;
+  }
+
+  .moda-fade{
+    margin: 5px;
+  }
+  .btn-responsive {
+      font: 17px "greatest";
+      color: #333;
+      background-color: transparent;
+      border: 1.99px solid #ccc;
+      border-radius: 40px;
+      height: 32px;
+      line-height: 10px !important;
+  }
+  .cartix-content2{
+   padding-top: 220px;
+  }
+  .support-div {
+      position: relative;
+      bottom: 120px;
+      padding-bottom: 70px;
+      min-height: 0px important;
+    }
 }
 
-@media screen and (max-width: 500px) {
+/*@media screen and (max-width: 500px) {
     html,body{
         animation: none !important;
         visibility: visible !important;
     }
-}
+}*/
 .styling{
   width: 100%;
   color: #fff;
@@ -797,15 +917,6 @@ a{
     src:url(../font/glyphicons-halflings-regular.ttf);
 }
 
-
-/*Index.html*/
-/*.panel-body{
-  background-color: black;
-}
-.panel-body{
-  margin-left: 19px;
-}*/
-
 /*cartix page*/
 .bg_01 {
 background-color: #fafafa; /* Green */
@@ -827,7 +938,6 @@ top: 0;
 left: 0;
 z-index: 9999;
 width: 100%;
-
 /*padding-top: 15px;
 padding-bottom: 15px;*/
 border: 0;
@@ -847,9 +957,15 @@ background:url(../img/cash.svg) no-repeat;
 -moz-background-size: cover;
 -o-background-size: cover;
 background-size: cover;
+margin-left: auto;
+margin-right: auto;
 }
 .pricing-detail{
-margin-top: 90px;
+padding-top: 180px;
+padding-bottom: 180px;
+}
+.bottom-style{
+  padding-bottom: 180px;
 }
 .panel-bottom{
   margin-bottom: 95px;
@@ -980,7 +1096,7 @@ float: right;
 color: #2962ff;
 }
 .community-text_{
-bottom: 85px;
+/*bottom: 85px;*/
 }
 /*FAQ style*/
 
@@ -1184,9 +1300,53 @@ textarea[placeholder]:focus {
 .navbar-inverse .navbar-nav > .active > .large-link:focus {
   color:#e0e0e0;
 
-
 }
 
 .large-link_{
 display: none;
+}
+
+/*Savings Groups*/
+.bg-002 {
+background:url(../img/img.jpg) no-repeat center center fixed;
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+width: 100%;
+height: auto;
+padding-top: 35px;
+padding-bottom: 45px;
+}
+
+.bg-03{
+background-color: #e0e0e0;
+}
+
+.default-1{
+background-color: #0099dA;
+border: 1px solid #0099da;
+}
+.default-2{
+background-color: #23b24c;
+border: 1px solid #23b24c;
+}
+.context{
+border-radius: 20px;
+margin-bottom: 80px;
+}
+.bg-5{
+background-color: #424242;
+padding-top: 30px;
+padding-bottom: 20px;
+}
+/*footer{
+position: relative;
+margin-top: -20px;
+height: 20px;
+clear:both;
+}*/
+.carousel{
+margin-top: 50px;
+margin-bottom: 30px;
 }

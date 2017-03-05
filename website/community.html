@@ -16,7 +16,6 @@
    <body>
       <!-- Navbar -->
       <div class="container-fluid bg-001 text-center" id="About">
-        <div class="bg-one" >
          <nav class="navbar navbar-inverses text-center">
            <div class="navvv">
               <div class="navbar-header">
@@ -39,12 +38,14 @@
               </div>
            </div>
           </nav>
-          <div class="row" >
-            <img src="img/com.svg" height="550px" width="930px" class="comunity-img">
+          <div class="row">
+             <img src="img/community.png" width="590px"  class="comunity-img">
             <div class="community-text_" >
+              <div class="text-style-bottom">
                <h1  class="comunnity-text">Community</h1>
                <p class="touch touch-comunity">Cartix is here to stay and to grow mainly through a community of open data enthusiasts driven by the spirit of<br> collective effort and knowledge sharing. Our main goal is to sustainably spark a movement to grow a vibrant<br> community of expert in data science that spans various sectors in Rwanda and beyond.
                </p>
+             </div>
                <a href="#bottom">
                   <div class="down-arrow_2">
                     <a href="#customers">
@@ -54,7 +55,6 @@
                </a>
          </div>
        </div>
-      </div>
     </div>
       <!-- Second Container -->
       <div class="container bg-02 text-center" id="customers">
@@ -99,7 +99,6 @@
                  <div class="row moda-fade">
                 <p class="modal-title">Contact Us</p>
                 <p class="modal-subtitle">Please fill out the below form and we<span style="font-family:normal">'</span>ll be in touch real soon.</p><br>
-
                 <form ng-app="myApp" ng-controller="validateCtrl"  action="r" method="post" accept-charset="utf-8" class="form" role="form">
                   <div class="row input">
                       <div class="col-xs-6 col-md-6">
@@ -108,36 +107,28 @@
                         </div>
                       <div class="col-xs-6 col-md-6">
                     <input type="text" class="form-control input-lg my_form" placeholder="last name" ng-model="user" required/>
-
                   </div>
                   </div>
-
                   <div class="row input">
                       <div class="col-xs-6 col-md-6">
                           <input type="text" class="form-control input-lg my_form" placeholder="Email" ng-model="email" required/>
-
                         </div>
                       <div class="col-xs-6 col-md-6">
                     <input type="text" class="form-control input-lg my_form" placeholder="Phone number" ng-model="phone" required/>
-
                   </div>
                   </div>
                   <div class="row input">
                       <div class="col-xs-6 col-md-6">
                           <input type="text" class="form-control input-lg my_form" placeholder="Industry" ng-model="industry" required/>
-
                         </div>
                       <div class="col-xs-6 col-md-6">
                     <input type="text" class="form-control input-lg my_form" placeholder="Role" ng-model="role" required/>
-
                   </div>
                   </div>
                   <input type="text" name="email" value="" class="form-control input-lg input my_form" placeholder="Organization"  ng-model="organization" required/>
-
                   <div class="form-group">
                   <textarea class="form-control my_form" rows="5" id="comment" placeholder="Tell us how we can help you"></textarea>
                 </div>
-
                 <button class="btn btn-lg btn-primary  signup-btn" type="submit">
                       Submit</button>
                 </form>
@@ -226,12 +217,9 @@
            </div>
           </div>
          </div>
-
          <div class="row">
          <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-
            <button type="button" class="styling2 btn btn-lg btn-style collapsed" data-toggle="collapse" data-target="#demo1"><span class="collapse-text2">Cartix</span></button>
-
            <div id="demo1" class="collapse">
              <div class="panel-body body-style2">
                <p class="footer-link "><a class="small-view" href="cartix.html">CARTIX</a></p>
@@ -288,9 +276,7 @@
            // Add scrollspy to <body>
            $('body').scrollspy({target: ".navbar", offset: 50});
            // make responsive on all screen
-
-
-           $(".community-text_").css("margin-top", $(window).height()-830);
+           $(".community-text_").css("margin-top", $(window).height()-900);
            $(".bg-001").css("height", function(index){
                return $(window).height();
            })
@@ -299,17 +285,14 @@
              // Make sure this.hash has a value before overriding default behavior
              if (this.hash !== "") {
                // Prevent default anchor click behavior
-               event.preventDefault();
-
                // Store hash
+               event.preventDefault();
                var hash = this.hash;
-
                // Using jQuery's animate() method to add smooth page scroll
                // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
                $('html, body').animate({
                  scrollTop: $(hash).offset().top
                }, 900, function(){
-
                  // Add hash (#) to URL when done scrolling (default click behavior)
                  window.location.hash = hash;
                });
@@ -323,16 +306,13 @@
              if (this.hash !== "") {
                // Prevent default anchor click behavior
                event.preventDefault();
-
                // Store hash
                var hash = this.hash;
-
                // Using jQuery's animate() method to add smooth page scroll
                // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
                $('html, body').animate({
                  scrollTop: $(hash).offset().top
                }, 1000, function(){
-
                  // Add hash (#) to URL when done scrolling (default click behavior)
                  window.location.hash = hash;
                });
@@ -358,7 +338,7 @@
                    $('.navvv').css('background-color', 'transparent');
                 }
             });
-             }
+           }
          });
       </script>
    </body>
