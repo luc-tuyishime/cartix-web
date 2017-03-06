@@ -1020,7 +1020,7 @@ background-color: #a8cfb1;
 border: 2px solid  #a8cfb1;
 }
 .panel-default{
-  box-shadow:-15px 25px 30px #bdbdbd;
+  box-shadow:-15px 25px 40px 2px lightgray;
 }
 .body-3{
 background-color: #91d0ff;
@@ -1148,9 +1148,8 @@ color: #ffffff;
 height: 50px;
 }
 .price_style2{
-    font: 19px "greatests";
+    font: 15px "greatests";
 }
-
 
 .modal.fade .modal-dialog {
     -webkit-transform: scale(8);
@@ -1199,13 +1198,12 @@ height: 50px;
 .modal-subtitle{
   text-align: center;
   color: #fff;
-    font: 16px "greatests";
+  font: 16px "greatests";
 }
 .input{
   margin-bottom: 12px;
 }
 .close {
-
 font-size: 41px;
 font-weight: 700;
 line-height: 2;
@@ -1218,14 +1216,12 @@ border-color: #fff;
 border-radius: 18px;
 width: 45px;
 height: 40px;
-
 line-height: 38px !important;
 }
 .my_form{
   background-color: transparent;
   color: white;
   opacity: 0.60;
-
 }
 .input-lg:focus{
   border-color: #fff;
@@ -1239,19 +1235,19 @@ input[placeholder]:focus {
     opacity: 2;
 }
 input[placeholder] {
-    font-weight: bold;
-    color: #fff;
-    opacity: 2;
+  font-weight: bold;
+  color: #fff;
+  opacity: 2;
 }
 textarea[placeholder] {
-    font-weight: bold;
-    color: #fff;
-    opacity: 2;
+  font-weight: bold;
+  color: #fff;
+  opacity: 2;
 }
 textarea[placeholder]:focus {
-    font-weight: bold;
-    color: white;
-    opacity: 2;
+  font-weight: bold;
+  color: white;
+  opacity: 2;
 }
  .my_form:focus{
   border-color: #fff;
@@ -1268,11 +1264,12 @@ textarea[placeholder]:focus {
   color: #fff;
   opacity: 2;
   font: 16px "greatests";
-
 }
+
 ::-webkit-input-placeholder:focus{
   color: #fff;
 }
+
 ::-moz-placeholder { /* Firefox 19+ */
   color: #fff;
   font: 16px "greatests";
@@ -1306,9 +1303,6 @@ textarea[placeholder]:focus {
 .navbar-default .navbar-nav > .active > .large-link:hover,
 .navbar-default .navbar-nav > .active > .large-link:focus {
   color: #560034;
-
-
-
 }
 
 .navbar-inverses .navbar-nav > li > .large-link:hover,
@@ -1317,8 +1311,6 @@ textarea[placeholder]:focus {
 .navbar-inverses .navbar-nav > .active > .large-link:hover,
 .navbar-inverses .navbar-nav > .active > .large-link:focus {
   color: #e0e0e0;
-
-
 }
 .navbar-inverse .navbar-nav > li > .large-link:hover,
 .navbar-inverse .navbar-nav > li > .large-link:focus,
@@ -1326,7 +1318,6 @@ textarea[placeholder]:focus {
 .navbar-inverse .navbar-nav > .active > .large-link:hover,
 .navbar-inverse .navbar-nav > .active > .large-link:focus {
   color:#e0e0e0;
-
 }
 
 .large-link_{
