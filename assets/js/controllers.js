@@ -48,7 +48,7 @@ myapp.controller('signupCtrl', ['$scope', '$location', 'AuthService', function($
                     });
             })
             // handle error
-            .catch(function() {
+            .catch(function() { 
                 $scope.disabled = true;
             });
 
@@ -231,7 +231,7 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$
             }
         }
 
-        var data = '{"original":"' + original + '","save":"' + save + '","user_id":"' + id + '","filename":"' + filename + '"}';
+        var data = '{"original":"' + original + '","saved":"' + save + '","user_id":"' + id + '","filename":"' + filename + '"}';
 
         $http.post('http://127.0.0.1:5000/api/v1/file/save/', data, config)
             .success(function(data, status, header, config) {
@@ -649,7 +649,7 @@ myapp.controller('notificationCtrl', ['$scope', '$http', 'AuthService', '$q', fu
         }
 
         //loadInternational local Partner
-        loadLocalPartner(ngo_id);
+        //loadLocalPartner(ngo_id);
 
         function loadLocalPartner(ngo_id) {
             console.log(ngo_id);

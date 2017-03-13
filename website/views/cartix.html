@@ -1,129 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-   <head>
-      <title>cartix</title>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="stylesheet" href="css/bootstrap-min.css">
-      <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-      <link rel="shortcut icon" href="img/cartix-favicon.png" type="image/x-icon">
-      <script src="js/bootstrap.min.js"></script>
-      <link rel="stylesheet" href="css/style.css"> 
-      <style>
-         .bg-01 {
-         background-color: #fafafa; /* Green */
-         color: #ffffff;
-         padding-top: 70px;
-         padding-bottom: 70px;
-         }
-         .bg-3 {
-         background-color: #560034; /* Green */
-         color: #ffffff;
-         }
-         .logo-bourgogne{
-         height: 50px;
-         }
-         .navbar {
-         position: fixed;
-         top: 0;
-         left: 0;
-         z-index: 9999;
-         width: 100%;
 
-         /*padding-top: 15px;
-         padding-bottom: 15px;*/
-         border: 0;
-         border-radius: 0;
-         margin-bottom: 0;
-         font-size: 12px;
-         }
-         .navbar-nav  li a:hover {
-         color: #1abc9c !important;
-         }
-         .navbar-default{
-         background-color: #fff;
-         }
-         .bg-02 {
-         background:url(img/cash.svg) no-repeat;
-         -webkit-background-size: cover;
-         -moz-background-size: cover;
-         -o-background-size: cover;
-         background-size: cover;
-         }
-         .pricing-detail{
-         margin-top: 90px;
-         margin-bottom: 90px;
-         }
-         .basic-style{
-         color: #757575;
-         margin: 20px;
-         font-weight: bold;
-         }
-         .standard-style{
-         color: #757575;
-         margin: 20px;
-         font-weight: bold;
-         }
-         .premium-style{
-         color: #757575;
-         margin: 20px;
-         font-weight: bold;
-         }
-         .body-1{
-         background-color: #ffda88;
-         }
-         .body-2{
-         background-color: #a8cfb1;
-         }
-         .body-3{
-         background-color: #91d0ff;
-         }
-         .footer-1{
-         background-color: #fff;
-         }
-         .price-style{
-         font-size: 32px;
-         font-family: sans-serif;
-         }
-         .price-style2{
-         font-size: 69px;
-         }
-         .text_{
-         margin-top: 23px;
-         color:  #9e9e9e;
-         text-align: justify;
-         font-weight: bold;
-         }
-         .list-style_{
-         color: #616161;
-         font-size: 15px;
-         text-align: justify;
-         }
-         #pricing{
-         padding-top: 50px;
-         }
-         #support{
-         padding-top: 80px;
-         }
-         .bg-4{
-         background-color: #fff;
-         }
-         a{
-         color: #757575;
-         }
-        .footer-link:hover{
-           color: #01579b;
-        }
-        .cartix-content{
-          margin-top: 200px;
-        }
-
-      </style>
-   </head>
-   <body>
       <!-- Navbar -->
-      <nav class="navbar navbar-default">
+      <nav class="navbar navbar-default cartix-nav">
          <div class="container-fluid">
             <div class="navbar-header">
                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -135,17 +12,18 @@
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                <ul class="nav navbar-nav navbar-right">
-                  <li><a href="index.html">Home</a></li>
-                  <li><a href="#pricing">Pricing</a></li>
-                  <li><a href="#support">Support</a></li>
-                  <li ><a href="http://savinggroup.cartix.io/#/" class="btn btn-default">Log in</a></li>
+                  <li><a class="large-link" href="#!/">Home</a></li>
+                  <li><a class="large-link" href="#!/about/#about">About</a></li>
+                  <li><a class="large-link" href="#!/about/#pricing">Pricing</a></li>
+                  <li><a class="large-link" href="#!/about/#support">Support</a></li>
+                  <li ><a href="#" class="btn-bottom btn-lg btn-default btn-responsive">log in</a></li>
                </ul>
             </div>
          </div>
       </nav>
       <!-- First Container -->
-      <div class="container-fluid bg-01 text-center" id="about">
-        <div class="cartix-content">
+      <div class="container-fluid bg_01 text-center" id="about">
+        <div class="cartix-content2">
          <img src="img/homeicon.svg" class="home-icon">
          <p class="cartix-text">What<span class="opostrophe">'</span>s up with cartix</p>
          <p style="color:#424242;margin-top:15px;" class="touch2">Cartix is a  web platform that enables organizations to optimize operational performance, strategic investments,<br> and enhances everyday decision making processes through adequate, timely and advanced data exploitation.
@@ -153,7 +31,6 @@
          <p style="color:#424242;margin-top:15px;" class="touch2"><span class="intelligence">Mapping Intelligence</span>:With Cartix Engine —Our embeddable platform for web and soon to be available on mobile<br> apps allows users through intelligent mapping to quickly discover patterns, correlations, relationships, and trends<br> to analyze the unique characteristics that make up a specific phenomenon at both small and large scales.</p>
          <p  style="color:#424242;margin-top:15px;" class="touch2"><span class="intelligence">Advanced Data Analytics</span>:  Along with the mapping intelligence component, Cartix offers broader analytical<br> models that break down complex issues while extracting data and categorizing it to identify<br> and analyze behavioral data as well as patterns.</p>
          <!-- <img src="img/down-arrow1.png" class="down-arrow2"> -->
-
          <div class="down-arrow_2">
           <a href="#pricing">
             <img src="img/drop2.svg" class="down-arrow">
@@ -162,16 +39,15 @@
        </div>
       </div>
       <!-- Second Container -->
-      <div class="container bg-02 text-center" id="pricing">
-
-         <h1 style="color:#757575;margin-top:50px;font-weight:bold;" class="">Our pricing</h1>
-         <div class="pricing-detail">
-            <div class="row">
-               <div class="col-sm-4 col-xs-12">
-                  <div class="panel panel-default text-center">
+      <div class="container bg_02 text-center" id="pricing">
+        <div class="row">
+          <h1 style="color:#757575;margin-top:35px;font-weight:bold;" class="">Our pricing</h1>
+            <div class="pricing-detail">
+               <div class="col-sm-4  bottom-style">
+                  <div class="panel panel-default panel-bottom  text-center">
                      <div class="panel-body body-1">
                         <h3 class="basic-style">BASIC</h3>
-                        <p class="price-style">$<span class="price-style2">0</span></p>
+                        <p class="price-style">$<span class="price-style2">0</span><span class="price_style2">Per month</span></p>
                         <button type="button" class="btn btn-default btn-lg large">Sign Up</button>
                      </div>
                      <div class="panel-footer footer-1">
@@ -209,12 +85,12 @@
                      </div>
                   </div>
                </div>
-               <div class="col-sm-4 col-xs-12">
-                  <div class="panel panel-default text-center">
+               <div class="col-sm-4 bottom-style">
+                  <div class="panel panel-default panel-bottom  text-center">
                      <div class="panel-body body-2">
                         <h3 class="standard-style">STANDARD</h3>
-                         <p class="price-style">$<span class="price-style2">299</span> <span style="font-size:15px;">per month</span></p>
-                        <button type="button" class="btn btn-default btn-lg large">Contact Us</button>
+                        <p class="price-style">$<span class="price-style2">299</span><span class="price_style2">Per month</span></p>
+                        <button type="button" class="btn btn-default btn-lg large" data-toggle="modal" data-target="#demo">Contact Us</button>
                      </div>
                      <div class="panel-footer footer-1">
                         <p class="text_">Standard includes<br>  All these great features  (Free 30 Days Trial):</p>
@@ -258,11 +134,11 @@
                      </div>
                   </div>
                </div>
-               <div class="col-sm-4 col-xs-12">
-                  <div class="panel panel-default text-center">
+               <div class="col-sm-4 bottom-style">
+                  <div class="panel panel-default panel-bottom text-center">
                      <div class="panel-body body-3">
                         <h3 class="premium-style">PREMIUM</h3>
-                        <button type="button" class="btn btn-primary btn-lg large2">Contact Us</button>
+                        <a href="#test-popup" data-effect="mfp-zoom-out"><button type="button" id="inline-popups" class="btn btn-primary btn-lg large2" data-toggle="modal" data-target="#demo">Contact Us</button></a>
                      </div>
                      <div class="panel-footer footer-1">
                         <p class="text_">Premium includes<br>  All these great features:</p>
@@ -303,8 +179,8 @@
          </div>
       </div>
       <!-- Third Container (Grid) -->
-      <div class="container-fluid bg-3" id="support">
-         <div class="container object">
+      <div class="container-fluid bg_3" id="support">
+         <div class="container">
             <div class="row">
                <div class="col-md-6">
                   <svg version="1.1" id="Layer_02" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="500px"
@@ -319,8 +195,7 @@
                                  <path fill="#6D6E71" d="M1062.55,343.918c0-26.454-22.193-48.631-49.809-48.631H224.837c-27.62,0-50.124,22.177-50.124,48.631
                                     v397.278h887.837V343.918z"/>
                                  <path fill="#FFFFFF" stroke="#231F20" stroke-width="5.8599" stroke-linejoin="round" stroke-miterlimit="10" d="
-                                    M174.713,741.196v102.916c0,26.466,22.504,44.394,50.124,44.394h787.904c27.616,0,49.809-17.928,49.809-44.394V741.196H174.713z
-                                    "/>
+                                    M174.713,741.196v102.916c0,26.466,22.504,44.394,50.124,44.394h787.904c27.616,0,49.809-17.928,49.809-44.394V741.196H174.713z"/>
                               </g>
                               <path fill="#BCBEC0" d="M649.712,814.252c0,17.068-13.837,30.917-30.917,30.917c-17.08,0-30.913-13.849-30.913-30.917
                                  c0-17.08,13.834-30.914,30.913-30.914C635.875,783.339,649.712,797.172,649.712,814.252z"/>
@@ -379,7 +254,7 @@
                            </g>
                            <g>
                               <polygon fill="#FFFFFF" points="421.555,446.578 87.123,446.578 87.123,542.13 236.248,542.13 255.906,576.2 275.564,542.13
-                                 421.555,542.13 			"/>
+                                 421.555,542.13 "/>
                               <line fill="none" stroke="#231F20" stroke-width="5.8599" stroke-linejoin="round" stroke-miterlimit="10" x1="118.974" y1="478.428" x2="222.489" y2="478.428"/>
                               <line fill="none" stroke="#231F20" stroke-width="5.8599" stroke-linejoin="round" stroke-miterlimit="10" x1="118.974" y1="514.26" x2="389.705" y2="514.26"/>
                            </g>
@@ -392,20 +267,74 @@
                   <p class="support_text">Your experience, our utmost reason of being!</p>
                   <p class="support_text">With the client being at the center of everything we do as well as being the ultimate reason we do what we do, we always strive to make your experience with Cartix hustle-free in any possible way.</p>
                   <p class="support_text">Our team is available 24 <span class="slash">/</span> 7 to assist you with any inquiry you might have with our platform as we help you have an enjoyable experience with the platform. With Cartix everybody suddenly becomes an expert in data handling ;-) </p>
-                  <p class="support_text">For personalized Inquiries e-mail us on <a href="" class="link-style">support@cartix.io</a>
-                     Feel free to also visit our <a href="faq.html" class="link-style">FAQ</a> or Demo sections for more insights.
+                  <p class="support_text">For personalized Inquiries e-mail us <a href="" class="link-style" data-toggle="modal" data-target="#demo">here</a>. Feel free to also visit our <a href="faq.html" class="link-style">FAQ</a> or Demo sections for more insights.
                   </p>
                </div>
             </div>
          </div>
       </div>
-      <footer  class="container-fluid bg-4 text-center">
+
+      <div class="container-fluid">
+      <div class="modal fade " id="demo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog ">
+          <button type="button" class="close" data-dismiss="modal"><span  aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+               <div class="row moda-fade">
+              <p class="modal-title">Contact Us</p>
+              <p class="modal-subtitle">Please fill out the below form and we<span style="font-family:normal">'</span>ll be in touch real soon.</p><br>
+
+              <form ng-app="myApp" ng-controller="validateCtrl"  action="r" method="post" accept-charset="utf-8" class="form" role="form">
+                <div class="row input">
+                    <div class="col-xs-6 col-md-6">
+                        <input type="text" class="form-control input-lg my_form" placeholder="first name" ng-model="user" required/>
+
+                      </div>
+                    <div class="col-xs-6 col-md-6">
+                  <input type="text" class="form-control input-lg my_form" placeholder="last name" ng-model="user" required/>
+
+                </div>
+                </div>
+
+                <div class="row input">
+                    <div class="col-xs-6 col-md-6">
+                        <input type="text" class="form-control input-lg my_form" placeholder="Email" ng-model="email" required/>
+
+                      </div>
+                    <div class="col-xs-6 col-md-6">
+                  <input type="text" class="form-control input-lg my_form" placeholder="Phone number" ng-model="phone" required/>
+
+                </div>
+                </div>
+                <div class="row input">
+                    <div class="col-xs-6 col-md-6">
+                        <input type="text" class="form-control input-lg my_form" placeholder="Industry" ng-model="industry" required/>
+
+                      </div>
+                    <div class="col-xs-6 col-md-6">
+                  <input type="text" class="form-control input-lg my_form" placeholder="Role" ng-model="role" required/>
+
+                </div>
+                </div>
+                <input type="text" name="email" value="" class="form-control input-lg input my_form" placeholder="Organization"  ng-model="organization" required/>
+
+                <div class="form-group">
+                <textarea class="form-control my_form" rows="5" id="comment" placeholder="Tell us how we can help you"></textarea>
+              </div>
+
+              <button class="btn btn-lg btn-primary  signup-btn" type="submit">
+                    Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer  class="container-fluid bg_04 text-center">
          <div class="section-group">
            <div class="container">
             <div class="row">
                <div class="icons-justify">
                   <div class="col-md-3">
-                     <p class="touch" style="color:#9e9e9e">Get in touch with us</p>
+                     <p class="touch-footer" style="color:#9e9e9e">Get in touch with us</p>
                      <a href="https://twitter.com/Cartix_io" target="_blank">
                         <svg version="1.1" id="Twitter_w_x2F__circle" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                            x="0px" y="0px"    width="25px" height="30px"  viewBox="0 0 20 20" fill="black" enable-background="new 0 0 49 49" xml:space="preserve">
@@ -447,9 +376,11 @@
                            </g>
                         </svg>
                      </a>
-                     <p style="color:#9e9e9e"><span class="touch">Copyright</span>&copy<span class="touch">2016</span> <a href="http://www.exuus.com" target="_blank" class="class1">exuus</a></p>
+                     <p style="color:#9e9e9e"><span class="touch-footer">Copyright</span>&copy<span class="touch-footer">2016</span> <a href="http://www.exuus.com" target="_blank" class="class1">exuus</a></p>
                   </div>
                </div>
+
+                <div class="footer-hide">
                <div class="col-md-2">
                   <p style="color:#757575" class="footer-link">CARTIX</p>
                      <p  style="color:#9e9e9e" class="footer-link1">About</p>
@@ -458,7 +389,7 @@
                   <p  style="color:#9e9e9e" class="footer-link1"> <a href="faq.html">FAQ</a></p>
                </div>
                <div class="col-md-2">
-                  <p style="color:#757575"  class="footer-link"><a href="community.html" class="faqq">COMMUNITY</a></p>
+                  <p style="color:#757575"  class="footer-link"><a href="community.html">COMMUNITY</a></p>
                   <p  style="color:#9e9e9e" class="footer-link1">Customers</p>
                   <p  style="color:#9e9e9e" class="footer-link1">Blog</p>
                   <p  style="color:#9e9e9e" class="footer-link1">Event</p>
@@ -474,68 +405,66 @@
                   <p style="color:#9e9e9e" class="footer-link1">Demo</p>
                </div>
             </div>
+            </div>
           </div>
          </div>
+
+
+
+         <div class="row">
+         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
+           <button type="button" class="styling2 btn btn-lg btn-style collapsed" data-toggle="collapse" data-target="#demo01"><span class="collapse-text2">Cartix</span></button>
+
+           <div id="demo01" class="collapse">
+             <div class="panel-body body-style2">
+               <p class="footer-link "><a class="small-view" href="cartix.html">CARTIX</a></p>
+               <p class="footer-link1 small-view">About</p>
+               <p class="footer-link1 small-view">Pricing</p>
+               <p class="footer-link1 small-view">Support</p>
+                 <p class="footer-link1 small-view"><a class="small-view" href="faq.html">FAQ</a></p>
+             </div>
+         </div>
+         <div class="border-bottom2"></div>
+         <div class="">
+           <button type="button" class="btn btn-lg btn-style collapsed styling2" data-toggle="collapse" data-target="#demo2"><span class="collapse-text2">Community</span></button>
+           <div id="demo2" class="collapse">
+             <div class="panel-body body-style2">
+               <p class="footer-link small-view"><a class="small-view" href="community.html">COMMUNITY</a></p>
+               <p class="footer-link1 small-view">Customers</p>
+               <p class="footer-link1 small-view">Blog</p>
+               <p class="footer-link1 small-view">Event</p>
+             </div>
+           </div>
+         </div>
+          <div class="border-bottom2"></div>
+         <div class="">
+           <button type="button" class="btn btn-lg btn-style collapsed styling2" data-toggle="collapse" data-target="#demo3"><span class="collapse-text2">Legal</span></button>
+           <div id="demo3" class="collapse">
+             <div class="panel-body body-style2">
+               <p class="footer-link_ small-view">LEGAL</p>
+               <p  class="footer-link1"><a class="small-view" href="privacy.html">Privacy Policy</a></p>
+               <p  class="footer-link1"><a class="small-view" href="terms.html">Terms of Use</a></p>
+             </div>
+           </div>
+         </div>
+          <div class="border-bottom2"></div>
+         <div class="">
+           <button type="button" class="btn btn-lg btn-style collapsed styling2" data-toggle="collapse" data-target="#demo4"><span class="collapse-text2">Quick links</span></button>
+           <div id="demo4" class="collapse">
+             <div class="panel-body body-style2">
+               <p class="footer-link_ small-view">QUICK LINKS</p>
+               <a href="">
+                   <p class="footer-link1 small-view">Saving Groups Map</p>
+               </a>
+               <a href="">
+                   <p class="footer-link1 small-view">Demo</p>
+               </a>
+             </div>
+           </div>
+         </div>
+          <div class="border-bottom2"></div>
+       </div>
+     </div>
       </footer>
-      <script>
-         $(document).ready(function(){
-           // Add scrollspy to <body>
-           $('body').scrollspy({target: ".navbar", offset: 50});
-           // make responsive on all screen
-          $(".bg-01").css("margin-top", $(window).height()-950);
-           $("").css("height", function(index){
-               return $(window).height();
-           })
-
-           $("a").on('click', function(event) {
-             // Make sure this.hash has a value before overriding default behavior
-             if (this.hash !== "") {
-               // Prevent default anchor click behavior
-               event.preventDefault();
-
-               // Store hash
-               var hash = this.hash;
-
-               // Using jQuery's animate() method to add smooth page scroll
-               // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
-               $('html, body').animate({
-                 scrollTop: $(hash).offset().top
-               }, 900, function(){
-
-                 // Add hash (#) to URL when done scrolling (default click behavior)
-                 window.location.hash = hash;
-               });
-             }  // End if
-           });
-
-           // Add smooth scrolling on all links inside the navbar
-           $(".nav a").on('click', function(event) {
-             // Make sure this.hash has a value before overriding default behavior
-             if (this.hash !== "") {
-               // Prevent default anchor click behavior
-               event.preventDefault();
-
-               // Store hash
-               var hash = this.hash;
-
-               // Using jQuery's animate() method to add smooth page scroll
-               // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
-               $('html, body').animate({
-                 scrollTop: $(hash).offset().top
-               }, 1000, function(){
-
-                 // Add hash (#) to URL when done scrolling (default click behavior)
-                 window.location.hash = hash;
-               });
-             }  // End if
-           });
-            // hide collapse link after click
-           $(document).on('click','.navbar-collapse.in',function(e) {
-             if( $(e.target).is('a') ) {
-                 $(this).collapse('hide');
-             }
-         });
-         });
-      </script>
-   </body>
-</html>
+      
