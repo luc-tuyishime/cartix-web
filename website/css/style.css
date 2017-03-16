@@ -1020,7 +1020,7 @@ background-color: #a8cfb1;
 border: 2px solid  #a8cfb1;
 }
 .panel-default{
-  box-shadow:-15px 25px 40px 2px lightgray;
+  box-shadow:-15px 15px 50px 2px lightgray;
 }
 .body-3{
 background-color: #91d0ff;
