@@ -953,55 +953,168 @@ function closeNav2() {
 
 
 function chartFunction() {
-    Highcharts.chart('container', {
-        chart: {
-            plotBackgroundColor: null,
-            plotBorderWidth: null,
-            plotShadow: false,
-            type: 'pie'
-        },
-        title: {
-            text: 'Browser market shares January, 2015 to May, 2015'
-        },
-        tooltip: {
-            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-        },
-        plotOptions: {
-            pie: {
-                allowPointSelect: true,
-                cursor: 'pointer',
-                dataLabels: {
-                    enabled: false
-                },
-                showInLegend: true
+    
+    
+    // MEMBERSHIP PER GENDER
+      var data = [{
+          values: ['132683', '537068'],
+          labels: ['Male Members', 'Female Members'],
+          type: 'pie'
+      }];
+
+      var layout = {
+         autosize: true,
+          showlegend: false,
+          margin:{
+              l: 0,
+              r:0
+          },
+          title: 'Membership per Gender'
+      };
+
+      Plotly.newPlot('container_pie', data, layout);
+    
+    
+    
+    //  SVGS_status per Intl NGOs
+    
+    var trace1 = {
+          x: ['CARE Rwanda', 'CRS', 'FHI360', 'Global Communities Rwanda', 'HAC', 'HOPE Rwanda', 'KNH', 'Plan Internatonal Rwanda', 'TEARFUND', 'USAID', 'World Relief Rwanda', 'World Vision Rwanda'],
+          y: [15233, 248, 247, 1507, 24, 5774, 128, 42, 0, 1028, 0, 811],
+          name: 'Supervised',
+          type: 'bar'
+
+      };
+
+      var trace2 = {
+          x: ['CARE Rwanda', 'CRS', 'FHI360', 'Global Communities Rwanda', 'HAC', 'HOPE Rwanda', 'KNH', 'Plan Internatonal Rwanda', 'TEARFUND', 'USAID', 'World Relief Rwanda', 'World Vision Rwanda'],
+          y: [0, 560, 175, 175, 0, 0, 542, 313, 342, 0, 874, 0],
+          name: 'Graduated',
+          type: 'bar'
+      };
+
+      var data = [trace1, trace2];
+
+      var layout = {
+          barmode: 'group',
+          autosize: true,
+          showlegend: false,
+          margin:{
+              l: 30,
+              r:10,
+              b:180
+          },
+          yaxis: {
+            tickangle: 0,
+            tickfont:{
+                size:10
             }
-        },
-        series: [{
-            name: 'Brands',
-            colorByPoint: true,
-            data: [{
-                name: 'Microsoft Internet Explorer',
-                y: 56.33
-            }, {
-                name: 'Chrome',
-                y: 24.03,
-                sliced: true,
-                selected: true
-            }, {
-                name: 'Firefox',
-                y: 10.38
-            }, {
-                name: 'Safari',
-                y: 4.77
-            }, {
-                name: 'Opera',
-                y: 0.91
-            }, {
-                name: 'Proprietary or Undetectable',
-                y: 0.2
-            }]
-        }]
-    });
+          },
+          title: 'SVGS_status per Intl NGOs',
+      };
+
+      Plotly.newPlot('container', data, layout, {showLegend:false});
+    
+    
+    
+    // SVGs Savings and Loans per Intl NGOs
+    
+    var trace1 = {
+          x: ['CARE Rwanda', 'CRS', 'FHI360', 'Global Communities Rwanda', 'HAC', 'HOPE Rwanda', 'KNH', 'Plan Internatonal Rwanda', 'TEARFUND', 'USAID', 'World Relief Rwanda', 'World Vision Rwanda'],
+          y: [9564196547, 152318325, 227661105, 268279839, 3578874, 0, 6137200, 200876930, 14628795, 246953190, 835458092, 253352767],
+          name: 'Savings',
+          type: 'bar'
+      };
+
+      var trace2 = {
+          x: ['CARE Rwanda', 'CRS', 'FHI360', 'Global Communities Rwanda', 'HAC', 'HOPE Rwanda', 'KNH', 'Plan Internatonal Rwanda', 'TEARFUND', 'USAID', 'World Relief Rwanda', 'World Vision Rwanda'],
+          y: [7817883814, 163880540, 181347924, 207704746, 0, 0, 0, 172487220, 0, 244481226, 0, 199566810],
+          name: 'Loans',
+          type: 'bar'
+      };
+
+      var data = [trace1, trace2];
+
+      var layout = {
+          title: 'SVGs Savings and Loans per Intl NGOs',
+          barmode: 'group',
+          autosize: true,
+          showlegend: false,
+          margin:{
+              l: 30,
+              r:10,
+              b:180
+          },
+          yaxis: {
+            tickangle: 0,
+            tickfont:{
+                size:10
+            }
+          }
+      };
+
+      Plotly.newPlot('container_saving_loan', data, layout);
+    
+    
+      // SVGs_creation year per Internatonal NGOs
+    
+      var trace1 = {
+          x: ['CARE Rwanda', 'CRS', 'FHI360', 'Global Communities Rwanda', 'HAC', 'HOPE Rwanda', 'KNH', 'Plan Internatonal Rwanda', 'TEARFUND', 'USAID', 'World Relief Rwanda', 'World Vision Rwanda'],
+          y: [1334, 74, 1, 0, 0, 301, 31, 0, 0, 702, 16, 0],
+          name: '2012',
+          type: 'bar'
+      };
+
+      var trace2 = {
+          x: ['CARE Rwanda', 'CRS', 'FHI360', 'Global Communities Rwanda', 'HAC', 'HOPE Rwanda', 'KNH', 'Plan Internatonal Rwanda', 'TEARFUND', 'USAID', 'World Relief Rwanda', 'World Vision Rwanda'],
+          y: [1557, 343, 90, 0, 0, 1259, 90, 48, 0, 0, 134, 0],
+          name: '2013',
+          type: 'bar'
+      };
+
+      var trace3 = {
+          x: ['CARE Rwanda', 'CRS', 'FHI360', 'Global Communities Rwanda', 'HAC', 'HOPE Rwanda', 'KNH', 'Plan Internatonal Rwanda', 'TEARFUND', 'USAID', 'World Relief Rwanda', 'World Vision Rwanda'],
+          y: [2495, 116, 97, 31, 22, 1366, 211, 32, 247, 84, 278, 51],
+          name: '2014',
+          type: 'bar'
+      };
+
+      var trace4 = {
+          x: ['CARE Rwanda', 'CRS', 'FHI360', 'Global Communities Rwanda', 'HAC', 'HOPE Rwanda', 'KNH', 'Plan Internatonal Rwanda', 'TEARFUND', 'USAID', 'World Relief Rwanda', 'World Vision Rwanda'],
+          y: [3673, 62, 41, 814, 2, 1607, 100, 170, 71, 219, 209, 219],
+          name: '2015',
+          type: 'bar'
+      };
+
+      var trace5 = {
+          x: ['CARE Rwanda', 'CRS', 'FHI360', 'Global Communities Rwanda', 'HAC', 'HOPE Rwanda', 'KNH', 'Plan Internatonal Rwanda', 'TEARFUND', 'USAID', 'World Relief Rwanda', 'World Vision Rwanda'],
+          y: [6174, 213, 193, 837, 0, 1241, 238, 105, 24, 23, 237, 541],
+          name: '2016',
+          type: 'bar'
+      };
+
+
+      var data = [trace1, trace2, trace3, trace4, trace5];
+
+      var layout = {
+          title: 'SGs Creation year/Internatonal NGOs',
+          barmode: 'group',
+          autosize: true,
+          showlegend: false,
+          margin:{
+              l: 30,
+              r:10,
+              b:180
+          },
+          yaxis: {
+            tickangle: 0,
+            tickfont:{
+                size:10
+            }
+          }
+      };
+
+      Plotly.newPlot('container_year_sg', data, layout);
 }
 
 
