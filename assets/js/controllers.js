@@ -1114,10 +1114,33 @@ function leafletCartix() {
 
 
     var Jsonfile;
-    $.getJSON('/assets/geojson/stats.json', function(data) {
-        Jsonfile = data;
+    // http://127.0.0.1:5000/api/v1/sqlsaving
+    // assets/geojson/stats.json
+    
+    /*function jsonData(handleData){
+        $.getJSON('http://127.0.0.1:5000/api/v1/sqlsaving', function(data) {
+            //console.log(data);
+            handleData(data);
+        });
+    }
+    
+    jsonData(function(output){
+       Jsonfile = output; 
+    }); */
+    
+ 
+    var url = 'http://127.0.0.1:5000/api/v1/sqlsaving';
+    $.ajax({
+       url: url,
+       async: false,
+        success: function(data){
+           Jsonfile =  data; 
+        }
     });
-
+    
+    
+    
+    
     function getColor(d) {
         return d > 5001 ? '#7f2704' :
             d > 4001 ? '#a63603' :
