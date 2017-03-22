@@ -1107,7 +1107,7 @@ function chartFunction() {
               b:180
           },
           yaxis: {
-            tickangle: 0,
+            tickangle: 90,
             tickfont:{
                 size:10
             }
