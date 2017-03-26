@@ -401,7 +401,7 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$
 
     // Function to call in excelfileCTRL
 
-    chartFunction();
+    
     backgroudHeight();
 
 
@@ -411,6 +411,7 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$
 
 
 myapp.controller('mapCtrl', ['$scope', '$http', function($scope, $http) {
+    
     leafletCartix();
     selectBox();
 
@@ -521,6 +522,12 @@ myapp.controller('mapCtrl', ['$scope', '$http', function($scope, $http) {
 
             });
     }
+    
+    
+    
+    // ########## Chart function ############
+    
+    chartFunction();
 
 
 }]);
@@ -1200,8 +1207,8 @@ function selectBox() {
 
 }
 
-
-function leafletCartix() {
+var year;
+function leafletCartix(year) {
 
     $("#map-cartix").html('<div id=map></div>');
 
@@ -1234,7 +1241,7 @@ function leafletCartix() {
         $.getJSON('http://127.0.0.1:5000/api/v1/sqlsaving', function(data) {
             //console.log(data);
             handleData(data);
-        });
+        }); 
     }
     
     jsonData(function(output){
@@ -1242,14 +1249,45 @@ function leafletCartix() {
     }); */
     
  
-    var url = 'http://127.0.0.1:5000/api/v1/sqlsaving';
-    $.ajax({
-       url: url,
-       async: false,
-        success: function(data){
-           Jsonfile =  data; 
-        }
+    
+    
+    var url, sg_ngo;
+    url = 'http://127.0.0.1:5000/api/v1/sqlsaving/1/1';
+    $("#saving_group_map").change(function(){
+        sg_ngo = $("#saving_group_map").val();
+        year = $("#year").val();
+        url = 'http://127.0.0.1:5000/api/v1/sqlsaving/'+sg_ngo+'/'+year;
+        
     });
+    
+    console.log(year);
+    
+    
+    
+    $("#year").change(function(){
+        var sg_ngo = $("#saving_group_map").val();
+        var year = $("#year").val();
+        console.log(sg_ngo);
+        console.log(year);
+        url = 'http://127.0.0.1:5000/api/v1/sqlsaving/'+sg_ngo+'/'+year;
+    });
+    
+    
+    
+    function AjaxSgData(url){
+        $.ajax({
+           url: url,
+           async: false,
+           success: function(data){
+               Jsonfile =  data; 
+            }
+        });
+        console.log(url);
+        return Jsonfile;
+    }
+    
+    Jsonfile = AjaxSgData(url);
+    
     
     
     
