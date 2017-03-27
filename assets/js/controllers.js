@@ -59,7 +59,7 @@ myapp.controller('signupCtrl', ['$scope', '$location', 'AuthService', function($
 myapp.controller('signinCtrl', ['$scope', '$http', '$location', 'AuthService', function($scope, $http, $location, AuthService) {
     $("body").removeClass('body-app');
     $("body").addClass('body-login');
-    $scope.message = false;
+    $scope.message = false; 
 
     AuthService.destroyUser();
 
@@ -527,7 +527,7 @@ myapp.controller('mapCtrl', ['$scope', '$http', function($scope, $http) {
     
     // ########## Chart function ############
     
-    chartFunction();
+    chartFunction($http);
 
 
 }]);
@@ -959,27 +959,38 @@ function closeNav2() {
 
 
 
-function chartFunction() {
+function chartFunction($http) {
     
     
     // MEMBERSHIP PER GENDER
+    
+      var url = 'http://127.0.0.1:5000/api/v1/chartanalytics'
+      $http.get(url)
+          .success(function(data, status, header, config){
+            console.log(data.data);
+            var layout = {
+                 autosize: true,
+                  showlegend: false,
+                  margin:{
+                      l: 0,
+                      r:0
+                  },
+                  title: 'Membership per Gender'
+              };
+
+            Plotly.newPlot('container_pie', data.data, layout);
+        })
+        .error(function(data, status, header, config){
+            console.log(status);
+        });
+    
       var data = [{
           values: ['132683', '537068'],
           labels: ['Male Members', 'Female Members'],
           type: 'pie'
       }];
 
-      var layout = {
-         autosize: true,
-          showlegend: false,
-          margin:{
-              l: 0,
-              r:0
-          },
-          title: 'Membership per Gender'
-      };
-
-      Plotly.newPlot('container_pie', data, layout);
+      
     
     
     
