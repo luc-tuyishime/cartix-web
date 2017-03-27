@@ -48,7 +48,7 @@ myapp.controller('signupCtrl', ['$scope', '$location', 'AuthService', function($
                     });
             })
             // handle error
-            .catch(function() { 
+            .catch(function() {
                 $scope.disabled = true;
             });
 
@@ -59,7 +59,7 @@ myapp.controller('signupCtrl', ['$scope', '$location', 'AuthService', function($
 myapp.controller('signinCtrl', ['$scope', '$http', '$location', 'AuthService', function($scope, $http, $location, AuthService) {
     $("body").removeClass('body-app');
     $("body").addClass('body-login');
-    $scope.message = false; 
+    $scope.message = false;
 
     AuthService.destroyUser();
 
@@ -401,7 +401,7 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$
 
     // Function to call in excelfileCTRL
 
-    
+
     backgroudHeight();
 
 
@@ -411,26 +411,26 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$
 
 
 myapp.controller('mapCtrl', ['$scope', '$http', function($scope, $http) {
-    
+
     leafletCartix();
     selectBox();
 
 
     // loadProvinceSelectBox
     loadProvinceSelectBox('#province_map', $http);
-    
-    
+
+
     // load map
-    
+
     var data = $("#national_map").val();
-    (new leafletCartix()).handlerNational(data);  
-    
+    (new leafletCartix()).handlerNational(data);
+
     $("#national_map").change(function() {
         var data = $("#national_map").val();
-        (new leafletCartix()).handlerNational(data);  
+        (new leafletCartix()).handlerNational(data);
     });
-    
-    
+
+
 
     // loadDistrictSelectBox()
     /*var district_id = $("#province_map").val().split(",")[0];
@@ -442,14 +442,14 @@ myapp.controller('mapCtrl', ['$scope', '$http', function($scope, $http) {
 
         loadDistrictSelectBox(province_id, '#district_map', $http);
         (new leafletCartix()).handlerProvince(province_name);
-        
-        
+
+
     });
-    
-    $("#district_map").change(function(){
+
+    $("#district_map").change(function() {
         var district_name = $("#district_map").val().split(",")[1].toLowerCase();
         (new leafletCartix()).handlerDistrict(district_name);
-        
+
     });
 
 
@@ -522,11 +522,11 @@ myapp.controller('mapCtrl', ['$scope', '$http', function($scope, $http) {
 
             });
     }
-    
-    
-    
+
+
+
     // ########## Chart function ############
-    
+
     chartFunction($http);
 
 
@@ -837,7 +837,7 @@ function loadDistrictSelectBox(province_id, idBox, $http) {
             });
 
         });
-    
+
     return true;
 }
 
@@ -960,133 +960,96 @@ function closeNav2() {
 
 
 function chartFunction($http) {
-    
-    
+
+
     // MEMBERSHIP PER GENDER
-    
-      var url = 'http://127.0.0.1:5000/api/v1/chartanalytics'
-      $http.get(url)
-          .success(function(data, status, header, config){
-           
-          // Membership Pie
-          
+
+    var url = 'http://127.0.0.1:5000/api/v1/chartanalytics'
+    $http.get(url)
+        .success(function(data, status, header, config) {
+
+            // Membership Pie
+
             var layout = {
-                 autosize: true,
-                  showlegend: false,
-                  margin:{
-                      l: 0,
-                      r:0
-                  },
-                  title: 'Membership per Gender'
-              };
+                autosize: true,
+                showlegend: false,
+                margin: {
+                    l: 0,
+                    r: 0
+                },
+                title: 'Membership per Gender'
+            };
 
             Plotly.newPlot('container_pie', data.membership, layout);
-          
-          
-          // Saving Group Status per Intl NGos
-          
-              var layout_bar = {
-                  barmode: 'group',
-                  autosize: true,
-                  showlegend: false,
-                  margin:{
-                      l: 30,
-                      r:10,
-                      b:180
-                  },
-                  xaxis: {
+
+
+            // Saving Group Status per Intl NGos
+
+            var layout_bar = {
+                barmode: 'group',
+                autosize: true,
+                showlegend: false,
+                margin: {
+                    l: 30,
+                    r: 10,
+                    b: 180
+                },
+                xaxis: {
                     tickangle: 90,
-                    tickfont:{
-                        size:10
+                    tickfont: {
+                        size: 10
                     }
-                  },
-                  title: 'SVGS_status per Intl NGOs',
-              };
-          
-            Plotly.newPlot('container', data.status, layout_bar, {showLegend:false});
-          
-          
-          /* SG Savings and Loans per Intl Ngos 
-                layout_bar will be inherited
-          */
-          
-          Plotly.newPlot('container_saving_loan', data.amount, layout_bar);
+                },
+                title: 'SVGS_status per Intl NGOs',
+            };
+
+            Plotly.newPlot('container', data.status, layout_bar, {
+                showLegend: false
+            });
+
+
+            /* SG Savings and Loans per Intl Ngos 
+                  layout_bar will be inherited
+            */
+
+            Plotly.newPlot('container_saving_loan', data.amount, layout_bar);
 
         })
-        .error(function(data, status, header, config){
+        .error(function(data, status, header, config) {
             console.log(status);
-        });    
-    
-    
-    
+        });
 
-      
 
-      
-    
-    
+
+    // SVGs_creation year per Internatonal NGOs
+    var url = 'http://127.0.0.1:5000/api/v1/analytics/creation';
+    $http.get(url)
+        .success(function(data, status, header, config){
+            console.log(data.creation);
+            var layout = {
+                title: 'SGs Creation year/Internatonal NGOs',
+                barmode: 'group',
+                autosize: true,
+                showlegend: false,
+                margin: {
+                    l: 30,
+                    r: 10,
+                    b: 180
+                },
+                xaxis: {
+                    tickangle: 90,
+                    tickfont: {
+                        size: 10
+                    }
+                }
+            };
+            Plotly.newPlot('container_year_sg', data.creation, layout);
+            
+        }).error(function(data, status, header, config){
+        
+        });
     
    
-    
-      // SVGs_creation year per Internatonal NGOs
-    
-      var trace1 = {
-          x: ['CARE Rwanda', 'CRS', 'FHI360', 'Global Communities Rwanda', 'HAC', 'HOPE Rwanda', 'KNH', 'Plan Internatonal Rwanda', 'TEARFUND', 'USAID', 'World Relief Rwanda', 'World Vision Rwanda'],
-          y: [1334, 74, 1, 0, 0, 301, 31, 0, 0, 702, 16, 0],
-          name: '2012',
-          type: 'bar'
-      };
-
-      var trace2 = {
-          x: ['CARE Rwanda', 'CRS', 'FHI360', 'Global Communities Rwanda', 'HAC', 'HOPE Rwanda', 'KNH', 'Plan Internatonal Rwanda', 'TEARFUND', 'USAID', 'World Relief Rwanda', 'World Vision Rwanda'],
-          y: [1557, 343, 90, 0, 0, 1259, 90, 48, 0, 0, 134, 0],
-          name: '2013',
-          type: 'bar'
-      };
-
-      var trace3 = {
-          x: ['CARE Rwanda', 'CRS', 'FHI360', 'Global Communities Rwanda', 'HAC', 'HOPE Rwanda', 'KNH', 'Plan Internatonal Rwanda', 'TEARFUND', 'USAID', 'World Relief Rwanda', 'World Vision Rwanda'],
-          y: [2495, 116, 97, 31, 22, 1366, 211, 32, 247, 84, 278, 51],
-          name: '2014',
-          type: 'bar'
-      };
-
-      var trace4 = {
-          x: ['CARE Rwanda', 'CRS', 'FHI360', 'Global Communities Rwanda', 'HAC', 'HOPE Rwanda', 'KNH', 'Plan Internatonal Rwanda', 'TEARFUND', 'USAID', 'World Relief Rwanda', 'World Vision Rwanda'],
-          y: [3673, 62, 41, 814, 2, 1607, 100, 170, 71, 219, 209, 219],
-          name: '2015',
-          type: 'bar'
-      };
-
-      var trace5 = {
-          x: ['CARE Rwanda', 'CRS', 'FHI360', 'Global Communities Rwanda', 'HAC', 'HOPE Rwanda', 'KNH', 'Plan Internatonal Rwanda', 'TEARFUND', 'USAID', 'World Relief Rwanda', 'World Vision Rwanda'],
-          y: [6174, 213, 193, 837, 0, 1241, 238, 105, 24, 23, 237, 541],
-          name: '2016',
-          type: 'bar'
-      };
-
-
-      var data = [trace1, trace2, trace3, trace4, trace5];
-
-      var layout = {
-          title: 'SGs Creation year/Internatonal NGOs',
-          barmode: 'group',
-          autosize: true,
-          showlegend: false,
-          margin:{
-              l: 30,
-              r:10,
-              b:180
-          },
-          yaxis: {
-            tickangle: 90,
-            tickfont:{
-                size:10
-            }
-          }
-      };
-
-      Plotly.newPlot('container_year_sg', data, layout);
 }
 
 
@@ -1173,6 +1136,7 @@ function selectBox() {
 }
 
 var year;
+
 function leafletCartix(year) {
 
     $("#map-cartix").html('<div id=map></div>');
@@ -1201,7 +1165,7 @@ function leafletCartix(year) {
     var Jsonfile;
     // http://127.0.0.1:5000/api/v1/sqlsaving
     // assets/geojson/stats.json
-    
+
     /*function jsonData(handleData){
         $.getJSON('http://127.0.0.1:5000/api/v1/sqlsaving', function(data) {
             //console.log(data);
@@ -1212,51 +1176,50 @@ function leafletCartix(year) {
     jsonData(function(output){
        Jsonfile = output; 
     }); */
-    
- 
-    
-    
+
+
+
+
     var url, sg_ngo;
     url = 'http://127.0.0.1:5000/api/v1/sqlsaving/1/1';
-    $("#saving_group_map").change(function(){
+    $("#saving_group_map").change(function() {
         sg_ngo = $("#saving_group_map").val();
         year = $("#year").val();
-        url = 'http://127.0.0.1:5000/api/v1/sqlsaving/'+sg_ngo+'/'+year;
-        
+        url = 'http://127.0.0.1:5000/api/v1/sqlsaving/' + sg_ngo + '/' + year;
+
     });
-    
+
     console.log(year);
-    
-    
-    
-    $("#year").change(function(){
+
+
+
+    $("#year").change(function() {
         var sg_ngo = $("#saving_group_map").val();
         var year = $("#year").val();
         console.log(sg_ngo);
         console.log(year);
-        url = 'http://127.0.0.1:5000/api/v1/sqlsaving/'+sg_ngo+'/'+year;
+        url = 'http://127.0.0.1:5000/api/v1/sqlsaving/' + sg_ngo + '/' + year;
     });
-    
-    
-    
-    function AjaxSgData(url){
+
+
+
+    function AjaxSgData(url) {
         $.ajax({
-           url: url,
-           async: false,
-           success: function(data){
-               Jsonfile =  data; 
+            url: url,
+            async: false,
+            success: function(data) {
+                Jsonfile = data;
             }
         });
         console.log(url);
         return Jsonfile;
     }
-    
+
     Jsonfile = AjaxSgData(url);
-    
-    
-    
-    
-    
+
+
+
+
     function getColor(d) {
         return d > 5001 ? '#7f2704' :
             d > 4001 ? '#a63603' :
@@ -1956,7 +1919,7 @@ function leafletCartix(year) {
 
 
     this.handlerProvince = function(val) {
-        
+
         document.getElementById('district_map').value = "";
         document.getElementById('national_map').value = "";
         if (val) {
@@ -1977,22 +1940,22 @@ function leafletCartix(year) {
                     provinceDisplay("/assets/geojson/Southern_Province.geojson");
                     break;
             }
-            
-            
-            
+
+
+
             legendP.addTo(map);
             infoP.addTo(map);
 
         }
-        
-        
+
+
     }
 
     this.handlerNational = function(val) {
-        
+
         document.getElementById('province_map').value = "";
         document.getElementById('district_map').value = "";
-        
+
         if (val) {
             switch (val) {
                 case "provinces":
