@@ -967,7 +967,9 @@ function chartFunction($http) {
       var url = 'http://127.0.0.1:5000/api/v1/chartanalytics'
       $http.get(url)
           .success(function(data, status, header, config){
-            console.log(data.data);
+           
+          // Membership Pie
+          
             var layout = {
                  autosize: true,
                   showlegend: false,
@@ -978,101 +980,53 @@ function chartFunction($http) {
                   title: 'Membership per Gender'
               };
 
-            Plotly.newPlot('container_pie', data.data, layout);
+            Plotly.newPlot('container_pie', data.membership, layout);
+          
+          
+          // Saving Group Status per Intl NGos
+          
+              var layout_bar = {
+                  barmode: 'group',
+                  autosize: true,
+                  showlegend: false,
+                  margin:{
+                      l: 30,
+                      r:10,
+                      b:180
+                  },
+                  xaxis: {
+                    tickangle: 90,
+                    tickfont:{
+                        size:10
+                    }
+                  },
+                  title: 'SVGS_status per Intl NGOs',
+              };
+          
+            Plotly.newPlot('container', data.status, layout_bar, {showLegend:false});
+          
+          
+          /* SG Savings and Loans per Intl Ngos 
+                layout_bar will be inherited
+          */
+          
+          Plotly.newPlot('container_saving_loan', data.amount, layout_bar);
+
         })
         .error(function(data, status, header, config){
             console.log(status);
-        });
+        });    
     
-      var data = [{
-          values: ['132683', '537068'],
-          labels: ['Male Members', 'Female Members'],
-          type: 'pie'
-      }];
+    
+    
+
+      
 
       
     
     
     
-    //  SVGS_status per Intl NGOs
-    
-    var trace1 = {
-          x: ['CARE Rwanda', 'CRS', 'FHI360', 'Global Communities Rwanda', 'HAC', 'HOPE Rwanda', 'KNH', 'Plan Internatonal Rwanda', 'TEARFUND', 'USAID', 'World Relief Rwanda', 'World Vision Rwanda'],
-          y: [15233, 248, 247, 1507, 24, 5774, 128, 42, 0, 1028, 0, 811],
-          name: 'Supervised',
-          type: 'bar'
-
-      };
-
-      var trace2 = {
-          x: ['CARE Rwanda', 'CRS', 'FHI360', 'Global Communities Rwanda', 'HAC', 'HOPE Rwanda', 'KNH', 'Plan Internatonal Rwanda', 'TEARFUND', 'USAID', 'World Relief Rwanda', 'World Vision Rwanda'],
-          y: [0, 560, 175, 175, 0, 0, 542, 313, 342, 0, 874, 0],
-          name: 'Graduated',
-          type: 'bar'
-      };
-
-      var data = [trace1, trace2];
-
-      var layout = {
-          barmode: 'group',
-          autosize: true,
-          showlegend: false,
-          margin:{
-              l: 30,
-              r:10,
-              b:180
-          },
-          yaxis: {
-            tickangle: 0,
-            tickfont:{
-                size:10
-            }
-          },
-          title: 'SVGS_status per Intl NGOs',
-      };
-
-      Plotly.newPlot('container', data, layout, {showLegend:false});
-    
-    
-    
-    // SVGs Savings and Loans per Intl NGOs
-    
-    var trace1 = {
-          x: ['CARE Rwanda', 'CRS', 'FHI360', 'Global Communities Rwanda', 'HAC', 'HOPE Rwanda', 'KNH', 'Plan Internatonal Rwanda', 'TEARFUND', 'USAID', 'World Relief Rwanda', 'World Vision Rwanda'],
-          y: [9564196547, 152318325, 227661105, 268279839, 3578874, 0, 6137200, 200876930, 14628795, 246953190, 835458092, 253352767],
-          name: 'Savings',
-          type: 'bar'
-      };
-
-      var trace2 = {
-          x: ['CARE Rwanda', 'CRS', 'FHI360', 'Global Communities Rwanda', 'HAC', 'HOPE Rwanda', 'KNH', 'Plan Internatonal Rwanda', 'TEARFUND', 'USAID', 'World Relief Rwanda', 'World Vision Rwanda'],
-          y: [7817883814, 163880540, 181347924, 207704746, 0, 0, 0, 172487220, 0, 244481226, 0, 199566810],
-          name: 'Loans',
-          type: 'bar'
-      };
-
-      var data = [trace1, trace2];
-
-      var layout = {
-          title: 'SVGs Savings and Loans per Intl NGOs',
-          barmode: 'group',
-          autosize: true,
-          showlegend: false,
-          margin:{
-              l: 30,
-              r:10,
-              b:180
-          },
-          yaxis: {
-            tickangle: 0,
-            tickfont:{
-                size:10
-            }
-          }
-      };
-
-      Plotly.newPlot('container_saving_loan', data, layout);
-    
+   
     
       // SVGs_creation year per Internatonal NGOs
     
