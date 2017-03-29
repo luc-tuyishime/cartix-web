@@ -42,7 +42,7 @@ select {
 }
 .app .care-style {
     font-size: 23px;
-    text-align: right;
+    text-align: left;
     color: #757575;
     font-weight: bold;
 }
@@ -601,5 +601,10 @@ select {
     float: left;
     margin-right: 8px;
     opacity: 0.7;
+}
+
+.profile-pending{
+    padding-top: 10px;
+    z-index: 2000;
 }
 
