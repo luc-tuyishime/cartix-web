@@ -1698,6 +1698,9 @@ function leafletCartix(year) {
             if (obj.District == feature.properties.District) {
                 if (obj.Sector == feature.properties.Name) {
                     density = obj.Density;
+                    //console.log(obj.Sector+ " "+ feature.properties.Name);
+                }else{
+                    //console.log(obj.Sector+ " "+ feature.properties.Name);
                 }
             }
         });
@@ -1868,6 +1871,9 @@ function leafletCartix(year) {
                     var tl = obj.Male;
                     var ba = obj.Male;
                     infoS.update(layer.feature.properties, dens, mm, f, ml, banks, mfi, nu, u, tl, ba);
+                    //console.log(obj.Sector+ " "+ layer.feature.properties.Name);
+                }else{
+                    //console.log(obj.Sector+ " "+ layer.feature.properties.Name);
                 }
             }
         });
