@@ -1,19 +1,10 @@
 
-body {
-    font-family: 'Roboto', sans-serif;
-    font-size: 16px;
-    font-weight: 300;
-    color: #888;
-    line-height: 30px;
-    text-align: center;
-}
-
 strong { font-weight: 500;}
 
 a, a:hover, a:focus {
 	color: #560034;
 	text-decoration: none;
-    -o-transition: all .3s; -moz-transition: all .3s; -webkit-transition: all .3s; -ms-transition: all .3s; transition: all .3s;
+  -o-transition: all .3s; -moz-transition: all .3s; -webkit-transition: all .3s; -ms-transition: all .3s; transition: all .3s;
 }
 .forgot-password-link{
   position: absolute;
@@ -46,66 +37,23 @@ img { max-width: 100%; }
 ::selection { background: #560034; color: #fff; text-shadow: none; }
 
 
-.btn-link-1 {
-	display: inline-block;
-	height: 50px;
-	margin: 5px;
-	padding: 16px 20px 0 20px;
-	background: #560034;
-	font-size: 16px;
-    font-weight: 300;
-    line-height: 16px;
-    color: #fff;
-    -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
-}
-.btn-link-1:hover, .btn-link-1:focus, .btn-link-1:active { outline: 0; opacity: 0.6; color: #fff; }
 
-.btn-link-1.btn-link-1-facebook { background: #4862a3; }
-.btn-link-1.btn-link-1-twitter { background: #55acee; }
-.btn-link-1.btn-link-1-google-plus { background: #560034; }
-
-.btn-link-1 i {
-	padding-right: 5px;
-	vertical-align: middle;
-	font-size: 20px;
-	line-height: 20px;
-}
-
-.btn-link-2 {
-	display: inline-block;
-	height: 50px;
-	margin: 5px;
-	padding: 15px 20px 0 20px;
-	background: rgba(0, 0, 0, 0.3);
-	border: 1px solid #fff;
-	font-size: 16px;
-    font-weight: 300;
-    line-height: 16px;
-    color: #fff;
-    -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
-}
-.btn-link-2:hover, .btn-link-2:focus,
-.btn-link-2:active, .btn-link-2:active:focus { outline: 0; opacity: 0.6; background: rgba(0, 0, 0, 0.3); color: #fff; }
 
 
 /***** Top content *****/
-
 .inner-bg {
     padding: 180px 0 170px 0;
 }
-
 .top-content .text {
 	color: #fff;
 }
 
 .top-content .text h1 { color: #fff; }
-
 .top-content .description {
 	margin: 20px 0 10px 0;
 }
 
 .top-content .description p { opacity: 0.8; }
-
 .top-content .description a {
 	color: #fff;
 }
@@ -117,10 +65,16 @@ img { max-width: 100%; }
   border: 1px solid #e0e0e0;
   background-color: #fafafa;
 }
-.form-username{
-  border-color: red;
+.form-box2 {
+	margin-top: 45px;
+  border: 1px solid #e0e0e0;
+  background-color: #fafafa;
 }
-
+.terms-agree{
+  font-size: 14px;
+  text-align: center;
+  margin-top: 8px;
+}
 .form-top {
 	overflow: hidden;
 	padding: 0 25px 15px 25px;
@@ -129,15 +83,6 @@ img { max-width: 100%; }
 	-moz-border-radius: 4px 4px 0 0; -webkit-border-radius: 4px 4px 0 0; border-radius: 4px 4px 0 0;
 	text-align: left;
 }
-
-.form-top-left {
-	float: left;
-	width: 75%;
-	padding-top: 25px;
-}
-
-.form-top-left h3 { margin-top: 0; color: #fff; }
-.form-top-left p { opacity: 0.8; color: #fff; }
 
 .form-top-center {
   display: block;
@@ -152,7 +97,6 @@ img { max-width: 100%; }
   margin: -14px;
   margin-bottom: 23px;
 }
-
 .form-bottom {
 	padding: 25px 25px 30px 25px;
 	background: #fafafa ;
@@ -161,28 +105,11 @@ img { max-width: 100%; }
 	text-align: left;
 }
 
-.form-bottom form textarea {
-	height: 100px;
-}
-
 .form-bottom form button.btn {
 	width: 100%;
 }
-
 .form-bottom form .input-error {
 	border-color: #560034;
-}
-
-.social-login {
-	margin-top: 35px;
-}
-
-.social-login h3 {
-	color: #fff;
-}
-
-.social-login-buttons {
-	margin-top: 25px;
 }
 .form-top-2{
   text-align: center;
@@ -194,25 +121,17 @@ img { max-width: 100%; }
 /***** Media queries *****/
 
 @media (min-width: 992px) and (max-width: 1199px) {}
-
 @media (min-width: 768px) and (max-width: 991px) {}
-
 @media (max-width: 767px) {
-
 	.inner-bg { padding: 60px 0 130px 0; }
-
 }
-
 @media (max-width: 415px) {
-
 	h1, h2 { font-size: 32px; }
-
 }
-
 input[type="text"],
 input[type="email"],
 input[type="password"],
-textarea
+textarea,select
  {
 	height: 50px;
     margin: 0;
@@ -229,18 +148,33 @@ textarea
     -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;
     -o-transition: all .3s; -moz-transition: all .3s; -webkit-transition: all .3s; -ms-transition: all .3s; transition: all .3s;
 }
-
-textarea
- {
-	padding-top: 10px;
-	padding-bottom: 10px;
-	line-height: 30px;
+.form-username{
+  height: 50px;
+    margin: 0;
+    padding: 0 20px;
+    vertical-align: middle;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 50px;
+    color: black;
+    -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
+    -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;
+    -o-transition: all .3s; -moz-transition: all .3s; -webkit-transition: all .3s; -ms-transition: all .3s; transition: all .3s;
 }
 
+.form-username:focus{
+  outline: 0;
+	background: #fff;
+    border: 1px solid #560034;
+    -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;
+}
 input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="password"]:focus,
-textarea:focus
+textarea:focus,select:focus
  {
 	outline: 0;
 	background: #fff;
@@ -250,24 +184,16 @@ textarea:focus
 
 input[type="text"]:-moz-placeholder, input[type="password"]:-moz-placeholder,
 textarea:-moz-placeholder { color: #888; }
-
 input[type="text"]:-ms-input-placeholder, input[type="password"]:-ms-input-placeholder,
 textarea:-ms-input-placeholder { color: #888; }
-
 input[type="text"]::-webkit-input-placeholder, input[type="password"]::-webkit-input-placeholder,
 textarea::-webkit-input-placeholder{ color: #888; }
-
 input[type="email"]:-moz-placeholder, input[type="password"]:-moz-placeholder,
 textarea:-moz-placeholder { color: #888; }
-
 input[type="email"]:-ms-input-placeholder, input[type="password"]:-ms-input-placeholder,
 textarea:-ms-input-placeholder { color: #888; }
-
 input[type="email"]::-webkit-input-placeholder, input[type="password"]::-webkit-input-placeholder,
 textarea::-webkit-input-placeholder{ color: #888; }
-
-
-
 button.btn {
 	  height: 50px;
     margin: 0;
@@ -287,9 +213,6 @@ button.btn {
 }
 
 button.btn:hover { opacity: 0.6; color: #fff; }
-
 button.btn:active { outline: 0; opacity: 0.6; color: #fff; -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none; }
-
 button.btn:focus { outline: 0; opacity: 0.6; background: #560034; color: #fff; }
-
 button.btn:active:focus, button.btn.active:focus { outline: 0; opacity: 0.6; background: #560034; color: #fff; }

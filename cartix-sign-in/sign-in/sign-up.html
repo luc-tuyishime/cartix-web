@@ -10,12 +10,13 @@
       <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
       <link rel="stylesheet" href="assets/css/style.css">
    </head>
-   <body style="background-color:#f5f5f5;">
+   <body style="background-color:#f5f5f5;font-family: 'Roboto', sans-serif;font-size: 16px;font-weight: 300;
+   color: #888;text-align: center;">
       <!-- Top content -->
       <div class="top-content">
          <div class="container">
             <div class="row">
-               <div class="col-sm-6 col-sm-offset-3 form-box">
+               <div class="col-sm-6 col-sm-offset-3 form-box2">
                   <div class="form-top">
                      <div class="form-top-center">
                         <img src="assets/img/logo.png">
@@ -24,8 +25,8 @@
                   <div class="form-bottom">
                      <form role="form" action="" method="post" class="login-form">
                         <div class="form-group">
-                           <label class="sr-only" for="form-username">Organization name</label>
-                           <input type="text" name="form-username" placeholder="Organization name..." class="form-username form-control" id="form-username">
+                           <label class="sr-only" for="form-username">Full name</label>
+                           <input type="text" name="form-username" placeholder="Full name..." class="form-username form-control" id="form-username">
                         </div>
                         <div class="form-group">
                            <label class="sr-only" for="form-email">Email</label>
@@ -35,8 +36,23 @@
                            <label class="sr-only" for="form-password">Password</label>
                            <input type="password" name="form-password" placeholder="Password..." class="form-password form-control" id="form-password">
                         </div>
-                        <button type="submit" class="btn">Continue!</button>
+                        <div class="form-group">
+                           <label class="sr-only" for="form-email">Organization</label>
+                           <input type="email" name="form-email" placeholder="Organization name..." class="form-username form-control" id="form-email">
+                        </div>
+                        <div class="form-group">
+                           <label class="sr-only" for="form-email" id="sel1">Email</label>
+                           <select class="form-username form-control" id="sel1">
+                            <option hidden>Check NGO type...</option>
+                            <option value="">International NGO</option>
+                            <option value="">Local NGO</option>
+                          </select>
+                        </div>
+                        <button type="submit" class="btn">Sign Up</button>
                      </form>
+                     <div class="terms-agree">
+                        <p class="terms-agree">By clicking in "sign up" you accept the terms and conditions of the service and the privacy policy.</p>
+                     </div>
                   </div>
                   <div class="dont-have-an-account">
                      <p>Already have an account? <a href="sign-in.html">sign in</a></p>
