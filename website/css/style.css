@@ -1,5 +1,5 @@
 body {
-    font: 30px Montserrat, sans-serif;
+    /*font:  Montserrat, sans-serif;*/
     /*line-height: 1.8;*/
     color: #f5f6f7;
     position: relative;
@@ -175,6 +175,7 @@ outline:0 !important;
     margin-top: 35px;
     font: 19px "greatests";
 }
+
 .coming-soon-text2{
   font: 30px "greatest";
   margin-top: 110px;
@@ -373,7 +374,7 @@ a {
     text-align: center !important;
     font: 17px "greatests";
     position: relative;
-    bottom: 90px;
+    bottom: 20px;
 }
 .term-text {
     font: 17px "greatests";
@@ -404,7 +405,7 @@ a {
 .price-style2 {
     font: 20px "greatests";
 }
-h1,
+
 .cartix-text {
     font: 45px "greatest";
 }
@@ -1019,7 +1020,7 @@ background-color: #ffda88;
 background-color: #a8cfb1;
 border: 2px solid  #a8cfb1;
 }
-.panel-default{
+.panel-bottom {
   box-shadow:-15px 15px 50px 2px lightgray;
 }
 .body-3{
@@ -1098,6 +1099,18 @@ background-color: #fff;
 }
 .comunnity-text{
 font-weight:600px;
+font: 40px "greatest";
+}
+.customer{
+  font: 30px "greatest";
+}
+.blog{
+  font: 30px "greatest";
+  color: lightgray;
+}
+.event{
+  font: 30px "greatest";
+}
   /*margin-top: 80px;*/
 }
 .blog-img{
@@ -1336,6 +1349,26 @@ height: auto;
 padding-top: 35px;
 padding-bottom: 45px;
 }
+.welcome-text{
+  font: 50px "greatest";
+  color: #FFCE00;
+}
+.infographics{
+   font: 30px "greatest";
+   color: #212121;
+}
+.partners{
+  font: 30px "greatest";
+  color: #212121;
+}
+.welcome-text2{
+  font-size: 14px;
+  font: 18px "greatests";
+}
+.community-text{
+  margin-top: 160px;
+  margin-bottom: 160px;
+}
 
 .bg-03{
 background-color: #e0e0e0;
@@ -1367,4 +1400,81 @@ clear:both;
 .carousel{
 margin-top: 50px;
 margin-bottom: 30px;
+}
+
+/*Download*/
+.nav-download{
+  padding-top: 20px;
+  background-color: #fff;
+}
+.header-text{
+  color:#757575;
+  padding-top: 19px;
+  text-align: center;
+  font: 40px "greatests";
+}
+main{
+  padding-top: 30px;
+}
+.main-2{
+  padding-top:30px;
+}
+.alert-success{
+  margin-top: 40px;
+  margin-bottom: 50px;
+}
+.download-footer{
+  color: #616161;
+}
+.margin{
+    font: 40px "greatest";
+}
+.text-success{
+    font-size: 14px ;
+}
+.download-text{
+  font: 14px "greatests";
+  color: #616161;
+}
+.download-text2{
+  font: 14px "greatest";
+  color: #424242;
+  margin-top: 10px;
+}
+.download-text3{
+  font: 1.2rem "greatests";
+  color: #424242;
+}
+.text-content{
+position: relative;
+top: 10px;
+}
+.close-2{
+  font-size: 30px;
+  color: #00c853;
+ position: relative;
+ bottom: 8px;
+}
+.style-list{
+  font: 17px "greatests";
+  font-weight: bold;
+}
+.Download-header{
+  padding-top: 0px;
+}
+.footer-download{
+  position: relative;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  text-align: center;
+}
+.pdf-icon{
+  float:left ;
+}
+.down-arrow-left{
+  float: right;
+  position: relative;
+  bottom: 14px;
 }
