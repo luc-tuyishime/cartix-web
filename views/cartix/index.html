@@ -17,7 +17,7 @@
                             <div class=select-box><select data-placeholder=Provinces id=province_map ng-model=province_map></select></div>
                             <div class=select-box><select data-placeholder=District id=district_map ng-model=district_map ng-options="district for district in districts"></select></div>
                             <div class=select-box><select data-placeholder="Saving Groups" id=saving_group_map multiple ></select></div>
-                            <div class=select-box><select data-placeholder=Year id=year multiple ng-model=year ng-options="year for year in years"></select></div>
+                            <div class=select-box><select data-placeholder=Year id=year ng-model=year ng-options="year for year in years"></select></div>
                         </div>
                     </div>
                     <div class=row>
@@ -56,7 +56,8 @@
                     
                     
                     <hr class="style1">
-                    <p class="saving-text">Saving Groups</p>
+                    <p class="saving-text">Saving Groups <span class="survey">({{ yearSurvey }})</span></p>
+                    
                     <div class="row">
                         <div class="alert alert-default" role="alert">
                             <div class="dropdown">
@@ -76,28 +77,28 @@
                                 <p class="text-1"><span><img alt="" src="assets/img/groups.png" class="file-logo"></span> Total Saving Groups</p>
                             </div>
                             <div class="col-md-6">
-                                <p class="text-1"><span><img style alt="" src="assets/img/savings.png" class="file-logo"></span> Total Savings</p>
+                                <p class="text-1"><span><img style alt="" src="assets/img/savings.png" class="file-logo"></span> Total Membership</p>
                             </div>
                             <div class="col-md-6">
-                                <p class="text-2">28,023</p>
+                                <p class="text-2">{{ sg_count }}</p>
                             </div>
                             <div class="col-md-6">
-                                <p class="text-2">13,869,727,965</p>
+                                <p class="text-2">{{ membership }}</p>
                             </div>
                         </div>
                         <br>
                         <div class="row">
                             <div class="col-md-6">
-                                <p class="text-1"><span><img alt="" src="assets/img/member.png" class="file-logo"></span> Total Membership</p>
+                                <p class="text-1"><span><img alt="" src="assets/img/member.png" class="file-logo"></span> Total Savings</p>
                             </div>
                             <div class="col-md-6">
-                                <p class="text-1"><span><img style alt="" src="assets/img/dot.png" class="file-logo"></span> Total Membership</p>
+                                <p class="text-1"><span><img style alt="" src="assets/img/dot.png" class="file-logo"></span> Total Outstanding Loans</p>
                             </div>
                             <div class="col-md-6">
-                                <p class="text-2">669,751</p>
+                                <p class="text-2">{{ saving }}</p>
                             </div>
                             <div class="col-md-6">
-                                <p class="text-2">11,031,815,669</p>
+                                <p class="text-2">{{ borrowing }}</p>
                             </div>
                         </div>
                        
