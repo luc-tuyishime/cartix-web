@@ -134,6 +134,7 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$
     $('#upload_link').click(function(e) {
         e.preventDefault();
         $("#upload").trigger("click");
+        
     });
 
 
@@ -171,7 +172,6 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$
     $scope.uploadProcess = true;
     $scope.showDataUlploaded = false;
     $scope.successfullySaved = false;
-
 
     //$scope.sg_number = 100;
 
@@ -523,7 +523,32 @@ myapp.controller('mapCtrl', ['$scope', '$http', function($scope, $http) {
             });
     }
 
-
+    
+    // ########### Year Survey  #############
+    
+    $scope.yearSurvey = 2014;
+    analyticsNumber($scope.yearSurvey);
+    $("#year").change(function(){
+        $scope.yearSurvey = $("#year").val();
+        analyticsNumber($scope.yearSurvey);
+    });
+    
+    // ############# Analytics Numbers #######
+    
+    function analyticsNumber(year){
+        var url = 'http://127.0.0.1:5000/api/v1/analytics/numbers/'+year;
+        $http.get(url)
+            .success(function(data, status, header, config){
+                $scope.sg_count = numeral(data.sg_count).format();
+                $scope.membership = numeral(data.membership).format();
+                $scope.saving = numeral(data.saving).format();
+                $scope.borrowing = numeral(data.borrowing).format();
+            }).error(function(data, status, header, config){
+                console.log(data);
+            });
+        
+    }
+    
 
     // ########## Chart function ############
 
@@ -1004,7 +1029,7 @@ function chartFunction($http) {
             };
 
             Plotly.newPlot('container', data.status, layout_bar, {
-                showLegend: false
+                showLegend: true
             });
 
 
