@@ -997,7 +997,12 @@ function chartFunction($http) {
 
             var layout = {
                 autosize: true,
-                showlegend: false,
+                showlegend: true,
+                legend:{
+                    orientation	: 'h',
+                    x:0,
+                    y:-0.2
+                },
                 margin: {
                     l: 0,
                     r: 0
@@ -1013,7 +1018,12 @@ function chartFunction($http) {
             var layout_bar = {
                 barmode: 'group',
                 autosize: true,
-                showlegend: false,
+                showlegend: true,
+                legend:{
+                    orientation	: 'h',
+                    x:0,
+                    y:-1
+                },
                 margin: {
                     l: 30,
                     r: 10,
@@ -1055,7 +1065,12 @@ function chartFunction($http) {
                 title: 'SGs Creation year/Internatonal NGOs',
                 barmode: 'group',
                 autosize: true,
-                showlegend: false,
+                showlegend: true,
+                legend:{
+                    orientation	: 'h',
+                    x:0,
+                    y:-1
+                },
                 margin: {
                     l: 30,
                     r: 10,
@@ -1073,6 +1088,100 @@ function chartFunction($http) {
         }).error(function(data, status, header, config){
         
         });
+    
+    
+    
+    // SVG vs Financial & Agent
+    
+    var trace1 = {
+        x: ['4917', '9041' ,'8517','4646','902'],
+        y: ['North', 'South', 'East','West','Kigali'],
+        name: 'SVGs',
+        orientation: 'h',
+        marker: {
+          color: 'rgb(153,158,255)',
+          width: 1
+        },
+        type: 'bar'
+        };
+
+        var trace2 = {
+        x: ['62', '90' ,'79','83','120'],
+        y: ['North', 'South', 'East','West','Kigali'],
+        name: 'Banks',
+        orientation: 'h',
+        marker: {
+          color: 'rgb(247, 163, 92)',
+          width: 1
+        },
+        type: 'bar'
+        };
+
+        var trace3 = {
+        x: ['18', '22' ,'20','31','15'],
+        y: ['North', 'South', 'East','West','Kigali'],
+        name: 'MFI',
+        orientation: 'h',
+        marker: {
+          color: 'rgb(169,255,150)',
+          width: 1
+        },
+        type: 'bar'
+        };
+
+        var trace4 = {
+        x: ['19', '19' ,'12','29','14'],
+        y: ['North', 'South', 'East','West','Kigali'],
+        name: 'Non-Umurenge Sacco',
+        orientation: 'h',
+        marker: {
+          color: 'rgb(67, 67, 72)',
+          width: 1
+        },
+        type: 'bar'
+        };
+
+        var trace5 = {
+        x: ['89', '101' ,'95','96','35'],
+        y: ['North', 'South', 'East','West','Kigali'],
+        name: 'Umurenge Sacco',
+        orientation: 'h',
+        marker: {
+          color: 'rgb(149,206,255)',
+          width: 1
+        },
+        type: 'bar'
+        };
+
+        var data = [trace1, trace2,trace3,trace4,trace5];
+
+        var layout = {
+                title: 'SVGs, Financial Institutions and Banks',
+                barmode: 'stack',
+                autosize: true,
+                showlegend: true,
+                legend:{
+                    orientation	: 'h',
+                    x:0,
+                    y:-0.5,
+                    traceorder: 'reversed',
+                    xanchor: 'left',
+                    yanchor: 'top'
+                },
+                margin: {
+                    l: 40,
+                    r: 10,
+                    b: 180
+                },
+                xaxis: {
+                    tickangle: 90,
+                    tickfont: {
+                        size: 10
+                    }
+                }
+        };
+
+        Plotly.newPlot('container_myDiv', data, layout);
     
    
 }
