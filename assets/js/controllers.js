@@ -1009,8 +1009,29 @@ function chartFunction($http) {
                 },
                 title: 'Membership per Gender'
             };
-
+            
             Plotly.newPlot('container_pie', data.membership, layout);
+            
+            // Saving group per internation NGO
+        
+            var layout = {
+                autosize: true,
+                showlegend: true,
+                hidesources: true,
+                legend:{
+                    orientation	: 'h',
+                    x:0,
+                    y:0
+                },
+                margin: {
+                    l: 0,
+                    r: 0,
+                    t: -10
+                },
+                title: 'Saving Group international Ngo'
+            };
+        
+            Plotly.newPlot('sg_per_int_ngo', data.sg, layout);
 
 
             // Saving Group Status per Intl NGos
@@ -1048,6 +1069,36 @@ function chartFunction($http) {
             */
 
             Plotly.newPlot('container_saving_loan', data.amount, layout_bar);
+        
+        
+        
+            // Local NGO per intenation ngo
+            var layout_bar = {
+                barmode: 'stack',
+                autosize: true,
+                showlegend: true,
+                legend:{
+                    orientation	: 'h\n',
+                    x:0,
+                    y:-1.02
+                },
+                margin: {
+                    l: 30,
+                    r: 30,
+                    b:280
+                },
+                xaxis: {
+                    tickangle: 90,
+                    tickfont: {
+                        size: 10
+                    }
+                },
+                title: 'SVGS_status per Intl NGOs',
+            };
+        
+            Plotly.newPlot('sg_local_per_int', data.sgNgos, layout_bar);
+        
+            
 
         })
         .error(function(data, status, header, config) {
@@ -1072,8 +1123,8 @@ function chartFunction($http) {
                     y:-1
                 },
                 margin: {
-                    l: 30,
-                    r: 10,
+                    l: 40,
+                    r: 40,
                     b: 180
                 },
                 xaxis: {
