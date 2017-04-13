@@ -414,7 +414,8 @@ myapp.controller('mapCtrl', ['$scope', '$http', function($scope, $http) {
 
     leafletCartix();
     selectBox();
-
+    
+    
 
     // loadProvinceSelectBox
     loadProvinceSelectBox('#province_map', $http);
@@ -551,8 +552,20 @@ myapp.controller('mapCtrl', ['$scope', '$http', function($scope, $http) {
     
 
     // ########## Chart function ############
-
-    chartFunction($http);
+    $scope.valSeclectedName = 'Analytics';
+    $scope.saving_group = true;
+    $scope.menuChart = function(val){
+        $scope.valSeclectedName = val;
+    }
+    
+    // Chart function data 
+    $scope.yearSurvey = 2014;
+    chartFunction($http, $scope.yearSurvey);
+    $("#year").change(function(){
+        $scope.yearSurvey = $("#year").val();
+        chartFunction($http, $scope.yearSurvey);
+    });
+    chartFunction($http, $scope.yearSurvey);
 
 
 }]);
@@ -984,12 +997,11 @@ function closeNav2() {
 
 
 
-function chartFunction($http) {
-
+function chartFunction($http, year) {
 
     // MEMBERSHIP PER GENDER
 
-    var url = 'http://127.0.0.1:5000/api/v1/chartanalytics'
+    var url = 'http://127.0.0.1:5000/api/v1/chartanalytics/'+year;
     $http.get(url)
         .success(function(data, status, header, config) {
 
@@ -1093,13 +1105,69 @@ function chartFunction($http) {
                         size: 10
                     }
                 },
+                yaxis: {
+                    dtick:3000
+                },
                 title: 'SVGS_status per Intl NGOs',
             };
         
             Plotly.newPlot('sg_local_per_int', data.sgNgos, layout_bar);
         
+            // Financial Institution with SGS
+        
+            var layout_bar = {
+                barmode: 'stack',
+                autosize: true,
+                showlegend: true,
+                legend:{
+                    orientation	: 'h',
+                    x:0,
+                    y:-0.2
+                },
+                margin: {
+                    l: 40,
+                    r: 40,
+                    b:180
+                },
+                xaxis: {
+                    tickangle: 0,
+                    tickfont: {
+                        size: 12
+                    }
+                },
+                title: 'SVGs, Financial Institutions and Banks',
+            };
+        
+            Plotly.newPlot('sg_financial', data.sgFinancial, layout_bar);
+        
+        
+            // Bank and Telco Agent with Saving Groups
+        
+            var layout_bar = {
+                barmode: 'stack',
+                autosize: true,
+                showlegend: true,
+                legend:{
+                    orientation	: 'h',
+                    x:0,
+                    y:-0.2
+                },
+                margin: {
+                    l: 40,
+                    r: 40,
+                    b:180
+                },
+                xaxis: {
+                    tickangle: 0,
+                    tickfont: {
+                        size: 12
+                    }
+                },
+                title: 'SVGs, Financial Institutions and Banks',
+            };
+        
+            Plotly.newPlot('sg_agent', data.sgAgent, layout_bar);
             
-
         })
         .error(function(data, status, header, config) {
             console.log(status);
@@ -1108,7 +1176,7 @@ function chartFunction($http) {
 
 
     // SVGs_creation year per Internatonal NGOs
-    var url = 'http://127.0.0.1:5000/api/v1/analytics/creation';
+    var url = 'http://127.0.0.1:5000/api/v1/analytics/creation/'+year;
     $http.get(url)
         .success(function(data, status, header, config){
             console.log(data.creation);
@@ -1142,97 +1210,6 @@ function chartFunction($http) {
     
     
     
-    // SVG vs Financial & Agent
-    
-    var trace1 = {
-        x: ['4917', '9041' ,'8517','4646','902'],
-        y: ['North', 'South', 'East','West','Kigali'],
-        name: 'SVGs',
-        orientation: 'h',
-        marker: {
-          color: 'rgb(153,158,255)',
-          width: 1
-        },
-        type: 'bar'
-        };
-
-        var trace2 = {
-        x: ['62', '90' ,'79','83','120'],
-        y: ['North', 'South', 'East','West','Kigali'],
-        name: 'Banks',
-        orientation: 'h',
-        marker: {
-          color: 'rgb(247, 163, 92)',
-          width: 1
-        },
-        type: 'bar'
-        };
-
-        var trace3 = {
-        x: ['18', '22' ,'20','31','15'],
-        y: ['North', 'South', 'East','West','Kigali'],
-        name: 'MFI',
-        orientation: 'h',
-        marker: {
-          color: 'rgb(169,255,150)',
-          width: 1
-        },
-        type: 'bar'
-        };
-
-        var trace4 = {
-        x: ['19', '19' ,'12','29','14'],
-        y: ['North', 'South', 'East','West','Kigali'],
-        name: 'Non-Umurenge Sacco',
-        orientation: 'h',
-        marker: {
-          color: 'rgb(67, 67, 72)',
-          width: 1
-        },
-        type: 'bar'
-        };
-
-        var trace5 = {
-        x: ['89', '101' ,'95','96','35'],
-        y: ['North', 'South', 'East','West','Kigali'],
-        name: 'Umurenge Sacco',
-        orientation: 'h',
-        marker: {
-          color: 'rgb(149,206,255)',
-          width: 1
-        },
-        type: 'bar'
-        };
-
-        var data = [trace1, trace2,trace3,trace4,trace5];
-
-        var layout = {
-                title: 'SVGs, Financial Institutions and Banks',
-                barmode: 'stack',
-                autosize: true,
-                showlegend: true,
-                legend:{
-                    orientation	: 'h',
-                    x:0,
-                    y:-0.5,
-                    traceorder: 'reversed',
-                    xanchor: 'left',
-                    yanchor: 'top'
-                },
-                margin: {
-                    l: 40,
-                    r: 10,
-                    b: 180
-                },
-                xaxis: {
-                    tickangle: 90,
-                    tickfont: {
-                        size: 10
-                    }
-                }
-        };
-
-        Plotly.newPlot('container_myDiv', data, layout);
     
    
 }
