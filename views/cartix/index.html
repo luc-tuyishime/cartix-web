@@ -25,9 +25,9 @@
                     </div>
                 </div>
                 <div id="map-cartix">
-                </div>
+                </div> 
             </div>
-            <div class="col-md-3 profile-pending">
+            <div class="col-md-3 profile-pending bg-side">
                 <div class="bg-side">
                 
                     <div class="row">
@@ -61,12 +61,12 @@
                     <div class="row">
                         <div class="alert alert-default" role="alert">
                             <div class="dropdown">
-                                <a href="" class="dropdown-toggle" data-toggle="dropdown"><span class="analytics_text">Analytics <b class="caret"></b></span> </a>
+                                <a href="" class="dropdown-toggle" data-toggle="dropdown"><span class="analytics_text">{{ valSeclectedName }} <b class="caret"></b></span> </a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="">Saving Groups Analytics</a></li>
-                                    <li><a href="">Financial Institutions Analytics</a></li>
-                                    <li><a href="">Agent Analytics</a></li>
-                                    <li><a href="">FinScope Analytics</a></li>
+                                    <li><a href="" ng-click="menuChart('Saving Group Analytics')">Saving Groups Analytics</a></li>
+                                    <li><a href="" ng-click = "menuChart('Financial Institutions Analytics')">Financial Institutions Analytics</a></li>
+                                    <li><a href="" ng-click = "menuChart('Agent Analytics')">Agent Analytics</a></li>
+                                    <li><a href="" ng-click = "menuChart('FinScope Analytics')">FinScope Analytics</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -104,7 +104,7 @@
                        
                     </div>
                     
-                    <div class="chart">
+                    <div class="chart" id="saving_group" ng-show="saving_group">
                         <hr>
                         <div id="container" style="min-width: 340px; height: auto; max-width: 600px; margin: 0 auto"></div>
                         <hr>
@@ -114,7 +114,21 @@
                         <hr>
                         <div id="container_year_sg" style="min-width: 340px; height: auto; max-width: 600px; margin: 0 auto"></div>
                         <hr>
-                        <div id="container_myDiv" style="min-width: 340px; height: auto; max-width: 600px; margin: 0 auto"></div>
+                        <div id="sg_per_int_ngo" style="min-width: 340px; height: 820px; max-width: 600px; margin: 0 auto"></div>
+                        <hr>
+                        <div id="sg_local_per_int" style="min-width: 340px; height: 1810px; max-width: 600px; margin: 0 auto"></div>
+                        <hr>
+                    </div>
+                    <div class="chart" id="financial">
+                        <div id="sg_financial" style="min-width: 340px; height: 500px; max-width: 600px; margin: 0 auto"></div>
+                        <hr>
+                    </div>
+                    
+                    <div class="chart" id="agent">
+                        <div id="sg_agent" style="min-width: 340px; height: 500px; max-width: 600px; margin: 0 auto"></div>
+                    </div>
+                    
+                    <div class="chart" id="finscope">
                     </div>
                     
                 </div>
