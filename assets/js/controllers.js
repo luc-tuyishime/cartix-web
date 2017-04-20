@@ -1155,7 +1155,7 @@ function chartFunction($http, year) {
                 margin: {
                     l: 40,
                     r: 40,
-                    b:180
+                    b:80
                 },
                 xaxis: {
                     tickangle: 0,
@@ -1167,7 +1167,34 @@ function chartFunction($http, year) {
             };
         
             Plotly.newPlot('sg_agent', data.sgAgent, layout_bar);
+        
+        
+            // FInscope chart
             
+            var layout_bar = {
+                barmode: 'stack',
+                autosize: true,
+                showlegend: true,
+                legend:{
+                    orientation	: 'h',
+                    x:0,
+                    y:-0.2
+                },
+                margin: {
+                    l: 20,
+                    r: 15,
+                    b:80
+                },
+                xaxis: {
+                    tickangle: 0,
+                    tickfont: {
+                        size: 12
+                    }
+                },
+                title: 'SGs vs Finscope',
+            };
+        
+            Plotly.newPlot('container_finscope', data.finscope, layout_bar);
         })
         .error(function(data, status, header, config) {
             console.log(status);
