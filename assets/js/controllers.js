@@ -1004,7 +1004,7 @@ function chartFunction($http, year) {
     var url = 'http://127.0.0.1:5000/api/v1/chartanalytics/'+year;
     $http.get(url)
         .success(function(data, status, header, config) {
-
+            console.log(data);
             // Membership Pie
 
             var layout = {
@@ -1195,6 +1195,47 @@ function chartFunction($http, year) {
             };
         
             Plotly.newPlot('container_finscope', data.finscope, layout_bar);
+        
+        
+        
+        // Finscope: Other Informal Vs SGs 2012 
+            
+            var layout_sg = {
+                autosize: true,
+                showlegend: true,
+                legend:{
+                    orientation	: 'h',
+                    x:0,
+                    y:-0.2
+                },
+                margin: {
+                    l: 0,
+                    r: 0
+                },
+                title: 'Finscope: Other Informal Vs SGs 2012'
+            };
+            
+            Plotly.newPlot('finscope_sg_pie_2012', data.finscope_sg_2012, layout_sg);
+        
+         // Finscope: Other Informal Vs SGs 2015 
+            
+            var layout_sg = {
+                autosize: true,
+                showlegend: true,
+                legend:{
+                    orientation	: 'h',
+                    x:0,
+                    y:-0.2
+                },
+                margin: {
+                    l: 0,
+                    r: 0
+                },
+                title: 'Finscope: Other Informal Vs SGs 2015'
+            };
+            
+            Plotly.newPlot('finscope_sg_pie_2015', data.finscope_sg_2015, layout_sg);
+        
         })
         .error(function(data, status, header, config) {
             console.log(status);
