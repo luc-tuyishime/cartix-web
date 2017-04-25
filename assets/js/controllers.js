@@ -1163,7 +1163,7 @@ function chartFunction($http, year) {
                         size: 12
                     }
                 },
-                title: 'SVGs, Financial Institutions and Banks',
+                title: 'SVGs, Telcos and Banks',
             };
         
             Plotly.newPlot('sg_agent', data.sgAgent, layout_bar);
@@ -1235,6 +1235,60 @@ function chartFunction($http, year) {
             };
             
             Plotly.newPlot('finscope_sg_pie_2015', data.finscope_sg_2015, layout_sg);
+        
+        // Finscope all 2012
+        
+        var layout_bar = {
+                barmode: 'stack',
+                autosize: true,
+                showlegend: true,
+                legend:{
+                    orientation	: 'h',
+                    x:0,
+                    y:-0.2
+                },
+                margin: {
+                    l: 40,
+                    r: 40,
+                    b:80
+                },
+                xaxis: {
+                    tickangle: 0,
+                    tickfont: {
+                        size: 12
+                    }
+                },
+                title: 'Finscope 2012',
+            };
+        
+        Plotly.newPlot('finscope_all_2012', data.finscope_all_2012, layout_bar);
+        
+        // Finscope all 2015
+        
+        var layout_bar = {
+                barmode: 'stack',
+                autosize: true,
+                showlegend: true,
+                legend:{
+                    orientation	: 'h',
+                    x:0,
+                    y:-0.2
+                },
+                margin: {
+                    l: 40,
+                    r: 40,
+                    b:80
+                },
+                xaxis: {
+                    tickangle: 0,
+                    tickfont: {
+                        size: 12
+                    }
+                },
+                title: 'Finscope 2015',
+            };
+        
+        Plotly.newPlot('finscope_all_2015', data.finscope_all_2015, layout_bar);
         
         })
         .error(function(data, status, header, config) {
