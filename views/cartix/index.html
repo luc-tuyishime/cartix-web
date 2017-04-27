@@ -230,7 +230,7 @@
                                         <div class="panel-body">
                                             <img alt="" src="assets/img/file.png" class="file-logo">
                                             <p class="SG-text"><span> {{ file.filename }}</span></p>
-                                            <span class="text-uploaded">1MB excel spreadsheet</span>
+                                            <span class="text-uploaded">{{ file.size }} excel spreadsheet</span>
                                             <div class="danger-icon">
                                                 <img alt="" src="{{ file.status ? 'assets/img/success.png' : 'assets/img/danger.png' }}">
                                             </div>
@@ -411,7 +411,7 @@
                             <div class="col-md-3" id="changeColClass">
                                 <div class="select-box">
                                     <p>Province</p>
-                                    <select id="ddlCars13">
+                                    <select id="ddlCars13" multiple="multiple">
                                     
                                     </select>
                                 </div>
@@ -419,7 +419,7 @@
                             <div class="col-md-3" id="changeColClass">
                                 <div class="select-box">
                                     <p>District</p>
-                                    <select id="ddlCars14">
+                                    <select id="ddlCars14" multiple="multiple">
                                         
                                     </select>
                                 </div>
@@ -427,13 +427,13 @@
                             <div class="col-md-3" id="changeColClass">
                                 <div class="select-box">
                                     <p>Sector</p>
-                                    <select id="ddlCars15">
+                                    <select id="ddlCars15" multiple="multiple">
                                         
                                     </select>
                                 </div>
                             </div>
                             <div class="col-md-3" ng-show="intlNgo">
-                                <div class="select-box">
+                                <div class="select-box intNgo">
                                     <p>International NGO</p>
                                     <select id="ddlCars16" multiple="multiple">
                                         <option value="1">Option 1</option>
