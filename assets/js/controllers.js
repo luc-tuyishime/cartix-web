@@ -773,18 +773,63 @@ myapp.controller('viewAlldataCtrl', ['$scope', '$http', 'AuthService', '$q', fun
 
 
     // Load Rwanda Administrative location
-    loadProvinceSelectBox('#ddlCars13', $http);
+    loadProvinceSelectBox('#province_data', $http);
 
-    $("#ddlCars13").change(function(e) {
-        var province_id = $("#ddlCars13").val().split(',')[0];
-        loadDistrictSelectBox(province_id, '#ddlCars14', $http)
+    $("#province_data").change(function(e) {
+        var province_ids = $("#province_data").val();
+        
+    
+        viewDataLoadDistrict(province_ids, $http);
+        
+        //var province_id = $("#province_data").val().split(',')[0];
+        //loadDistrictSelectBox(province_id, '#ddlCars14', $http)
     });
 
     $("#ddlCars14").change(function(e) {
-        var district_id = $("#ddlCars14").val().split(',')[0];
-        loadSectorSelectBox(district_id, '#ddlCars15', $http);
+        
+        var district_id = $("#ddlCars14").val();
+        //loadSectorSelectBox(district_id, '#ddlCars15', $http);
+        console.log(district_id);
+        viewDataLoadSector(district_id, $http);
     });
+    
+    function viewDataLoadSector(ids, $http){
+        var url = 'http://127.0.0.1:5000/api/v1/data/sector/'+ids;
+        $http.get(url)
+            .success(function(data, status, header, config){
+                console.log(data);
+                var options = "";
+                $.each(data, function(key, val){
+                    options += "<option value=" + val.id + " >" + val.name + "</option>";
+                });
+            
+                $("#ddlCars15").html(options);
+                $("#ddlCars15").multiselect('rebuild');
+                $("#ddlCars15").multiselect({
+                    includeSelectAllOption: true
+                });
+                
+            });
+    }
 
+    function viewDataLoadDistrict(ids, $http){
+        var url = 'http://127.0.0.1:5000/api/v1/data/district/'+ids;
+        $http.get(url)
+            .success(function(data, status, header, config){
+                console.log(data);
+                var options = "";
+                $.each(data, function(key, val){
+                    options += "<option value=" + val.id + " >" + val.name + "</option>";
+                });
+            
+                $("#ddlCars14").html(options);
+                $("#ddlCars14").multiselect('rebuild');
+                $("#ddlCars14").multiselect({
+                    includeSelectAllOption: true
+                });
+                
+            });
+    }
 
     function adminControllerData() {
         $scope.intlNgo = true;
@@ -792,8 +837,6 @@ myapp.controller('viewAlldataCtrl', ['$scope', '$http', 'AuthService', '$q', fun
         $("#dataNgoHandler #changeColClass").removeClass("col-md-4").addClass("col-md-3");
         var idBox = "#ddlCars16";
         loadIntNgo(idBox, $http);
-
-
     }
 
 
@@ -843,7 +886,7 @@ function loadProvinceSelectBox(idBox, $http) {
             console.log(data);
             var options = "";
             $.each(data, function(key, value) {
-                options += "<option selected value=" + [value.id, value.name] + " >" + value.name + "</option>";
+                options += "<option value=" + value.id + " >" + value.name + "</option>";
             });
             $(idBox).html(options);
             $(idBox).multiselect('rebuild');
@@ -1402,7 +1445,7 @@ function selectBox() {
         includeSelectAllOption: true
     });
 
-    $('#ddlCars13').multiselect({
+    $('#province_data').multiselect({
         includeSelectAllOption: true
     });
 
