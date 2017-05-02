@@ -775,10 +775,36 @@ myapp.controller('viewAlldataCtrl', ['$scope', '$http', 'AuthService', '$q', fun
     // Load Rwanda Administrative location
     loadProvinceSelectBox('#province_data', $http);
 
+    
+    
+    // change on Ngos
+    
+    $("#ddlCars16").change(function(e){
+        var province_ids = $("#province_data").val();
+        var district_id = $("#ddlCars14").val();
+        var sector_id = $("#ddlCars15").val();
+        var ngo_id = $("#ddlCars16").val();
+        
+        console.log(province_ids, district_id, sector_id, ngo_id);
+        renderViewdata(province_ids, district_id, sector_id, ngo_id, $http);
+    });
+    
+    
+    
+    // Render View data
+    
+    function renderViewdata(province_ids, district_id, sector_id, ngo_id, $http){
+        var url = 'http://127.0.0.1:5000/api/v1/data/view/'+province_ids+'/'+district_id+'/'+sector_id+'/'+ngo_id;
+        $http.get(url)
+            .success(function(data, status, header, config){
+                console.log(data);
+            });
+    }
+    
+    
     $("#province_data").change(function(e) {
         var province_ids = $("#province_data").val();
         
-    
         viewDataLoadDistrict(province_ids, $http);
         
         //var province_id = $("#province_data").val().split(',')[0];
