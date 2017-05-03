@@ -408,56 +408,73 @@
                     <div class="box">
                         <!--  View All Data -->
                         <div class="row" id="dataNgoHandler">
-                            <div class="col-md-3" id="changeColClass">
-                                <div class="select-box">
-                                    <p>Province</p>
-                                    <select id="province_data" multiple="multiple">
-                                    
-                                    </select>
+                           
+                               <div class="col-md-4" id="changeColClass">
+                                    <div class="select-box">
+                                        <p>Province</p>
+                                        <select id="ddlCars13" multiple="multiple">
+
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-3" id="changeColClass">
-                                <div class="select-box">
-                                    <p>District</p>
-                                    <select id="ddlCars14" multiple="multiple">
-                                        
-                                    </select>
+                                <div class="col-md-4" id="changeColClass">
+                                    <div class="select-box">
+                                        <p>District</p>
+                                        <select id="ddlCars14" multiple="multiple">
+
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-3" id="changeColClass">
-                                <div class="select-box">
-                                    <p>Sector</p>
-                                    <select id="ddlCars15" multiple="multiple">
-                                        
-                                    </select>
+                                <div class="col-md-4" id="changeColClass">
+                                    <div class="select-box">
+                                        <p>Sector</p>
+                                        <select id="ddlCars15" multiple="multiple">
+
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-3" ng-show="intlNgo">
-                                <div class="select-box intNgo">
-                                    <p>International NGO</p>
-                                    <select id="ddlCars16" multiple="multiple">
-                                        <option value="1">Option 1</option>
-                                        <option value="2">Option 2</option>
-                                        <option value="3">Option 3</option>
-                                        <option value="4">Option 4</option>
-                                        <option value="5">Option 5</option>
-                                        <option value="6">Option 6</option>
-                                    </select>
+                                
+                                <div class="col-md-4" ng-show="intlNgo">
+                                    <div class="select-box intNgo">
+                                        <p>International NGO</p>
+                                        <select id="ddlCars16" multiple="multiple">
+                                            <option value="1">Option 1</option>
+                                            <option value="2">Option 2</option>
+                                            <option value="3">Option 3</option>
+                                            <option value="4">Option 4</option>
+                                            <option value="5">Option 5</option>
+                                            <option value="6">Option 6</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-3" ng-show="localNgo">
-                                <div class="select-box">
-                                    <p>Local NGO</p>
-                                    <select id="ddlCars9" multiple="multiple">
-                                        <option value="1">Option 1</option>
-                                        <option value="2">Option 2</option>
-                                        <option value="3">Option 3</option>
-                                        <option value="4">Option 4</option>
-                                        <option value="5">Option 5</option>
-                                        <option value="6">Option 6</option>
-                                    </select>
+                                <div class="col-md-4" ng-show="localNgo">
+                                    <div class="select-box">
+                                        <p>Local NGO</p>
+                                        <select id="ddlCars9" multiple="multiple">
+                                            <option value="1">Option 1</option>
+                                            <option value="2">Option 2</option>
+                                            <option value="3">Option 3</option>
+                                            <option value="4">Option 4</option>
+                                            <option value="5">Option 5</option>
+                                            <option value="6">Option 6</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
+                                <div class="col-md-4">
+                                    <div class="select-box">
+                                        <p>Year of Survery</p>
+                                        <select id="ddlCars17">
+                                            
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="select-box">
+                                        <p>View Data</p>
+                                        <button class="btn btn-primary" id="viewdata_btn">Submit</button>
+                                    </div>
+                                </div>
+                            
                             <div class="table-center">
                                 <div class="table">
                                     <div class="col-md-12">
@@ -465,13 +482,13 @@
                                             <thead>
                                                 <tr>
                                                     <td class="text-left">Saving Group :</td>
-                                                    <td class="text-right">{{sg_number}}</td>
+                                                    <td class="text-right">{{saving_group}}</td>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
                                                     <td class="text-left">SGs Year of creation:</td>
-                                                    <td class="text-right">{{year_creation}}</td>
+                                                    <td class="text-right">{{year_of_creation}}</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="text-left">SGs members Total:</td>
@@ -479,15 +496,15 @@
                                                 </tr>
                                                 <tr>
                                                     <td class="text-left">SGs members- Female:</td>
-                                                    <td class="text-right">{{ total_female }}</td>
+                                                    <td class="text-right">{{ member_female }}</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="text-left">SGs members- Male:</td>
-                                                    <td class="text-right">{{ total_male }}</td>
+                                                    <td class="text-right">{{ member_male }}</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="text-left">Funding NGO:</td>
-                                                    <td class="text-right">{{ ngo_number }}</td>
+                                                    <td class="text-right">{{ funding_ngo }}</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="text-left">Partner NGO:</td>
@@ -495,19 +512,19 @@
                                                 </tr>
                                                 <tr>
                                                     <td class="text-left">SGs Status/ supervised</td>
-                                                    <td class="text-right">{{ supervised_num }}</td>
+                                                    <td class="text-right">{{ supervised }}</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="text-left">SGs Status/ graduated</td>
-                                                    <td class="text-right">{{ graduated_num }}</td>
+                                                    <td class="text-right">{{ graduated }}</td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="text-left">Saved Amount as of December {{ year_amount }} ( In Rwf ):</td>
-                                                    <td class="text-right">{{ total_saved }}</td>
+                                                    <td class="text-left">Saved Amount as of December {{ year }} ( In Rwf ):</td>
+                                                    <td class="text-right">{{ saving }}</td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="text-left">Outstanding Loans as of December {{ year_amount }} ( In Rwf ):</td>
-                                                    <td class="text-right">{{ total_loan }}</td>
+                                                    <td class="text-left">Outstanding Loans as of December {{ year }} ( In Rwf ):</td>
+                                                    <td class="text-right">{{ borrowing }}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
