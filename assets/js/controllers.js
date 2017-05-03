@@ -467,8 +467,8 @@ myapp.controller('mapCtrl', ['$scope', '$http', function($scope, $http) {
                     options += "<option>" + value + "</option>";
                 });
 
-                $("#year").html(options);
-                $("#year").multiselect('rebuild');
+                $("#year, #ddlCars17").html(options);
+                $("#year, #ddlCars17").multiselect('rebuild');
 
             });
     }
@@ -773,48 +773,56 @@ myapp.controller('viewAlldataCtrl', ['$scope', '$http', 'AuthService', '$q', fun
 
 
     // Load Rwanda Administrative location
-    loadProvinceSelectBox('#province_data', $http);
+    loadProvinceSelectBoxDataView('#ddlCars13', $http);
 
     
     
     // change on Ngos
     
-    $("#ddlCars16").change(function(e){
-        var province_ids = $("#province_data").val();
+    $("#viewdata_btn").click(function(e){
+        alert("clciked");
+        var province_ids = $("#ddlCars13").val();
         var district_id = $("#ddlCars14").val();
         var sector_id = $("#ddlCars15").val();
         var ngo_id = $("#ddlCars16").val();
-        
-        console.log(province_ids, district_id, sector_id, ngo_id);
-        renderViewdata(province_ids, district_id, sector_id, ngo_id, $http);
+        var year = $("#ddlCars17").val();
+        console.log(province_ids, district_id, sector_id, ngo_id, year);
+        renderViewdata(province_ids, district_id, sector_id, ngo_id,year, $http, $scope);
     });
     
     
     
     // Render View data
     
-    function renderViewdata(province_ids, district_id, sector_id, ngo_id, $http){
-        var url = 'http://127.0.0.1:5000/api/v1/data/view/'+province_ids+'/'+district_id+'/'+sector_id+'/'+ngo_id;
+    function renderViewdata(province_ids, district_id, sector_id, ngo_id,year, $http, $scope){
+        var url = 'http://127.0.0.1:5000/api/v1/data/view/'+province_ids+'/'+district_id+'/'+sector_id+'/'+ngo_id+'/'+year;
         $http.get(url)
             .success(function(data, status, header, config){
                 console.log(data);
+                $scope.saving_group = data.saving_group;
+                $scope.year_of_creation = data.year_of_creation.length;
+                $scope.total_member = data.total_member;
+                $scope.member_female = data.member_female;
+                $scope.member_male = data.member_male
+                $scope.funding_ngo = data.funding_ngo.length;
+                $scope.partner_number = ngo_id.length;
+                $scope.supervised = data.supervised;
+                $scope.graduated = data.graduated;
+                $scope.year = year;
+                $scope.saving = data.saving;
+                $scope.borrowing= data.borrowing;
             });
     }
     
     
-    $("#province_data").change(function(e) {
-        var province_ids = $("#province_data").val();
-        
+    $("#ddlCars13").change(function(e) {
+        var province_ids = $("#ddlCars13").val();    
         viewDataLoadDistrict(province_ids, $http);
-        
-        //var province_id = $("#province_data").val().split(',')[0];
-        //loadDistrictSelectBox(province_id, '#ddlCars14', $http)
+    
     });
 
     $("#ddlCars14").change(function(e) {
-        
         var district_id = $("#ddlCars14").val();
-        //loadSectorSelectBox(district_id, '#ddlCars15', $http);
         console.log(district_id);
         viewDataLoadSector(district_id, $http);
     });
@@ -860,7 +868,7 @@ myapp.controller('viewAlldataCtrl', ['$scope', '$http', 'AuthService', '$q', fun
     function adminControllerData() {
         $scope.intlNgo = true;
         $scope.localNgo = false;
-        $("#dataNgoHandler #changeColClass").removeClass("col-md-4").addClass("col-md-3");
+        $("#dataNgoHandler #changeColClass").removeClass("col-md-4").addClass("col-md-4");
         var idBox = "#ddlCars16";
         loadIntNgo(idBox, $http);
     }
@@ -869,7 +877,7 @@ myapp.controller('viewAlldataCtrl', ['$scope', '$http', 'AuthService', '$q', fun
     function intlNgoHandler(ngo_id) {
         $scope.intlNgo = true;
         $scope.localNgo = false;
-        $("#dataNgoHandler #changeColClass").removeClass("col-md-4").addClass("col-md-3");
+        $("#dataNgoHandler #changeColClass").removeClass("col-md-4").addClass("col-md-4");
         var idBox = "#ddlCars16";
         loadIntNgo(idBox, $http);
     }
@@ -878,7 +886,7 @@ myapp.controller('viewAlldataCtrl', ['$scope', '$http', 'AuthService', '$q', fun
         $scope.intlNgo = false;
         $scope.localNgo = false;
 
-        $("#dataNgoHandler #changeColClass").removeClass("col-md-3").addClass("col-md-4");
+        $("#dataNgoHandler #changeColClass").removeClass("col-md-4").addClass("col-md-4");
 
     }
 
@@ -907,6 +915,25 @@ function loadIntNgo(idBox, $http) {
 // Provinces 
 
 function loadProvinceSelectBox(idBox, $http) {
+    $http.get('http://127.0.0.1:5000/api/v1/kenessa/province/province/all')
+        .success(function(data, status, header, config) {
+            console.log(data);
+            var options = "";
+            $.each(data, function(key, value) {
+                options += "<option value=" + [value.id, value.name] + " >" + value.name + "</option>";
+            });
+            $(idBox).html(options);
+            $(idBox).multiselect('rebuild');
+            $(idBox).multiselect({
+                includeSelectAllOption: true
+            });
+
+        });
+}
+
+
+
+function loadProvinceSelectBoxDataView(idBox, $http) {
     $http.get('http://127.0.0.1:5000/api/v1/kenessa/province/province/all')
         .success(function(data, status, header, config) {
             console.log(data);
@@ -1471,7 +1498,7 @@ function selectBox() {
         includeSelectAllOption: true
     });
 
-    $('#province_data').multiselect({
+    $('#ddlCars13').multiselect({
         includeSelectAllOption: true
     });
 
@@ -1484,6 +1511,10 @@ function selectBox() {
     });
 
     $('#ddlCars16').multiselect({
+        includeSelectAllOption: true
+    });
+    
+    $('#ddlCars17').multiselect({
         includeSelectAllOption: true
     });
 
