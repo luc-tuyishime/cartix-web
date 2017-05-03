@@ -582,10 +582,10 @@ select {
 }
 
 .app .intNgo .dropdown-menu{
-    left: 25%;
     right: auto;
+    left: 70%;
     text-align: left;
-    transform: translate(-50%, 0);
+    transform: translate(-60%, 0);
 }
 
 .app .container-data .container{
