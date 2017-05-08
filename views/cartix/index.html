@@ -469,11 +469,14 @@
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <div class="select-box">
+                                    <div class="select-box" >
                                         <p>View Data</p>
-                                        <button class="btn btn-primary" id="viewdata_btn">Submit</button>
+                                        <button class="btn btn-primary" id="viewdata_btn" ng-show="admin_btn">Submit</button>
+                                        <button class="btn btn-primary" id="viewdata_btn_int" ng-show="int_btn">Submit</button>
+                                        <button class="btn btn-primary" id="viewdata_btn_local" ng-show="local_btn">Submit</button>
                                     </div>
                                 </div>
+                                
                             
                             <div class="table-center">
                                 <div class="table">
