@@ -577,12 +577,14 @@ myapp.controller('notificationCtrl', ['$scope', '$http', 'AuthService', '$q', fu
 
     $scope.notifAdmin = true;
     $scope.notifNgo = false;
+    
 
     // User role
     var user_id = localStorage.getItem('u___');
     AuthService.userRole(user_id)
         .then(function() {
             adminController();
+            alert("2x Remy")
         }).catch(function() {
             ngoStatus();
         });
@@ -598,6 +600,7 @@ myapp.controller('notificationCtrl', ['$scope', '$http', 'AuthService', '$q', fu
             .then(function() {
                 intlNgoHandler(ngo_id);
             }).catch(function() {
+                alert("status");
                 localNgoHandler(ngo_id);
             });
 
@@ -607,7 +610,7 @@ myapp.controller('notificationCtrl', ['$scope', '$http', 'AuthService', '$q', fu
     function adminController() {
         $scope.notifAdmin = true;
         $scope.notifNgo = false;
-
+        
 
         // load all ngos
         loadIntNgo("#int_ngo", $http)
@@ -674,8 +677,11 @@ myapp.controller('notificationCtrl', ['$scope', '$http', 'AuthService', '$q', fu
 
 
     function intlNgoHandler(ngo_id) {
+        console.log("Main intlNgoHandler");
         $scope.notifAdmin = false;
         $scope.notifNgo = true;
+        
+
         var user_id = localStorage.getItem('u___');
 
         // LoadAll files
@@ -694,20 +700,21 @@ myapp.controller('notificationCtrl', ['$scope', '$http', 'AuthService', '$q', fu
         }
 
         //loadInternational local Partner
-        //loadLocalPartner(ngo_id);
+        loadLocalPartner(ngo_id);
 
         function loadLocalPartner(ngo_id) {
             console.log(ngo_id);
             var url = 'http://127.0.0.1:5000/api/v1/int_ngo/partner/' + ngo_id;
             $http.get(url)
                 .success(function(data, status, header, config) {
+                    console.log(data);
                     var options = "";
                     $.each(data, function(key, value) {
                         options += "<option value='" + value.id + "'>" + value.name + "</option>";
                     });
 
-                    $("#local_ngo").html(options);
-                    $("#local_ngo").multiselect('rebuild');
+                    $("#local_ngo, #ddlCars9").html(options);
+                    $("#local_ngo, #ddlCars9").multiselect('rebuild');
                 }).error(function(data, status, header, config) {
 
                 })
@@ -738,7 +745,7 @@ myapp.controller('notificationCtrl', ['$scope', '$http', 'AuthService', '$q', fu
     }
 
     function localNgoHandler(ngo_id) {
-
+        alert("Local NGO Handler");
     }
 
 }]);
@@ -786,31 +793,64 @@ myapp.controller('viewAlldataCtrl', ['$scope', '$http', 'AuthService', '$q', fun
         var sector_id = $("#ddlCars15").val();
         var ngo_id = $("#ddlCars16").val();
         var year = $("#ddlCars17").val();
+        var type = 0;
         console.log(province_ids, district_id, sector_id, ngo_id, year);
-        renderViewdata(province_ids, district_id, sector_id, ngo_id,year, $http, $scope);
+        renderViewdata(province_ids, district_id, sector_id, ngo_id,year,type, $http, $scope);
+    });
+    
+    $("#viewdata_btn_int").click(function(e){
+        var province_ids = $("#ddlCars13").val();
+        var district_id = $("#ddlCars14").val();
+        var sector_id = $("#ddlCars15").val();
+        var ngo_id = $("#ddlCars9").val();
+        var year = $("#ddlCars17").val();
+        var type = 1;
+        console.log(province_ids, district_id, sector_id, ngo_id, year);
+        renderViewdata(province_ids, district_id, sector_id, ngo_id,year,type, $http, $scope);
     });
     
     
     
+    $("#viewdata_btn_local").click(function(e){
+        var province_ids = $("#ddlCars13").val();
+        var district_id = $("#ddlCars14").val();
+        var sector_id = $("#ddlCars15").val();
+        var ngo_id = AuthService.getNgo();
+        var year = $("#ddlCars17").val();
+        var type = 2;
+        renderViewdata(province_ids, district_id, sector_id, ngo_id,year,type, $http, $scope);
+    })
+    
     // Render View data
     
-    function renderViewdata(province_ids, district_id, sector_id, ngo_id,year, $http, $scope){
-        var url = 'http://127.0.0.1:5000/api/v1/data/view/'+province_ids+'/'+district_id+'/'+sector_id+'/'+ngo_id+'/'+year;
+    function renderViewdata(province_ids, district_id, sector_id, ngo_id,year,type, $http, $scope){
+        var url = 'http://127.0.0.1:5000/api/v1/data/view/'+province_ids+'/'+district_id+'/'+sector_id+'/'+ngo_id+'/'+year+'/'+type;
         $http.get(url)
             .success(function(data, status, header, config){
                 console.log(data);
-                $scope.saving_group = data.saving_group;
+                $scope.saving_group = numeral(data.saving_group).format();
                 $scope.year_of_creation = data.year_of_creation.length;
-                $scope.total_member = data.total_member;
-                $scope.member_female = data.member_female;
-                $scope.member_male = data.member_male
-                $scope.funding_ngo = data.funding_ngo.length;
-                $scope.partner_number = ngo_id.length;
-                $scope.supervised = data.supervised;
-                $scope.graduated = data.graduated;
+                $scope.total_member = numeral(data.total_member).format();
+                $scope.member_female = numeral(data.member_female).format();
+                $scope.member_male = numeral(data.member_male).format();
+                
+                if (type == 0){
+                    $scope.funding_ngo = data.funding_ngo.length;
+                    $scope.partner_number = ngo_id.length || 0;  
+                }else if (type == 1){
+                    $scope.funding_ngo = ngo_id.length || 0; 
+                    $scope.partner_number = 1;  
+                }else{
+                    $scope.funding_ngo = 1;
+                    $scope.partner_number = data.funding_ngo.length; 
+                }
+                
+                
+                $scope.supervised = numeral(data.supervised).format();
+                $scope.graduated = numeral(data.graduated).format();
                 $scope.year = year;
-                $scope.saving = data.saving;
-                $scope.borrowing= data.borrowing;
+                $scope.saving = numeral(data.saving).format();
+                $scope.borrowing= numeral(data.borrowing).format();
             });
     }
     
@@ -868,6 +908,9 @@ myapp.controller('viewAlldataCtrl', ['$scope', '$http', 'AuthService', '$q', fun
     function adminControllerData() {
         $scope.intlNgo = true;
         $scope.localNgo = false;
+        $scope.admin_btn = true;
+        $scope.int_btn = false;
+        $scope.local_btn = false;
         $("#dataNgoHandler #changeColClass").removeClass("col-md-4").addClass("col-md-4");
         var idBox = "#ddlCars16";
         loadIntNgo(idBox, $http);
@@ -875,8 +918,11 @@ myapp.controller('viewAlldataCtrl', ['$scope', '$http', 'AuthService', '$q', fun
 
 
     function intlNgoHandler(ngo_id) {
-        $scope.intlNgo = true;
-        $scope.localNgo = false;
+        $scope.intlNgo = false;
+        $scope.localNgo = true;
+        $scope.admin_btn = false;
+        $scope.int_btn = true;
+        $scope.local_btn = false;
         $("#dataNgoHandler #changeColClass").removeClass("col-md-4").addClass("col-md-4");
         var idBox = "#ddlCars16";
         loadIntNgo(idBox, $http);
@@ -885,6 +931,7 @@ myapp.controller('viewAlldataCtrl', ['$scope', '$http', 'AuthService', '$q', fun
     function localNgoHandler(ngo_id) {
         $scope.intlNgo = false;
         $scope.localNgo = false;
+        $scope.local_btn = true;
 
         $("#dataNgoHandler #changeColClass").removeClass("col-md-4").addClass("col-md-4");
 
