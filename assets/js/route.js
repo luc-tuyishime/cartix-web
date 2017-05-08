@@ -5,21 +5,21 @@ myapp.config(['$routeProvider', '$locationProvider' ,function($routeProvider, $l
     
     $routeProvider
     .when('/', {
-        templateUrl: 'views/sign/sign-in.html',
+        templateUrl: 'views/sign_/sign-in.html',
         controller: 'loginBgCtrl',
         data: {
             private: false
         }
     })
     .when('/signin', {
-        templateUrl: 'views/sign/sign-in.html',
+        templateUrl: 'views/sign_/sign-in.html',
         controller: 'signinCtrl',
         data: {
             private: false
         }
     })
     .when('/signup', {
-        templateUrl: 'views/sign/sign-up.html',
+        templateUrl: 'views/sign_/sign-up.html',
         controller: 'loginBgCtrl',
         data: {
             private: false
@@ -47,7 +47,7 @@ myapp.config(['$routeProvider', '$locationProvider' ,function($routeProvider, $l
         }
     })
     .when('/forget-password', {
-        templateUrl:'views/sign/recovery.html' ,
+        templateUrl:'views/sign_/recovery.html' ,
         controller: 'loginBgCtrl',
         data: {
             private: false
@@ -67,7 +67,7 @@ myapp.config(['$routeProvider', '$locationProvider' ,function($routeProvider, $l
         }
     })
     .when('/new-password/:email',{
-        templateUrl: 'views/sign/recovery-pass.html',
+        templateUrl: 'views/sign_/recovery-pass.html',
         data: {
             private: false
         }
