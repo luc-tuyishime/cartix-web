@@ -1,0 +1,244 @@
+
+.body-style{
+    background-color:#f5f5f5;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    color: #888;
+    line-height: 30px;
+    text-align: center;
+}
+
+.body-app{
+    background-image: url(../../assets/img/cartix-pic_.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat; 
+}
+
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+
+
+strong { font-weight: 500;}
+
+a, a:hover, a:focus {
+	color: #560034;
+	text-decoration: none;
+  -o-transition: all .3s; -moz-transition: all .3s; -webkit-transition: all .3s; -ms-transition: all .3s; transition: all .3s;
+}
+.form-bottom .password-link-in .forgot-password-link{
+  position: fixed;
+  top: 355px;
+  right: 37%;
+  transform: rotateY(-50%);
+  z-index: 10;
+  color: #757575;
+  font-size: 15px;
+}
+
+h1, h2 {
+	margin-top: 10px;
+	font-size: 38px;
+    font-weight: 100;
+    color: #555;
+    line-height: 50px;
+}
+
+h3 {
+	font-size: 22px;
+    font-weight: 300;
+    color: #555;
+    line-height: 30px;
+}
+
+img { max-width: 100%; }
+
+::-moz-selection { background: #560034; color: #fff; text-shadow: none; }
+::selection { background: #560034; color: #fff; text-shadow: none; }
+
+
+.small-text{
+    font-size: 11px;
+    color: #555;
+}
+
+
+/***** Top content *****/
+.inner-bg {
+    padding: 180px 0 170px 0;
+}
+.top-content .text {
+	color: #fff;
+}
+
+.top-content .text h1 { color: #fff; }
+.top-content .description {
+	margin: 20px 0 10px 0;
+}
+
+.top-content .description p { opacity: 0.8; }
+.top-content .description a {
+	color: #fff;
+}
+.top-content .description a:hover,
+.top-content .description a:focus { border-bottom: 1px dotted #fff; }
+
+.form-box {
+	margin-top: 155px;
+  border: 1px solid #e0e0e0;
+  background-color: #fafafa;
+}
+.form-box2 {
+	margin-top: 45px;
+  border: 1px solid #e0e0e0;
+  background-color: #fafafa;
+}
+.terms-agree{
+  font-size: 11px;
+  text-align: center;
+  margin-top: 8px;
+}
+.form-top {
+	overflow: hidden;
+	padding: 0 25px 15px 25px;
+	background:#fafafa;
+	background: #fafafa;
+	-moz-border-radius: 4px 4px 0 0; -webkit-border-radius: 4px 4px 0 0; border-radius: 4px 4px 0 0;
+	text-align: left;
+}
+
+.form-top-center {
+  display: block;
+  margin: 0 auto;
+	width: 32%;
+	font-size: 66px;
+	line-height: 100px;
+	text-align: right;
+
+}
+.dont-have-an-account{
+  margin: -14px;
+  margin-bottom: 70px;
+}
+.form-bottom {
+	padding: 5px 25px 30px 25px;
+	background: #fafafa ;
+	background: #fafafa ;
+	-moz-border-radius: 0 0 4px 4px; -webkit-border-radius: 0 0 4px 4px; border-radius: 0 0 4px 4px;
+	text-align: left;
+}
+
+.form-bottom form button.btn {
+	width: 100%;
+}
+.form-bottom form .input-error {
+	border-color: #560034;
+}
+.form-top-2{
+  text-align: center;
+}
+.reset-password-style{
+  color: #212121;
+  font-size: 27px;
+}
+/***** Media queries *****/
+
+@media (min-width: 992px) and (max-width: 1199px) {}
+@media (min-width: 768px) and (max-width: 991px) {}
+@media (max-width: 767px) {
+	.inner-bg { padding: 60px 0 130px 0; }
+}
+@media (max-width: 415px) {
+	h1, h2 { font-size: 32px; }
+}
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea,select
+ {
+	height: 50px;
+    margin: 0;
+    padding: 0 20px;
+    vertical-align: middle;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 50px;
+    color: black;
+    -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
+    -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;
+    -o-transition: all .3s; -moz-transition: all .3s; -webkit-transition: all .3s; -ms-transition: all .3s; transition: all .3s;
+}
+.form-username{
+  height: 50px;
+    margin: 0;
+    padding: 0 20px;
+    vertical-align: middle;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 50px;
+    color: black;
+    -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
+    -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;
+    -o-transition: all .3s; -moz-transition: all .3s; -webkit-transition: all .3s; -ms-transition: all .3s; transition: all .3s;
+}
+
+.form-username:focus{
+  outline: 0;
+	background: #fff;
+    border: 1px solid #560034;
+    -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;
+}
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+textarea:focus,select:focus
+ {
+	outline: 0;
+	background: #fff;
+    border: 1px solid #560034;
+    -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;
+}
+
+input[type="text"]:-moz-placeholder, input[type="password"]:-moz-placeholder,
+textarea:-moz-placeholder { color: #888; }
+input[type="text"]:-ms-input-placeholder, input[type="password"]:-ms-input-placeholder,
+textarea:-ms-input-placeholder { color: #888; }
+input[type="text"]::-webkit-input-placeholder, input[type="password"]::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder{ color: #888; }
+input[type="email"]:-moz-placeholder, input[type="password"]:-moz-placeholder,
+textarea:-moz-placeholder { color: #888; }
+input[type="email"]:-ms-input-placeholder, input[type="password"]:-ms-input-placeholder,
+textarea:-ms-input-placeholder { color: #888; }
+input[type="email"]::-webkit-input-placeholder, input[type="password"]::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder{ color: #888; }
+button.btn {
+	  height: 50px;
+    margin: 0;
+    padding: 0 20px;
+    vertical-align: middle;
+    background: #560034;
+    border: 0;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 50px;
+    color: #fff;
+    -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
+    text-shadow: none;
+    -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;
+    -o-transition: all .3s; -moz-transition: all .3s; -webkit-transition: all .3s; -ms-transition: all .3s; transition: all .3s;
+}
+
+button.btn:hover { opacity: 0.6; color: #fff; }
+button.btn:active { outline: 0; opacity: 0.6; color: #fff; -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none; }
+button.btn:focus { outline: 0; opacity: 0.6; background: #560034; color: #fff; }
+button.btn:active:focus, button.btn.active:focus { outline: 0; opacity: 0.6; background: #560034; color: #fff; }
