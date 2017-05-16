@@ -631,7 +631,7 @@ select {
 
 .profile-pending{
     padding-top: 10px;
-    z-index: 2000;
+    z-index: 100;
 }
 
 .survey{
