@@ -1,12 +1,12 @@
 .body-style{
-     background-image: url(../img/bg-image.jpg);
+    
     background-size: cover;
     background-attachment: fixed;
     background-repeat: no-repeat;
 }
 
 .body-app{
-    background-image: url(../../assets/img/cartix-pic_.jpg);
+   
     background-size: cover;
     background-attachment: fixed;
     background-repeat: no-repeat; 
