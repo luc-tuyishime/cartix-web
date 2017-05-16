@@ -1,11 +1,11 @@
 myapp.controller('appBgCtrl', ['$scope', function($scope) {
-    $("body").removeClass('body-login');
-    $("body").addClass('body-app');
+//    $("body").removeClass('body-login');
+//    $("body").addClass('body-app');
 }]);
 
 myapp.controller('loginBgCtrl', ['$scope', function($scope) {
-    $("body").removeClass('body-app');
-    $("body").addClass('body-login');
+//    $("body").removeClass('body-app');
+//    $("body").addClass('body-login');
 }]);
 
 
@@ -1084,7 +1084,8 @@ function restoreNgo() {
 
 
 function openNav() {
-    var windowHeight = ($(window).height());
+    var windowHeight = $(".map-height").height();
+    
     $("#call-opacity").css("height", windowHeight);
     document.getElementById("mySidenav").style.width = "50%";
     document.body.style.backgroundColor = "#fff";
@@ -1092,7 +1093,7 @@ function openNav() {
 }
 
 function closeNav() {
-    var windowHeight = ($(window).height());
+    var windowHeight = $(".map-height").height();
     $("#call-opacity").css("height", 0);
     document.getElementById("mySidenav").style.width = "0";
     document.body.style.backgroundColor = "white";
@@ -1100,7 +1101,7 @@ function closeNav() {
 }
 
 function openNav1() {
-    var windowHeight = ($(window).height());
+    var windowHeight = $(".map-height").height();
     $("#call-opacity").css("height", windowHeight);
     document.getElementById("mySidenav1").style.width = "50%";
     document.body.style.backgroundColor = "#fff";
@@ -1108,17 +1109,16 @@ function openNav1() {
 }
 
 function closeNav_() {
-    var windowHeight = ($(window).height());
-    $("#call-opacity").css("height", 0);
+    var windowHeight = $(".map-height").height();
+    $("#call-opacity").css("height", windowHeight);
     document.getElementById("mySidenav1").style.width = "0";
     document.body.style.backgroundColor = "#fff";
-    document.getElementById("call-opacity").className = "";
-    location.reload();
+    document.getElementById("call-opacity").className = "opacity";
 }
 
 
 function openNav2() {
-    var windowHeight = ($(window).height());
+    var windowHeight = $(".map-height").height();
     $("#call-opacity").css("height", windowHeight);
     $("#mySidenav2").css({
         "width": "50%",
@@ -1128,13 +1128,13 @@ function openNav2() {
 }
 
 function closeNav2() {
-    var windowHeight = ($(window).height());
+    var windowHeight = $(".map-height").height();
     $("#call-opacity").css("height", windowHeight);
     $("#mySidenav2").css({
         "width": "0%",
         "background-color": "#fff"
     });
-    $("#call-opacity").removeClass("opacity");
+    //$("#call-opacity").removeClass("opacity");
 }
 
 function bytesToSize(bytes) {
