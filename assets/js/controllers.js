@@ -821,6 +821,13 @@ myapp.controller('viewAlldataCtrl', ['$scope', '$http', 'AuthService', '$q', fun
         renderViewdata(province_ids, district_id, sector_id, ngo_id,year,type, $http, $scope);
     })
     
+    
+    
+    // Download button ng-show ng-click
+    
+    $scope.dataDownload = false;
+    
+    
     // Render View data
     
     function renderViewdata(province_ids, district_id, sector_id, ngo_id,year,type, $http, $scope){
@@ -851,6 +858,9 @@ myapp.controller('viewAlldataCtrl', ['$scope', '$http', 'AuthService', '$q', fun
                 $scope.year = year;
                 $scope.saving = numeral(data.saving).format();
                 $scope.borrowing= numeral(data.borrowing).format();
+                
+                $scope.sqlQuery = data.query;
+                $scope.dataDownload = true;
             });
     }
     
