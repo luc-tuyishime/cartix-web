@@ -827,7 +827,25 @@ myapp.controller('viewAlldataCtrl', ['$scope', '$http', 'AuthService', '$q', fun
     
     $scope.dataDownload = false;
     
-    
+    $scope.downloadExcel = function(query, year){
+        console.log(query, year);
+        // config variable for http post
+        var config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+        var data = '{"query":"'+query+'", "year":"'+year+'"}'
+        var url = 'http://127.0.0.1:5000/api/v1/data/download/';
+        $http.post(url, data, config)
+            .success(function(data, status, header, config){
+                console.log(data);
+                $scope.url = data;
+            }).
+            error(function(data, status, header, config){
+                console.log(data);
+            });
+    }
     // Render View data
     
     function renderViewdata(province_ids, district_id, sector_id, ngo_id,year,type, $http, $scope){
