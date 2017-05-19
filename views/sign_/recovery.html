@@ -1,0 +1,30 @@
+<!-- Top content -->
+<div class="top-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-5 col-centered form-box">
+                <div class="form-top">
+                    <div class="form-top-center">
+                        <img src="assets/img/logo.png">
+                    </div>
+                    <div class="form-top-2">
+                        <h3 class="reset-password-style">Reset Password</h3>
+                        <span class="small-text">Enter the email address you used to register and we'll send you instructions to reset your password.</span>
+                    </div>
+                </div>
+                <div class="form-bottom" ng-controller="forgetCtrl">
+                    <form role="form" name="forgetP" class="login-form">
+                        <div class="form-group">
+                            <label class="sr-only" for="form-password">Email</label>
+                            <input type="email" name="form-email" placeholder="Email..." class="form-password form-control" id="form-email" ng-model="email" required>
+                        </div>
+                        <button type="submit" class="btn-sign" ng-click="recoverPass(email)" ng-disabled="!forgetP.$valid">Recover password</button>
+                    </form>
+                </div>
+                <div class="dont-have-an-account">
+                    <p class="text-center"><a href="#/signin">Back to login</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

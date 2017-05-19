@@ -1,271 +1,549 @@
-<div ng-controller="excelFileCtrl">
-   <div class="" id="call-opacity"></div>
-    <footer class="footer">
-       <div class="container-fluid">
-          <div class="row">
-             <div class="col-md-12 btn-cartix-bottom">
-                <button type="button" class="btn btn-default btn-cartix" onclick="openNav()">Data</button>
-                <button ng-click="logout()" class="btn btn-default btn-cartix">Sign out</button>
-             </div>
-          </div>
-       </div>
-    </footer>
-    <section id="mySidenav" class="sidenav" >
-       <nav class="navbar navbar-cartix">
-            <div class="container-fluid">
-               <!-- Brand and toggle get grouped for better mobile display -->
-               <div class="navbar-header">
-                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                  <span class="sr-only">Toggle navigation</span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  </button> 
-                  <a class="navbar-brand" href="#"><img src="assets/img/cartix-icon.png"></a> 
-               </div>
-               <!-- Collect the nav links, forms, and other content for toggling -->
-               <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                  <div class="nav navbar-nav navbar-right">
-                         
-                      <a class="ngo_header">{{ ngo_name }}</a> 
-                       
-                      <a href="javascript:void(0)" onclick="closeNav()"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
-                  </div>
-               </div>
-               
-               <!-- /.navbar-collapse -->
-            </div>
-            <!-- /.container-fluid -->
-         </nav>
-      <!--one -->
-      <div class="box-container col-md-12">
-         <div class="box-center ">
-            <div class="form-style">
-               <form name="uploadfile">
-                 <div ng-show="uploadInput">
-                     <div class="form-group">
-                         <input type="file" ngf-select ng-model="efile" name="file"
-                            accept=".xlsx,.csv,.xls" ng-drop ngf-max-size="10MB" required
-                            ngf-model-invalid="errorFile">
-                      </div>
-                      <div class="form-group">
-                         <button class="btn btn-default" ng-disabled="!uploadfile.$valid" 
-                            ng-click="upload_File(efile)">upload</button>
-                      </div>
-                  </div>
-                  <div class="form-group">
-                      <div class="progress" ng-show="efile.progress >= 0">
-                          <div class="progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:{{efile.progress}}%" ng-bind="efile.progress + '%'">
-                          </div> 
-                       </div>
-                  </div>
-                  <div class="form-group loading" ng-show="spinLoad">
-                      <div class="row">
-                          <div class="col-md-4"><img src="assets/img/spin.gif" style="width:32px;"></div>
-                          <div class="col-md-8 text-left">checking for error in excel file.<br>This might take a while, sit back and relax</div>
-                      </div>
-                   </div>
-                  <div class="form-group">
-                        <div ng-show="box_data_one">
-                            <p>Upload the field Data compilation sheet here</p>
-                            <p>Format: csv, xls, xlsx</p>
+<div class="app">
+    <div id="call-opacity"></div>
+    <div class="container-fluid map-height" ng-controller="mapCtrl">
+        <div class="row" >
+            <div class="col-md-9 bg-map">
+                <div class="container-fluid headerOnMap">
+                    <div class=row>
+                        <div class=col-md-2><img alt=""class=afr-logo src=assets/img/afr-logo.png></div>
+                        <div class="col-md-10 selectBox">
+                            <div class=select-box>
+                                <select data-placeholder=National id=national_map ng-model=national class=multiselect>
+                                    <option value=provinces>Provinces
+                                    <option value=districts>Districts
+                                    <option value=sectors>Sectors
+                              </select>
+                            </div>
+                            <div class=select-box><select data-placeholder=Provinces id=province_map ng-model=province_map></select></div>
+                            <div class=select-box><select data-placeholder=District id=district_map ng-model=district_map ng-options="district for district in districts"></select></div>
+                            <div class=select-box><select data-placeholder="Saving Groups" id=saving_group_map multiple ></select></div>
+                            <div class=select-box><select data-placeholder=Year id=year ng-model=year ng-options="year for year in years"></select></div>
                         </div>
-                        <div ng-show="box_data_two">
-                            <p>Your file contains errors, consider revising the highlighted fields. download it here: <a ng-href="{{ savepath }}">{{filename}}</a></p>
+                    </div>
+                    <div class=row>
+                        <div class=btn-cartix-bottom><button class="btn btn-cartix btn-default"onclick=openNav() type=button>Data</button></div>
+                    </div>
+                </div> 
+                <div id="map-cartix">
+                </div> 
+            </div>
+            <div class="col-md-3 profile-pending bg-side">
+                <div class="bg-side">
+                
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="care-style">{{ ngo_name }}</p>
                         </div>
-                   </div>
-               </form>
-               
-            </div>
-            
-         </div>
-         
-         <div class="row">
-             <div class="col-md-6">
-                 <div class="download-sample text-center">
-                    <p><a href="http://savinggroup.cartix.io/uploads/templates/Data_Compilation_Sheet_Template_2015.xlsx">Data_Compilation_Sheet_Template_2015</a></p>
-                 </div>
-             </div>
-             
-             <div class="col-md-6">
-                 <div class="download-sample text-center">
-                    <p><a href="http://savinggroup.cartix.io/uploads/templates/Data_Compilation_Sheet_Template_2016.xlsx">Data_Compilation_Sheet_Template_2016</a></p>
-                 </div>
-             </div>
-             
-         </div>
-         
-      </div>
-      <!--Three-->
-      
-</section>
-<section id="mySidenav1" class="sidenav" >
-      <div id="side-content-saved">
-          <nav class="navbar navbar-cartix">
-            <div class="container-fluid">
-               <!-- Brand and toggle get grouped for better mobile display -->
-               <div class="navbar-header">
-                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                  <span class="sr-only">Toggle navigation</span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  </button> 
-                  <a class="navbar-brand" href="#"><img src="assets/img/cartix-icon.png"></a>
-               </div>
-               <!-- Collect the nav links, forms, and other content for toggling -->
-               <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                  <div class="nav navbar-nav navbar-right">
-                     <a class="ngo_header">{{ ngo_name }}</a> 
-                      <a href="javascript:void(0)" onclick="closeNav_()"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
-                  </div>
-               </div>
-               
-               <!-- /.navbar-collapse -->
-            </div>
-            <!-- /.container-fluid -->
-         </nav>
-          <div class="box-center-successful">
-             <div class="circle">
-                <span class="glyphicon glyphicon-ok"></span>
-             </div>
-             <p class="text-saved">successfully saved</p>
-          </div>
-
-   </div>
-   
-   <div id="side-content-data">
-     
-     <nav class="navbar navbar-cartix">
-            <div class="container-fluid">
-               <!-- Brand and toggle get grouped for better mobile display -->
-               <div class="navbar-header">
-                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                  <span class="sr-only">Toggle navigation</span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  </button> 
-                  <a class="navbar-brand" href="#"><img src="assets/img/cartix-icon.png"></a>
-               </div>
-               <!-- Collect the nav links, forms, and other content for toggling -->
-               <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                  <div class="nav navbar-nav navbar-right">
-                      <a class="ngo_header">{{ ngo_name }}</a> 
-                      <a href="javascript:void(0)" onclick="closeNav_()"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
-                  </div>
-               </div>
-               
-             <!--  <div class="from-selection">
-                   <div class="col-md-4 option-select">
-                  <div class="form-group">
-                     <h5>Province</h5>
-                     <select id="province" multiple="multiple" ng-model="selectedProvince">
-                         
-                     </select>
-                  </div>
-               </div>
-               <div class="col-md-4">
-                  <div class="form-group">
-                     <h5>District</h5>
-                     <select id="district" multiple="multiple">
-                        
-                     </select>
-                  </div>
-               </div>
-               <div class="col-md-4">
-                  <div class="form-group">
-                     <h5>Sectors</h5>
-                     <select id="sector" multiple="multiple">
-                        
-                     </select>
-                  </div>
-               </div>
-                </div> -->
-               <!-- /.navbar-collapse -->
-            </div>
-            <!-- /.container-fluid -->
-         </nav>
-     
-      
-      
-         <div class="table-center">
-            <div class="table">
-               <div class="col-md-12">
+                        <div class="col-md-6">
+                            <div class="dropdown">
+                                <a href="" class="dropdown-toggle" data-toggle="dropdown">
+                                <img src="assets/img/lightgray.png" height="30px"/>
+                                    <span class="profile-name"> 
+                                        {{ usernames_p }}
+                                    </span> 
+                                    <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#gsdk">Settings</a></li>
+                                    <li><a href="#gsdk">Help</a></li>
+                                    <li><a ng-click="logout()">Log Out</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                    
-                  <table class="table table-hover">
-                     <thead>
-                        <tr>
-                           <td class="text-left">Saving Group :</td>
-                           <td class="text-right">{{sg_number}}</td>
-                        </tr>
-                     </thead>
-                     <tbody>
-                        <tr>
-                           <td class="text-left">SGs Year of creation:</td>
+                    
+                    
+                    <hr class="style1">
+                    <p class="saving-text">Saving Groups <span class="survey">({{ yearSurvey }})</span></p>
+                    
+                    <div class="row">
+                        <div class="alert alert-default" role="alert">
+                            <div class="dropdown">
+                                <a href="" class="dropdown-toggle" data-toggle="dropdown"><span class="analytics_text">{{ valSeclectedName }} <b class="caret"></b></span> </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="" ng-click="menuChart('Saving Group Analytics')">Saving Groups Analytics</a></li>
+                                    <li><a href="" ng-click = "menuChart('Financial Institutions Analytics')">Financial Institutions Analytics</a></li>
+                                    <li><a href="" ng-click = "menuChart('Agent Analytics')">Agent Analytics</a></li>
+                                    <li><a href="" ng-click = "menuChart('FinScope Analytics')">FinScope Analytics</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-left">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p class="text-1"><span><img alt="" src="assets/img/groups.png" class="file-logo"></span> Total Saving Groups</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p class="text-1"><span><img style alt="" src="assets/img/savings.png" class="file-logo"></span> Total Membership</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p class="text-2">{{ sg_count }}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p class="text-2">{{ membership }}</p>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p class="text-1"><span><img alt="" src="assets/img/member.png" class="file-logo"></span> Total Savings</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p class="text-1"><span><img style alt="" src="assets/img/dot.png" class="file-logo"></span> Total Outstanding Loans</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p class="text-2">{{ saving }}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p class="text-2">{{ borrowing }}</p>
+                            </div>
+                        </div>
+                       
+                    </div>
+                    
+                    <div class="chart" id="saving_group" ng-show="saving_group">
+                        <hr>
+                        <div id="container" style="min-width: 340px; height: auto; max-width: 600px; margin: 0 auto"></div>
+                        <hr>
+                        <div id="container_pie" style="min-width: 340px; height: auto; max-width: 600px; margin: 0 auto"></div>
+                        <hr>
+                        <div id="container_saving_loan" style="min-width: 340px; height: auto; max-width: 600px; margin: 0 auto"></div>
+                        <hr>
+                        <div id="container_year_sg" style="min-width: 340px; height: auto; max-width: 600px; margin: 0 auto"></div>
+                        <hr>
+                        <div id="sg_per_int_ngo" style="min-width: 340px; height: 820px; max-width: 600px; margin: 0 auto"></div>
+                        <hr>
+                        <div id="sg_local_per_int" style="min-width: 340px; height: 1810px; max-width: 600px; margin: 0 auto"></div>
+                        <hr>
+                    </div>
+                    <div class="chart" id="financial">
+                        <div id="sg_financial" style="min-width: 340px; height: 500px; max-width: 600px; margin: 0 auto"></div>
+                        <hr>
+                    </div>
+                    
+                    <div class="chart" id="agent">
+                        <div id="sg_agent" style="min-width: 340px; height: 500px; max-width: 600px; margin: 0 auto"></div>
+                        <hr>
+                    </div>
+                    
+                    <div class="chart" id="finscope">
+                        <div id="container_finscope" style="min-width: 340px; height: auto; max-width: 600px; margin: 0 auto"></div>
+                        <hr>
+                        <div id="finscope_sg_pie_2012" style="min-width: 340px; height: auto; max-width: 600px; margin: 0 auto"></div>
+                        <hr>
+                        <div id="finscope_sg_pie_2015" style="min-width: 340px; height: auto; max-width: 600px; margin: 0 auto"></div>
+                        <hr>
+                        <div id="finscope_all_2012" style="min-width: 340px; height: 500px; max-width: 600px; margin: 0 auto"></div>
+                        <hr>
+                        <div id="finscope_all_2015" style="min-width: 340px; height: 500px; max-width: 600px; margin: 0 auto"></div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--NOTIFICATION SLIDE-->
+    <section id="mySidenav" class="sidenav" ng-controller="notificationCtrl">
+        <div id="notification">
+            <div class="navbar-sidebar">
+                <nav class="navbar">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <a class="navbar-brand" href="#">
+                            <img alt="" src="assets/img/cartix_logo.png">
+                            </a>
+                        </div>
+                        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                    </div> 
+                </nav>
+                <div class="row">
+                    <div class="container-fluid dropdown-box">
+                        <div class="row " ng-show="notifAdmin">
+                            <div class="col-md-3">
+                                <div class="select-box drop-notif">
+                                    <p>International NG0</p>
+                                    <select id="int_ngo" multiple="multiple" ng-model="int_ngo_filter" ng-change="loadLocalNgo(int_ngo_filter)">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="select-box">
+                                    <p>Local NGO </p>
+                                    <select id="local_ngo_admin" multiple="multiple" ng-model="localNgoFilter" >
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="select-box">
+                                    <p>Year</p>
+                                    <select id="year_admin" multiple="multiple" ng-model="yearFilterAdmin">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="select-box">
+                                    <p>Status</p>
+                                    <select id="status_admin" multiple="multiple">
+                                        <option value="1">Success</option>
+                                        <option value="2">Error</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row ngo" ng-show="notifNgo">
+                            <div class="col-md-4">
+                                <div class="select-box">
+                                    <p>Local NGO</p>
+                                    <select id="local_ngo" multiple="multiple">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="select-box">
+                                    <p>Year</p>
+                                    <select id="year_ngo" multiple="multiple">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="select-box">
+                                    <p>Status</p>
+                                    <select id="status_ngo" multiple="multiple">
+                                        <option value="1">Success</option>
+                                        <option value="2">Error</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container container-data text-icon">
+                        <div class="success" ng-repeat="file in files">
+                            <img alt="" src="assets/img/yellow.png" class="red-icon">
+                            <p class="care-rwanda">{{ file.user.ngo.name }}<span> {{ file.regDate }}</span></p>
+                            <span class="text-uploaded">Uploaded a file</span><br>
+                            <!--<span class="text-uploaded">Lorem Ipsum is simply dummy text of the printing and typesetting.</span>--><br>
+                            <div class="container">
+                                <div class="panel {{ file.status ? 'panel-success' : 'panel-danger' }}">
+                                    <a href="{{ file.saved}}">
+                                        <div class="panel-body">
+                                            <img alt="" src="assets/img/file.png" class="file-logo">
+                                            <p class="SG-text"><span> {{ file.filename }}</span></p>
+                                            <span class="text-uploaded">{{ file.size }} excel spreadsheet</span>
+                                            <div class="danger-icon">
+                                                <img alt="" src="{{ file.status ? 'assets/img/success.png' : 'assets/img/danger.png' }}">
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container">
+                            <footer>
+                                <button type="button" class="btn btn-default btn_cartix" onclick="openNav1()">Upload</button>
+                                <button type="button" class="btn btn-default btn_cartix" onclick="openNav2()">View Data</button>
+                            </footer>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    
+    
+    <!--SECTION DISPLAY DATA ON UPLOAD-->
+    <section id="mySidenav1" class="sidenav2" ng-controller="excelFileCtrl">
+        <!--SECTION DISPLAY DATA-->
+        <div id="sidebar_data">
+            <div class="navbar-sidebar">
+                <nav class="navbar">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#">
+                        <img alt="" src="assets/img/cartix_logo.png">
+                        </a>
+                    </div>
+                    <a href="javascript:void(0)" class="closebtn_2" onclick="closeNav_()">&times;</a>
+                </nav>
+                <div class="container-fluid">
+                    <div class="box">
+                        <!-- UPLOAD FILE_1 -->
+                        <div class="row" ng-show="uploadProcess">
+                            <div class="upload-box">
+                                <!-- upload title Submit Your File / Uploading files / Checking for errors -->
+                                <h2>{{ uploadTitle }}</h2>
+                                <!-- filename -->
+                                <p class="small-text">{{ filename }}</p>
+                                <!-- image type  "assets/img/files-xls.png" | assets/img/file.png -->
+                                <div class="error" ng-show="box_data_two">
+                                    <img alt="" src="assets/img/danger.png" class="icon-danger">
+                                    <p class="error_message_text">You file contains errors, consider revising highlighted fields.
+                                        Download it here: <a ng-href="{{ savepath }}">{{filename}}</a>
+                                    </p>
+                                </div>
+                                <img alt="" src="assets/img/files-xls.png" ng-show="img_upl">
+                                <!-- upload -->
+                                <form name="uploadfile">
+                                    <div class="drop-box" ng-show="uploadInput">
+                                        <input id="upload" type="file" ngf-select ng-model="efile" name="file" accept=".xlsx,.csv,.xls" ng-drop ngf-max-size="10MB" required ngf-model-invalid="errorFile"/>
+                                        <p class="browse-text">Drag a file here or <a href="" id="upload_link">browse</a> for a upload</p>
+                                        <button type="button" class="btn btn-success" id="upload-progress" ng-disabled="!uploadfile.$valid"                ng-click="upload_File(efile)">Upload</button>
+                                    </div>
+                                    <!-- Progress -->
+                                    <div class="progress" ng-show="efile.progress >= 0">
+                                        <div class="progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:{{efile.progress}}%" ng-bind="efile.progress + '%'">   
+                                        </div>
+                                    </div>
+                                    <div class="row" ng-show="spinLoad">
+                                        <i class="fa fa-spinner fa-spin" style="font-size:40px"></i>
+                                        <p class="small-text_">this might take a while</p>
+                                    </div>
+                                </form>
+                                <!-- Save succed file 
+                                    <div class="uploading-box">
+                                        <div class="button-save">
+                                            <button id="button-save-file" type="button" class="btn btn-success btn-cartix_" onclick="openNav1()">Save</button>
+                                        </div>
+                                    </div> -->
+                                <!-- file error -->
+                                <!-- download template file -->
+                                <div class="row">
+                                    <p class="download_data_text"><a href="">Download Data compilation sheet Template here</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" ng-show="showDataUlploaded">
+                            <div class="table-center">
+                                <div class="table">
+                                    <div class="col-md-12">
+                                        <table class="table table-hover" style="width:100%;">
+                                            <thead>
+                                                <tr>
+                                                    <td class="text-left">Saving Group :</td>
+                                                    <td class="text-right">{{sg_number}}</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="text-left">SGs Year of creation:</td>
+                                                    <td class="text-right">{{year_creation}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-left">SGs members Total:</td>
+                                                    <td class="text-right">{{ total_member }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-left">SGs members- Female:</td>
+                                                    <td class="text-right">{{ total_female }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-left">SGs members- Male:</td>
+                                                    <td class="text-right">{{ total_male }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-left">Funding NGO:</td>
+                                                    <td class="text-right">{{ ngo_number }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-left">Partner NGO:</td>
+                                                    <td class="text-right">{{ partner_number }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-left">SGs Status/ supervised</td>
+                                                    <td class="text-right">{{ supervised_num }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-left">SGs Status/ graduated</td>
+                                                    <td class="text-right">{{ graduated_num }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-left">Saved Amount as of December {{ year_amount }} ( In Rwf ):</td>
+                                                    <td class="text-right">{{ total_saved }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-left">Outstanding Loans as of December {{ year_amount }} ( In Rwf ):</td>
+                                                    <td class="text-right">{{ total_loan }}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <footer>
+                                            <button id="button-save" type="button" class="btn btn-success btn-cartix_" ng-disabled="disabled" ng-click="saveData(originalpath, filename_save)">{{ savedValue }}</button>
+                                        </footer>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--SUCESSFULLY SAVED-->
+                        <div class="row">
+                            <div class="successfull-saved" ng-show="successfullySaved">
+                                <div class="box-center-successful">
+                                    <div class="circle">
+                                        <i class="fa fa-check" aria-hidden="true" style="font-size:40px"></i>
+                                    </div>
+                                    <h2>Sucessfully saved!</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    
+    
+    <section id="mySidenav2" class="sidenav2" ng-controller="viewAlldataCtrl">
+        <div id="sidebar_data">
+            <div class="navbar-sidebar">
+                <nav class="navbar">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#">
+                        <img alt="" src="assets/img/cartix_logo.png">
+                        </a>
+                    </div>
+                    <a href="javascript:void(0)" class="closebtn_2" onclick="closeNav2()">&times;</a>
+                </nav>
+                <div class="container-fluid">
+                    <div class="box">
+                        <!--  View All Data -->
+                        <div class="row" id="dataNgoHandler">
                            
-                           <td class="text-right">{{year_creation}}</td>
-                        </tr>
-                        <tr>
-                           <td class="text-left">SGs members Total:</td>
-                        
-                           <td class="text-right">{{ total_member }}</td>
-                        </tr>
-                        <tr>
-                           <td class="text-left">SGs members- Female:</td>
-                           
-                           <td class="text-right">{{ total_female }}</td>
-                        </tr>
-                        <tr>
-                           <td class="text-left">SGs members- Male:</td>
-                           
-                           <td class="text-right">{{ total_male }}</td>
-                        </tr>
-                        <tr>
-                           <td class="text-left">Internation NGO:</td>
-                           
-                           <td class="text-right">{{ ngo_number }}</td>
-                        </tr>
-                        <tr>
-                           <td class="text-left">Local NGO:</td>
-                           
-                           <td class="text-right">{{ partner_number }}</td>
-                        </tr>
-                        <tr>
-                           <td class="text-left">SGs Status/ supervised</td>
-                          
-                           <td class="text-right">{{ supervised_num }}</td>
-                        </tr>
-                        <tr>
-                           <td class="text-left">SGs Status/ graduated</td>
-                        
-                           <td class="text-right">{{ graduated_num }}</td>
-                        </tr>
-                        <tr>
-                           <td class="text-left">Saved Amount as of December {{ year_amount }} ( In Rwf ):</td>
-                          
-                           <td class="text-right">{{ total_saved }}</td>
-                        </tr>
-                        <tr>
-                           <td class="text-left">Outstanding Loans as of December {{ year_amount }} ( In Rwf ):</td>
-                          
-                           <td class="text-right">{{ total_loan }}</td>
-                        </tr>
-                     </tbody>
-               </table>
-               </div>
-            </div> 
-         </div>
-      
-      <div class="button-save">
-         <div class="col-md-12">
-            <button id="button-save" type="button" class="btn btn-success btn-cartix_" ng-disabled="disabled" ng-click="saveData(originalpath, filename_save)">{{ savedValue }}</button>
-         </div>
-      </div>
-      </div>
-     
-</section>
+                               <div class="col-md-4" id="changeColClass">
+                                    <div class="select-box">
+                                        <p>Province</p>
+                                        <select id="ddlCars13" multiple="multiple">
 
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4" id="changeColClass">
+                                    <div class="select-box">
+                                        <p>District</p>
+                                        <select id="ddlCars14" multiple="multiple">
 
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4" id="changeColClass">
+                                    <div class="select-box">
+                                        <p>Sector</p>
+                                        <select id="ddlCars15" multiple="multiple">
+
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-4" ng-show="intlNgo">
+                                    <div class="select-box intNgo">
+                                        <p>International NGO</p>
+                                        <select id="ddlCars16" multiple="multiple">
+                                            <option value="1">Option 1</option>
+                                            <option value="2">Option 2</option>
+                                            <option value="3">Option 3</option>
+                                            <option value="4">Option 4</option>
+                                            <option value="5">Option 5</option>
+                                            <option value="6">Option 6</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4" ng-show="localNgo">
+                                    <div class="select-box">
+                                        <p>Local NGO</p>
+                                        <select id="ddlCars9" multiple="multiple">
+                                            <option value="1">Option 1</option>
+                                            <option value="2">Option 2</option>
+                                            <option value="3">Option 3</option>
+                                            <option value="4">Option 4</option>
+                                            <option value="5">Option 5</option>
+                                            <option value="6">Option 6</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="select-box">
+                                        <p>Year of Survery</p>
+                                        <select id="ddlCars17">
+                                            
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="select-box" >
+                                        <p>View Data</p>
+                                        <button class="btn btn-primary" id="viewdata_btn" ng-show="admin_btn">Submit</button>
+                                        <button class="btn btn-primary" id="viewdata_btn_int" ng-show="int_btn">Submit</button>
+                                        <button class="btn btn-primary" id="viewdata_btn_local" ng-show="local_btn">Submit</button>
+                                    </div>
+                                </div>
+                                
+                            
+                            <div class="table-center">
+                                <div class="table">
+                                    <div class="col-md-12">
+                                        <table class="table table-hover" style="width:100%;">
+                                            <thead>
+                                                <tr>
+                                                    <td class="text-left">Saving Group :</td>
+                                                    <td class="text-right">{{saving_group}}</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="text-left">SGs Year of creation:</td>
+                                                    <td class="text-right">{{year_of_creation}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-left">SGs members Total:</td>
+                                                    <td class="text-right">{{ total_member }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-left">SGs members- Female:</td>
+                                                    <td class="text-right">{{ member_female }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-left">SGs members- Male:</td>
+                                                    <td class="text-right">{{ member_male }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-left">Funding NGO:</td>
+                                                    <td class="text-right">{{ funding_ngo }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-left">Partner NGO:</td>
+                                                    <td class="text-right">{{ partner_number }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-left">SGs Status/ supervised</td>
+                                                    <td class="text-right">{{ supervised }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-left">SGs Status/ graduated</td>
+                                                    <td class="text-right">{{ graduated }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-left">Saved Amount as of December {{ year }} ( In Rwf ):</td>
+                                                    <td class="text-right">{{ saving }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-left">Outstanding Loans as of December {{ year }} ( In Rwf ):</td>
+                                                    <td class="text-right">{{ borrowing }}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        
+                                    </div>
+                                    <div class="col-md-12">
+                                        <button class="btn btn-success pull-left" ng-show="dataDownload" ng-click=downloadExcel(sqlQuery,year)>Download</button>
+                                        <p>{{ url }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> 
+    
 </div>
-
