@@ -1645,15 +1645,18 @@ function leafletCartix(year) {
 
 
     var url, sg_ngo;
+    
     url = 'http://127.0.0.1:5000/api/v1/sqlsaving/1/1';
     $("#saving_group_map").change(function() {
         sg_ngo = $("#saving_group_map").val();
         year = $("#year").val();
         url = 'http://127.0.0.1:5000/api/v1/sqlsaving/' + sg_ngo + '/' + year;
-
+        //console.log(url);
+        Jsonfile = AjaxSgData(url);
     });
 
     console.log(year);
+    
 
 
 
@@ -1666,8 +1669,9 @@ function leafletCartix(year) {
     });
 
 
-
+    Jsonfile = AjaxSgData(url);
     function AjaxSgData(url) {
+        console.log(url);
         $.ajax({
             url: url,
             async: false,
@@ -1679,7 +1683,7 @@ function leafletCartix(year) {
         return Jsonfile;
     }
 
-    Jsonfile = AjaxSgData(url);
+    
 
 
 
@@ -1767,16 +1771,16 @@ function leafletCartix(year) {
 
         $.each(Jsonfile.Provinces, function(key, obj) {
             if (obj.Province == layer.feature.properties.Name) {
-                var mm = obj.Membership;
-                var f = obj.Female;
-                var ml = obj.Male;
-                var dens = obj.Density;
-                var banks = obj.Male;
-                var mfi = obj.Male;
-                var nu = obj.Male;
-                var u = obj.Male;
-                var tl = obj.Male;
-                var ba = obj.Male;
+                var mm = numeral(obj.Membership).format();
+                var f = numeral(obj.Female).format();
+                var ml = numeral(obj.Male).format();
+                var dens = numeral(obj.Density).format();
+                var banks = numeral(obj.bank).format();
+                var mfi = numeral(obj.mfi).format();
+                var nu = numeral(obj.nsacco).format();
+                var u = numeral(obj.usacco).format();
+                var tl = numeral(obj.telco_agent).format();
+                var ba = numeral(obj.bank_agent).format();
                 info.update(layer.feature.properties, dens, mm, f, ml, banks, mfi, nu, u, tl, ba);
             }
         });
@@ -1946,17 +1950,17 @@ function leafletCartix(year) {
 
         $.each(Jsonfile.Districts, function(key, obj) {
             if (obj.District == layer.feature.properties.Name) {
-                var mm1 = obj.Membership;
-                var f1 = obj.Female;
-                var ml1 = obj.Male;
-                var dens = obj.Density;
-                var banks = obj.Male;
-                var mfi = obj.Male;
-                var nu = obj.Male;
-                var u = obj.Male;
-                var tl = obj.Male;
-                var ba = obj.Male;
-                infoP.update(layer.feature.properties, dens, mm1, f1, ml1, banks, mfi, nu, u, tl, ba);
+                var mm = numeral(obj.Membership).format();
+                var f = numeral(obj.Female).format();
+                var ml = numeral(obj.Male).format();
+                var dens = numeral(obj.Density).format();
+                var banks = numeral(obj.bank).format();
+                var mfi = numeral(obj.mfi).format();
+                var nu = numeral(obj.nsacco).format();
+                var u = numeral(obj.usacco).format();
+                var tl = numeral(obj.telco_agent).format();
+                var ba = numeral(obj.bank_agent).format();
+                infoP.update(layer.feature.properties, dens, mm, f, ml, banks, mfi, nu, u, tl, ba);
             }
         });
 
@@ -2086,16 +2090,16 @@ function leafletCartix(year) {
         $.each(Jsonfile.Districts, function(key, obj) {
             if (obj.District == layer.feature.properties.Name) {
 
-                var mm = obj.Membership;
-                var f = obj.Female;
-                var ml = obj.Male;
-                var dens = obj.Density;
-                var banks = obj.Male;
-                var mfi = obj.Male;
-                var nu = obj.Male;
-                var u = obj.Male;
-                var tl = obj.Male;
-                var ba = obj.Male;
+                var mm = numeral(obj.Membership).format();
+                var f = numeral(obj.Female).format();
+                var ml = numeral(obj.Male).format();
+                var dens = numeral(obj.Density).format();
+                var banks = numeral(obj.bank).format();
+                var mfi = numeral(obj.mfi).format();
+                var nu = numeral(obj.nsacco).format();
+                var u = numeral(obj.usacco).format();
+                var tl = numeral(obj.telco_agent).format();
+                var ba = numeral(obj.bank_agent).format();
                 infoD.update(layer.feature.properties, dens, mm, f, ml, banks, mfi, nu, u, tl, ba);
             }
         });
@@ -2324,16 +2328,16 @@ function leafletCartix(year) {
         $.each(Jsonfile.Sectors, function(key, obj) {
             if (obj.District == layer.feature.properties.District) {
                 if (obj.Sector == layer.feature.properties.Name) {
-                    var mm = obj.Membership;
-                    var f = obj.Female;
-                    var ml = obj.Male;
-                    var dens = obj.Density;
-                    var banks = obj.Male;
-                    var mfi = obj.Male;
-                    var nu = obj.Male;
-                    var u = obj.Male;
-                    var tl = obj.Male;
-                    var ba = obj.Male;
+                    var mm = numeral(obj.Membership).format();
+                    var f = numeral(obj.Female).format();
+                    var ml = numeral(obj.Male).format();
+                    var dens = numeral(obj.Density).format();
+                    var banks = numeral(obj.bank).format();
+                    var mfi = numeral(obj.mfi).format();
+                    var nu = numeral(obj.nsacco).format();
+                    var u = numeral(obj.usacco).format();
+                    var tl = numeral(obj.telco_agent).format();
+                    var ba = numeral(obj.bank_agent).format();
                     infoS.update(layer.feature.properties, dens, mm, f, ml, banks, mfi, nu, u, tl, ba);
                     //console.log(obj.Sector+ " "+ layer.feature.properties.Name);
                 }else{
