@@ -1645,14 +1645,18 @@ function leafletCartix(year) {
 
 
     var url, sg_ngo;
-    
-    url = 'http://127.0.0.1:5000/api/v1/sqlsaving/1/1';
+    var year = $("#year").val();
+    year = year ? year : '2014';
+    sg_ngo = $("#saving_group_map").val();
+    url = 'http://127.0.0.1:5000/api/v1/sqlsaving/'+sg_ngo+'/'+year;
     $("#saving_group_map").change(function() {
         sg_ngo = $("#saving_group_map").val();
         year = $("#year").val();
         url = 'http://127.0.0.1:5000/api/v1/sqlsaving/' + sg_ngo + '/' + year;
         //console.log(url);
         Jsonfile = AjaxSgData(url);
+        var data = $("#national_map").val();
+        //(new leafletCartix()).handlerNational(data);
     });
 
     console.log(year);
@@ -1666,6 +1670,9 @@ function leafletCartix(year) {
         console.log(sg_ngo);
         console.log(year);
         url = 'http://127.0.0.1:5000/api/v1/sqlsaving/' + sg_ngo + '/' + year;
+        Jsonfile = AjaxSgData(url);
+        var data = $("#national_map").val();
+        //(new leafletCartix()).handlerNational(data);
     });
 
 
@@ -1679,7 +1686,8 @@ function leafletCartix(year) {
                 Jsonfile = data;
             }
         });
-        console.log(url);
+        console.log(url,Jsonfile);
+        
         return Jsonfile;
     }
 
@@ -1781,7 +1789,9 @@ function leafletCartix(year) {
                 var u = numeral(obj.usacco).format();
                 var tl = numeral(obj.telco_agent).format();
                 var ba = numeral(obj.bank_agent).format();
-                info.update(layer.feature.properties, dens, mm, f, ml, banks, mfi, nu, u, tl, ba);
+                var borrowing = numeral(obj.borrowing).format();
+                var saving = numeral(obj.saving).format();
+                info.update(layer.feature.properties, dens, mm, f, ml, banks, mfi, nu, u, tl, ba, borrowing, saving);
             }
         });
 
@@ -1802,10 +1812,10 @@ function leafletCartix(year) {
     };
 
     // method that we will use to update the control based on feature properties passed
-    info.update = function(props, density, membr, fem, male, banks, mfi, nu, u, tl, ba) {
+    info.update = function(props, density, membr, fem, male, banks, mfi, nu, u, tl, ba, borrowing, saving) {
 
         this._div.innerHTML = '<h4>Saving groups per Province</h4>' + (props ?
-            '<b>' + props.Name + ' Province</b><br />' + density + ' Saving groups<br/> <b> Total Membership: </b>' + membr + '<br/> <b> Total Female: </b>' + fem + ' <br/> <b>Total Male: </b>' + male + '</br><b> Banks: </b>' + banks + '</br><b>MFIs: </b>' + mfi + '</br><b> Non-Umurenge: </b>' + nu + '</br><b> Umurenge:</b>' + u + '</br><b>Telco Agents: </b>' + tl + '</br><b>Bank Agents:</b>' + ba + '</br>' :
+            '<b>' + props.Name + ' Province</b><br />' + density + ' Saving groups<br/> <b> Total Membership: </b>' + membr + '<br/> <b> Total Female: </b>' + fem + ' <br/> <b>Total Male: </b>' + male + '</br><b>Total Out. Loans: </b>'+borrowing+'<br><b>Total Savings: </b>'+saving+'<br><b> Banks: </b>' + banks + '</br><b>MFIs: </b>' + mfi + '</br><b> Non-Umurenge Sacco: </b>' + nu + '</br><b>Umurenge Sacco:</b>' + u + '</br><b>Telco Agents: </b>' + tl + '</br><b>Bank Agents:</b>' + ba + '</br>' :
             'Hover over a province');
 
     };
@@ -1960,7 +1970,9 @@ function leafletCartix(year) {
                 var u = numeral(obj.usacco).format();
                 var tl = numeral(obj.telco_agent).format();
                 var ba = numeral(obj.bank_agent).format();
-                infoP.update(layer.feature.properties, dens, mm, f, ml, banks, mfi, nu, u, tl, ba);
+                var borrowing = numeral(obj.borrowing).format();
+                var saving = numeral(obj.saving).format();
+                infoP.update(layer.feature.properties, dens, mm, f, ml, banks, mfi, nu, u, tl, ba, borrowing, saving);
             }
         });
 
@@ -1981,9 +1993,9 @@ function leafletCartix(year) {
     };
 
     // method that we will use to update the control based on feature properties passed
-    infoP.update = function(props, density, membr, fem, male, banks, mfi, nu, u, tl, ba) {
+    infoP.update = function(props, density, membr, fem, male, banks, mfi, nu, u, tl, ba, borrowing, saving) {
         this._div.innerHTML = '<h4>Saving groups in each District per Province</h4>' + (props ?
-            '<b>' + props.Name + ' Province</b><br />' + density + ' Saving groups<br/> <b> Total Membership: </b>' + membr + '<br/> <b> Total Female: </b>' + fem + ' <br/> <b>Total Male: </b>' + male + '</br><b> Banks: </b>' + banks + '</br><b>MFIs: </b>' + mfi + '</br><b> Non-Umurenge: </b>' + nu + '</br><b> Umurenge:</b>' + u + '</br><b>Telco Agents: </b>' + tl + '</br><b>Bank Agents:</b>' + ba + '</br>' :
+            '<b>' + props.Name + ' District</b><br />' + density + ' Saving groups<br/> <b> Total Membership: </b>' + membr + '<br/> <b> Total Female: </b>' + fem + ' <br/> <b>Total Male: </b>' + male + '</br><b>Total Out. Loans: </b>'+borrowing+'<br><b>Total Savings: </b>'+saving+'<br><b> Banks: </b>' + banks + '</br><b>MFIs: </b>' + mfi + '</br><b> Non-Umurenge Sacco: </b>' + nu + '</br><b>Umurenge Sacco:</b>' + u + '</br><b>Telco Agents: </b>' + tl + '</br><b>Bank Agents:</b>' + ba + '</br>' :
             'Hover over a province');
 
     };
@@ -2100,7 +2112,9 @@ function leafletCartix(year) {
                 var u = numeral(obj.usacco).format();
                 var tl = numeral(obj.telco_agent).format();
                 var ba = numeral(obj.bank_agent).format();
-                infoD.update(layer.feature.properties, dens, mm, f, ml, banks, mfi, nu, u, tl, ba);
+                var borrowing = numeral(obj.borrowing).format();
+                var saving = numeral(obj.saving).format();
+                infoD.update(layer.feature.properties, dens, mm, f, ml, banks, mfi, nu, u, tl, ba, borrowing, saving);
             }
         });
 
@@ -2123,9 +2137,9 @@ function leafletCartix(year) {
     };
 
     // method that we will use to update the control based on feature properties passed
-    infoD.update = function(props, density, membr, fem, male, banks, mfi, nu, u, tl, ba) {
+    infoD.update = function(props, density, membr, fem, male, banks, mfi, nu, u, tl, ba, borrowing, saving) {
         this._div.innerHTML = '<h4>Saving groups per District</h4>' + (props ?
-            '<b>' + props.Name + ' District</b><br />' + density + ' Saving groups <br/> <b> Total Membership: </b>' + membr + '<br/> <b> Total Female: </b>' + fem + ' <br/> <b>Total Male: </b>' + male + '</br><b> Banks: </b>' + banks + '</br><b>MFIs: </b>' + mfi + '</br><b> Non-Umurenge: </b>' + nu + '</br><b> Umurenge:</b>' + u + '</br><b>Telco Agents: </b>' + tl + '</br><b>Bank Agents:</b>' + ba + '</br>' :
+            '<b>' + props.Name + ' District</b><br />' + density + ' Saving groups <br/> <b> Total Membership: </b>' + membr + '<br/> <b> Total Female: </b>' + fem + ' <br/> <b>Total Male: </b>' + male + '</br><b>Total Out. Loans: </b>'+borrowing+'<br><b>Total Savings: </b>'+saving+'<br><b> Banks: </b>' + banks + '</br><b>MFIs: </b>' + mfi + '</br><b> Non-Umurenge Sacco: </b>' + nu + '</br><b> Umurenge Sacco:</b>' + u + '</br><b>Telco Agents: </b>' + tl + '</br><b>Bank Agents:</b>' + ba + '</br>' :
             'Hover over a district');
     };
     //legend
@@ -2338,7 +2352,9 @@ function leafletCartix(year) {
                     var u = numeral(obj.usacco).format();
                     var tl = numeral(obj.telco_agent).format();
                     var ba = numeral(obj.bank_agent).format();
-                    infoS.update(layer.feature.properties, dens, mm, f, ml, banks, mfi, nu, u, tl, ba);
+                    var borrowing = numeral(obj.borrowing).format();
+                    var saving = numeral(obj.saving).format();
+                    infoS.update(layer.feature.properties, dens, mm, f, ml, banks, mfi, nu, u, tl, ba, borrowing, saving);
                     //console.log(obj.Sector+ " "+ layer.feature.properties.Name);
                 }else{
                     //console.log(obj.Sector+ " "+ layer.feature.properties.Name);
@@ -2366,9 +2382,9 @@ function leafletCartix(year) {
     };
 
     // method that we will use to update the control based on feature properties passed
-    infoS.update = function(props, density, membr, fem, male, banks, mfi, nu, u, tl, ba) {
+    infoS.update = function(props, density, membr, fem, male, banks, mfi, nu, u, tl, ba, borrowing, saving) {
         this._div.innerHTML = '<h4>Saving groups per Sector</h4>' + (props ?
-            '<b>' + props.Name + ' Sector</b><br />' + density + ' Saving groups <br/> <b> Total Membership: </b>' + membr + '<br/> <b> Total Female: </b>' + fem + ' <br/> <b>Total Male: </b>' + male + '</br><b> Banks: </b>' + banks + '</br><b>MFIs: </b>' + mfi + '</br><b> Non-Umurenge: </b>' + nu + '</br><b> Umurenge:</b>' + u + '</br><b>Telco Agents: </b>' + tl + '</br><b>Bank Agents:</b>' + ba + '</br>' :
+            '<b>' + props.Name + ' Sector</b><br />' + density + ' Saving groups <br/> <b> Total Membership: </b>' + membr + '<br/> <b> Total Female: </b>' + fem + ' <br/> <b>Total Male: </b>' + male + '</br><b>Total Out. Loans: </b>'+borrowing+'<br><b>Total Savings: </b>'+saving+'<br><b> Banks: </b>' + banks + '</br><b>MFIs: </b>' + mfi + '</br><b> Non-Umurenge Sacco: </b>' + nu + '</br><b> Umurenge Sacco:</b>' + u + '</br><b>Telco Agents: </b>' + tl + '</br><b>Bank Agents:</b>' + ba + '</br>' :
             'Hover over a Sector');
     };
     //legend
