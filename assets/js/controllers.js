@@ -1656,7 +1656,9 @@ function leafletCartix(year) {
         //console.log(url);
         Jsonfile = AjaxSgData(url);
         var data = $("#national_map").val();
-        //(new leafletCartix()).handlerNational(data);
+        Display("/assets/geojson/admin4.geojson");
+        legend.addTo(map);
+        info.addTo(map);
     });
 
     console.log(year);
@@ -1671,14 +1673,14 @@ function leafletCartix(year) {
         console.log(year);
         url = 'http://127.0.0.1:5000/api/v1/sqlsaving/' + sg_ngo + '/' + year;
         Jsonfile = AjaxSgData(url);
-        var data = $("#national_map").val();
-        //(new leafletCartix()).handlerNational(data);
+        Display("/assets/geojson/admin4.geojson");
+        legend.addTo(map);
+        info.addTo(map);
     });
 
 
     Jsonfile = AjaxSgData(url);
     function AjaxSgData(url) {
-        console.log(url);
         $.ajax({
             url: url,
             async: false,
@@ -1864,7 +1866,7 @@ function leafletCartix(year) {
             fillOpacity: 10
         };
     }
-
+    
     function provinceDisplay(geofile) {
 
         if (geojson === undefined) {
@@ -2468,7 +2470,29 @@ function leafletCartix(year) {
         }
     }
 
+    
+    function HandlerNa(val){
+        if (val) {
+            switch (val) {
+                case "provinces":
+                    Display("/assets/geojson/admin4.geojson");
+                    legend.addTo(map);
+                    info.addTo(map);
+                    break;
+                case "districts":
+                    districtDisplay("/assets/geojson/District_Rwanda.geojson");
+                    legendD.addTo(map);
+                    infoD.addTo(map);
+                    break;
+                case "sectors":
+                    sector("/assets/geojson/Sector_Rwanda.geojson");
+                    legendS.addTo(map);
+                    infoS.addTo(map);
+                    break;
+            }
 
+        }
+    }
 
 
     this.handlerDistrict = function(val) {
