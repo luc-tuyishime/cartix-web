@@ -637,3 +637,11 @@ select {
 .survey{
     color: #550034;
 }
+
+
+.loader{
+    position: fixed;
+    margin-left: 40%;
+    margin-top: 25%;
+    z-index: 2000;
+}
