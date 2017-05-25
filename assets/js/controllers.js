@@ -9,6 +9,7 @@ myapp.controller('loginBgCtrl', ['$scope', function($scope) {
 }]);
 
 
+
 myapp.controller('signupCtrl', ['$scope', '$location', 'AuthService', function($scope, $location, AuthService) {
     $scope.user = true;
     $scope.organization = false
@@ -560,17 +561,43 @@ myapp.controller('mapCtrl', ['$scope', '$http', function($scope, $http) {
     
     // Chart function data 
     $scope.yearSurvey = 2014;
-    chartFunction($http, $scope.yearSurvey);
+    var ngo = null;
+    chartFunction($http, $scope.yearSurvey, ngo);
     $("#year").change(function(){
         $scope.yearSurvey = $("#year").val();
-        chartFunction($http, $scope.yearSurvey);
+        ngo = $("#saving_group_map").val();
+        console.log(ngo);
+        chartFunction($http, $scope.yearSurvey, ngo);
+        showLoader();
     });
-    chartFunction($http, $scope.yearSurvey);
-
+    
+    
+    $("#saving_group_map").change(function(){
+        $scope.yearSurvey = $("#year").val();
+        ngo = $("#saving_group_map").val();
+        console.log(ngo);
+        chartFunction($http, $scope.yearSurvey, ngo);
+        showLoader();
+    })
+    
+    
 
 }]);
 
+$("#loader").hide();
 
+function showLoader(){
+        var windowHeight = $(".map-height").height();
+        $("#loader").css("height", windowHeight);
+        $("#loader").addClass('opacity');
+        $("#loader").show();
+    }
+    
+    function hideLoader(){
+        $("#loader").css("height", 0);
+        $("#loader").removeClass('opacity');
+        $("#loader").hide();
+    }
 
 
 myapp.controller('notificationCtrl', ['$scope', '$http', 'AuthService', '$q', function($scope, $http, AuthService, $q) {
@@ -1173,11 +1200,12 @@ function bytesToSize(bytes) {
 }
 
 
-function chartFunction($http, year) {
+function chartFunction($http, year, ngo) {
 
     // MEMBERSHIP PER GENDER
 
-    var url = 'http://127.0.0.1:5000/api/v1/chartanalytics/'+year;
+    var url = 'http://127.0.0.1:5000/api/v1/chartanalytics/'+year+'/'+ngo;
+    console.log(ngo);
     $http.get(url)
         .success(function(data, status, header, config) {
             console.log(data);
@@ -1195,10 +1223,10 @@ function chartFunction($http, year) {
                     l: 0,
                     r: 0
                 },
-                title: 'Membership per Gender'
+                title: 'Membership per Gender <br><span style="font-size:10px; overflow: hidden;">'+data.membership[1]+'</span>'
             };
             
-            Plotly.newPlot('container_pie', data.membership, layout);
+            Plotly.newPlot('container_pie', data.membership[0], layout);
             
             // Saving group per internation NGO
         
@@ -1244,10 +1272,10 @@ function chartFunction($http, year) {
                         size: 10
                     }
                 },
-                title: 'SVGS_status per Intl NGOs',
+                title: 'SVGS_status per Intl NGOs<br><span style="font-size:10px; overflow: hidden;">'+data.status[1]+'</span>',
             };
 
-            Plotly.newPlot('container', data.status, layout_bar, {
+            Plotly.newPlot('container', data.status[0], layout_bar, {
                 showLegend: true
             });
 
@@ -1465,16 +1493,18 @@ function chartFunction($http, year) {
             };
         
         Plotly.newPlot('finscope_all_2015', data.finscope_all_2015, layout_bar);
+        hideLoader();
         
         })
         .error(function(data, status, header, config) {
             console.log(status);
         });
 
-
+        
 
     // SVGs_creation year per Internatonal NGOs
-    var url = 'http://127.0.0.1:5000/api/v1/analytics/creation/'+year;
+    var url = 'http://127.0.0.1:5000/api/v1/analytics/creation/'+year+'/'+ngo;
+    console.log(ngo);
     $http.get(url)
         .success(function(data, status, header, config){
             console.log(data.creation);
@@ -1489,7 +1519,7 @@ function chartFunction($http, year) {
                     y:-1
                 },
                 margin: {
-                    l: 40,
+                    l: 50,
                     r: 40,
                     b: 180
                 },
