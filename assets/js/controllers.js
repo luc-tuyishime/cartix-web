@@ -1656,11 +1656,15 @@ function leafletCartix(year) {
         //console.log(url);
         Jsonfile = AjaxSgData(url);
         var data = $("#national_map").val();
+        displayMap();
+    });
+
+    
+    function displayMap(){
         Display("/assets/geojson/admin4.geojson");
         legend.addTo(map);
         info.addTo(map);
-    });
-
+    }
     console.log(year);
     
 
@@ -1673,9 +1677,7 @@ function leafletCartix(year) {
         console.log(year);
         url = 'http://127.0.0.1:5000/api/v1/sqlsaving/' + sg_ngo + '/' + year;
         Jsonfile = AjaxSgData(url);
-        Display("/assets/geojson/admin4.geojson");
-        legend.addTo(map);
-        info.addTo(map);
+        displayMap();
     });
 
 
