@@ -4,6 +4,102 @@
         <img src="assets/img/spin_load.gif" class="loader">
     </div>
     <div class="container-fluid map-height" ng-controller="mapCtrl">
+        <!--  MODAL -->
+        <div class="modal fade" id="modal" tabindex="-1" role="dialog" >
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Settings</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <form class="form-horizontal" name="settings">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-4 " for="email">Names:</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" class="form-control input-sm" id="email" placeholder="Names" ng-model="name" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-4" for="pwd">Email:</label>
+                                        <div class="col-sm-7"> 
+                                            <input type="email" class="form-control input-sm" id="pwd" placeholder="Email" ng-model="email"  required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-4" for="pwd"></label>
+                                        <div class="col-sm-7"> 
+                                            <button type="button" class="btn btn-settings" id="edit_setting">Save </button>
+                                        </div>
+                                    </div>
+                                </form>
+                                <hr>
+                                <form class="form-horizontal" name="changePassword">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-4 " for="email">Current password:</label>
+                                        <div class="col-sm-7">
+                                            <input type="password" class="form-control input-sm" id="email" placeholder="Current password" ng-model="c_password" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-4" for="pwd">New password:</label>
+                                        <div class="col-sm-7"> 
+                                            <input type="password" class="form-control input-sm" id="pwd" placeholder="New password" ng-model="n_password" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-4" for="pwd">Confirm password:</label>
+                                        <div class="col-sm-7"> 
+                                            <input type="password" class="form-control input-sm" id="pwd" placeholder="Confirm password" ng-model="co_password" required>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-4" for="pwd"></label>
+                                        <div class="col-sm-7"> 
+                                            <button type="submit" class="btn btn-settings" ng-disabled="!changePassword.$valid" id="change_password">Change password </button>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-offset-5">
+                                            <p style="color:red">{{ error }}</p>
+                                            <p style="color:green">{{ success }}</p>
+                                        </div>
+                                    </div>
+                                </form>
+                                <hr>
+                                <form class="form-horizontal" ng-show="parameters">
+                                    <div class="form-group">
+                                        <h6 class="text-center">Practioners Upload</h6>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-offset-4" style="margin-left:35%;">
+                                            <label class="radio-inline"><input type="radio" name="upload"  id="u_activate" value="1" >Activate</label>
+<label class="radio-inline"><input type="radio" name="upload" value="0"  id="u_deactivate">Deactivate</label>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="form-group">
+                                        <h6 class="text-center">Sign Up</h6>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-offset-4" style="margin-left:35%;">
+                                            <label class="radio-inline"><input type="radio" name="signup" value="1" id="s_activate">Activate</label>
+<label class="radio-inline"><input type="radio" name="signup" value="0" id="s_deactivate">Deactivate</label>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
         <div class="row" >
             <div class="col-md-9 bg-map">
                 <div class="container-fluid headerOnMap">
@@ -15,7 +111,7 @@
                                     <option value=provinces>Provinces
                                     <option value=districts>Districts
                                     <option value=sectors>Sectors
-                              </select>
+                                </select>
                             </div>
                             <div class=select-box><select data-placeholder=Provinces id=province_map ng-model=province_map></select></div>
                             <div class=select-box><select data-placeholder=District id=district_map ng-model=district_map ng-options="district for district in districts"></select></div>
@@ -26,13 +122,12 @@
                     <div class=row>
                         <div class=btn-cartix-bottom><button class="btn btn-cartix btn-default"onclick=openNav() type=button>Data</button></div>
                     </div>
-                </div> 
+                </div>
                 <div id="map-cartix">
-                </div> 
+                </div>
             </div>
             <div class="col-md-3 profile-pending bg-side">
                 <div class="bg-side">
-                
                     <div class="row">
                         <div class="col-md-6">
                             <p class="care-style">{{ ngo_name }}</p>
@@ -41,25 +136,21 @@
                             <div class="dropdown">
                                 <a href="" class="dropdown-toggle" data-toggle="dropdown">
                                 <img src="assets/img/lightgray.png" height="30px"/>
-                                    <span class="profile-name"> 
-                                        {{ usernames_p }}
-                                    </span> 
-                                    <b class="caret"></b>
+                                <span class="profile-name"> 
+                                {{ usernames_p }}
+                                </span> 
+                                <b class="caret"></b>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#gsdk">Settings</a></li>
+                                    <li><a ng-click='lunchModal()'>Settings</a></li>
                                     <li><a href="#gsdk">Help</a></li>
                                     <li><a ng-click="logout()">Log Out</a></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-                   
-                    
-                    
                     <hr class="style1">
                     <p class="saving-text">Saving Groups <span class="survey">({{ yearSurvey }})</span></p>
-                    
                     <div class="row">
                         <div class="alert alert-default" role="alert">
                             <div class="dropdown">
@@ -103,9 +194,7 @@
                                 <p class="text-2">{{ borrowing }}</p>
                             </div>
                         </div>
-                       
                     </div>
-                    
                     <div class="chart" id="saving_group" ng-show="saving_group">
                         <hr>
                         <div id="container" style="min-width: 340px; height: auto; max-width: 600px; margin: 0 auto"></div>
@@ -116,7 +205,7 @@
                         <hr>
                         <div id="container_year_sg" style="min-width: 340px; height: auto; max-width: 600px; margin: 0 auto"></div>
                         <hr>
-                        <div id="sg_per_int_ngo" style="min-width: 340px; height: 820px; max-width: 600px; margin: 0 auto"></div>
+                        <div id="sg_per_int_ngo" style="min-width: 340px; height: 1180px; max-width: 600px; margin: 0 auto"></div>
                         <hr>
                         <div id="sg_local_per_int" style="min-width: 340px; height: 1810px; max-width: 600px; margin: 0 auto"></div>
                         <hr>
@@ -125,12 +214,10 @@
                         <div id="sg_financial" style="min-width: 340px; height: 500px; max-width: 600px; margin: 0 auto"></div>
                         <hr>
                     </div>
-                    
                     <div class="chart" id="agent">
                         <div id="sg_agent" style="min-width: 340px; height: 500px; max-width: 600px; margin: 0 auto"></div>
                         <hr>
                     </div>
-                    
                     <div class="chart" id="finscope">
                         <div id="container_finscope" style="min-width: 340px; height: auto; max-width: 600px; margin: 0 auto"></div>
                         <hr>
@@ -142,7 +229,6 @@
                         <hr>
                         <div id="finscope_all_2015" style="min-width: 340px; height: 500px; max-width: 600px; margin: 0 auto"></div>
                     </div>
-                    
                 </div>
             </div>
         </div>
@@ -159,11 +245,11 @@
                             </a>
                         </div>
                         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                    </div> 
+                    </div>
                 </nav>
                 <div class="row">
                     <div class="container-fluid dropdown-box">
-                        <div class="row " ng-show="notifAdmin">
+                       <!-- <div class="row " ng-show="notifAdmin">
                             <div class="col-md-3">
                                 <div class="select-box drop-notif">
                                     <p>International NG0</p>
@@ -219,7 +305,7 @@
                                     </select>
                                 </div>
                             </div>
-                        </div>
+                        </div>-->
                     </div>
                     <div class="container container-data text-icon">
                         <div class="success" ng-repeat="file in files">
@@ -253,9 +339,6 @@
             </div>
         </div>
     </section>
-    
-    
-    
     <!--SECTION DISPLAY DATA ON UPLOAD-->
     <section id="mySidenav1" class="sidenav2" ng-controller="excelFileCtrl">
         <!--SECTION DISPLAY DATA-->
@@ -393,9 +476,6 @@
             </div>
         </div>
     </section>
-    
-    
-    
     <section id="mySidenav2" class="sidenav2" ng-controller="viewAlldataCtrl">
         <div id="sidebar_data">
             <div class="navbar-sidebar">
@@ -411,76 +491,68 @@
                     <div class="box">
                         <!--  View All Data -->
                         <div class="row" id="dataNgoHandler">
-                           
-                               <div class="col-md-4" id="changeColClass">
-                                    <div class="select-box">
-                                        <p>Province</p>
-                                        <select id="ddlCars13" multiple="multiple">
-
-                                        </select>
-                                    </div>
+                            <div class="col-md-4" id="changeColClass">
+                                <div class="select-box">
+                                    <p>Province</p>
+                                    <select id="ddlCars13" multiple="multiple">
+                                    </select>
                                 </div>
-                                <div class="col-md-4" id="changeColClass">
-                                    <div class="select-box">
-                                        <p>District</p>
-                                        <select id="ddlCars14" multiple="multiple">
-
-                                        </select>
-                                    </div>
+                            </div>
+                            <div class="col-md-4" id="changeColClass">
+                                <div class="select-box">
+                                    <p>District</p>
+                                    <select id="ddlCars14" multiple="multiple">
+                                    </select>
                                 </div>
-                                <div class="col-md-4" id="changeColClass">
-                                    <div class="select-box">
-                                        <p>Sector</p>
-                                        <select id="ddlCars15" multiple="multiple">
-
-                                        </select>
-                                    </div>
+                            </div>
+                            <div class="col-md-4" id="changeColClass">
+                                <div class="select-box">
+                                    <p>Sector</p>
+                                    <select id="ddlCars15" multiple="multiple">
+                                    </select>
                                 </div>
-                                
-                                <div class="col-md-4" ng-show="intlNgo">
-                                    <div class="select-box intNgo">
-                                        <p>International NGO</p>
-                                        <select id="ddlCars16" multiple="multiple">
-                                            <option value="1">Option 1</option>
-                                            <option value="2">Option 2</option>
-                                            <option value="3">Option 3</option>
-                                            <option value="4">Option 4</option>
-                                            <option value="5">Option 5</option>
-                                            <option value="6">Option 6</option>
-                                        </select>
-                                    </div>
+                            </div>
+                            <div class="col-md-4" ng-show="intlNgo">
+                                <div class="select-box intNgo">
+                                    <p>International NGO</p>
+                                    <select id="ddlCars16" multiple="multiple">
+                                        <option value="1">Option 1</option>
+                                        <option value="2">Option 2</option>
+                                        <option value="3">Option 3</option>
+                                        <option value="4">Option 4</option>
+                                        <option value="5">Option 5</option>
+                                        <option value="6">Option 6</option>
+                                    </select>
                                 </div>
-                                <div class="col-md-4" ng-show="localNgo">
-                                    <div class="select-box">
-                                        <p>Local NGO</p>
-                                        <select id="ddlCars9" multiple="multiple">
-                                            <option value="1">Option 1</option>
-                                            <option value="2">Option 2</option>
-                                            <option value="3">Option 3</option>
-                                            <option value="4">Option 4</option>
-                                            <option value="5">Option 5</option>
-                                            <option value="6">Option 6</option>
-                                        </select>
-                                    </div>
+                            </div>
+                            <div class="col-md-4" ng-show="localNgo">
+                                <div class="select-box">
+                                    <p>Local NGO</p>
+                                    <select id="ddlCars9" multiple="multiple">
+                                        <option value="1">Option 1</option>
+                                        <option value="2">Option 2</option>
+                                        <option value="3">Option 3</option>
+                                        <option value="4">Option 4</option>
+                                        <option value="5">Option 5</option>
+                                        <option value="6">Option 6</option>
+                                    </select>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="select-box">
-                                        <p>Year of Survery</p>
-                                        <select id="ddlCars17">
-                                            
-                                        </select>
-                                    </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="select-box">
+                                    <p>Year of Survery</p>
+                                    <select id="ddlCars17">
+                                    </select>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="select-box" >
-                                        <p>View Data</p>
-                                        <button class="btn btn-primary" id="viewdata_btn" ng-show="admin_btn">Submit</button>
-                                        <button class="btn btn-primary" id="viewdata_btn_int" ng-show="int_btn">Submit</button>
-                                        <button class="btn btn-primary" id="viewdata_btn_local" ng-show="local_btn">Submit</button>
-                                    </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="select-box" >
+                                    <p>View Data</p>
+                                    <button class="btn btn-primary" id="viewdata_btn" ng-show="admin_btn">Submit</button>
+                                    <button class="btn btn-primary" id="viewdata_btn_int" ng-show="int_btn">Submit</button>
+                                    <button class="btn btn-primary" id="viewdata_btn_local" ng-show="local_btn">Submit</button>
                                 </div>
-                                
-                            
+                            </div>
                             <div class="table-center">
                                 <div class="table">
                                     <div class="col-md-12">
@@ -534,7 +606,6 @@
                                                 </tr>
                                             </tbody>
                                         </table>
-                                        
                                     </div>
                                     <div class="col-md-12">
                                         <button class="btn btn-success pull-left" ng-show="dataDownload" ng-click=downloadExcel(sqlQuery,year)>Download</button>
@@ -547,6 +618,5 @@
                 </div>
             </div>
         </div>
-    </section> 
-    
+    </section>
 </div>
