@@ -413,6 +413,116 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$
 
 myapp.controller('mapCtrl', ['$scope', '$http', function($scope, $http) {
 
+    
+    // Settings
+    
+     var config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+    
+    var user_id = localStorage.getItem('u___');
+    var url = 'http://127.0.0.1:5000/api/v1/user/' + user_id;
+
+        $http.get(url)
+            .success(function(data, status, header, config) {
+                console.log(data);
+                $scope.name = data.user.names;
+                $scope.email = data.user.email;
+                if(data.user.user_role=="1"){
+                    $scope.parameters = true;
+                    user_params(data.user.upload, data.user.signup);
+                }else{
+                    $scope.parameters = false;
+                }
+            }).error(function(data, status, header, config) {
+
+            });
+    
+    function user_params(upload, signup){
+        console.log(upload, signup);
+        
+        if (upload){
+            $("#u_activate").attr("checked", "checked");
+            
+        }else{
+            $("#u_deactivate").attr("checked", "checked");
+        }
+        
+        if (signup == 1){
+            $("#s_activate").attr("checked", "checked");
+        }else{
+            $("#s_deactivate").attr("checked", "checked");
+
+        }
+    }
+    
+    
+    $scope.Upload = function(){
+        alert("changed");
+    }
+    
+    $("#change_password").click(function(e){
+        e.preventDefault();
+        var current_password, new_password, confirm_password;
+        current_password = $scope.c_password;
+        new_password = $scope.n_password;
+        confirm_password = $scope.co_password;
+        
+        var url = 'http://127.0.0.1:5000/api/v1/users/check_password/'+user_id;
+        var data = '{"password":"'+current_password+'"}';
+        $http.put(url, data, config)
+            .success(function(data, status, header, config){
+                if (data){
+                    check_new_password(new_password, confirm_password);
+                }else{
+                   $scope.error = 'Current password is not matching!'; 
+                }
+            })
+        
+        
+    });
+    
+    
+    function check_new_password(new_password, confirm_password){
+        if (new_password == confirm_password){
+            var data = '{"password":"'+new_password+'"}';
+            var url = 'http://127.0.0.1:5000/api/v1/change/password/'+user_id;
+            $http.put(url, data, config).success(function(data, status, header, config){
+                if(data){
+                    $scope.error = '';
+                    $scope.success = 'Password successfuly changed!';
+                }
+            })
+        }else{
+            $scope.error = 'New and confirm password are not matching!'; 
+        }
+    }
+    
+    
+    $("#edit_setting").click(function(e){
+        e.preventDefault();
+        var name = $scope.name;
+        var email = $scope.email;
+        $scope.usernames_p = name;
+        
+        var data = '{"email":"'+email+'", "names":"'+name+'"}';
+        var url = 'http://127.0.0.1:5000/api/v1/users/'+user_id;
+        $http.put(url, data, config)
+            .success(function(data, status){
+                console.log(data);
+            }).error(function(data, status, header, config){
+                console.log(status, data)
+            });
+        
+    });
+    
+    
+    $scope.lunchModal = function(){
+        $('#modal').modal('show');
+    }
+    
     leafletCartix();
     selectBox();
     
@@ -611,7 +721,6 @@ myapp.controller('notificationCtrl', ['$scope', '$http', 'AuthService', '$q', fu
     AuthService.userRole(user_id)
         .then(function() {
             adminController();
-            alert("2x Remy")
         }).catch(function() {
             ngoStatus();
         });
@@ -778,6 +887,10 @@ myapp.controller('notificationCtrl', ['$scope', '$http', 'AuthService', '$q', fu
 }]);
 
 
+
+myapp.controller('SettingCtrl', ['$scope','$http','AuthService', '$q', function($scope, $http, AuthService, $q){
+    
+}])
 
 
 myapp.controller('viewAlldataCtrl', ['$scope', '$http', 'AuthService', '$q', function($scope, $http, AuthService, $q) {
