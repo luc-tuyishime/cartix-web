@@ -57,10 +57,63 @@ myapp.controller('signupCtrl', ['$scope', '$location', 'AuthService', function($
 
 }]);
 
+
+
+
 myapp.controller('signinCtrl', ['$scope', '$http', '$location', 'AuthService', function($scope, $http, $location, AuthService) {
-    $("body").removeClass('body-app');
-    $("body").addClass('body-login');
+    if($( window ).width() < 850){
+        $("main").hide();
+        $("body").text("Bigger Screen greather than 750px");
+    }
+    
     $scope.message = false;
+    
+    
+    // Signup
+    
+      var url = 'http://127.0.0.1:5000/api/v1/params/1';
+
+        $http.get(url)
+            .success(function(data, status, header, config) {
+                console.log(data);
+                $scope.name = data.user.names;
+                $scope.email = data.user.email;
+                if(data.user.user_role=="1"){
+                    $scope.parameters = true;
+                    user_params(data.upload, data.signup);
+                }else{
+                    $scope.parameters = false;
+                }
+            }).error(function(data, status, header, config) {
+
+            });
+    
+    function user_params(upload, signup){
+        console.log(upload, signup);
+        
+        if (upload){
+            $("#u_activate").attr("checked", "checked");
+            $scope.upload_show = true;
+            
+        }else{
+            $("#u_deactivate").attr("checked", "checked");
+            $scope.upload_show = false;
+        }
+        
+        if (signup){
+            $("#s_activate").attr("checked", "checked");
+            $scope.signup_show = true
+        }else{
+            $("#s_deactivate").attr("checked", "checked");
+            $scope.signup_show = false;
+
+        }
+    }
+    
+    
+    // Sigin
+    
+    
 
     AuthService.destroyUser();
 
@@ -412,8 +465,6 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$
 
 
 myapp.controller('mapCtrl', ['$scope', '$http', function($scope, $http) {
-
-    
     // Settings
     
      var config = {
@@ -422,8 +473,8 @@ myapp.controller('mapCtrl', ['$scope', '$http', function($scope, $http) {
             }
         }
     
-    var user_id = localStorage.getItem('u___');
-    var url = 'http://127.0.0.1:5000/api/v1/user/' + user_id;
+     var user_id = localStorage.getItem('u___');
+    var url = 'http://127.0.0.1:5000/api/v1/params/1';
 
         $http.get(url)
             .success(function(data, status, header, config) {
@@ -432,7 +483,7 @@ myapp.controller('mapCtrl', ['$scope', '$http', function($scope, $http) {
                 $scope.email = data.user.email;
                 if(data.user.user_role=="1"){
                     $scope.parameters = true;
-                    user_params(data.user.upload, data.user.signup);
+                    user_params(data.upload, data.signup);
                 }else{
                     $scope.parameters = false;
                 }
@@ -445,23 +496,44 @@ myapp.controller('mapCtrl', ['$scope', '$http', function($scope, $http) {
         
         if (upload){
             $("#u_activate").attr("checked", "checked");
+            $scope.upload_show = true;
             
         }else{
             $("#u_deactivate").attr("checked", "checked");
+            $scope.upload_show = false;
         }
         
-        if (signup == 1){
+        if (signup){
             $("#s_activate").attr("checked", "checked");
+            $scope.signup_show = true
         }else{
             $("#s_deactivate").attr("checked", "checked");
+            $scope.signup_show = false;
 
         }
     }
     
     
-    $scope.Upload = function(){
-        alert("changed");
-    }
+    $('input[type=radio][name=upload]').change(function() {
+        var val = this.value;
+        var url ='http://127.0.0.1:5000/api/v1/params/upload/'+user_id+'/'+val;
+        $http.put(url).success(function(data, status, header, config){
+           user_params(data.upload, data.signup); 
+        }).error(function(data, status, header, config){
+            console.log(data);
+        });
+    });
+    
+    $('input[type=radio][name=signup]').change(function() {
+        var val = this.value;
+        var url ='http://127.0.0.1:5000/api/v1/params/signup/'+user_id+'/'+val;
+        $http.put(url).success(function(data, status, header, config){
+            console.log(data);
+           user_params(data.upload, data.signup); 
+        }).error(function(data, status, header, config){
+            console.log(data);
+        });
+    });
     
     $("#change_password").click(function(e){
         e.preventDefault();
@@ -519,9 +591,44 @@ myapp.controller('mapCtrl', ['$scope', '$http', function($scope, $http) {
     });
     
     
+    $("#help_modal").click(function(e){
+       e.preventDefault();
+        var title = $scope.title;
+        var message = $scope.message;
+        var email, name, username ;
+        var url = 'http://127.0.0.1:5000/api/v1/user/'+user_id;
+        $http.get(url).success(function(data, status){
+           console.log(data); 
+            email = data.user.email;
+            name = data.user.names;
+            username = data.user.username;
+            sendEmailMessage(title, message, email, name, username);
+        }).error(function(data, status, header, config){
+            
+        });
+        
+    });
+    
+    
+    function sendEmailMessage(title, message, email, name, username){
+        var data = '{"email":"'+email+'", "names":"'+name+'","title":"'+title+'","message":"'+message+'","username":"'+username+'"}';
+        var url = 'http://127.0.01.:5000/api/v1/help/message/';
+        $http.post(url, data, config).success(function(data, status, header, config){
+           console.log(data); 
+        }).error(function(data, status, header, config){
+            
+        });
+    }
+    
+    
     $scope.lunchModal = function(){
         $('#modal').modal('show');
     }
+    
+    $scope.lunchModalHelp =  function(){
+        $("#modalHelp").modal('show');
+    }
+    
     
     leafletCartix();
     selectBox();
@@ -712,6 +819,68 @@ function showLoader(){
 
 myapp.controller('notificationCtrl', ['$scope', '$http', 'AuthService', '$q', function($scope, $http, AuthService, $q) {
 
+    
+    
+     var user_id = localStorage.getItem('u___');
+    var url = 'http://127.0.0.1:5000/api/v1/params/1';
+
+        $http.get(url)
+            .success(function(data, status, header, config) {
+                console.log(data);
+                $scope.name = data.user.names;
+                $scope.email = data.user.email;
+                if(data.user.user_role=="1"){
+                    $scope.parameters = true;
+                    user_params(data.upload, data.signup);
+                }else{
+                    $scope.parameters = false;
+                }
+            }).error(function(data, status, header, config) {
+
+            });
+    
+    function user_params(upload, signup){
+        console.log(upload, signup);
+        
+        if (upload){
+            $("#u_activate").attr("checked", "checked");
+            $scope.upload_show = true;
+            
+        }else{
+            $("#u_deactivate").attr("checked", "checked");
+            $scope.upload_show = false;
+        }
+        
+        if (signup){
+            $("#s_activate").attr("checked", "checked");
+            $scope.signup_show = true
+        }else{
+            $("#s_deactivate").attr("checked", "checked");
+            $scope.signup_show = false;
+
+        }
+    }
+    
+    $('input[type=radio][name=upload]').change(function() {
+        var val = this.value;
+        var url ='http://127.0.0.1:5000/api/v1/params/upload/'+user_id+'/'+val;
+        $http.put(url).success(function(data, status, header, config){
+           user_params(data.upload, data.signup); 
+        }).error(function(data, status, header, config){
+            console.log(data);
+        });
+    });
+    
+    $('input[type=radio][name=signup]').change(function() {
+        var val = this.value;
+        var url ='http://127.0.0.1:5000/api/v1/params/signup/'+user_id+'/'+val;
+        $http.put(url).success(function(data, status, header, config){
+           user_params(data.upload, data.signup); 
+        }).error(function(data, status, header, config){
+            console.log(data);
+        });
+    });
+    
     $scope.notifAdmin = true;
     $scope.notifNgo = false;
     
