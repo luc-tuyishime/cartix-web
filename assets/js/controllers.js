@@ -779,12 +779,14 @@ myapp.controller('mapCtrl', ['$scope', '$http', function($scope, $http) {
     // Chart function data 
     $scope.yearSurvey = 2014;
     var ngo = null;
-    chartFunction($http, $scope.yearSurvey, ngo);
+    var province_ = null;
+    var district_= null;
+    chartFunction($http, $scope.yearSurvey, ngo, province_, district_);
     $("#year").change(function(){
         $scope.yearSurvey = $("#year").val();
         ngo = $("#saving_group_map").val();
         console.log(ngo);
-        chartFunction($http, $scope.yearSurvey, ngo);
+        chartFunction($http, $scope.yearSurvey, ngo, province_, district_);
         showLoader();
     });
     
@@ -793,7 +795,31 @@ myapp.controller('mapCtrl', ['$scope', '$http', function($scope, $http) {
         $scope.yearSurvey = $("#year").val();
         ngo = $("#saving_group_map").val();
         console.log(ngo);
-        chartFunction($http, $scope.yearSurvey, ngo);
+        chartFunction($http, $scope.yearSurvey, ngo, province_, district_);
+        showLoader();
+    });
+    
+    $("#province_map").change(function(){
+        console.log($("#province_map").val());
+        if($("#province_map").val() === "0"){
+            alert("djdjdjdjdjdjj");
+        }else{
+            province_ = $("#province_map").val().split(",")[0];
+            $scope.yearSurvey = $("#year").val();
+            ngo = $("#saving_group_map").val();
+            chartFunction($http, $scope.yearSurvey, ngo, province_, district_);
+            showLoader(); 
+        }
+        
+    });
+    
+    $("#district_map").change(function(){
+        district_ = $("#district_map").val().split(",")[0];
+        console.log(district_);
+        alert("jdjdjdjdj");
+        $scope.yearSurvey = $("#year").val();
+        ngo = $("#saving_group_map").val();
+        chartFunction($http, $scope.yearSurvey, ngo, province_, district_);
         showLoader();
     })
     
@@ -1482,12 +1508,15 @@ function bytesToSize(bytes) {
 }
 
 
-function chartFunction($http, year, ngo) {
-
+function chartFunction($http, year, ngo, province, district) {
+    
+    // Default URL 
+   
+    var url = 'http://127.0.0.1:5000/api/v1/chartanalytics/'+year+'/'+ngo+'/'+province+'/'+district;
+    
     // MEMBERSHIP PER GENDER
-
-    var url = 'http://127.0.0.1:5000/api/v1/chartanalytics/'+year+'/'+ngo;
-    console.log(ngo);
+   
+    console.log(url);
     $http.get(url)
         .success(function(data, status, header, config) {
             console.log(data);
@@ -1505,7 +1534,7 @@ function chartFunction($http, year, ngo) {
                     l: 0,
                     r: 0
                 },
-                title: 'Membership per Gender <br><span style="font-size:10px; overflow: hidden;">'+data.membership[1]+'</span>'
+                title: data.membership[1]
             };
             
             Plotly.newPlot('container_pie', data.membership[0], layout);
@@ -1522,18 +1551,50 @@ function chartFunction($http, year, ngo) {
                     y:0
                 },
                 margin: {
-                    l: 0,
-                    r: 0,
-                    t: -10
+                    l: 50,
+                    r: 50,
+                    t: -800
                 },
-                title: 'Saving Group international Ngo'
+                title: data.sg[1]
             };
         
-            Plotly.newPlot('sg_per_int_ngo', data.sg, layout);
+            Plotly.newPlot('sg_per_int_ngo', data.sg[0], layout);
 
 
             // Saving Group Status per Intl NGos
 
+            var layout_bar = {
+                barmode: 'group',
+                autosize: true,
+                showlegend: true,
+                legend:{
+                    orientation	: 'h',
+                    x:0,
+                    y:-1
+                },
+                margin: {
+                    l: 40,
+                    r: 40,
+                    b: 180
+                },
+                xaxis: {
+                    tickangle: 90,
+                    tickfont: {
+                        size: 10
+                    }
+                },
+                title: data.status[1],
+            };
+
+            Plotly.newPlot('container', data.status[0], layout_bar, {
+                showLegend: true
+            });
+
+
+            /* SG Savings and Loans per Intl Ngos 
+                  layout_bar will be inherited
+            */
+        
             var layout_bar = {
                 barmode: 'group',
                 autosize: true,
@@ -1554,19 +1615,10 @@ function chartFunction($http, year, ngo) {
                         size: 10
                     }
                 },
-                title: 'SVGS_status per Intl NGOs<br><span style="font-size:10px; overflow: hidden;">'+data.status[1]+'</span>',
+                title: data.amount[1],
             };
 
-            Plotly.newPlot('container', data.status[0], layout_bar, {
-                showLegend: true
-            });
-
-
-            /* SG Savings and Loans per Intl Ngos 
-                  layout_bar will be inherited
-            */
-
-            Plotly.newPlot('container_saving_loan', data.amount, layout_bar);
+            Plotly.newPlot('container_saving_loan', data.amount[0], layout_bar);
         
         
         
@@ -1594,10 +1646,10 @@ function chartFunction($http, year, ngo) {
                 yaxis: {
                     dtick:3000
                 },
-                title: 'SVGS_status per Intl NGOs',
+                title: data.sgNgos[1],
             };
         
-            Plotly.newPlot('sg_local_per_int', data.sgNgos, layout_bar);
+            Plotly.newPlot('sg_local_per_int', data.sgNgos[0], layout_bar);
         
             // Financial Institution with SGS
         
@@ -1616,15 +1668,15 @@ function chartFunction($http, year, ngo) {
                     b:180
                 },
                 xaxis: {
-                    tickangle: 0,
+                    tickangle: 100,
                     tickfont: {
                         size: 12
                     }
                 },
-                title: 'SVGs, Financial Institutions and Banks',
+                title: data.sgFinancial[1],
             };
         
-            Plotly.newPlot('sg_financial', data.sgFinancial, layout_bar);
+            Plotly.newPlot('sg_financial', data.sgFinancial[0], layout_bar);
         
         
             // Bank and Telco Agent with Saving Groups
@@ -1644,15 +1696,15 @@ function chartFunction($http, year, ngo) {
                     b:80
                 },
                 xaxis: {
-                    tickangle: 0,
+                    tickangle: 100,
                     tickfont: {
                         size: 12
                     }
                 },
-                title: 'SVGs, Telcos and Banks',
+                title: data.sgAgent[1],
             };
         
-            Plotly.newPlot('sg_agent', data.sgAgent, layout_bar);
+            Plotly.newPlot('sg_agent', data.sgAgent[0], layout_bar);
         
         
             // FInscope chart
@@ -1785,7 +1837,7 @@ function chartFunction($http, year, ngo) {
         
 
     // SVGs_creation year per Internatonal NGOs
-    var url = 'http://127.0.0.1:5000/api/v1/analytics/creation/'+year+'/'+ngo;
+    var url = 'http://127.0.0.1:5000/api/v1/analytics/creation/'+year+'/'+ngo+'/'+province+'/'+district;;
     console.log(ngo);
     $http.get(url)
         .success(function(data, status, header, config){
