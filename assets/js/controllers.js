@@ -805,6 +805,7 @@ myapp.controller('mapCtrl', ['$scope', '$http', function($scope, $http) {
             alert("djdjdjdjdjdjj");
         }else{
             province_ = $("#province_map").val().split(",")[0];
+            district_= null;
             $scope.yearSurvey = $("#year").val();
             ngo = $("#saving_group_map").val();
             chartFunction($http, $scope.yearSurvey, ngo, province_, district_);
@@ -816,12 +817,19 @@ myapp.controller('mapCtrl', ['$scope', '$http', function($scope, $http) {
     $("#district_map").change(function(){
         district_ = $("#district_map").val().split(",")[0];
         console.log(district_);
-        alert("jdjdjdjdj");
         $scope.yearSurvey = $("#year").val();
         ngo = $("#saving_group_map").val();
         chartFunction($http, $scope.yearSurvey, ngo, province_, district_);
         showLoader();
-    })
+    });
+    
+    $("#national_map").change(function(){
+        ngo = null;
+        province_ = null;
+        district_= null;
+        chartFunction($http, $scope.yearSurvey, ngo, province_, district_);
+        showLoader();
+    });
     
     
 
@@ -1512,17 +1520,12 @@ function chartFunction($http, year, ngo, province, district) {
     
     // Default URL 
    
-    var url = 'http://127.0.0.1:5000/api/v1/chartanalytics/'+year+'/'+ngo+'/'+province+'/'+district;
+   
     
     // MEMBERSHIP PER GENDER
-   
-    console.log(url);
-    $http.get(url)
-        .success(function(data, status, header, config) {
-            console.log(data);
-            // Membership Pie
-
-            var layout = {
+     $http.get('http://127.0.0.1:5000/api/v1/chartanalytics/membership/'+year+'/'+ngo+'/'+province+'/'+district)
+        .success(function(data, status, header, config){
+             var layout = {
                 autosize: true,
                 showlegend: true,
                 legend:{
@@ -1538,8 +1541,14 @@ function chartFunction($http, year, ngo, province, district) {
             };
             
             Plotly.newPlot('container_pie', data.membership[0], layout);
-            
-            // Saving group per internation NGO
+        }).error(function(data, status, header, config){
+         
+        });
+    
+    
+    // Saving group per internation NGO
+    $http.get('http://127.0.0.1:5000/api/v1/chartanalytics/sg/'+year+'/'+ngo+'/'+province+'/'+district)
+        .success(function(data, status, header, config){
         
             var layout = {
                 autosize: true,
@@ -1559,9 +1568,14 @@ function chartFunction($http, year, ngo, province, district) {
             };
         
             Plotly.newPlot('sg_per_int_ngo', data.sg[0], layout);
-
-
-            // Saving Group Status per Intl NGos
+        
+        }).error(function(data, status, header, config){
+        
+        })
+   
+    // Saving Group Status per Intl NGos
+    $http.get('http://127.0.0.1:5000/api/v1/chartanalytics/status/'+year+'/'+ngo+'/'+province+'/'+district)
+        .success(function(data, status, header, config){
 
             var layout_bar = {
                 barmode: 'group',
@@ -1589,13 +1603,15 @@ function chartFunction($http, year, ngo, province, district) {
             Plotly.newPlot('container', data.status[0], layout_bar, {
                 showLegend: true
             });
-
-
-            /* SG Savings and Loans per Intl Ngos 
-                  layout_bar will be inherited
-            */
+        }).error(function(data, status, header, config){
         
-            var layout_bar = {
+        });
+    
+    /* SG Savings and Loans per Intl Ngos 
+                  layout_bar will be inherited
+            */ 
+    $http.get('http://127.0.0.1:5000/api/v1/chartanalytics/amount/'+year+'/'+ngo+'/'+province+'/'+district).success(function(data, status, header, config){
+         var layout_bar = {
                 barmode: 'group',
                 autosize: true,
                 showlegend: true,
@@ -1619,11 +1635,14 @@ function chartFunction($http, year, ngo, province, district) {
             };
 
             Plotly.newPlot('container_saving_loan', data.amount[0], layout_bar);
+    }).error(function(data, status, header, config){
         
+    });
+   
+    // Local NGO per intenation ngo
+    $http.get('http://127.0.0.1:5000/api/v1/chartanalytics/sgNgos/'+year+'/'+ngo+'/'+province+'/'+district).success(function(data, status, header, config){
         
-        
-            // Local NGO per intenation ngo
-            var layout_bar = {
+        var layout_bar = {
                 barmode: 'stack',
                 autosize: true,
                 showlegend: true,
@@ -1651,8 +1670,14 @@ function chartFunction($http, year, ngo, province, district) {
         
             Plotly.newPlot('sg_local_per_int', data.sgNgos[0], layout_bar);
         
-            // Financial Institution with SGS
         
+    }).error(function(data, status, header, config){
+        
+    });
+    
+    // Financial Institution with SGS
+    $http.get('http://127.0.0.1:5000/api/v1/chartanalytics/financial/'+year+'/'+ngo+'/'+province+'/'+district)
+        .success(function(data, status, header, config){
             var layout_bar = {
                 barmode: 'stack',
                 autosize: true,
@@ -1677,11 +1702,13 @@ function chartFunction($http, year, ngo, province, district) {
             };
         
             Plotly.newPlot('sg_financial', data.sgFinancial[0], layout_bar);
+        }).error(function(data, status, header, config){
         
-        
-            // Bank and Telco Agent with Saving Groups
-        
-            var layout_bar = {
+        });
+    
+    // Bank and Telco Agent with Saving Groups
+    $http.get('http://127.0.0.1:5000/api/v1/chartanalytics/agent/'+year+'/'+ngo+'/'+province+'/'+district).success(function(data, status, header, config){
+        var layout_bar = {
                 barmode: 'stack',
                 autosize: true,
                 showlegend: true,
@@ -1705,7 +1732,19 @@ function chartFunction($http, year, ngo, province, district) {
             };
         
             Plotly.newPlot('sg_agent', data.sgAgent[0], layout_bar);
+    }).error(function(data, status, header, config){
         
+    })
+    
+    
+    // FINSCOPE DATA
+    
+     var url = 'http://127.0.0.1:5000/api/v1/chartanalytics/'+year+'/'+ngo+'/'+province+'/'+district;
+    
+    $http.get(url)
+        .success(function(data, status, header, config) {
+            
+            
         
             // FInscope chart
             
@@ -1719,8 +1758,8 @@ function chartFunction($http, year, ngo, province, district) {
                     y:-0.2
                 },
                 margin: {
-                    l: 20,
-                    r: 15,
+                    l: 40,
+                    r: 10,
                     b:80
                 },
                 xaxis: {
@@ -1729,10 +1768,10 @@ function chartFunction($http, year, ngo, province, district) {
                         size: 12
                     }
                 },
-                title: 'SGs vs Finscope',
+                title: data.finscope[1]
             };
         
-            Plotly.newPlot('container_finscope', data.finscope, layout_bar);
+            Plotly.newPlot('container_finscope', data.finscope[0], layout_bar);
         
         
         
@@ -1750,14 +1789,16 @@ function chartFunction($http, year, ngo, province, district) {
                     l: 0,
                     r: 0
                 },
-                title: 'Finscope: Other Informal Vs SGs 2012'
+                title: data.finscope_sg_2012[0][1],
+                titlefont:{
+                    size:14
+                }
             };
             
-            Plotly.newPlot('finscope_sg_pie_2012', data.finscope_sg_2012, layout_sg);
-        
-         // Finscope: Other Informal Vs SGs 2015 
+            Plotly.newPlot('finscope_sg_pie_2012', [data.finscope_sg_2012[0][0]], layout_sg);
+       
             
-            var layout_sg = {
+        var layout_sg = {
                 autosize: true,
                 showlegend: true,
                 legend:{
@@ -1769,11 +1810,13 @@ function chartFunction($http, year, ngo, province, district) {
                     l: 0,
                     r: 0
                 },
-                title: 'Finscope: Other Informal Vs SGs 2015'
+                title: data.finscope_sg_2015[0][1],
+                titlefont:{
+                    size:14
+                }
             };
             
-            Plotly.newPlot('finscope_sg_pie_2015', data.finscope_sg_2015, layout_sg);
-        
+            Plotly.newPlot('finscope_sg_pie_2015', [data.finscope_sg_2015[0][0]], layout_sg);
         // Finscope all 2012
         
         var layout_bar = {
@@ -1791,15 +1834,15 @@ function chartFunction($http, year, ngo, province, district) {
                     b:80
                 },
                 xaxis: {
-                    tickangle: 0,
+                    tickangle: 100,
                     tickfont: {
                         size: 12
                     }
                 },
-                title: 'Finscope 2012',
+                title: data.finscope_all_2012[1],
             };
         
-        Plotly.newPlot('finscope_all_2012', data.finscope_all_2012, layout_bar);
+        Plotly.newPlot('finscope_all_2012', data.finscope_all_2012[0], layout_bar);
         
         // Finscope all 2015
         
@@ -1818,15 +1861,15 @@ function chartFunction($http, year, ngo, province, district) {
                     b:80
                 },
                 xaxis: {
-                    tickangle: 0,
+                    tickangle: 100,
                     tickfont: {
                         size: 12
                     }
                 },
-                title: 'Finscope 2015',
+                title: data.finscope_all_2015[1],
             };
         
-        Plotly.newPlot('finscope_all_2015', data.finscope_all_2015, layout_bar);
+        Plotly.newPlot('finscope_all_2015', data.finscope_all_2015[0], layout_bar);
         hideLoader();
         
         })
@@ -1843,7 +1886,7 @@ function chartFunction($http, year, ngo, province, district) {
         .success(function(data, status, header, config){
             console.log(data.creation);
             var layout = {
-                title: 'SGs Creation year/Internatonal NGOs',
+                title: data.creation[1],
                 barmode: 'group',
                 autosize: true,
                 showlegend: true,
@@ -1864,7 +1907,7 @@ function chartFunction($http, year, ngo, province, district) {
                     }
                 }
             };
-            Plotly.newPlot('container_year_sg', data.creation, layout);
+            Plotly.newPlot('container_year_sg', data.creation[0], layout);
             
         }).error(function(data, status, header, config){
         
