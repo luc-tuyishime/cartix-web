@@ -298,6 +298,15 @@ select {
     position: fixed;
     bottom: 0;
 }
+
+.btn-settings {
+    
+    background-color: #4C0014;
+    color: white;
+    border: 2px solid #4C0014;
+    border-radius: 20px;
+}
+
 .app .btn_cartix {
     border-radius: 30px;
     width: 100px;
@@ -636,4 +645,24 @@ select {
 
 .survey{
     color: #550034;
+}
+
+
+.loader{
+    position: fixed;
+    margin-left: 40%;
+    margin-top: 25%;
+    z-index: 2000;
+}
+
+.dropdown-menu a {
+    cursor: pointer;
+}
+
+.input-sm{
+    height: 35px !important;
+}
+
+.margin-button {
+    margin-bottom: 30px;
 }

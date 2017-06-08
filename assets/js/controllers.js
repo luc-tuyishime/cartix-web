@@ -9,6 +9,7 @@ myapp.controller('loginBgCtrl', ['$scope', function($scope) {
 }]);
 
 
+
 myapp.controller('signupCtrl', ['$scope', '$location', 'AuthService', function($scope, $location, AuthService) {
     $scope.user = true;
     $scope.organization = false
@@ -56,10 +57,63 @@ myapp.controller('signupCtrl', ['$scope', '$location', 'AuthService', function($
 
 }]);
 
+
+
+
 myapp.controller('signinCtrl', ['$scope', '$http', '$location', 'AuthService', function($scope, $http, $location, AuthService) {
-    $("body").removeClass('body-app');
-    $("body").addClass('body-login');
+    if($( window ).width() < 850){
+        $("main").hide();
+        $("body").text("Bigger Screen greather than 750px");
+    }
+    
     $scope.message = false;
+    
+    
+    // Signup
+    
+      var url = 'http://127.0.0.1:5000/api/v1/params/1';
+
+        $http.get(url)
+            .success(function(data, status, header, config) {
+                console.log(data);
+                $scope.name = data.user.names;
+                $scope.email = data.user.email;
+                if(data.user.user_role=="1"){
+                    $scope.parameters = true;
+                    user_params(data.upload, data.signup);
+                }else{
+                    $scope.parameters = false;
+                }
+            }).error(function(data, status, header, config) {
+
+            });
+    
+    function user_params(upload, signup){
+        console.log(upload, signup);
+        
+        if (upload){
+            $("#u_activate").attr("checked", "checked");
+            $scope.upload_show = true;
+            
+        }else{
+            $("#u_deactivate").attr("checked", "checked");
+            $scope.upload_show = false;
+        }
+        
+        if (signup){
+            $("#s_activate").attr("checked", "checked");
+            $scope.signup_show = true
+        }else{
+            $("#s_deactivate").attr("checked", "checked");
+            $scope.signup_show = false;
+
+        }
+    }
+    
+    
+    // Sigin
+    
+    
 
     AuthService.destroyUser();
 
@@ -411,7 +465,171 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$
 
 
 myapp.controller('mapCtrl', ['$scope', '$http', function($scope, $http) {
+    // Settings
+    
+     var config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+    
+     var user_id = localStorage.getItem('u___');
+    var url = 'http://127.0.0.1:5000/api/v1/params/1';
 
+        $http.get(url)
+            .success(function(data, status, header, config) {
+                console.log(data);
+                $scope.name = data.user.names;
+                $scope.email = data.user.email;
+                if(data.user.user_role=="1"){
+                    $scope.parameters = true;
+                    user_params(data.upload, data.signup);
+                }else{
+                    $scope.parameters = false;
+                }
+            }).error(function(data, status, header, config) {
+
+            });
+    
+    function user_params(upload, signup){
+        console.log(upload, signup);
+        
+        if (upload){
+            $("#u_activate").attr("checked", "checked");
+            $scope.upload_show = true;
+            
+        }else{
+            $("#u_deactivate").attr("checked", "checked");
+            $scope.upload_show = false;
+        }
+        
+        if (signup){
+            $("#s_activate").attr("checked", "checked");
+            $scope.signup_show = true
+        }else{
+            $("#s_deactivate").attr("checked", "checked");
+            $scope.signup_show = false;
+
+        }
+    }
+    
+    
+    $('input[type=radio][name=upload]').change(function() {
+        var val = this.value;
+        var url ='http://127.0.0.1:5000/api/v1/params/upload/'+user_id+'/'+val;
+        $http.put(url).success(function(data, status, header, config){
+           user_params(data.upload, data.signup); 
+        }).error(function(data, status, header, config){
+            console.log(data);
+        });
+    });
+    
+    $('input[type=radio][name=signup]').change(function() {
+        var val = this.value;
+        var url ='http://127.0.0.1:5000/api/v1/params/signup/'+user_id+'/'+val;
+        $http.put(url).success(function(data, status, header, config){
+            console.log(data);
+           user_params(data.upload, data.signup); 
+        }).error(function(data, status, header, config){
+            console.log(data);
+        });
+    });
+    
+    $("#change_password").click(function(e){
+        e.preventDefault();
+        var current_password, new_password, confirm_password;
+        current_password = $scope.c_password;
+        new_password = $scope.n_password;
+        confirm_password = $scope.co_password;
+        
+        var url = 'http://127.0.0.1:5000/api/v1/users/check_password/'+user_id;
+        var data = '{"password":"'+current_password+'"}';
+        $http.put(url, data, config)
+            .success(function(data, status, header, config){
+                if (data){
+                    check_new_password(new_password, confirm_password);
+                }else{
+                   $scope.error = 'Current password is not matching!'; 
+                }
+            })
+        
+        
+    });
+    
+    
+    function check_new_password(new_password, confirm_password){
+        if (new_password == confirm_password){
+            var data = '{"password":"'+new_password+'"}';
+            var url = 'http://127.0.0.1:5000/api/v1/change/password/'+user_id;
+            $http.put(url, data, config).success(function(data, status, header, config){
+                if(data){
+                    $scope.error = '';
+                    $scope.success = 'Password successfuly changed!';
+                }
+            })
+        }else{
+            $scope.error = 'New and confirm password are not matching!'; 
+        }
+    }
+    
+    
+    $("#edit_setting").click(function(e){
+        e.preventDefault();
+        var name = $scope.name;
+        var email = $scope.email;
+        $scope.usernames_p = name;
+        
+        var data = '{"email":"'+email+'", "names":"'+name+'"}';
+        var url = 'http://127.0.0.1:5000/api/v1/users/'+user_id;
+        $http.put(url, data, config)
+            .success(function(data, status){
+                console.log(data);
+            }).error(function(data, status, header, config){
+                console.log(status, data)
+            });
+        
+    });
+    
+    
+    $("#help_modal").click(function(e){
+       e.preventDefault();
+        var title = $scope.title;
+        var message = $scope.message;
+        var email, name, username ;
+        var url = 'http://127.0.0.1:5000/api/v1/user/'+user_id;
+        $http.get(url).success(function(data, status){
+           console.log(data); 
+            email = data.user.email;
+            name = data.user.names;
+            username = data.user.username;
+            sendEmailMessage(title, message, email, name, username);
+        }).error(function(data, status, header, config){
+            
+        });
+        
+    });
+    
+    
+    function sendEmailMessage(title, message, email, name, username){
+        var data = '{"email":"'+email+'", "names":"'+name+'","title":"'+title+'","message":"'+message+'","username":"'+username+'"}';
+        var url = 'http://127.0.01.:5000/api/v1/help/message/';
+        $http.post(url, data, config).success(function(data, status, header, config){
+           console.log(data); 
+        }).error(function(data, status, header, config){
+            
+        });
+    }
+    
+    
+    $scope.lunchModal = function(){
+        $('#modal').modal('show');
+    }
+    
+    $scope.lunchModalHelp =  function(){
+        $("#modalHelp").modal('show');
+    }
+    
+    
     leafletCartix();
     selectBox();
     
@@ -552,29 +770,190 @@ myapp.controller('mapCtrl', ['$scope', '$http', function($scope, $http) {
     
 
     // ########## Chart function ############
-    $scope.valSeclectedName = 'Analytics';
-    $scope.saving_group = true;
+    
+    function chart_filters_init(){
+        $scope.valSeclectedName = 'Analytics';
+        $scope.saving_group_filter = true;
+        $scope.financial = true;
+        $scope.agent = true;
+        $scope.finscope = true;
+    }
+    
+    chart_filters_init();
+    
     $scope.menuChart = function(val){
         $scope.valSeclectedName = val;
+        if (val == 'Saving Group Analytics'){
+            $scope.saving_group_filter = true;
+            $scope.financial = false;
+            $scope.agent = false;
+            $scope.finscope = false;
+        }else if(val == 'Financial Institutions Analytics'){
+            $scope.saving_group_filter = false;
+            $scope.financial = true;
+            $scope.agent = false;
+            $scope.finscope = false;
+        }else if(val == 'Agent Analytics'){
+            $scope.saving_group_filter = false;
+            $scope.financial = false;
+            $scope.agent = true;
+            $scope.finscope = false;
+        }else{
+            $scope.saving_group_filter = false;
+            $scope.financial = false;
+            $scope.agent = false;
+            $scope.finscope = true;
+        }
     }
+    
+    
+    
     
     // Chart function data 
     $scope.yearSurvey = 2014;
-    chartFunction($http, $scope.yearSurvey);
+    var ngo = null;
+    var province_ = null;
+    var district_= null;
+    chartFunction($http, $scope.yearSurvey, ngo, province_, district_);
     $("#year").change(function(){
+        
         $scope.yearSurvey = $("#year").val();
-        chartFunction($http, $scope.yearSurvey);
+        ngo = $("#saving_group_map").val();
+        console.log(ngo);
+        chartFunction($http, $scope.yearSurvey, ngo, province_, district_);
+        showLoader();
+        chart_filters_init()
     });
-    chartFunction($http, $scope.yearSurvey);
-
+    
+    
+    $("#saving_group_map").change(function(){
+        $scope.yearSurvey = $("#year").val();
+        ngo = $("#saving_group_map").val();
+        console.log(ngo);
+        chartFunction($http, $scope.yearSurvey, ngo, province_, district_);
+        showLoader();
+        chart_filters_init()
+    });
+    
+    $("#province_map").change(function(){
+        console.log($("#province_map").val());
+        if($("#province_map").val() === "0"){
+            alert("djdjdjdjdjdjj");
+        }else{
+            province_ = $("#province_map").val().split(",")[0];
+            district_= null;
+            $scope.yearSurvey = $("#year").val();
+            ngo = $("#saving_group_map").val();
+            chartFunction($http, $scope.yearSurvey, ngo, province_, district_);
+            showLoader(); 
+            chart_filters_init()
+        }
+        
+    });
+    
+    $("#district_map").change(function(){
+        district_ = $("#district_map").val().split(",")[0];
+        console.log(district_);
+        $scope.yearSurvey = $("#year").val();
+        ngo = $("#saving_group_map").val();
+        chartFunction($http, $scope.yearSurvey, ngo, province_, district_);
+        showLoader();
+        chart_filters_init()
+    });
+    
+    $("#national_map").change(function(){
+        ngo = null;
+        province_ = null;
+        district_= null;
+        chartFunction($http, $scope.yearSurvey, ngo, province_, district_);
+        showLoader();
+        chart_filters_init()
+    });
+    
+    
 
 }]);
 
+$("#loader").hide();
 
+function showLoader(){
+        var windowHeight = $(".map-height").height();
+        $("#loader").css("height", windowHeight);
+        $("#loader").addClass('opacity');
+        $("#loader").show();
+    }
+    
+    function hideLoader(){
+        $("#loader").css("height", 0);
+        $("#loader").removeClass('opacity');
+        $("#loader").hide();
+    }
 
 
 myapp.controller('notificationCtrl', ['$scope', '$http', 'AuthService', '$q', function($scope, $http, AuthService, $q) {
 
+    
+    
+     var user_id = localStorage.getItem('u___');
+    var url = 'http://127.0.0.1:5000/api/v1/params/1';
+
+        $http.get(url)
+            .success(function(data, status, header, config) {
+                console.log(data);
+                $scope.name = data.user.names;
+                $scope.email = data.user.email;
+                if(data.user.user_role=="1"){
+                    $scope.parameters = true;
+                    user_params(data.upload, data.signup);
+                }else{
+                    $scope.parameters = false;
+                }
+            }).error(function(data, status, header, config) {
+
+            });
+    
+    function user_params(upload, signup){
+        console.log(upload, signup);
+        
+        if (upload){
+            $("#u_activate").attr("checked", "checked");
+            $scope.upload_show = true;
+            
+        }else{
+            $("#u_deactivate").attr("checked", "checked");
+            $scope.upload_show = false;
+        }
+        
+        if (signup){
+            $("#s_activate").attr("checked", "checked");
+            $scope.signup_show = true
+        }else{
+            $("#s_deactivate").attr("checked", "checked");
+            $scope.signup_show = false;
+
+        }
+    }
+    
+    $('input[type=radio][name=upload]').change(function() {
+        var val = this.value;
+        var url ='http://127.0.0.1:5000/api/v1/params/upload/'+user_id+'/'+val;
+        $http.put(url).success(function(data, status, header, config){
+           user_params(data.upload, data.signup); 
+        }).error(function(data, status, header, config){
+            console.log(data);
+        });
+    });
+    
+    $('input[type=radio][name=signup]').change(function() {
+        var val = this.value;
+        var url ='http://127.0.0.1:5000/api/v1/params/signup/'+user_id+'/'+val;
+        $http.put(url).success(function(data, status, header, config){
+           user_params(data.upload, data.signup); 
+        }).error(function(data, status, header, config){
+            console.log(data);
+        });
+    });
+    
     $scope.notifAdmin = true;
     $scope.notifNgo = false;
     
@@ -584,7 +963,6 @@ myapp.controller('notificationCtrl', ['$scope', '$http', 'AuthService', '$q', fu
     AuthService.userRole(user_id)
         .then(function() {
             adminController();
-            alert("2x Remy")
         }).catch(function() {
             ngoStatus();
         });
@@ -751,6 +1129,10 @@ myapp.controller('notificationCtrl', ['$scope', '$http', 'AuthService', '$q', fu
 }]);
 
 
+
+myapp.controller('SettingCtrl', ['$scope','$http','AuthService', '$q', function($scope, $http, AuthService, $q){
+    
+}])
 
 
 myapp.controller('viewAlldataCtrl', ['$scope', '$http', 'AuthService', '$q', function($scope, $http, AuthService, $q) {
@@ -1173,17 +1555,16 @@ function bytesToSize(bytes) {
 }
 
 
-function chartFunction($http, year) {
-
+function chartFunction($http, year, ngo, province, district) {
+    
+    // Default URL 
+   
+   
+    
     // MEMBERSHIP PER GENDER
-
-    var url = 'http://127.0.0.1:5000/api/v1/chartanalytics/'+year;
-    $http.get(url)
-        .success(function(data, status, header, config) {
-            console.log(data);
-            // Membership Pie
-
-            var layout = {
+     $http.get('http://127.0.0.1:5000/api/v1/chartanalytics/membership/'+year+'/'+ngo+'/'+province+'/'+district)
+        .success(function(data, status, header, config){
+             var layout = {
                 autosize: true,
                 showlegend: true,
                 legend:{
@@ -1195,12 +1576,18 @@ function chartFunction($http, year) {
                     l: 0,
                     r: 0
                 },
-                title: 'Membership per Gender'
+                title: data.membership[1]
             };
             
-            Plotly.newPlot('container_pie', data.membership, layout);
-            
-            // Saving group per internation NGO
+            Plotly.newPlot('container_pie', data.membership[0], layout);
+        }).error(function(data, status, header, config){
+         
+        });
+    
+    
+    // Saving group per internation NGO
+    $http.get('http://127.0.0.1:5000/api/v1/chartanalytics/sg/'+year+'/'+ngo+'/'+province+'/'+district)
+        .success(function(data, status, header, config){
         
             var layout = {
                 autosize: true,
@@ -1212,19 +1599,58 @@ function chartFunction($http, year) {
                     y:0
                 },
                 margin: {
-                    l: 0,
-                    r: 0,
-                    t: -10
+                    l: 50,
+                    r: 50,
+                    t: -800
                 },
-                title: 'Saving Group international Ngo'
+                title: data.sg[1]
             };
         
-            Plotly.newPlot('sg_per_int_ngo', data.sg, layout);
-
-
-            // Saving Group Status per Intl NGos
+            Plotly.newPlot('sg_per_int_ngo', data.sg[0], layout);
+        
+        }).error(function(data, status, header, config){
+        
+        })
+   
+    // Saving Group Status per Intl NGos
+    $http.get('http://127.0.0.1:5000/api/v1/chartanalytics/status/'+year+'/'+ngo+'/'+province+'/'+district)
+        .success(function(data, status, header, config){
 
             var layout_bar = {
+                barmode: 'group',
+                autosize: true,
+                showlegend: true,
+                legend:{
+                    orientation	: 'h',
+                    x:0,
+                    y:-1
+                },
+                margin: {
+                    l: 40,
+                    r: 40,
+                    b: 180
+                },
+                xaxis: {
+                    tickangle: 90,
+                    tickfont: {
+                        size: 10
+                    }
+                },
+                title: data.status[1],
+            };
+
+            Plotly.newPlot('container', data.status[0], layout_bar, {
+                showLegend: true
+            });
+        }).error(function(data, status, header, config){
+        
+        });
+    
+    /* SG Savings and Loans per Intl Ngos 
+                  layout_bar will be inherited
+            */ 
+    $http.get('http://127.0.0.1:5000/api/v1/chartanalytics/amount/'+year+'/'+ngo+'/'+province+'/'+district).success(function(data, status, header, config){
+         var layout_bar = {
                 barmode: 'group',
                 autosize: true,
                 showlegend: true,
@@ -1244,24 +1670,18 @@ function chartFunction($http, year) {
                         size: 10
                     }
                 },
-                title: 'SVGS_status per Intl NGOs',
+                title: data.amount[1],
             };
 
-            Plotly.newPlot('container', data.status, layout_bar, {
-                showLegend: true
-            });
-
-
-            /* SG Savings and Loans per Intl Ngos 
-                  layout_bar will be inherited
-            */
-
-            Plotly.newPlot('container_saving_loan', data.amount, layout_bar);
+            Plotly.newPlot('container_saving_loan', data.amount[0], layout_bar);
+    }).error(function(data, status, header, config){
         
+    });
+   
+    // Local NGO per intenation ngo
+    $http.get('http://127.0.0.1:5000/api/v1/chartanalytics/sgNgos/'+year+'/'+ngo+'/'+province+'/'+district).success(function(data, status, header, config){
         
-        
-            // Local NGO per intenation ngo
-            var layout_bar = {
+        var layout_bar = {
                 barmode: 'stack',
                 autosize: true,
                 showlegend: true,
@@ -1284,13 +1704,19 @@ function chartFunction($http, year) {
                 yaxis: {
                     dtick:3000
                 },
-                title: 'SVGS_status per Intl NGOs',
+                title: data.sgNgos[1],
             };
         
-            Plotly.newPlot('sg_local_per_int', data.sgNgos, layout_bar);
+            Plotly.newPlot('sg_local_per_int', data.sgNgos[0], layout_bar);
         
-            // Financial Institution with SGS
         
+    }).error(function(data, status, header, config){
+        
+    });
+    
+    // Financial Institution with SGS
+    $http.get('http://127.0.0.1:5000/api/v1/chartanalytics/financial/'+year+'/'+ngo+'/'+province+'/'+district)
+        .success(function(data, status, header, config){
             var layout_bar = {
                 barmode: 'stack',
                 autosize: true,
@@ -1306,20 +1732,22 @@ function chartFunction($http, year) {
                     b:180
                 },
                 xaxis: {
-                    tickangle: 0,
+                    tickangle: 100,
                     tickfont: {
                         size: 12
                     }
                 },
-                title: 'SVGs, Financial Institutions and Banks',
+                title: data.sgFinancial[1],
             };
         
-            Plotly.newPlot('sg_financial', data.sgFinancial, layout_bar);
+            Plotly.newPlot('sg_financial', data.sgFinancial[0], layout_bar);
+        }).error(function(data, status, header, config){
         
-        
-            // Bank and Telco Agent with Saving Groups
-        
-            var layout_bar = {
+        });
+    
+    // Bank and Telco Agent with Saving Groups
+    $http.get('http://127.0.0.1:5000/api/v1/chartanalytics/agent/'+year+'/'+ngo+'/'+province+'/'+district).success(function(data, status, header, config){
+        var layout_bar = {
                 barmode: 'stack',
                 autosize: true,
                 showlegend: true,
@@ -1334,16 +1762,28 @@ function chartFunction($http, year) {
                     b:80
                 },
                 xaxis: {
-                    tickangle: 0,
+                    tickangle: 100,
                     tickfont: {
                         size: 12
                     }
                 },
-                title: 'SVGs, Telcos and Banks',
+                title: data.sgAgent[1],
             };
         
-            Plotly.newPlot('sg_agent', data.sgAgent, layout_bar);
+            Plotly.newPlot('sg_agent', data.sgAgent[0], layout_bar);
+    }).error(function(data, status, header, config){
         
+    })
+    
+    
+    // FINSCOPE DATA
+    
+     var url = 'http://127.0.0.1:5000/api/v1/chartanalytics/'+year+'/'+ngo+'/'+province+'/'+district;
+    
+    $http.get(url)
+        .success(function(data, status, header, config) {
+            
+            
         
             // FInscope chart
             
@@ -1357,8 +1797,8 @@ function chartFunction($http, year) {
                     y:-0.2
                 },
                 margin: {
-                    l: 20,
-                    r: 15,
+                    l: 40,
+                    r: 10,
                     b:80
                 },
                 xaxis: {
@@ -1367,10 +1807,10 @@ function chartFunction($http, year) {
                         size: 12
                     }
                 },
-                title: 'SGs vs Finscope',
+                title: data.finscope[1]
             };
         
-            Plotly.newPlot('container_finscope', data.finscope, layout_bar);
+            Plotly.newPlot('container_finscope', data.finscope[0], layout_bar);
         
         
         
@@ -1388,14 +1828,16 @@ function chartFunction($http, year) {
                     l: 0,
                     r: 0
                 },
-                title: 'Finscope: Other Informal Vs SGs 2012'
+                title: data.finscope_sg_2012[0][1],
+                titlefont:{
+                    size:14
+                }
             };
             
-            Plotly.newPlot('finscope_sg_pie_2012', data.finscope_sg_2012, layout_sg);
-        
-         // Finscope: Other Informal Vs SGs 2015 
+            Plotly.newPlot('finscope_sg_pie_2012', [data.finscope_sg_2012[0][0]], layout_sg);
+       
             
-            var layout_sg = {
+        var layout_sg = {
                 autosize: true,
                 showlegend: true,
                 legend:{
@@ -1407,11 +1849,13 @@ function chartFunction($http, year) {
                     l: 0,
                     r: 0
                 },
-                title: 'Finscope: Other Informal Vs SGs 2015'
+                title: data.finscope_sg_2015[0][1],
+                titlefont:{
+                    size:14
+                }
             };
             
-            Plotly.newPlot('finscope_sg_pie_2015', data.finscope_sg_2015, layout_sg);
-        
+            Plotly.newPlot('finscope_sg_pie_2015', [data.finscope_sg_2015[0][0]], layout_sg);
         // Finscope all 2012
         
         var layout_bar = {
@@ -1429,15 +1873,15 @@ function chartFunction($http, year) {
                     b:80
                 },
                 xaxis: {
-                    tickangle: 0,
+                    tickangle: 100,
                     tickfont: {
                         size: 12
                     }
                 },
-                title: 'Finscope 2012',
+                title: data.finscope_all_2012[1],
             };
         
-        Plotly.newPlot('finscope_all_2012', data.finscope_all_2012, layout_bar);
+        Plotly.newPlot('finscope_all_2012', data.finscope_all_2012[0], layout_bar);
         
         // Finscope all 2015
         
@@ -1456,30 +1900,32 @@ function chartFunction($http, year) {
                     b:80
                 },
                 xaxis: {
-                    tickangle: 0,
+                    tickangle: 100,
                     tickfont: {
                         size: 12
                     }
                 },
-                title: 'Finscope 2015',
+                title: data.finscope_all_2015[1],
             };
         
-        Plotly.newPlot('finscope_all_2015', data.finscope_all_2015, layout_bar);
+        Plotly.newPlot('finscope_all_2015', data.finscope_all_2015[0], layout_bar);
+        hideLoader();
         
         })
         .error(function(data, status, header, config) {
             console.log(status);
         });
 
-
+        
 
     // SVGs_creation year per Internatonal NGOs
-    var url = 'http://127.0.0.1:5000/api/v1/analytics/creation/'+year;
+    var url = 'http://127.0.0.1:5000/api/v1/analytics/creation/'+year+'/'+ngo+'/'+province+'/'+district;;
+    console.log(ngo);
     $http.get(url)
         .success(function(data, status, header, config){
             console.log(data.creation);
             var layout = {
-                title: 'SGs Creation year/Internatonal NGOs',
+                title: data.creation[1],
                 barmode: 'group',
                 autosize: true,
                 showlegend: true,
@@ -1489,7 +1935,7 @@ function chartFunction($http, year) {
                     y:-1
                 },
                 margin: {
-                    l: 40,
+                    l: 50,
                     r: 40,
                     b: 180
                 },
@@ -1500,7 +1946,7 @@ function chartFunction($http, year) {
                     }
                 }
             };
-            Plotly.newPlot('container_year_sg', data.creation, layout);
+            Plotly.newPlot('container_year_sg', data.creation[0], layout);
             
         }).error(function(data, status, header, config){
         
@@ -1645,16 +2091,26 @@ function leafletCartix(year) {
 
 
     var url, sg_ngo;
-    
-    url = 'http://127.0.0.1:5000/api/v1/sqlsaving/1/1';
+    var year = $("#year").val();
+    year = year ? year : '2014';
+    sg_ngo = $("#saving_group_map").val();
+    url = 'http://127.0.0.1:5000/api/v1/sqlsaving/'+sg_ngo+'/'+year;
     $("#saving_group_map").change(function() {
         sg_ngo = $("#saving_group_map").val();
         year = $("#year").val();
         url = 'http://127.0.0.1:5000/api/v1/sqlsaving/' + sg_ngo + '/' + year;
         //console.log(url);
         Jsonfile = AjaxSgData(url);
+        var data = $("#national_map").val();
+        displayMap();
     });
 
+    
+    function displayMap(){
+        Display("/assets/geojson/admin4.geojson");
+        legend.addTo(map);
+        info.addTo(map);
+    }
     console.log(year);
     
 
@@ -1666,12 +2122,13 @@ function leafletCartix(year) {
         console.log(sg_ngo);
         console.log(year);
         url = 'http://127.0.0.1:5000/api/v1/sqlsaving/' + sg_ngo + '/' + year;
+        Jsonfile = AjaxSgData(url);
+        displayMap();
     });
 
 
     Jsonfile = AjaxSgData(url);
     function AjaxSgData(url) {
-        console.log(url);
         $.ajax({
             url: url,
             async: false,
@@ -1679,7 +2136,8 @@ function leafletCartix(year) {
                 Jsonfile = data;
             }
         });
-        console.log(url);
+        console.log(url,Jsonfile);
+        
         return Jsonfile;
     }
 
@@ -1781,7 +2239,9 @@ function leafletCartix(year) {
                 var u = numeral(obj.usacco).format();
                 var tl = numeral(obj.telco_agent).format();
                 var ba = numeral(obj.bank_agent).format();
-                info.update(layer.feature.properties, dens, mm, f, ml, banks, mfi, nu, u, tl, ba);
+                var borrowing = numeral(obj.borrowing).format();
+                var saving = numeral(obj.saving).format();
+                info.update(layer.feature.properties, dens, mm, f, ml, banks, mfi, nu, u, tl, ba, borrowing, saving);
             }
         });
 
@@ -1802,10 +2262,10 @@ function leafletCartix(year) {
     };
 
     // method that we will use to update the control based on feature properties passed
-    info.update = function(props, density, membr, fem, male, banks, mfi, nu, u, tl, ba) {
+    info.update = function(props, density, membr, fem, male, banks, mfi, nu, u, tl, ba, borrowing, saving) {
 
         this._div.innerHTML = '<h4>Saving groups per Province</h4>' + (props ?
-            '<b>' + props.Name + ' Province</b><br />' + density + ' Saving groups<br/> <b> Total Membership: </b>' + membr + '<br/> <b> Total Female: </b>' + fem + ' <br/> <b>Total Male: </b>' + male + '</br><b> Banks: </b>' + banks + '</br><b>MFIs: </b>' + mfi + '</br><b> Non-Umurenge: </b>' + nu + '</br><b> Umurenge:</b>' + u + '</br><b>Telco Agents: </b>' + tl + '</br><b>Bank Agents:</b>' + ba + '</br>' :
+            '<b>' + props.Name + ' Province</b><br />' + density + ' Saving groups<br/> <b> Total Membership: </b>' + membr + '<br/> <b> Total Female: </b>' + fem + ' <br/> <b>Total Male: </b>' + male + '</br><b>Total Out. Loans: </b>'+borrowing+'<br><b>Total Savings: </b>'+saving+'<br><b> Banks: </b>' + banks + '</br><b>MFIs: </b>' + mfi + '</br><b> Non-Umurenge Sacco: </b>' + nu + '</br><b>Umurenge Sacco:</b>' + u + '</br><b>Telco Agents: </b>' + tl + '</br><b>Bank Agents:</b>' + ba + '</br>' :
             'Hover over a province');
 
     };
@@ -1854,7 +2314,7 @@ function leafletCartix(year) {
             fillOpacity: 10
         };
     }
-
+    
     function provinceDisplay(geofile) {
 
         if (geojson === undefined) {
@@ -1960,7 +2420,9 @@ function leafletCartix(year) {
                 var u = numeral(obj.usacco).format();
                 var tl = numeral(obj.telco_agent).format();
                 var ba = numeral(obj.bank_agent).format();
-                infoP.update(layer.feature.properties, dens, mm, f, ml, banks, mfi, nu, u, tl, ba);
+                var borrowing = numeral(obj.borrowing).format();
+                var saving = numeral(obj.saving).format();
+                infoP.update(layer.feature.properties, dens, mm, f, ml, banks, mfi, nu, u, tl, ba, borrowing, saving);
             }
         });
 
@@ -1981,9 +2443,9 @@ function leafletCartix(year) {
     };
 
     // method that we will use to update the control based on feature properties passed
-    infoP.update = function(props, density, membr, fem, male, banks, mfi, nu, u, tl, ba) {
+    infoP.update = function(props, density, membr, fem, male, banks, mfi, nu, u, tl, ba, borrowing, saving) {
         this._div.innerHTML = '<h4>Saving groups in each District per Province</h4>' + (props ?
-            '<b>' + props.Name + ' Province</b><br />' + density + ' Saving groups<br/> <b> Total Membership: </b>' + membr + '<br/> <b> Total Female: </b>' + fem + ' <br/> <b>Total Male: </b>' + male + '</br><b> Banks: </b>' + banks + '</br><b>MFIs: </b>' + mfi + '</br><b> Non-Umurenge: </b>' + nu + '</br><b> Umurenge:</b>' + u + '</br><b>Telco Agents: </b>' + tl + '</br><b>Bank Agents:</b>' + ba + '</br>' :
+            '<b>' + props.Name + ' District</b><br />' + density + ' Saving groups<br/> <b> Total Membership: </b>' + membr + '<br/> <b> Total Female: </b>' + fem + ' <br/> <b>Total Male: </b>' + male + '</br><b>Total Out. Loans: </b>'+borrowing+'<br><b>Total Savings: </b>'+saving+'<br><b> Banks: </b>' + banks + '</br><b>MFIs: </b>' + mfi + '</br><b> Non-Umurenge Sacco: </b>' + nu + '</br><b>Umurenge Sacco:</b>' + u + '</br><b>Telco Agents: </b>' + tl + '</br><b>Bank Agents:</b>' + ba + '</br>' :
             'Hover over a province');
 
     };
@@ -2100,7 +2562,9 @@ function leafletCartix(year) {
                 var u = numeral(obj.usacco).format();
                 var tl = numeral(obj.telco_agent).format();
                 var ba = numeral(obj.bank_agent).format();
-                infoD.update(layer.feature.properties, dens, mm, f, ml, banks, mfi, nu, u, tl, ba);
+                var borrowing = numeral(obj.borrowing).format();
+                var saving = numeral(obj.saving).format();
+                infoD.update(layer.feature.properties, dens, mm, f, ml, banks, mfi, nu, u, tl, ba, borrowing, saving);
             }
         });
 
@@ -2123,9 +2587,9 @@ function leafletCartix(year) {
     };
 
     // method that we will use to update the control based on feature properties passed
-    infoD.update = function(props, density, membr, fem, male, banks, mfi, nu, u, tl, ba) {
+    infoD.update = function(props, density, membr, fem, male, banks, mfi, nu, u, tl, ba, borrowing, saving) {
         this._div.innerHTML = '<h4>Saving groups per District</h4>' + (props ?
-            '<b>' + props.Name + ' District</b><br />' + density + ' Saving groups <br/> <b> Total Membership: </b>' + membr + '<br/> <b> Total Female: </b>' + fem + ' <br/> <b>Total Male: </b>' + male + '</br><b> Banks: </b>' + banks + '</br><b>MFIs: </b>' + mfi + '</br><b> Non-Umurenge: </b>' + nu + '</br><b> Umurenge:</b>' + u + '</br><b>Telco Agents: </b>' + tl + '</br><b>Bank Agents:</b>' + ba + '</br>' :
+            '<b>' + props.Name + ' District</b><br />' + density + ' Saving groups <br/> <b> Total Membership: </b>' + membr + '<br/> <b> Total Female: </b>' + fem + ' <br/> <b>Total Male: </b>' + male + '</br><b>Total Out. Loans: </b>'+borrowing+'<br><b>Total Savings: </b>'+saving+'<br><b> Banks: </b>' + banks + '</br><b>MFIs: </b>' + mfi + '</br><b> Non-Umurenge Sacco: </b>' + nu + '</br><b> Umurenge Sacco:</b>' + u + '</br><b>Telco Agents: </b>' + tl + '</br><b>Bank Agents:</b>' + ba + '</br>' :
             'Hover over a district');
     };
     //legend
@@ -2338,7 +2802,9 @@ function leafletCartix(year) {
                     var u = numeral(obj.usacco).format();
                     var tl = numeral(obj.telco_agent).format();
                     var ba = numeral(obj.bank_agent).format();
-                    infoS.update(layer.feature.properties, dens, mm, f, ml, banks, mfi, nu, u, tl, ba);
+                    var borrowing = numeral(obj.borrowing).format();
+                    var saving = numeral(obj.saving).format();
+                    infoS.update(layer.feature.properties, dens, mm, f, ml, banks, mfi, nu, u, tl, ba, borrowing, saving);
                     //console.log(obj.Sector+ " "+ layer.feature.properties.Name);
                 }else{
                     //console.log(obj.Sector+ " "+ layer.feature.properties.Name);
@@ -2366,9 +2832,9 @@ function leafletCartix(year) {
     };
 
     // method that we will use to update the control based on feature properties passed
-    infoS.update = function(props, density, membr, fem, male, banks, mfi, nu, u, tl, ba) {
+    infoS.update = function(props, density, membr, fem, male, banks, mfi, nu, u, tl, ba, borrowing, saving) {
         this._div.innerHTML = '<h4>Saving groups per Sector</h4>' + (props ?
-            '<b>' + props.Name + ' Sector</b><br />' + density + ' Saving groups <br/> <b> Total Membership: </b>' + membr + '<br/> <b> Total Female: </b>' + fem + ' <br/> <b>Total Male: </b>' + male + '</br><b> Banks: </b>' + banks + '</br><b>MFIs: </b>' + mfi + '</br><b> Non-Umurenge: </b>' + nu + '</br><b> Umurenge:</b>' + u + '</br><b>Telco Agents: </b>' + tl + '</br><b>Bank Agents:</b>' + ba + '</br>' :
+            '<b>' + props.Name + ' Sector</b><br />' + density + ' Saving groups <br/> <b> Total Membership: </b>' + membr + '<br/> <b> Total Female: </b>' + fem + ' <br/> <b>Total Male: </b>' + male + '</br><b>Total Out. Loans: </b>'+borrowing+'<br><b>Total Savings: </b>'+saving+'<br><b> Banks: </b>' + banks + '</br><b>MFIs: </b>' + mfi + '</br><b> Non-Umurenge Sacco: </b>' + nu + '</br><b> Umurenge Sacco:</b>' + u + '</br><b>Telco Agents: </b>' + tl + '</br><b>Bank Agents:</b>' + ba + '</br>' :
             'Hover over a Sector');
     };
     //legend
@@ -2452,7 +2918,29 @@ function leafletCartix(year) {
         }
     }
 
+    
+    function HandlerNa(val){
+        if (val) {
+            switch (val) {
+                case "provinces":
+                    Display("/assets/geojson/admin4.geojson");
+                    legend.addTo(map);
+                    info.addTo(map);
+                    break;
+                case "districts":
+                    districtDisplay("/assets/geojson/District_Rwanda.geojson");
+                    legendD.addTo(map);
+                    infoD.addTo(map);
+                    break;
+                case "sectors":
+                    sector("/assets/geojson/Sector_Rwanda.geojson");
+                    legendS.addTo(map);
+                    infoS.addTo(map);
+                    break;
+            }
 
+        }
+    }
 
 
     this.handlerDistrict = function(val) {
