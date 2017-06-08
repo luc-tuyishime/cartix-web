@@ -232,14 +232,14 @@
                                 <p class="text-1"><span><img style alt="" src="assets/img/dot.png" class="file-logo"></span> Total Outstanding Loans</p>
                             </div>
                             <div class="col-md-6">
-                                <p class="text-2">{{ saving }}</p>
+                                <p class="text-2">{{ saving }} Rwf</p>
                             </div>
                             <div class="col-md-6">
-                                <p class="text-2">{{ borrowing }}</p>
+                                <p class="text-2">{{ borrowing }} Rwf</p>
                             </div>
                         </div>
                     </div>
-                    <div class="chart" id="saving_group" ng-show="saving_group">
+                    <div class="chart" id="saving_group" ng-show="saving_group_filter">
                         <hr>
                         <div id="container" style="min-width: 340px; height: auto; max-width: 600px; margin: 0 auto"></div>
                         <hr>
@@ -254,15 +254,15 @@
                         <div id="sg_local_per_int" style="min-width: 340px; height: 1810px; max-width: 600px; margin: 0 auto"></div>
                         <hr>
                     </div>
-                    <div class="chart" id="financial">
+                    <div class="chart" id="financial" ng-show="financial">
                         <div id="sg_financial" style="min-width: 340px; height: 750px; max-width: 600px; margin: 0 auto"></div>
                         <hr>
                     </div>
-                    <div class="chart" id="agent">
+                    <div class="chart" id="agent" ng-show="agent">
                         <div id="sg_agent" style="min-width: 340px; height: 750px; max-width: 600px; margin: 0 auto"></div>
                         <hr>
                     </div>
-                    <div class="chart" id="finscope">
+                    <div class="chart" id="finscope" ng-show="finscope">
                         <div id="container_finscope" style="min-width: 340px; height: auto; max-width: 600px; margin: 0 auto"></div>
                         <hr>
                         <div id="finscope_sg_pie_2012" style="min-width: 340px; height: auto; max-width: 600px; margin: 0 auto"></div>
@@ -418,7 +418,8 @@
                                     <div class="drop-box" ng-show="uploadInput">
                                         <input id="upload" type="file" ngf-select ng-model="efile" name="file" accept=".xlsx,.csv,.xls" ng-drop ngf-max-size="10MB" required ngf-model-invalid="errorFile"/>
                                         <p class="browse-text">Drag a file here or <a href="" id="upload_link">browse</a> for a upload</p>
-                                        <button type="button" class="btn btn-success" id="upload-progress" ng-disabled="!uploadfile.$valid"                ng-click="upload_File(efile)">Upload</button>
+                                        <button type="button" class="btn btn-success margin-button" id="upload-progress" ng-disabled="!uploadfile.$valid"                ng-click="upload_File(efile)">Upload</button>
+                                        <br>
                                     </div>
                                     <!-- Progress -->
                                     <div class="progress" ng-show="efile.progress >= 0">
