@@ -770,11 +770,44 @@ myapp.controller('mapCtrl', ['$scope', '$http', function($scope, $http) {
     
 
     // ########## Chart function ############
-    $scope.valSeclectedName = 'Analytics';
-    $scope.saving_group = true;
+    
+    function chart_filters_init(){
+        $scope.valSeclectedName = 'Analytics';
+        $scope.saving_group_filter = true;
+        $scope.financial = true;
+        $scope.agent = true;
+        $scope.finscope = true;
+    }
+    
+    chart_filters_init();
+    
     $scope.menuChart = function(val){
         $scope.valSeclectedName = val;
+        if (val == 'Saving Group Analytics'){
+            $scope.saving_group_filter = true;
+            $scope.financial = false;
+            $scope.agent = false;
+            $scope.finscope = false;
+        }else if(val == 'Financial Institutions Analytics'){
+            $scope.saving_group_filter = false;
+            $scope.financial = true;
+            $scope.agent = false;
+            $scope.finscope = false;
+        }else if(val == 'Agent Analytics'){
+            $scope.saving_group_filter = false;
+            $scope.financial = false;
+            $scope.agent = true;
+            $scope.finscope = false;
+        }else{
+            $scope.saving_group_filter = false;
+            $scope.financial = false;
+            $scope.agent = false;
+            $scope.finscope = true;
+        }
     }
+    
+    
+    
     
     // Chart function data 
     $scope.yearSurvey = 2014;
@@ -783,11 +816,13 @@ myapp.controller('mapCtrl', ['$scope', '$http', function($scope, $http) {
     var district_= null;
     chartFunction($http, $scope.yearSurvey, ngo, province_, district_);
     $("#year").change(function(){
+        
         $scope.yearSurvey = $("#year").val();
         ngo = $("#saving_group_map").val();
         console.log(ngo);
         chartFunction($http, $scope.yearSurvey, ngo, province_, district_);
         showLoader();
+        chart_filters_init()
     });
     
     
@@ -797,6 +832,7 @@ myapp.controller('mapCtrl', ['$scope', '$http', function($scope, $http) {
         console.log(ngo);
         chartFunction($http, $scope.yearSurvey, ngo, province_, district_);
         showLoader();
+        chart_filters_init()
     });
     
     $("#province_map").change(function(){
@@ -810,6 +846,7 @@ myapp.controller('mapCtrl', ['$scope', '$http', function($scope, $http) {
             ngo = $("#saving_group_map").val();
             chartFunction($http, $scope.yearSurvey, ngo, province_, district_);
             showLoader(); 
+            chart_filters_init()
         }
         
     });
@@ -821,6 +858,7 @@ myapp.controller('mapCtrl', ['$scope', '$http', function($scope, $http) {
         ngo = $("#saving_group_map").val();
         chartFunction($http, $scope.yearSurvey, ngo, province_, district_);
         showLoader();
+        chart_filters_init()
     });
     
     $("#national_map").change(function(){
@@ -829,6 +867,7 @@ myapp.controller('mapCtrl', ['$scope', '$http', function($scope, $http) {
         district_= null;
         chartFunction($http, $scope.yearSurvey, ngo, province_, district_);
         showLoader();
+        chart_filters_init()
     });
     
     
