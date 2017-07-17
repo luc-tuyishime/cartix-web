@@ -34,7 +34,7 @@
                   <li><a href="download.html">Download</a></li>
                   <li><a href="#events">Contact</a></li>
                   <li><a href="#events">Contact</a></li>
-                  <li class="btn-login"><a class="btn-lg  btn-responsive style-list" href="#">Log in</a></li>
+                  <!-- <li class="btn-login"><a class="btn-lg  btn-responsive style-list" href="#">Log in</a></li> -->
                </ul>
             </div>
             <div style="" class="community-text" id="About">
@@ -128,13 +128,11 @@
       </footer>
       <script>
          $(document).ready(function(){
-
            $(document).on('click','.navbar-collapse.in',function(e) {
              if( $(e.target).is('a') ) {
                  $(this).collapse('hide');
              }
          });
-
          // Activate Carousel
             $("#myCarousel").carousel({interval: 3000});
 
@@ -151,7 +149,6 @@
             $(".item4").click(function(){
                 $("#myCarousel").carousel(3);
             });
-
             // Enable Carousel Controls
             $(".left").click(function(){
                 $("#myCarousel").carousel("prev");

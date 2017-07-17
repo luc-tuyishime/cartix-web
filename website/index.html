@@ -6,13 +6,44 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="css/bootstrap-min.css">
-        <link rel="stylesheet" href="css/style.css">
-        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+        <link rel="stylesheet" href="css/style.css" media="screen">
         <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Artifika" />
+        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"> -->
         <link rel="shortcut icon" href="img/cartix-favicon.png" type="image/x-icon">
         <script src="js/bootstrap.min.js"></script>
+        <script>
+            $(document).ready(function(){
+              // Add scrollspy to <body>
+              $('body').scrollspy({target: ".navbar", offset: 50});
+              // make responsive on all screen
+                $(".top-margin").css("margin-top", $(window).height()-650);
+              $(".bg-1").css("height", function(index){
+                  return $(window).height();
+              })
+              if ( $(window).width() > 500) {
+                $("a").on('click', function(event) {
+                  // Make sure this.hash has a value before overriding default behavior
+                  if (this.hash !== "") {
+                    // Prevent default anchor click behavior
+                    event.preventDefault();
+                    // Store hash
+                    var hash = this.hash;
+                    // Using jQuery's animate() method to add smooth page scroll
+                    // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+                    $('html, body').animate({
+                      scrollTop: $(hash).offset().top
+                    }, 900, function(){
+                      // Add hash (#) to URL when done scrolling (default click behavior)
+                      window.location.hash = hash;
+                    });
+                  }  // End if
+                });
+              }
+            //  window.onorientationchange = function() { location.reload() };
+            });
+        </script>
     </head>
     <body>
         <!-- Navbar -->
@@ -32,7 +63,7 @@
                      <li><a class="large-link" href="cartix.html">About</a></li>
                      <li><a class="large-link" href="cartix.html">Pricing</a></li>
                      <li><a class="large-link" href="cartix.html">Support</a></li>
-                     <li><a href="#" class="btn-bottom btn-lg btn-default btn-responsive">log in</a></li>
+                     <!-- <li><a href="#" class="btn-bottom btn-lg btn-default btn-responsive">log in</a></li> -->
                  </ul>
              </div>
          </nav>
@@ -146,7 +177,7 @@
                         <div class="col-md-3">
                             <p class="footer-link_">QUICK LINKS</p>
 
-                                <p class="footer-link1"><a href="savinggroups.html">Saving Groups Map</a></p>
+                                <p class="footer-link1"><a href="https://savinggroup.bnr.rw/map/sg" target="_blank">Saving Groups Map</a></p>
 
                             <a href="">
                                 <p class="footer-link1">Demo</p>
@@ -197,9 +228,7 @@
               <div id="demo4" class="collapse">
                 <div class="panel-body body-style">
                   <p class="footer-link_">QUICK LINKS</p>
-
-                      <p class="footer-link1"><a href="savinggroups.html">Saving Groups Map</a></p>
-
+                      <p class="footer-link1"><a href="https://https://savinggroup.bnr.rw/map/sg/">Saving Groups Map</a></p>
                   <a href="">
                       <p class="footer-link1">Demo</p>
                   </a>
@@ -210,36 +239,5 @@
           </div>
         </div>
         </footer>
-        <script>
-            $(document).ready(function(){
-              // Add scrollspy to <body>
-              $('body').scrollspy({target: ".navbar", offset: 50});
-              // make responsive on all screen
-                $(".top-margin").css("margin-top", $(window).height()-650);
-              $(".bg-1").css("height", function(index){
-                  return $(window).height();
-              })
-              if ( $(window).width() > 500) {
-                $("a").on('click', function(event) {
-                  // Make sure this.hash has a value before overriding default behavior
-                  if (this.hash !== "") {
-                    // Prevent default anchor click behavior
-                    event.preventDefault();
-                    // Store hash
-                    var hash = this.hash;
-                    // Using jQuery's animate() method to add smooth page scroll
-                    // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
-                    $('html, body').animate({
-                      scrollTop: $(hash).offset().top
-                    }, 900, function(){
-                      // Add hash (#) to URL when done scrolling (default click behavior)
-                      window.location.hash = hash;
-                    });
-                  }  // End if
-                });
-              }
-            //  window.onorientationchange = function() { location.reload() };
-            });
-        </script>
     </body>
 </html>

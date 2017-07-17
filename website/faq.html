@@ -5,11 +5,46 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <link rel="stylesheet" href="css/bootstrap-min.css">
+      <link rel="stylesheet" href="css/style.css" media="screen">
       <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
       <link rel="shortcut icon" href="img/cartix-favicon.png" type="image/x-icon">
       <script src="js/bootstrap.min.js"></script>
-      <link rel="stylesheet" href="css/style.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <script>
+         $(document).ready(function(){
+           // Add scrollspy to <body>
+           $('body').scrollspy({target: ".navbar", offset: 50});
+           // make responsive on all screen
+           $("").css("height", function(index){
+               return $(window).height();
+           })
+           // Add smooth scrolling on all links inside the navbar
+           $(".nav a").on('click', function(event) {
+             // Make sure this.hash has a value before overriding default behavior
+             if (this.hash !== "") {
+               // Prevent default anchor click behavior
+               event.preventDefault();
+               // Store hash
+               var hash = this.hash;
+               // Using jQuery's animate() method to add smooth page scroll
+               // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+               $('').animate({
+                 scrollTop: $(hash).offset().top
+               }, 1000, function(){
+
+                 // Add hash (#) to URL when done scrolling (default click behavior)
+                 window.location.hash = hash;
+               });
+             }  // End if
+           });
+            // hide collapse link after click
+           $(document).on('click','.navbar-collapse.in',function(e) {
+             if( $(e.target).is('a') ) {
+                 $(this).collapse('hide');
+             }
+         });
+         });
+      </script>
    </head>
    <body>
       <!-- Navbar -->
@@ -28,7 +63,7 @@
                   <li><a class="large-link" href="index.html">Home</a></li>
                   <li><a class="large-link" href="cartix.html">Pricing</a></li>
                   <li><a class="large-link" href="cartix.html">Support</a></li>
-                  <li ><a href="#" class="btn-bottom btn-lg btn-default btn-responsive">log in</a></li>
+                  <!-- <li ><a href="#" class="btn-bottom btn-lg btn-default btn-responsive">log in</a></li> -->
                </ul>
             </div>
          </div>
@@ -188,7 +223,7 @@
                </div>
                <div class="col-md-2">
                   <p style="color:#757575"  class="footer-link">QUICK LINKS</p>
-                  <p  style="color:#9e9e9e" class="footer-link1">Saving Groups Map</p>
+                  <p  style="color:#9e9e9e" class="footer-link1"><a href="https://savinggroup.bnr.rw/map/sg" target="_blank">Saving Groups Map</a></p>
                   <p  style="color:#9e9e9e" class="footer-link1">Demo</p>
                </div>
             </div>
@@ -251,44 +286,6 @@
           <div class="border-bottom2"></div>
        </div>
      </div>
-      </footer>
-      <script>
-         $(document).ready(function(){
-           // Add scrollspy to <body>
-           $('body').scrollspy({target: ".navbar", offset: 50});
-           // make responsive on all screen
-
-           $("").css("height", function(index){
-               return $(window).height();
-           })
-           // Add smooth scrolling on all links inside the navbar
-           $(".nav a").on('click', function(event) {
-             // Make sure this.hash has a value before overriding default behavior
-             if (this.hash !== "") {
-               // Prevent default anchor click behavior
-               event.preventDefault();
-
-               // Store hash
-               var hash = this.hash;
-
-               // Using jQuery's animate() method to add smooth page scroll
-               // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
-               $('').animate({
-                 scrollTop: $(hash).offset().top
-               }, 1000, function(){
-
-                 // Add hash (#) to URL when done scrolling (default click behavior)
-                 window.location.hash = hash;
-               });
-             }  // End if
-           });
-            // hide collapse link after click
-           $(document).on('click','.navbar-collapse.in',function(e) {
-             if( $(e.target).is('a') ) {
-                 $(this).collapse('hide');
-             }
-         });
-         });
-      </script>
+    </footer>
    </body>
 </html>
