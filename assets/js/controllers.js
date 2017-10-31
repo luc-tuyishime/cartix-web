@@ -11,26 +11,16 @@ myapp.controller('loginBgCtrl', ['$scope', function($scope) {
 
 
 myapp.controller('signupCtrl', ['$scope', '$location', 'AuthService', function($scope, $location, AuthService) {
-    $scope.user = true;
-    $scope.organization = false
     $scope.message = false;
-
-    $scope.nextOrg = function(fullname, email, password) {
-        $scope.user = false;
-        $scope.organization = true;
-        $scope.fullname = fullname;
-        $scope.email = email;
-        $scope.password = password;
-    }
-
     $scope.sign_up = function(fullname, email, password, org_name, org_type) {
-
+        
+        
         $scope.error = false;
         $scope.disable = true;
         var status = false;
 
         // call register service
-        AuthService.registerNgo(org_name, org_type)
+       AuthService.registerNgo(org_name, org_type)
             // handle success
             .then(function() {
                 $scope.disabled = false;
@@ -51,7 +41,7 @@ myapp.controller('signupCtrl', ['$scope', '$location', 'AuthService', function($
             // handle error
             .catch(function() {
                 $scope.disabled = true;
-            });
+            }); 
 
     }
 
@@ -71,7 +61,7 @@ myapp.controller('signinCtrl', ['$scope', '$http', '$location', 'AuthService', f
     
     // Signup
     
-      var url = 'http://127.0.0.1:5000/api/v1/params/1';
+      var url = 'http://apisg.bnr.rw/api/v1/params/1';
 
         $http.get(url)
             .success(function(data, status, header, config) {
@@ -193,7 +183,7 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$
 
 
     var ngo_id = restoreNgo();
-    var url = "http://127.0.0.1:5000/api/v1/ngo/" + ngo_id;
+    var url = "http://apisg.bnr.rw/api/v1/ngo/" + ngo_id;
 
     $http.get(url).success(function(data, status, header, config) {
             $scope.ngo_name = data.ngo.name;
@@ -233,7 +223,7 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$
 
     $scope.upload_File = function(file) {
         file.upload = Upload.upload({
-            url: 'http://127.0.0.1:5000/api/upload/',
+            url: 'http://apisg.bnr.rw/api/upload/',
             data: {
                 file: file
             },
@@ -287,7 +277,7 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$
 
         var data = '{"original":"' + original + '","saved":"' + save + '","user_id":"' + id + '","filename":"' + filename + '"}';
 
-        $http.post('http://127.0.0.1:5000/api/v1/file/save/', data, config)
+        $http.post('http://apisg.bnr.rw/api/v1/file/save/', data, config)
             .success(function(data, status, header, config) {
                 console.log(data);
             });
@@ -423,7 +413,7 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$
 
         var data = '{"original":"' + originalpath + '","saved":"","user_id":"' + user_id + '","filename":"' + filename + '"}';
 
-        $http.post('http://127.0.0.1:5000/api/v1/file/user/', data, config)
+        $http.post('http://apisg.bnr.rw/api/v1/file/user/', data, config)
             .success(function(data, status, header, config) {
 
                 if (data.auth) {
@@ -474,7 +464,7 @@ myapp.controller('mapCtrl', ['$scope', '$http', function($scope, $http) {
         }
     
      var user_id = localStorage.getItem('u___');
-    var url = 'http://127.0.0.1:5000/api/v1/params/1';
+    var url = 'http://apisg.bnr.rw/api/v1/params/1';
 
         $http.get(url)
             .success(function(data, status, header, config) {
@@ -516,7 +506,7 @@ myapp.controller('mapCtrl', ['$scope', '$http', function($scope, $http) {
     
     $('input[type=radio][name=upload]').change(function() {
         var val = this.value;
-        var url ='http://127.0.0.1:5000/api/v1/params/upload/'+user_id+'/'+val;
+        var url ='http://apisg.bnr.rw/api/v1/params/upload/'+user_id+'/'+val;
         $http.put(url).success(function(data, status, header, config){
            user_params(data.upload, data.signup); 
         }).error(function(data, status, header, config){
@@ -526,7 +516,7 @@ myapp.controller('mapCtrl', ['$scope', '$http', function($scope, $http) {
     
     $('input[type=radio][name=signup]').change(function() {
         var val = this.value;
-        var url ='http://127.0.0.1:5000/api/v1/params/signup/'+user_id+'/'+val;
+        var url ='http://apisg.bnr.rw/api/v1/params/signup/'+user_id+'/'+val;
         $http.put(url).success(function(data, status, header, config){
             console.log(data);
            user_params(data.upload, data.signup); 
@@ -542,7 +532,7 @@ myapp.controller('mapCtrl', ['$scope', '$http', function($scope, $http) {
         new_password = $scope.n_password;
         confirm_password = $scope.co_password;
         
-        var url = 'http://127.0.0.1:5000/api/v1/users/check_password/'+user_id;
+        var url = 'http://apisg.bnr.rw/api/v1/users/check_password/'+user_id;
         var data = '{"password":"'+current_password+'"}';
         $http.put(url, data, config)
             .success(function(data, status, header, config){
@@ -560,7 +550,7 @@ myapp.controller('mapCtrl', ['$scope', '$http', function($scope, $http) {
     function check_new_password(new_password, confirm_password){
         if (new_password == confirm_password){
             var data = '{"password":"'+new_password+'"}';
-            var url = 'http://127.0.0.1:5000/api/v1/change/password/'+user_id;
+            var url = 'http://apisg.bnr.rw/api/v1/change/password/'+user_id;
             $http.put(url, data, config).success(function(data, status, header, config){
                 if(data){
                     $scope.error = '';
@@ -580,7 +570,7 @@ myapp.controller('mapCtrl', ['$scope', '$http', function($scope, $http) {
         $scope.usernames_p = name;
         
         var data = '{"email":"'+email+'", "names":"'+name+'"}';
-        var url = 'http://127.0.0.1:5000/api/v1/users/'+user_id;
+        var url = 'http://apisg.bnr.rw/api/v1/users/'+user_id;
         $http.put(url, data, config)
             .success(function(data, status){
                 console.log(data);
@@ -596,7 +586,7 @@ myapp.controller('mapCtrl', ['$scope', '$http', function($scope, $http) {
         var title = $scope.title;
         var message = $scope.message;
         var email, name, username ;
-        var url = 'http://127.0.0.1:5000/api/v1/user/'+user_id;
+        var url = 'http://apisg.bnr.rw/api/v1/user/'+user_id;
         $http.get(url).success(function(data, status){
            console.log(data); 
             email = data.user.email;
@@ -677,7 +667,7 @@ myapp.controller('mapCtrl', ['$scope', '$http', function($scope, $http) {
     loadSavingYear();
 
     function loadSavingYear() {
-        $http.get('http://127.0.0.1:5000/api/v1/saving_year/')
+        $http.get('http://apisg.bnr.rw/api/v1/saving_year/')
             .success(function(data, status, header, config) {
                 console.log(data);
                 var options = '';
@@ -696,7 +686,7 @@ myapp.controller('mapCtrl', ['$scope', '$http', function($scope, $http) {
     loadIntNgo();
 
     function loadIntNgo() {
-        $http.get('http://127.0.0.1:5000/api/v1/int_ngo/')
+        $http.get('http://apisg.bnr.rw/api/v1/int_ngo/')
             .success(function(data, status, header, config) {
                 console.log(data);
                 var options = "";
@@ -715,7 +705,7 @@ myapp.controller('mapCtrl', ['$scope', '$http', function($scope, $http) {
 
     function loggedNgoName() {
         var ngo_id = restoreNgo();
-        var url = "http://127.0.0.1:5000/api/v1/ngo/" + ngo_id;
+        var url = "http://apisg.bnr.rw/api/v1/ngo/" + ngo_id;
 
         $http.get(url).success(function(data, status, header, config) {
                 $scope.ngo_name = data.ngo.name;
@@ -731,7 +721,7 @@ myapp.controller('mapCtrl', ['$scope', '$http', function($scope, $http) {
 
     function loggedUserName() {
         var user_id = localStorage.getItem('u___');
-        var url = 'http://127.0.0.1:5000/api/v1/user/' + user_id;
+        var url = 'http://apisg.bnr.rw/api/v1/user/' + user_id;
 
         $http.get(url)
             .success(function(data, status, header, config) {
@@ -755,7 +745,7 @@ myapp.controller('mapCtrl', ['$scope', '$http', function($scope, $http) {
     // ############# Analytics Numbers #######
     
     function analyticsNumber(year){
-        var url = 'http://127.0.0.1:5000/api/v1/analytics/numbers/'+year;
+        var url = 'http://apisg.bnr.rw/api/v1/analytics/numbers/'+year;
         $http.get(url)
             .success(function(data, status, header, config){
                 $scope.sg_count = numeral(data.sg_count).format();
@@ -895,7 +885,7 @@ myapp.controller('notificationCtrl', ['$scope', '$http', 'AuthService', '$q', fu
     
     
      var user_id = localStorage.getItem('u___');
-    var url = 'http://127.0.0.1:5000/api/v1/params/1';
+    var url = 'http://apisg.bnr.rw/api/v1/params/1';
 
         $http.get(url)
             .success(function(data, status, header, config) {
@@ -936,7 +926,7 @@ myapp.controller('notificationCtrl', ['$scope', '$http', 'AuthService', '$q', fu
     
     $('input[type=radio][name=upload]').change(function() {
         var val = this.value;
-        var url ='http://127.0.0.1:5000/api/v1/params/upload/'+user_id+'/'+val;
+        var url ='http://apisg.bnr.rw/api/v1/params/upload/'+user_id+'/'+val;
         $http.put(url).success(function(data, status, header, config){
            user_params(data.upload, data.signup); 
         }).error(function(data, status, header, config){
@@ -946,7 +936,7 @@ myapp.controller('notificationCtrl', ['$scope', '$http', 'AuthService', '$q', fu
     
     $('input[type=radio][name=signup]').change(function() {
         var val = this.value;
-        var url ='http://127.0.0.1:5000/api/v1/params/signup/'+user_id+'/'+val;
+        var url ='http://apisg.bnr.rw/api/v1/params/signup/'+user_id+'/'+val;
         $http.put(url).success(function(data, status, header, config){
            user_params(data.upload, data.signup); 
         }).error(function(data, status, header, config){
@@ -997,7 +987,7 @@ myapp.controller('notificationCtrl', ['$scope', '$http', 'AuthService', '$q', fu
 
         $scope.loadLocalNgo = function(int_ngo_filter) {
             //console.log(int_ngo_filter);
-            var url = 'http://127.0.0.1:5000/api/v1/int_ngo/partner/' + int_ngo_filter;
+            var url = 'http://apisg.bnr.rw/api/v1/int_ngo/partner/' + int_ngo_filter;
             $http.get(url)
                 .success(function(data, status, header, config) {
                     var options = "";
@@ -1017,7 +1007,7 @@ myapp.controller('notificationCtrl', ['$scope', '$http', 'AuthService', '$q', fu
         loadFilesYear()
 
         function loadFilesYear() {
-            var url = "http://127.0.0.1:5000/api/v1/saving_year";
+            var url = "http://apisg.bnr.rw/api/v1/saving_year";
             $http.get(url)
                 .success(function(data, status, header, config) {
                     console.log(data);
@@ -1039,7 +1029,7 @@ myapp.controller('notificationCtrl', ['$scope', '$http', 'AuthService', '$q', fu
         loadNgoFiles()
 
         function loadNgoFiles() {
-            var url = "http://127.0.0.1:5000/api/v1/files";
+            var url = "http://apisg.bnr.rw/api/v1/files";
             $http.get(url)
                 .success(function(data, status, header, config) {
                     console.log(data);
@@ -1066,7 +1056,7 @@ myapp.controller('notificationCtrl', ['$scope', '$http', 'AuthService', '$q', fu
         loadNgoFiles(user_id)
 
         function loadNgoFiles(user_id) {
-            var url = "http://127.0.0.1:5000/api/v1/files/user/" + user_id;
+            var url = "http://apisg.bnr.rw/api/v1/files/user/" + user_id;
             $http.get(url)
                 .success(function(data, status, header, config) {
                     console.log(data);
@@ -1082,7 +1072,7 @@ myapp.controller('notificationCtrl', ['$scope', '$http', 'AuthService', '$q', fu
 
         function loadLocalPartner(ngo_id) {
             console.log(ngo_id);
-            var url = 'http://127.0.0.1:5000/api/v1/int_ngo/partner/' + ngo_id;
+            var url = 'http://apisg.bnr.rw/api/v1/int_ngo/partner/' + ngo_id;
             $http.get(url)
                 .success(function(data, status, header, config) {
                     console.log(data);
@@ -1102,7 +1092,7 @@ myapp.controller('notificationCtrl', ['$scope', '$http', 'AuthService', '$q', fu
         loadFilesYear()
 
         function loadFilesYear() {
-            var url = "http://127.0.0.1:5000/api/v1/saving_year";
+            var url = "http://apisg.bnr.rw/api/v1/saving_year";
             $http.get(url)
                 .success(function(data, status, header, config) {
                     console.log(data);
@@ -1218,7 +1208,7 @@ myapp.controller('viewAlldataCtrl', ['$scope', '$http', 'AuthService', '$q', fun
             }
         }
         var data = '{"query":"'+query+'", "year":"'+year+'"}'
-        var url = 'http://127.0.0.1:5000/api/v1/data/download/';
+        var url = 'http://apisg.bnr.rw/api/v1/data/download/';
         $http.post(url, data, config)
             .success(function(data, status, header, config){
                 console.log(data);
@@ -1231,7 +1221,7 @@ myapp.controller('viewAlldataCtrl', ['$scope', '$http', 'AuthService', '$q', fun
     // Render View data
     
     function renderViewdata(province_ids, district_id, sector_id, ngo_id,year,type, $http, $scope){
-        var url = 'http://127.0.0.1:5000/api/v1/data/view/'+province_ids+'/'+district_id+'/'+sector_id+'/'+ngo_id+'/'+year+'/'+type;
+        var url = 'http://apisg.bnr.rw/api/v1/data/view/'+province_ids+'/'+district_id+'/'+sector_id+'/'+ngo_id+'/'+year+'/'+type;
         $http.get(url)
             .success(function(data, status, header, config){
                 console.log(data);
@@ -1278,7 +1268,7 @@ myapp.controller('viewAlldataCtrl', ['$scope', '$http', 'AuthService', '$q', fun
     });
     
     function viewDataLoadSector(ids, $http){
-        var url = 'http://127.0.0.1:5000/api/v1/data/sector/'+ids;
+        var url = 'http://apisg.bnr.rw/api/v1/data/sector/'+ids;
         $http.get(url)
             .success(function(data, status, header, config){
                 console.log(data);
@@ -1297,7 +1287,7 @@ myapp.controller('viewAlldataCtrl', ['$scope', '$http', 'AuthService', '$q', fun
     }
 
     function viewDataLoadDistrict(ids, $http){
-        var url = 'http://127.0.0.1:5000/api/v1/data/district/'+ids;
+        var url = 'http://apisg.bnr.rw/api/v1/data/district/'+ids;
         $http.get(url)
             .success(function(data, status, header, config){
                 console.log(data);
@@ -1353,7 +1343,7 @@ myapp.controller('viewAlldataCtrl', ['$scope', '$http', 'AuthService', '$q', fun
 // International NGO
 
 function loadIntNgo(idBox, $http) {
-    $http.get('http://127.0.0.1:5000/api/v1/int_ngo/')
+    $http.get('http://apisg.bnr.rw/api/v1/int_ngo/')
         .success(function(data, status, header, config) {
             console.log(data);
             var options = "";
@@ -1372,7 +1362,7 @@ function loadIntNgo(idBox, $http) {
 // Provinces 
 
 function loadProvinceSelectBox(idBox, $http) {
-    $http.get('http://127.0.0.1:5000/api/v1/kenessa/province/province/all')
+    $http.get('http://apisg.bnr.rw/api/v1/kenessa/province/province/all')
         .success(function(data, status, header, config) {
             console.log(data);
             var options = "";
@@ -1391,7 +1381,7 @@ function loadProvinceSelectBox(idBox, $http) {
 
 
 function loadProvinceSelectBoxDataView(idBox, $http) {
-    $http.get('http://127.0.0.1:5000/api/v1/kenessa/province/province/all')
+    $http.get('http://apisg.bnr.rw/api/v1/kenessa/province/province/all')
         .success(function(data, status, header, config) {
             console.log(data);
             var options = "";
@@ -1410,7 +1400,7 @@ function loadProvinceSelectBoxDataView(idBox, $http) {
 
 
 function loadDistrictSelectBox(province_id, idBox, $http) {
-    $http.get('http://127.0.0.1:5000/api/v1/kenessa/province/district/' + province_id)
+    $http.get('http://apisg.bnr.rw/api/v1/kenessa/province/district/' + province_id)
         .success(function(data, status, header, config) {
             console.log(data);
             var options = "";
@@ -1436,7 +1426,7 @@ function loadDistrictSelectBox(province_id, idBox, $http) {
 
 function loadSectorSelectBox(district_id, idBox, $http) {
     alert(district_id);
-    var url = 'http://127.0.0.1:5000/api/v1/kenessa/district/sector/' + district_id;
+    var url = 'http://apisg.bnr.rw/api/v1/kenessa/district/sector/' + district_id;
     $http.get(url)
         .success(function(data, status, header, config) {
             console.log(data);
@@ -1562,7 +1552,7 @@ function chartFunction($http, year, ngo, province, district) {
    
     
     // MEMBERSHIP PER GENDER
-     $http.get('http://127.0.0.1:5000/api/v1/chartanalytics/membership/'+year+'/'+ngo+'/'+province+'/'+district)
+     $http.get('http://apisg.bnr.rw/api/v1/chartanalytics/membership/'+year+'/'+ngo+'/'+province+'/'+district)
         .success(function(data, status, header, config){
              var layout = {
                 autosize: true,
@@ -1586,7 +1576,7 @@ function chartFunction($http, year, ngo, province, district) {
     
     
     // Saving group per internation NGO
-    $http.get('http://127.0.0.1:5000/api/v1/chartanalytics/sg/'+year+'/'+ngo+'/'+province+'/'+district)
+    $http.get('http://apisg.bnr.rw/api/v1/chartanalytics/sg/'+year+'/'+ngo+'/'+province+'/'+district)
         .success(function(data, status, header, config){
         
             var layout = {
@@ -1613,7 +1603,7 @@ function chartFunction($http, year, ngo, province, district) {
         })
    
     // Saving Group Status per Intl NGos
-    $http.get('http://127.0.0.1:5000/api/v1/chartanalytics/status/'+year+'/'+ngo+'/'+province+'/'+district)
+    $http.get('http://apisg.bnr.rw/api/v1/chartanalytics/status/'+year+'/'+ngo+'/'+province+'/'+district)
         .success(function(data, status, header, config){
 
             var layout_bar = {
@@ -1649,7 +1639,7 @@ function chartFunction($http, year, ngo, province, district) {
     /* SG Savings and Loans per Intl Ngos 
                   layout_bar will be inherited
             */ 
-    $http.get('http://127.0.0.1:5000/api/v1/chartanalytics/amount/'+year+'/'+ngo+'/'+province+'/'+district).success(function(data, status, header, config){
+    $http.get('http://apisg.bnr.rw/api/v1/chartanalytics/amount/'+year+'/'+ngo+'/'+province+'/'+district).success(function(data, status, header, config){
          var layout_bar = {
                 barmode: 'group',
                 autosize: true,
@@ -1679,7 +1669,7 @@ function chartFunction($http, year, ngo, province, district) {
     });
    
     // Local NGO per intenation ngo
-    $http.get('http://127.0.0.1:5000/api/v1/chartanalytics/sgNgos/'+year+'/'+ngo+'/'+province+'/'+district).success(function(data, status, header, config){
+    $http.get('http://apisg.bnr.rw/api/v1/chartanalytics/sgNgos/'+year+'/'+ngo+'/'+province+'/'+district).success(function(data, status, header, config){
         
         var layout_bar = {
                 barmode: 'stack',
@@ -1715,7 +1705,7 @@ function chartFunction($http, year, ngo, province, district) {
     });
     
     // Financial Institution with SGS
-    $http.get('http://127.0.0.1:5000/api/v1/chartanalytics/financial/'+year+'/'+ngo+'/'+province+'/'+district)
+    $http.get('http://apisg.bnr.rw/api/v1/chartanalytics/financial/'+year+'/'+ngo+'/'+province+'/'+district)
         .success(function(data, status, header, config){
             var layout_bar = {
                 barmode: 'stack',
@@ -1746,7 +1736,7 @@ function chartFunction($http, year, ngo, province, district) {
         });
     
     // Bank and Telco Agent with Saving Groups
-    $http.get('http://127.0.0.1:5000/api/v1/chartanalytics/agent/'+year+'/'+ngo+'/'+province+'/'+district).success(function(data, status, header, config){
+    $http.get('http://apisg.bnr.rw/api/v1/chartanalytics/agent/'+year+'/'+ngo+'/'+province+'/'+district).success(function(data, status, header, config){
         var layout_bar = {
                 barmode: 'stack',
                 autosize: true,
@@ -1778,7 +1768,7 @@ function chartFunction($http, year, ngo, province, district) {
     
     // FINSCOPE DATA
     
-     var url = 'http://127.0.0.1:5000/api/v1/chartanalytics/'+year+'/'+ngo+'/'+province+'/'+district;
+     var url = 'http://apisg.bnr.rw/api/v1/chartanalytics/'+year+'/'+ngo+'/'+province+'/'+district;
     
     $http.get(url)
         .success(function(data, status, header, config) {
@@ -1919,7 +1909,7 @@ function chartFunction($http, year, ngo, province, district) {
         
 
     // SVGs_creation year per Internatonal NGOs
-    var url = 'http://127.0.0.1:5000/api/v1/analytics/creation/'+year+'/'+ngo+'/'+province+'/'+district;;
+    var url = 'http://apisg.bnr.rw/api/v1/analytics/creation/'+year+'/'+ngo+'/'+province+'/'+district;;
     console.log(ngo);
     $http.get(url)
         .success(function(data, status, header, config){
@@ -2073,11 +2063,11 @@ function leafletCartix(year) {
 
 
     var Jsonfile;
-    // http://127.0.0.1:5000/api/v1/sqlsaving
+    // http://apisg.bnr.rw/api/v1/sqlsaving
     // assets/geojson/stats.json
 
     /*function jsonData(handleData){
-        $.getJSON('http://127.0.0.1:5000/api/v1/sqlsaving', function(data) {
+        $.getJSON('http://apisg.bnr.rw/api/v1/sqlsaving', function(data) {
             //console.log(data);
             handleData(data);
         }); 
@@ -2094,11 +2084,11 @@ function leafletCartix(year) {
     var year = $("#year").val();
     year = year ? year : '2014';
     sg_ngo = $("#saving_group_map").val();
-    url = 'http://127.0.0.1:5000/api/v1/sqlsaving/'+sg_ngo+'/'+year;
+    url = 'http://apisg.bnr.rw/api/v1/sqlsaving/'+sg_ngo+'/'+year;
     $("#saving_group_map").change(function() {
         sg_ngo = $("#saving_group_map").val();
         year = $("#year").val();
-        url = 'http://127.0.0.1:5000/api/v1/sqlsaving/' + sg_ngo + '/' + year;
+        url = 'http://apisg.bnr.rw/api/v1/sqlsaving/' + sg_ngo + '/' + year;
         //console.log(url);
         Jsonfile = AjaxSgData(url);
         var data = $("#national_map").val();
@@ -2121,7 +2111,7 @@ function leafletCartix(year) {
         var year = $("#year").val();
         console.log(sg_ngo);
         console.log(year);
-        url = 'http://127.0.0.1:5000/api/v1/sqlsaving/' + sg_ngo + '/' + year;
+        url = 'http://apisg.bnr.rw/api/v1/sqlsaving/' + sg_ngo + '/' + year;
         Jsonfile = AjaxSgData(url);
         displayMap();
     });

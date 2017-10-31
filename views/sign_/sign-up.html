@@ -9,7 +9,7 @@
                     </div>
                 </div>
                 <div class="form-bottom" ng-controller="signupCtrl">
-                    <form role="form" name="signup" class="login-form">
+                    <form role="form" name="signup_" class="login-form">
                         <div class="form-group">
                             <label class="sr-only" for="form-username">Full name</label>
                             <input type="text" name="form-username" placeholder="Full name..." class="form-username form-control" id="form-username" ng-model="fullname" required>
@@ -36,7 +36,7 @@
                         <div class="form-group" ng-show="message">
                             <p class="text-center">user account have been already added!</p>
                         </div>
-                        <button type="submit" class="btn-sign" ng-click="sign_up(fullname, email, password, org_name, org_type)" ng-disabled="!signup.$valid" ng-disabled="disable">Sign Up</button>
+                        <button type="button" class="btn-sign" ng-click="sign_up(fullname, email, password, org_name, org_type)">Sign Up</button>
                     </form>
                     <div class="terms-agree">
                         <p class="terms-agree small-text">By clicking in "sign up" you accept the terms and conditions of the service and the privacy policy.</p>

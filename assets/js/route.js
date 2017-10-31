@@ -90,7 +90,7 @@ myapp.run(function ($rootScope, $location, $route, AuthService) {
   $rootScope.$on('$routeChangeStart',
     function (event, next, current) {
         if(!AuthService.getUserStatus()){
-            if (next.data.private && !AuthService.isLoggedIn()){
+            if(next.data.private && !AuthService.isLoggedIn()){
               $location.path('/');
               $route.reload();
             }
