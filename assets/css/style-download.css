@@ -1,0 +1,138 @@
+.cartix-logo2 {
+    height: 43px;
+    float: left;
+    margin-bottom: 20px;
+}
+@font-face {
+    font-family: greatest;
+    src: url(../font/Campton-BoldDEMO.otf)
+}
+@font-face {
+    font-family: greatests;
+    src: url(../font/Campton-LightDEMO.otf)
+}
+@font-face {
+    font-family: apostrophe;
+    src: url('../font/Mebinac regular.otf')
+}
+@font-face {
+    font-family: exuus;
+    src: url(../font/abeatbyKaiRegular.otf)
+}
+.nav-download {
+    padding-top: 20px;
+    background-color: #fff
+}
+.alert-success {
+    display: none;
+    margin-top: 40px;
+    margin-bottom: 50px
+}
+.download-footer {
+    color: #616161
+}
+.margin {
+    font: 40px greatest
+}
+.text-success {
+    font-size: 14px
+}
+.download-text {
+    font: 14px greatests;
+    color: #616161
+}
+.download-text2 {
+    font: 1.50vh greatest;
+    color: #424242;
+    margin-top: 10px
+}
+.main-download {
+    padding-top: 20px;
+}
+.download-text3 {
+    font: 1.50vh greatests;
+    color: #424242
+}
+.text-content {
+    position: relative;
+    top: 10px
+}
+.close-2 {
+    font-size: 30px;
+    color: #00c853;
+    position: relative;
+    bottom: 8px
+}
+.style-list {
+    font: 17px greatests;
+    font-weight: 700
+}
+.Download-header {
+    padding-top: 0
+}
+.footer-download {
+    position: relative;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem
+}
+.pdf-icon {
+    float: left
+}
+.down-arrow-left {
+    float: right;
+    position: relative;
+    bottom: 14px
+}
+a:hover {
+    text-decoration: none;
+}
+.bg-5 {
+    /*background-color: #e0e0e0;*/
+
+    padding-top: 10px;
+    padding-bottom: 5px
+}
+.footer-text {
+    color: #000000;
+    font: 1.50vh "greatests";
+}
+.apostrophe {
+    font-family: apostrophe;
+    src: url('../font/Mebinac regular.otf')
+}
+.class1,
+.class1:hover {
+    color: #ff5722;
+    font-weight: bold;
+}
+.img-size {
+    height: 3vh;
+    display: inline-table;
+}
+/*footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}*/
+.data-sets{
+  font: 2vh "greatests";
+}
+
+.footer {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    background-color: #e0e0e0;
+    text-align: center;
+}
+.header-text {
+    font: 3.50vh greatests;
+    text-align: center;
+}
+.nav-list li a {
+    font: 15px "greatest";
+}

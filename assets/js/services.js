@@ -42,7 +42,7 @@ myapp.factory('AuthService', ['$q', '$timeout', '$http', function($q, $timeout, 
         var deferred = $q.defer();
 
         // send a post request to the server
-        $http.post('http://apisg.bnr.rw/api/v1/login/', data, config)
+        $http.post('http://localhost:5000/api/v1/login/', data, config)
             // handle success
             .success(function(data, status) {
                 if (status == 200 && data.result) {
@@ -95,7 +95,7 @@ myapp.factory('AuthService', ['$q', '$timeout', '$http', function($q, $timeout, 
         // send a post request data ngo
         var data = '{"name":"' + org_name + '","category":"' + org_type + '"}';
 
-        $http.post('http://apisg.bnr.rw/api/v1/ngo/', data, config)
+        $http.post('http://localhost:5000/api/v1/ngo/', data, config)
             .success(function(data, status) {
                 if (status == 200 && data.result) {
                     saveNgo(data.result);
@@ -119,7 +119,7 @@ myapp.factory('AuthService', ['$q', '$timeout', '$http', function($q, $timeout, 
         var deferred = $q.defer();
         
         // send a put request
-        var link = 'http://apisg.bnr.rw/api/v1/check/key/'+email+'/'+key;
+        var link = 'http://localhost:5000/api/v1/check/key/'+email+'/'+key;
         $http.get(link)
             .success(function(data,status){
                 if(status == 200 && data.result){
@@ -142,7 +142,7 @@ myapp.factory('AuthService', ['$q', '$timeout', '$http', function($q, $timeout, 
         var data = '{"password":"'+password+'", "email":"'+email+'"}';
         
         //send post request 
-        $http.put('http://apisg.bnr.rw/api/v1/change/password', data, config)
+        $http.put('http://localhost:5000/api/v1/change/password', data, config)
             .success(function(data, status){
                 if(status == 200 && data.result){
                     console.log(data.result);
@@ -160,7 +160,7 @@ myapp.factory('AuthService', ['$q', '$timeout', '$http', function($q, $timeout, 
     
     function recover(email){
         var deferred = $q.defer();
-        var link = 'http://apisg.bnr.rw/api/v1/recover/'+email;
+        var link = 'http://localhost:5000/api/v1/recover/'+email;
         
         //send get request
         $http.get(link)
@@ -184,7 +184,7 @@ myapp.factory('AuthService', ['$q', '$timeout', '$http', function($q, $timeout, 
 
         // send a post request data ngo
         var data = '{"names":"' + fullname + '","email":"' + email + '","password":"' + password + '", "ngo_id":"' + ngo_id + '"}';
-        $http.post('http://apisg.bnr.rw/api/v1/user/', data, config)
+        $http.post('http://localhost:5000/api/v1/user/', data, config)
             .success(function(data, status) {
                 if (status == 200 && data.result) {
                     deferred.resolve();
@@ -203,7 +203,7 @@ myapp.factory('AuthService', ['$q', '$timeout', '$http', function($q, $timeout, 
         var deferred = $q.defer();
         
         // send a get request checking status
-        var url = 'http://apisg.bnr.rw/api/v1/ngo_status/'+ngo_id
+        var url = 'http://localhost:5000/api/v1/ngo_status/'+ngo_id
         $http.get(url)
             .success(function(data, status){
                 if (status == 200 && data.status){
@@ -224,7 +224,7 @@ myapp.factory('AuthService', ['$q', '$timeout', '$http', function($q, $timeout, 
         var deferred = $q.defer();
         
         // send a get request for user role
-        var url = 'http://apisg.bnr.rw/api/v1/user_role/'+user_id;
+        var url = 'http://localhost:5000/api/v1/user_role/'+user_id;
         $http.get(url)
             .success(function(data, status){
                 if (status == 200 && data.status){
