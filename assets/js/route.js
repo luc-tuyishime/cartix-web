@@ -5,7 +5,7 @@ myapp.config(['$routeProvider', '$locationProvider' ,function($routeProvider, $l
     
     $routeProvider
     .when('/', {
-        templateUrl: 'views/sign_/sign-in.html',
+        templateUrl: 'views/cartix/index.html',
         controller: 'loginBgCtrl',
         data: {
             private: false

@@ -3,9 +3,8 @@ myapp.controller('appBgCtrl', ['$scope', function($scope) {
 //    $("body").addClass('body-app');
 }]);
 
-myapp.controller('loginBgCtrl', ['$scope', function($scope) {
-//    $("body").removeClass('body-app');
-//    $("body").addClass('body-login');
+myapp.controller('loginBgCtrl', ['$scope', '$location', function($scope, $location) {
+    console.log($location.path());
 }]);
 
 
@@ -51,17 +50,20 @@ myapp.controller('signupCtrl', ['$scope', '$location', 'AuthService', function($
 
 
 myapp.controller('signinCtrl', ['$scope', '$http', '$location', 'AuthService', function($scope, $http, $location, AuthService) {
-    if($( window ).width() < 850){
-        $("main").hide();
-        $("body").text("Bigger Screen greather than 750px");
-    }
+    $(window).resize(function(){
+        if($( window ).width() < 850){
+            $("main").hide();
+            $("body").text("Bigger Screen greather than 750px");
+        }
+    });
+    
     
     $scope.message = false;
     
     
     // Signup
     
-      var url = 'http://localhost:5000/api/v1/params/1';
+      var url = 'https://sgapi.bnr.rw/api/v1/params/1';
 
         $http.get(url)
             .success(function(data, status, header, config) {
@@ -183,7 +185,7 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$
 
 
     var ngo_id = restoreNgo();
-    var url = "http://localhost:5000/api/v1/ngo/" + ngo_id;
+    var url = "https://sgapi.bnr.rw/api/v1/ngo/" + ngo_id;
 
     $http.get(url).success(function(data, status, header, config) {
             $scope.ngo_name = data.ngo.name;
@@ -223,7 +225,7 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$
 
     $scope.upload_File = function(file) {
         file.upload = Upload.upload({
-            url: 'http://localhost:5000/api/upload/',
+            url: 'https://sgapi.bnr.rw/api/upload/',
             data: {
                 file: file
             },
@@ -277,7 +279,7 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$
 
         var data = '{"original":"' + original + '","saved":"' + save + '","user_id":"' + id + '","filename":"' + filename + '"}';
 
-        $http.post('http://localhost:5000/api/v1/file/save/', data, config)
+        $http.post('https://sgapi.bnr.rw/api/v1/file/save/', data, config)
             .success(function(data, status, header, config) {
                 console.log(data);
             });
@@ -413,7 +415,7 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$
 
         var data = '{"original":"' + originalpath + '","saved":"","user_id":"' + user_id + '","filename":"' + filename + '"}';
 
-        $http.post('http://localhost:5000/api/v1/file/user/', data, config)
+        $http.post('https://sgapi.bnr.rw/api/v1/file/user/', data, config)
             .success(function(data, status, header, config) {
 
                 if (data.auth) {
@@ -454,8 +456,40 @@ myapp.controller('excelFileCtrl', ['$scope', 'Upload', '$timeout', '$window', '$
 
 
 
-myapp.controller('mapCtrl', ['$scope', '$http', function($scope, $http) {
+myapp.controller('mapCtrl', ['$scope', '$http', '$location', function($scope, $http, $location) {
     // Settings
+    
+    // Visual Front-Map
+    $scope.dataButton = true;
+    $scope.signinButton = false;
+    $scope.userHeader = true;
+    $scope.hrLine = true;
+    
+    if ($location.path() === '/'){
+        console.log('Home Button');
+        $scope.dataButton = false;
+        $scope.signinButton = true;
+        $scope.userHeader = false;
+        $scope.hrLine = false;
+    }
+    
+    // 
+    
+    $scope.redirectSignIn = function(){
+        $location.path("/signin");
+    }
+    
+    
+    $(window).resize(function(){
+        console.log($( window ).width());
+        if($( window ).width() < 1080){
+            $("main").hide();
+            $("body").html("<h2 class='text-center'>Oops!</h2><h4 class='text-center'>Switch to bigger screen greater than 1024px to view the map</h4>");
+        }else{
+            location.reload();
+        }
+    });
+    
     
      var config = {
             headers: {
@@ -464,7 +498,7 @@ myapp.controller('mapCtrl', ['$scope', '$http', function($scope, $http) {
         }
     
      var user_id = localStorage.getItem('u___');
-    var url = 'http://localhost:5000/api/v1/params/1';
+    var url = 'https://sgapi.bnr.rw/api/v1/params/1';
 
         $http.get(url)
             .success(function(data, status, header, config) {
@@ -506,7 +540,7 @@ myapp.controller('mapCtrl', ['$scope', '$http', function($scope, $http) {
     
     $('input[type=radio][name=upload]').change(function() {
         var val = this.value;
-        var url ='http://localhost:5000/api/v1/params/upload/'+user_id+'/'+val;
+        var url ='https://sgapi.bnr.rw/api/v1/params/upload/'+user_id+'/'+val;
         $http.put(url).success(function(data, status, header, config){
            user_params(data.upload, data.signup); 
         }).error(function(data, status, header, config){
@@ -516,7 +550,7 @@ myapp.controller('mapCtrl', ['$scope', '$http', function($scope, $http) {
     
     $('input[type=radio][name=signup]').change(function() {
         var val = this.value;
-        var url ='http://localhost:5000/api/v1/params/signup/'+user_id+'/'+val;
+        var url ='https://sgapi.bnr.rw/api/v1/params/signup/'+user_id+'/'+val;
         $http.put(url).success(function(data, status, header, config){
             console.log(data);
            user_params(data.upload, data.signup); 
@@ -532,7 +566,7 @@ myapp.controller('mapCtrl', ['$scope', '$http', function($scope, $http) {
         new_password = $scope.n_password;
         confirm_password = $scope.co_password;
         
-        var url = 'http://localhost:5000/api/v1/users/check_password/'+user_id;
+        var url = 'https://sgapi.bnr.rw/api/v1/users/check_password/'+user_id;
         var data = '{"password":"'+current_password+'"}';
         $http.put(url, data, config)
             .success(function(data, status, header, config){
@@ -550,7 +584,7 @@ myapp.controller('mapCtrl', ['$scope', '$http', function($scope, $http) {
     function check_new_password(new_password, confirm_password){
         if (new_password == confirm_password){
             var data = '{"password":"'+new_password+'"}';
-            var url = 'http://localhost:5000/api/v1/change/password/'+user_id;
+            var url = 'https://sgapi.bnr.rw/api/v1/change/password/'+user_id;
             $http.put(url, data, config).success(function(data, status, header, config){
                 if(data){
                     $scope.error = '';
@@ -570,7 +604,7 @@ myapp.controller('mapCtrl', ['$scope', '$http', function($scope, $http) {
         $scope.usernames_p = name;
         
         var data = '{"email":"'+email+'", "names":"'+name+'"}';
-        var url = 'http://localhost:5000/api/v1/users/'+user_id;
+        var url = 'https://sgapi.bnr.rw/api/v1/users/'+user_id;
         $http.put(url, data, config)
             .success(function(data, status){
                 console.log(data);
@@ -586,7 +620,7 @@ myapp.controller('mapCtrl', ['$scope', '$http', function($scope, $http) {
         var title = $scope.title;
         var message = $scope.message;
         var email, name, username ;
-        var url = 'http://localhost:5000/api/v1/user/'+user_id;
+        var url = 'https://sgapi.bnr.rw/api/v1/user/'+user_id;
         $http.get(url).success(function(data, status){
            console.log(data); 
             email = data.user.email;
@@ -667,7 +701,7 @@ myapp.controller('mapCtrl', ['$scope', '$http', function($scope, $http) {
     loadSavingYear();
 
     function loadSavingYear() {
-        $http.get('http://localhost:5000/api/v1/saving_year/')
+        $http.get('https://sgapi.bnr.rw/api/v1/saving_year/')
             .success(function(data, status, header, config) {
                 console.log(data);
                 var options = '';
@@ -686,7 +720,7 @@ myapp.controller('mapCtrl', ['$scope', '$http', function($scope, $http) {
     loadIntNgo();
 
     function loadIntNgo() {
-        $http.get('http://localhost:5000/api/v1/int_ngo/')
+        $http.get('https://sgapi.bnr.rw/api/v1/int_ngo/')
             .success(function(data, status, header, config) {
                 console.log(data);
                 var options = "";
@@ -705,7 +739,7 @@ myapp.controller('mapCtrl', ['$scope', '$http', function($scope, $http) {
 
     function loggedNgoName() {
         var ngo_id = restoreNgo();
-        var url = "http://localhost:5000/api/v1/ngo/" + ngo_id;
+        var url = "https://sgapi.bnr.rw/api/v1/ngo/" + ngo_id;
 
         $http.get(url).success(function(data, status, header, config) {
                 $scope.ngo_name = data.ngo.name;
@@ -721,7 +755,7 @@ myapp.controller('mapCtrl', ['$scope', '$http', function($scope, $http) {
 
     function loggedUserName() {
         var user_id = localStorage.getItem('u___');
-        var url = 'http://localhost:5000/api/v1/user/' + user_id;
+        var url = 'https://sgapi.bnr.rw/api/v1/user/' + user_id;
 
         $http.get(url)
             .success(function(data, status, header, config) {
@@ -745,7 +779,7 @@ myapp.controller('mapCtrl', ['$scope', '$http', function($scope, $http) {
     // ############# Analytics Numbers #######
     
     function analyticsNumber(year){
-        var url = 'http://localhost:5000/api/v1/analytics/numbers/'+year;
+        var url = 'https://sgapi.bnr.rw/api/v1/analytics/numbers/'+year;
         $http.get(url)
             .success(function(data, status, header, config){
                 $scope.sg_count = numeral(data.sg_count).format();
@@ -885,7 +919,7 @@ myapp.controller('notificationCtrl', ['$scope', '$http', 'AuthService', '$q', fu
     
     
      var user_id = localStorage.getItem('u___');
-    var url = 'http://localhost:5000/api/v1/params/1';
+    var url = 'https://sgapi.bnr.rw/api/v1/params/1';
 
         $http.get(url)
             .success(function(data, status, header, config) {
@@ -926,7 +960,7 @@ myapp.controller('notificationCtrl', ['$scope', '$http', 'AuthService', '$q', fu
     
     $('input[type=radio][name=upload]').change(function() {
         var val = this.value;
-        var url ='http://localhost:5000/api/v1/params/upload/'+user_id+'/'+val;
+        var url ='https://sgapi.bnr.rw/api/v1/params/upload/'+user_id+'/'+val;
         $http.put(url).success(function(data, status, header, config){
            user_params(data.upload, data.signup); 
         }).error(function(data, status, header, config){
@@ -936,7 +970,7 @@ myapp.controller('notificationCtrl', ['$scope', '$http', 'AuthService', '$q', fu
     
     $('input[type=radio][name=signup]').change(function() {
         var val = this.value;
-        var url ='http://localhost:5000/api/v1/params/signup/'+user_id+'/'+val;
+        var url ='https://sgapi.bnr.rw/api/v1/params/signup/'+user_id+'/'+val;
         $http.put(url).success(function(data, status, header, config){
            user_params(data.upload, data.signup); 
         }).error(function(data, status, header, config){
@@ -968,7 +1002,7 @@ myapp.controller('notificationCtrl', ['$scope', '$http', 'AuthService', '$q', fu
             .then(function() {
                 intlNgoHandler(ngo_id);
             }).catch(function() {
-                alert("status");
+                console.log("status");
                 localNgoHandler(ngo_id);
             });
 
@@ -987,7 +1021,7 @@ myapp.controller('notificationCtrl', ['$scope', '$http', 'AuthService', '$q', fu
 
         $scope.loadLocalNgo = function(int_ngo_filter) {
             //console.log(int_ngo_filter);
-            var url = 'http://localhost:5000/api/v1/int_ngo/partner/' + int_ngo_filter;
+            var url = 'https://sgapi.bnr.rw/api/v1/int_ngo/partner/' + int_ngo_filter;
             $http.get(url)
                 .success(function(data, status, header, config) {
                     var options = "";
@@ -1007,7 +1041,7 @@ myapp.controller('notificationCtrl', ['$scope', '$http', 'AuthService', '$q', fu
         loadFilesYear()
 
         function loadFilesYear() {
-            var url = "http://localhost:5000/api/v1/saving_year";
+            var url = "https://sgapi.bnr.rw/api/v1/saving_year";
             $http.get(url)
                 .success(function(data, status, header, config) {
                     console.log(data);
@@ -1029,7 +1063,7 @@ myapp.controller('notificationCtrl', ['$scope', '$http', 'AuthService', '$q', fu
         loadNgoFiles()
 
         function loadNgoFiles() {
-            var url = "http://localhost:5000/api/v1/files";
+            var url = "https://sgapi.bnr.rw/api/v1/files";
             $http.get(url)
                 .success(function(data, status, header, config) {
                     console.log(data);
@@ -1056,7 +1090,7 @@ myapp.controller('notificationCtrl', ['$scope', '$http', 'AuthService', '$q', fu
         loadNgoFiles(user_id)
 
         function loadNgoFiles(user_id) {
-            var url = "http://localhost:5000/api/v1/files/user/" + user_id;
+            var url = "https://sgapi.bnr.rw/api/v1/files/user/" + user_id;
             $http.get(url)
                 .success(function(data, status, header, config) {
                     console.log(data);
@@ -1072,7 +1106,7 @@ myapp.controller('notificationCtrl', ['$scope', '$http', 'AuthService', '$q', fu
 
         function loadLocalPartner(ngo_id) {
             console.log(ngo_id);
-            var url = 'http://localhost:5000/api/v1/int_ngo/partner/' + ngo_id;
+            var url = 'https://sgapi.bnr.rw/api/v1/int_ngo/partner/' + ngo_id;
             $http.get(url)
                 .success(function(data, status, header, config) {
                     console.log(data);
@@ -1092,7 +1126,7 @@ myapp.controller('notificationCtrl', ['$scope', '$http', 'AuthService', '$q', fu
         loadFilesYear()
 
         function loadFilesYear() {
-            var url = "http://localhost:5000/api/v1/saving_year";
+            var url = "https://sgapi.bnr.rw/api/v1/saving_year";
             $http.get(url)
                 .success(function(data, status, header, config) {
                     console.log(data);
@@ -1113,7 +1147,7 @@ myapp.controller('notificationCtrl', ['$scope', '$http', 'AuthService', '$q', fu
     }
 
     function localNgoHandler(ngo_id) {
-        alert("Local NGO Handler");
+        console.log("Local NGO Handler");
     }
 
 }]);
@@ -1126,6 +1160,7 @@ myapp.controller('SettingCtrl', ['$scope','$http','AuthService', '$q', function(
 
 
 myapp.controller('viewAlldataCtrl', ['$scope', '$http', 'AuthService', '$q', function($scope, $http, AuthService, $q) {
+    
     var user_id = localStorage.getItem('u___');
     AuthService.userRole(user_id)
         .then(function() {
@@ -1208,7 +1243,7 @@ myapp.controller('viewAlldataCtrl', ['$scope', '$http', 'AuthService', '$q', fun
             }
         }
         var data = '{"query":"'+query+'", "year":"'+year+'"}'
-        var url = 'http://localhost:5000/api/v1/data/download/';
+        var url = 'https://sgapi.bnr.rw/api/v1/data/download/';
         $http.post(url, data, config)
             .success(function(data, status, header, config){
                 console.log(data);
@@ -1221,7 +1256,7 @@ myapp.controller('viewAlldataCtrl', ['$scope', '$http', 'AuthService', '$q', fun
     // Render View data
     
     function renderViewdata(province_ids, district_id, sector_id, ngo_id,year,type, $http, $scope){
-        var url = 'http://localhost:5000/api/v1/data/view/'+province_ids+'/'+district_id+'/'+sector_id+'/'+ngo_id+'/'+year+'/'+type;
+        var url = 'https://sgapi.bnr.rw/api/v1/data/view/'+province_ids+'/'+district_id+'/'+sector_id+'/'+ngo_id+'/'+year+'/'+type;
         $http.get(url)
             .success(function(data, status, header, config){
                 console.log(data);
@@ -1268,7 +1303,7 @@ myapp.controller('viewAlldataCtrl', ['$scope', '$http', 'AuthService', '$q', fun
     });
     
     function viewDataLoadSector(ids, $http){
-        var url = 'http://localhost:5000/api/v1/data/sector/'+ids;
+        var url = 'https://sgapi.bnr.rw/api/v1/data/sector/'+ids;
         $http.get(url)
             .success(function(data, status, header, config){
                 console.log(data);
@@ -1287,7 +1322,7 @@ myapp.controller('viewAlldataCtrl', ['$scope', '$http', 'AuthService', '$q', fun
     }
 
     function viewDataLoadDistrict(ids, $http){
-        var url = 'http://localhost:5000/api/v1/data/district/'+ids;
+        var url = 'https://sgapi.bnr.rw/api/v1/data/district/'+ids;
         $http.get(url)
             .success(function(data, status, header, config){
                 console.log(data);
@@ -1343,7 +1378,7 @@ myapp.controller('viewAlldataCtrl', ['$scope', '$http', 'AuthService', '$q', fun
 // International NGO
 
 function loadIntNgo(idBox, $http) {
-    $http.get('http://localhost:5000/api/v1/int_ngo/')
+    $http.get('https://sgapi.bnr.rw/api/v1/int_ngo/')
         .success(function(data, status, header, config) {
             console.log(data);
             var options = "";
@@ -1362,7 +1397,7 @@ function loadIntNgo(idBox, $http) {
 // Provinces 
 
 function loadProvinceSelectBox(idBox, $http) {
-    $http.get('http://localhost:5000/api/v1/kenessa/province/province/all')
+    $http.get('https://sgapi.bnr.rw/api/v1/kenessa/province/province/all')
         .success(function(data, status, header, config) {
             console.log(data);
             var options = "";
@@ -1381,7 +1416,7 @@ function loadProvinceSelectBox(idBox, $http) {
 
 
 function loadProvinceSelectBoxDataView(idBox, $http) {
-    $http.get('http://localhost:5000/api/v1/kenessa/province/province/all')
+    $http.get('https://sgapi.bnr.rw/api/v1/kenessa/province/province/all')
         .success(function(data, status, header, config) {
             console.log(data);
             var options = "";
@@ -1400,7 +1435,7 @@ function loadProvinceSelectBoxDataView(idBox, $http) {
 
 
 function loadDistrictSelectBox(province_id, idBox, $http) {
-    $http.get('http://localhost:5000/api/v1/kenessa/province/district/' + province_id)
+    $http.get('https://sgapi.bnr.rw/api/v1/kenessa/province/district/' + province_id)
         .success(function(data, status, header, config) {
             console.log(data);
             var options = "";
@@ -1426,7 +1461,7 @@ function loadDistrictSelectBox(province_id, idBox, $http) {
 
 function loadSectorSelectBox(district_id, idBox, $http) {
     alert(district_id);
-    var url = 'http://localhost:5000/api/v1/kenessa/district/sector/' + district_id;
+    var url = 'https://sgapi.bnr.rw/api/v1/kenessa/district/sector/' + district_id;
     $http.get(url)
         .success(function(data, status, header, config) {
             console.log(data);
@@ -1552,7 +1587,7 @@ function chartFunction($http, year, ngo, province, district) {
    
     
     // MEMBERSHIP PER GENDER
-     $http.get('http://localhost:5000/api/v1/chartanalytics/membership/'+year+'/'+ngo+'/'+province+'/'+district)
+     $http.get('https://sgapi.bnr.rw/api/v1/chartanalytics/membership/'+year+'/'+ngo+'/'+province+'/'+district)
         .success(function(data, status, header, config){
              var layout = {
                 autosize: true,
@@ -1576,7 +1611,7 @@ function chartFunction($http, year, ngo, province, district) {
     
     
     // Saving group per internation NGO
-    $http.get('http://localhost:5000/api/v1/chartanalytics/sg/'+year+'/'+ngo+'/'+province+'/'+district)
+    $http.get('https://sgapi.bnr.rw/api/v1/chartanalytics/sg/'+year+'/'+ngo+'/'+province+'/'+district)
         .success(function(data, status, header, config){
         
             var layout = {
@@ -1603,7 +1638,7 @@ function chartFunction($http, year, ngo, province, district) {
         })
    
     // Saving Group Status per Intl NGos
-    $http.get('http://localhost:5000/api/v1/chartanalytics/status/'+year+'/'+ngo+'/'+province+'/'+district)
+    $http.get('https://sgapi.bnr.rw/api/v1/chartanalytics/status/'+year+'/'+ngo+'/'+province+'/'+district)
         .success(function(data, status, header, config){
 
             var layout_bar = {
@@ -1639,7 +1674,7 @@ function chartFunction($http, year, ngo, province, district) {
     /* SG Savings and Loans per Intl Ngos 
                   layout_bar will be inherited
             */ 
-    $http.get('http://localhost:5000/api/v1/chartanalytics/amount/'+year+'/'+ngo+'/'+province+'/'+district).success(function(data, status, header, config){
+    $http.get('https://sgapi.bnr.rw/api/v1/chartanalytics/amount/'+year+'/'+ngo+'/'+province+'/'+district).success(function(data, status, header, config){
          var layout_bar = {
                 barmode: 'group',
                 autosize: true,
@@ -1669,7 +1704,7 @@ function chartFunction($http, year, ngo, province, district) {
     });
    
     // Local NGO per intenation ngo
-    $http.get('http://localhost:5000/api/v1/chartanalytics/sgNgos/'+year+'/'+ngo+'/'+province+'/'+district).success(function(data, status, header, config){
+    $http.get('https://sgapi.bnr.rw/api/v1/chartanalytics/sgNgos/'+year+'/'+ngo+'/'+province+'/'+district).success(function(data, status, header, config){
         
         var layout_bar = {
                 barmode: 'stack',
@@ -1705,7 +1740,7 @@ function chartFunction($http, year, ngo, province, district) {
     });
     
     // Financial Institution with SGS
-    $http.get('http://localhost:5000/api/v1/chartanalytics/financial/'+year+'/'+ngo+'/'+province+'/'+district)
+    $http.get('https://sgapi.bnr.rw/api/v1/chartanalytics/financial/'+year+'/'+ngo+'/'+province+'/'+district)
         .success(function(data, status, header, config){
             var layout_bar = {
                 barmode: 'stack',
@@ -1736,7 +1771,7 @@ function chartFunction($http, year, ngo, province, district) {
         });
     
     // Bank and Telco Agent with Saving Groups
-    $http.get('http://localhost:5000/api/v1/chartanalytics/agent/'+year+'/'+ngo+'/'+province+'/'+district).success(function(data, status, header, config){
+    $http.get('https://sgapi.bnr.rw/api/v1/chartanalytics/agent/'+year+'/'+ngo+'/'+province+'/'+district).success(function(data, status, header, config){
         var layout_bar = {
                 barmode: 'stack',
                 autosize: true,
@@ -1768,7 +1803,7 @@ function chartFunction($http, year, ngo, province, district) {
     
     // FINSCOPE DATA
     
-     var url = 'http://localhost:5000/api/v1/chartanalytics/'+year+'/'+ngo+'/'+province+'/'+district;
+     var url = 'https://sgapi.bnr.rw/api/v1/chartanalytics/'+year+'/'+ngo+'/'+province+'/'+district;
     
     $http.get(url)
         .success(function(data, status, header, config) {
@@ -1909,7 +1944,7 @@ function chartFunction($http, year, ngo, province, district) {
         
 
     // SVGs_creation year per Internatonal NGOs
-    var url = 'http://localhost:5000/api/v1/analytics/creation/'+year+'/'+ngo+'/'+province+'/'+district;;
+    var url = 'https://sgapi.bnr.rw/api/v1/analytics/creation/'+year+'/'+ngo+'/'+province+'/'+district;;
     console.log(ngo);
     $http.get(url)
         .success(function(data, status, header, config){
@@ -2063,11 +2098,11 @@ function leafletCartix(year) {
 
 
     var Jsonfile;
-    // http://localhost:5000/api/v1/sqlsaving
+    // https://sgapi.bnr.rw/api/v1/sqlsaving
     // assets/geojson/stats.json
 
     /*function jsonData(handleData){
-        $.getJSON('http://localhost:5000/api/v1/sqlsaving', function(data) {
+        $.getJSON('https://sgapi.bnr.rw/api/v1/sqlsaving', function(data) {
             //console.log(data);
             handleData(data);
         }); 
@@ -2084,11 +2119,11 @@ function leafletCartix(year) {
     var year = $("#year").val();
     year = year ? year : '2014';
     sg_ngo = $("#saving_group_map").val();
-    url = 'http://localhost:5000/api/v1/sqlsaving/'+sg_ngo+'/'+year;
+    url = 'https://sgapi.bnr.rw/api/v1/sqlsaving/'+sg_ngo+'/'+year;
     $("#saving_group_map").change(function() {
         sg_ngo = $("#saving_group_map").val();
         year = $("#year").val();
-        url = 'http://localhost:5000/api/v1/sqlsaving/' + sg_ngo + '/' + year;
+        url = 'https://sgapi.bnr.rw/api/v1/sqlsaving/' + sg_ngo + '/' + year;
         //console.log(url);
         Jsonfile = AjaxSgData(url);
         var data = $("#national_map").val();
@@ -2111,7 +2146,7 @@ function leafletCartix(year) {
         var year = $("#year").val();
         console.log(sg_ngo);
         console.log(year);
-        url = 'http://localhost:5000/api/v1/sqlsaving/' + sg_ngo + '/' + year;
+        url = 'https://sgapi.bnr.rw/api/v1/sqlsaving/' + sg_ngo + '/' + year;
         Jsonfile = AjaxSgData(url);
         displayMap();
     });
@@ -2167,14 +2202,17 @@ function leafletCartix(year) {
     }
 
     function Display(geofile) {
-
         if (geojson === undefined) {
             $.getJSON(geofile, function(rwandaData) {
+                showLoader();
                 geojson = L.geoJson(rwandaData, {
                     style: style,
                     onEachFeature: onEachFeature
                 }).addTo(map);
-            });
+            }).always(function() {
+                hideLoader();
+                console.log( "complete" );
+              });
         } else {
             geojson.eachLayer(function(layer) {
                 map.removeLayer(layer);
@@ -2189,11 +2227,15 @@ function leafletCartix(year) {
             });
 
             $.getJSON(geofile, function(rwandaData) {
+                showLoader();
                 geojson = L.geoJson(rwandaData, {
                     style: style,
                     onEachFeature: onEachFeature
                 }).addTo(map);
-            });
+            }).always(function() {
+                hideLoader();
+                console.log( "complete" );
+              });
         }
     }
 
@@ -2309,11 +2351,16 @@ function leafletCartix(year) {
 
         if (geojson === undefined) {
             $.getJSON(geofile, function(rwandaData) {
+                showLoader();
                 geojson = L.geoJson(rwandaData, {
                     style: styleP,
                     onEachFeature: onEachFeatureP
                 }).addTo(map);
-            });
+            }).always(function() {
+                hideLoader();
+                alert("Province complete loading");
+                console.log( "complete" );
+              });
         } else {
             geojson.eachLayer(function(layer) {
                 map.removeLayer(layer);
@@ -2328,11 +2375,16 @@ function leafletCartix(year) {
             });
 
             $.getJSON(geofile, function(rwandaData) {
+                showLoader();
                 geojson = L.geoJson(rwandaData, {
                     style: styleP,
                     onEachFeature: onEachFeatureP
                 }).addTo(map);
-            });
+            }).always(function() {
+                hideLoader();
+                alert("Province complete loading");
+                console.log( "complete" );
+              });
         }
     }
 
@@ -2348,11 +2400,15 @@ function leafletCartix(year) {
 
         if (geojson === undefined) {
             $.getJSON(geofile, function(rwandaData) {
+                showLoader();
                 geojson = L.geoJson(rwandaData, {
                     style: styleP,
                     onEachFeature: onEachFeatureKP
                 }).addTo(map);
-            });
+            }).always(function() {
+                hideLoader();
+                console.log( "complete" );
+              });
         } else {
             geojson.eachLayer(function(layer) {
                 map.removeLayer(layer);
@@ -2367,11 +2423,15 @@ function leafletCartix(year) {
             });
 
             $.getJSON(geofile, function(rwandaData) {
+                showLoader();
                 geojson = L.geoJson(rwandaData, {
                     style: styleP,
                     onEachFeature: onEachFeatureKP
                 }).addTo(map);
-            });
+            }).always(function() {
+                hideLoader();
+                console.log( "complete" );
+              });
         }
     }
 
@@ -2490,11 +2550,16 @@ function leafletCartix(year) {
     function districtDisplay(geofile) {
         if (geojson === undefined) {
             $.getJSON(geofile, function(rwandaData) {
+                showLoader();
                 geojson = L.geoJson(rwandaData, {
                     style: styleD,
                     onEachFeature: onEachFeatureD
                 }).addTo(map);
-            });
+            }).always(function() {
+                hideLoader();
+                alert("District complete loading");
+                console.log( "complete" );
+              });
         } else {
             geojson.eachLayer(function(layer) {
                 map.removeLayer(layer);
@@ -2509,11 +2574,16 @@ function leafletCartix(year) {
             });
 
             $.getJSON(geofile, function(rwandaData) {
+                showLoader();
                 geojson = L.geoJson(rwandaData, {
                     style: styleD,
                     onEachFeature: onEachFeatureD
                 }).addTo(map);
-            });
+            }).always(function() {
+                hideLoader();
+                alert("District complete loading");
+                console.log( "complete" );
+              });
         }
     }
 
@@ -2637,14 +2707,18 @@ function leafletCartix(year) {
     }
 
     function sector(geofile) {
-
+        
         if (geojson === undefined) {
             $.getJSON(geofile, function(rwandaData) {
                 geojson = L.geoJson(rwandaData, {
                     style: styleS,
                     onEachFeature: onEachFeatureSS
                 }).addTo(map);
-            });
+            }).always(function() {
+                hideLoader();
+                alert("Sector complete loading");
+                console.log( "complete" );
+              });
         } else {
             geojson.eachLayer(function(layer) {
                 map.removeLayer(layer);
@@ -2659,24 +2733,33 @@ function leafletCartix(year) {
             });
 
             $.getJSON(geofile, function(rwandaData) {
+                
                 geojson = L.geoJson(rwandaData, {
                     style: styleS,
                     onEachFeature: onEachFeatureSS
                 }).addTo(map);
-            });
+            }).always(function() {
+                hideLoader();
+                alert("sector complete loading");
+                console.log( "complete" );
+              });
         }
 
     }
 
     function sectorDisplay(geofile) {
-
+        showLoader();
         if (geojson === undefined) {
             $.getJSON(geofile, function(rwandaData) {
                 geojson = L.geoJson(rwandaData, {
                     style: styleS,
                     onEachFeature: onEachFeatureS
                 }).addTo(map);
-            });
+            }).always(function() {
+                hideLoader();
+                alert("sector display complete loading");
+                console.log( "complete" );
+              });
         } else {
             geojson.eachLayer(function(layer) {
                 map.removeLayer(layer);
@@ -2689,13 +2772,17 @@ function leafletCartix(year) {
                 map.removeControl(infoP);
                 map.removeControl(legendP);
             });
-
+            
             $.getJSON(geofile, function(rwandaData) {
                 geojson = L.geoJson(rwandaData, {
                     style: styleS,
                     onEachFeature: onEachFeatureS
                 }).addTo(map);
-            });
+            }).always(function() {
+                console.log( "complete" );
+                alert("sector display complete loading");
+                hideLoader();
+              });
         }
 
     }
@@ -2704,11 +2791,15 @@ function leafletCartix(year) {
 
         if (geojson === undefined) {
             $.getJSON(geofile, function(rwandaData) {
+                showLoader();
                 geojson = L.geoJson(rwandaData, {
                     style: styleS,
                     onEachFeature: onEachFeaturekigali
                 }).addTo(map);
-            });
+            }).always(function() {
+                hideLoader();
+                console.log( "complete" );
+              });
         } else {
             geojson.eachLayer(function(layer) {
                 map.removeLayer(layer);
@@ -2723,11 +2814,15 @@ function leafletCartix(year) {
             });
 
             $.getJSON(geofile, function(rwandaData) {
+                showLoader();
                 geojson = L.geoJson(rwandaData, {
                     style: styleS,
                     onEachFeature: onEachFeaturekigali
                 }).addTo(map);
-            });
+            }).always(function() {
+                hideLoader();
+                console.log( "complete" );
+              });
         }
 
     }

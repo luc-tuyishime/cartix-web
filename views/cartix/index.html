@@ -163,8 +163,10 @@
                             <div class=select-box><select data-placeholder=Year id=year ng-model=year ng-options="year for year in years"></select></div>
                         </div>
                     </div>
-                    <div class=row>
-                        <div class=btn-cartix-bottom><button class="btn btn-cartix btn-default"onclick=openNav() type=button>Data</button></div>
+                    <div class="row">
+                        <div class=btn-cartix-bottom><button class="btn btn-cartix btn-default" onclick=openNav() type="button" ng-show="dataButton">Data</button>
+                        <button class="btn btn-cartix btn-default" type="button" ng-click="redirectSignIn()" ng-show="signinButton">Sign In</button>
+                        </div>
                     </div>
                 </div>
                 <div id="map-cartix">
@@ -172,7 +174,7 @@
             </div>
             <div class="col-md-3 profile-pending bg-side">
                 <div class="bg-side">
-                    <div class="row">
+                    <div class="row" ng-show="userHeader">
                         <div class="col-md-6">
                             <p class="care-style">{{ ngo_name }}</p>
                         </div>
@@ -193,7 +195,7 @@
                             </div>
                         </div>
                     </div>
-                    <hr class="style1">
+                    <hr class="style1" ng-show="hrLine">
                     <p class="saving-text">Saving Groups <span class="survey">({{ yearSurvey }})</span></p>
                     <div class="row">
                         <div class="alert alert-default" role="alert">
