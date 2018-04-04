@@ -1934,7 +1934,7 @@ function chartFunction($http, year, ngo, province, district) {
             };
         
         Plotly.newPlot('finscope_all_2015', data.finscope_all_2015[0], layout_bar);
-        hideLoader();
+        
         
         })
         .error(function(data, status, header, config) {
@@ -2358,7 +2358,6 @@ function leafletCartix(year) {
                 }).addTo(map);
             }).always(function() {
                 hideLoader();
-                alert("Province complete loading");
                 console.log( "complete" );
               });
         } else {
@@ -2382,7 +2381,6 @@ function leafletCartix(year) {
                 }).addTo(map);
             }).always(function() {
                 hideLoader();
-                alert("Province complete loading");
                 console.log( "complete" );
               });
         }
@@ -2557,7 +2555,6 @@ function leafletCartix(year) {
                 }).addTo(map);
             }).always(function() {
                 hideLoader();
-                alert("District complete loading");
                 console.log( "complete" );
               });
         } else {
@@ -2581,7 +2578,6 @@ function leafletCartix(year) {
                 }).addTo(map);
             }).always(function() {
                 hideLoader();
-                alert("District complete loading");
                 console.log( "complete" );
               });
         }
@@ -2710,13 +2706,13 @@ function leafletCartix(year) {
         
         if (geojson === undefined) {
             $.getJSON(geofile, function(rwandaData) {
+                
                 geojson = L.geoJson(rwandaData, {
                     style: styleS,
                     onEachFeature: onEachFeatureSS
                 }).addTo(map);
             }).always(function() {
                 hideLoader();
-                alert("Sector complete loading");
                 console.log( "complete" );
               });
         } else {
@@ -2733,14 +2729,12 @@ function leafletCartix(year) {
             });
 
             $.getJSON(geofile, function(rwandaData) {
-                
                 geojson = L.geoJson(rwandaData, {
                     style: styleS,
                     onEachFeature: onEachFeatureSS
                 }).addTo(map);
             }).always(function() {
                 hideLoader();
-                alert("sector complete loading");
                 console.log( "complete" );
               });
         }
@@ -2748,16 +2742,15 @@ function leafletCartix(year) {
     }
 
     function sectorDisplay(geofile) {
-        showLoader();
         if (geojson === undefined) {
             $.getJSON(geofile, function(rwandaData) {
+                showLoader();
                 geojson = L.geoJson(rwandaData, {
                     style: styleS,
                     onEachFeature: onEachFeatureS
                 }).addTo(map);
             }).always(function() {
                 hideLoader();
-                alert("sector display complete loading");
                 console.log( "complete" );
               });
         } else {
@@ -2774,13 +2767,13 @@ function leafletCartix(year) {
             });
             
             $.getJSON(geofile, function(rwandaData) {
+                showLoader();
                 geojson = L.geoJson(rwandaData, {
                     style: styleS,
                     onEachFeature: onEachFeatureS
                 }).addTo(map);
             }).always(function() {
                 console.log( "complete" );
-                alert("sector display complete loading");
                 hideLoader();
               });
         }
@@ -2977,7 +2970,7 @@ function leafletCartix(year) {
     }
 
     this.handlerNational = function(val) {
-
+        showLoader();
         document.getElementById('province_map').value = "";
         document.getElementById('district_map').value = "";
 

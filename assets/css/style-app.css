@@ -122,7 +122,7 @@ select {
 }
 .app .map-box {
     position: fixed;
-    z-index: 1000;
+    z-index: 800;
 }
 .app .graph-box {
     background-color: #fff;
@@ -650,9 +650,7 @@ select {
 
 .loader{
     position: fixed;
-    margin-left: 40%;
-    margin-top: 25%;
-    z-index: 2000;
+    z-index: 1500;
 }
 
 .dropdown-menu a {
@@ -665,4 +663,10 @@ select {
 
 .margin-button {
     margin-bottom: 30px;
+}
+
+.loading-img{
+    z-index: 2000;
+    width: auto;
+    height: auto;
 }
