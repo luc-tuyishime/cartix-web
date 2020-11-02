@@ -76,7 +76,7 @@
                                     <div class="form-group">
                                         <div class="col-sm-offset-4" style="margin-left:35%;">
                                             <label class="radio-inline"><input type="radio" name="upload"  id="u_activate" value="1" >Activate</label>
-<label class="radio-inline"><input type="radio" name="upload" value="0"  id="u_deactivate">Deactivate</label>
+                                            <label class="radio-inline"><input type="radio" name="upload" value="0"  id="u_deactivate">Deactivate</label>
                                         </div>
                                     </div>
                                     <hr>
@@ -360,7 +360,7 @@
                             <!--<span class="text-uploaded">Lorem Ipsum is simply dummy text of the printing and typesetting.</span>--><br>
                             <div class="container">
                                 <div class="panel {{ file.status ? 'panel-success' : 'panel-danger' }}">
-                                    <a href="{{ file.saved}}">
+                                    <a href="https://sgapi.bnr.rw/api/v1/download_files/{{file.original}}">
                                         <div class="panel-body">
                                             <img alt="" src="assets/img/file.png" class="file-logo">
                                             <p class="SG-text"><span> {{ file.filename }}</span></p>
@@ -377,6 +377,7 @@
                             <footer>
                                 <button type="button" class="btn btn-default btn_cartix" onclick="openNav1()" ng-show="upload_show">Upload</button>
                                 <button type="button" class="btn btn-default btn_cartix" onclick="openNav2()">View Data</button>
+                                <a class="btn btn-default btn_cartix" ng-href="https://sgapi.bnr.rw/api/v1/download_consent_form">Consent forms</a>
                             </footer>
                         </div>
                     </div>
@@ -410,14 +411,14 @@
                                 <div class="error" ng-show="box_data_two">
                                     <img alt="" src="assets/img/danger.png" class="icon-danger">
                                     <p class="error_message_text">You file contains errors, consider revising highlighted fields.
-                                        Download it here: <a ng-href="{{ savepath }}">{{filename}}</a>
+                                        Download it here: <a ng-href="https://sgapi.bnr.rw/api/v1/download_error_files/{{savepath}}">{{filename}}</a>
                                     </p>
                                 </div>
                                 <img alt="" src="assets/img/files-xls.png" ng-show="img_upl">
                                 <!-- upload -->
                                 <form name="uploadfile">
                                     <div class="drop-box" ng-show="uploadInput">
-                                        <input id="upload" type="file" ngf-select ng-model="efile" name="file" accept=".xlsx,.csv,.xls" ng-drop ngf-max-size="10MB" required ngf-model-invalid="errorFile"/>
+                                        <input id="upload" type="file" ngf-select ng-model="efile" name="file" accept=".xlsx,.csv,.xls,.pdf" ng-drop ngf-max-size="10MB" required ngf-model-invalid="errorFile"/>
                                         <p class="browse-text">Drag a file here or <a href="" id="upload_link">browse</a> for a upload</p>
                                         <button type="button" class="btn btn-success margin-button" id="upload-progress" ng-disabled="!uploadfile.$valid"                ng-click="upload_File(efile)">Upload</button>
                                         <br>
@@ -441,7 +442,10 @@
                                 <!-- file error -->
                                 <!-- download template file -->
                                 <div class="row">
-                                    <p class="download_data_text"><a href="">Download Data compilation sheet Template here</a></p>
+                                    <p class="download_data_text"><a target="_blank" href="https://sgmap.bnr.rw/uploads/Data_Compilation_Sheet_Template_2016.xlsx">Download Data compilation sheet Template here</a></p>
+                                </div>
+                                <div class="row">
+                                    <p class="download_data_text"><a target="_blank" href="../../uploads/BNR Consent form - Saving group infomation.pdf">Download Consent form Template here</a></p>
                                 </div>
                             </div>
                         </div>

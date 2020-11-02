@@ -1,0 +1,31 @@
+<div class="container">
+         <div class="col-xs-10 col-sm-8 col-md-5 col-lg-4 col-centered">
+            <div class="row logo">
+               <img src="assets/img/cartix-logo.png">
+            </div>
+            <div class="row form-cartix" ng-controller="validateOtpCtrl">
+                <h1 class="text-center sign-in"> Enter One time password </h1>
+               <form class="form form-horizontal" name="OtpForm" >
+                  <div class="form-group" >
+                     <input type="number" id="otp" class="form-control col-md-7" placeholder="Enter 6 digit code" ng-model="otpCode" required>
+                  </div>
+                  <div class="form-group">
+                      <p class="text-center" ng-show="notValid">Otp code invalid</p>
+                      <p class="text-center" ng-show="valid">Enter the password reset link you got from your mail!</p>
+                   </div>
+                  <div class="form-group">
+                      <p class="text-center">Never got the code ?  <span><a href="#/signin"> You need to fix me to be able to send the code </a></span></p>
+                  </div>
+                  <div class="form-actions form-group">
+                     <button type="submit" class="btn btn-success" ng-click="validateOtpCode(otpCode)" [disabled]="!form.valid"> Submit  </button>
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+      
+      <footer class="footer">
+          <div class="container">
+              <p class="footer-text">© Copyright cartix 2016</p>
+          </div>
+       </footer>
