@@ -3,14 +3,20 @@ myapp.factory("AuthService", [
   "$q",
   "$timeout",
   "$http",
-  "$cookieStore",
-  function ($q, $timeout, $http, $cookieStore) {
+  "$cookies",
+  function ($q, $timeout, $http, $cookies) {
     // config variable for http post
+
+    $http.defaults.headers.post["Authorization"] = localStorage.getItem(
+      "authToken"
+    );
+    console.log("getting this as the token", localStorage.getItem("authToken"));
     var config = {
       headers: {
         "Content-Type": "application/json",
-        "X-CSRF-Token": $cookieStore.get("csrf_token"),
+        Authorization: "Bearer " + localStorage.getItem("authToken"),
       },
+      withCredentials: true,
     };
 
     // create user variable
@@ -76,9 +82,8 @@ myapp.factory("AuthService", [
         .post(BaseUrl + "/auth/login", data, config)
         // handle success
         .success(function (data, status, headers, config) {
-          console.log(config, "================", data);
           if (status == 200 && data.response.tf_state === "ready") {
-            $cookieStore.put("csrf_token", data.response.csrf_token);
+            localStorage.setItem("authToken", data.response.user.token);
             deferred.resolve();
           } else {
             user = false;
