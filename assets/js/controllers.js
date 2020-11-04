@@ -50,8 +50,8 @@ myapp.controller("signupCtrl", [
         })
         // handle error
         .catch(function () {
-          console.log(ngo_id_selected);
           $scope.message = true;
+          $("#authErrorMessage").html(localStorage.getItem("authErrorMessage"));
         });
     };
   },

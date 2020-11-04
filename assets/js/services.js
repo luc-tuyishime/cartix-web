@@ -223,13 +223,20 @@ myapp.factory("AuthService", [
       $http
         .post(BaseUrl + "/api/v1/user/", data, config)
         .success(function (data, status) {
-          if (status == 200 && data.result) {
+          if (status == 200) {
             deferred.resolve();
           } else {
+            console.log(data, "=========");
+            localStorage.setItem("authErrorMessage", data.message);
             deferred.reject();
           }
         })
-        .error(function () {
+        .error(function (error) {
+          console.log(error, "=========");
+          localStorage.setItem(
+            "authErrorMessage",
+            error._schema.join("  and ")
+          );
           deferred.reject();
         });
       return deferred.promise;
