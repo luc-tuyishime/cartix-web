@@ -30,7 +30,7 @@ myapp.config([
         },
       })
       .when("/validate-otp-code", {
-        templateUrl: "views/sign/enter-otp.html",
+        templateUrl: "views/sign_/enter-otp.html",
         controller: "validateOtpCtrl",
         data: {
           private: false,

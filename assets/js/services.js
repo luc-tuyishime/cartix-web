@@ -55,12 +55,10 @@ myapp.factory("AuthService", [
       $http
         .post(BaseUrl + "/auth/tf-validate", data, config)
         .success(function (data, status) {
-          console.log(data, "=======this=======", config);
           if (status == 200 && data.result) {
             user = true;
-            storeUser(data.result);
-            saveNgo(data.ngo_id);
-            console.log(data.result);
+            storeUser(data.data.user_id);
+            saveNgo(data.data.ngo_id);
             deferred.resolve();
           } else {
             deferred.reject();
