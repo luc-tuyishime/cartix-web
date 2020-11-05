@@ -1,4 +1,4 @@
-var BaseUrl = "http://127.0.0.1:5000";
+var BaseUrl = "https://sgapi.bnr.rw/";
 var user_id = 0;
 
 myapp.controller("appBgCtrl", [
