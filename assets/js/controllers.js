@@ -1,5 +1,14 @@
-var BaseUrl = "https://sgapi.bnr.rw/";
+var BaseUrl = "http://localhost:5000";
 var user_id = 0;
+
+var config = {
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: "Bearer " + localStorage.getItem("authTokenTop"),
+    "Authentication-Token": localStorage.getItem("authToken"),
+  },
+  withCredentials: true,
+};
 
 myapp.controller("appBgCtrl", [
   "$scope",
@@ -75,7 +84,7 @@ myapp.controller("signinCtrl", [
     // Signup
     var url = BaseUrl + "/api/v1/params/1";
     $http
-      .get(url)
+      .get(url, config)
       .success(function (data, status, header, config) {
         $scope.name = data.user.names;
         $scope.email = data.user.email;
@@ -244,7 +253,7 @@ myapp.controller("excelFileCtrl", [
     var url = BaseUrl + "/api/v1/ngo/" + ngo_id;
 
     $http
-      .get(url)
+      .get(url, config)
       .success(function (data, status, header, config) {
         console.log("NGO data are here ", data, "for the ngo with id", ngo_id);
         $scope.ngo_name = data.ngo.name;
@@ -261,12 +270,6 @@ myapp.controller("excelFileCtrl", [
 
     function savepdf(original, filename) {
       var id = restoreUser();
-      var config = {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      };
-
       var data =
         '{"original":"' +
         original +
@@ -365,12 +368,6 @@ myapp.controller("excelFileCtrl", [
 
     function postFailFile(original, save, filename) {
       var id = restoreUser();
-      var config = {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      };
-
       var data =
         '{"original":"' +
         original +
@@ -503,11 +500,6 @@ myapp.controller("excelFileCtrl", [
     $scope.saveData = function (originalpath, filename) {
       $scope.disabled = true;
       $scope.savedValue = "Saving ...";
-      var config = {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      };
       var user_id = restoreUser();
 
       var data =
@@ -587,17 +579,11 @@ myapp.controller("mapCtrl", [
       }
     });
 
-    var config = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-
     var user_id = localStorage.getItem("u___");
     var url = BaseUrl + "/api/v1/user/" + user_id;
 
     $http
-      .get(url)
+      .get(url, config)
       .success(function (data, status, header, config) {
         console.log(data);
         //                $scope.name = data.user.names;
@@ -722,7 +708,7 @@ myapp.controller("mapCtrl", [
       var email, name, username;
       var url = BaseUrl + "/api/v1/user/" + user_id;
       $http
-        .get(url)
+        .get(url, config)
         .success(function (data, status) {
           console.log(data);
           email = data.user.email;
@@ -841,7 +827,7 @@ myapp.controller("mapCtrl", [
       var url = BaseUrl + "/api/v1/ngo/" + ngo_id;
 
       $http
-        .get(url)
+        .get(url, config)
         .success(function (data, status, header, config) {
           console.log("NGO data are here ", data, ngo_id);
           $scope.ngo_name = data.ngo.name;
@@ -855,9 +841,9 @@ myapp.controller("mapCtrl", [
     function loggedUserName() {
       var user_id = localStorage.getItem("u___");
       var url = BaseUrl + "/api/v1/user/" + user_id;
-
+      console.log({ config }, "==========");
       $http
-        .get(url)
+        .get(url, config)
         .success(function (data, status, header, config) {
           console.log(data);
           $scope.usernames_p = data.user.names;
@@ -879,7 +865,7 @@ myapp.controller("mapCtrl", [
     function analyticsNumber(year) {
       var url = BaseUrl + "/api/v1/analytics/numbers/" + year;
       $http
-        .get(url)
+        .get(url, config)
         .success(function (data, status, header, config) {
           $scope.sg_count = numeral(data.sg_count).format();
           $scope.membership = numeral(data.membership).format();
@@ -1013,7 +999,7 @@ myapp.controller("notificationCtrl", [
     var url = BaseUrl + "/api/v1/user/" + user_id;
 
     $http
-      .get(url)
+      .get(url, config)
       .success(function (data, status, header, config) {
         console.log(data);
         $scope.name = data.user.names;
@@ -1112,7 +1098,7 @@ myapp.controller("notificationCtrl", [
         //console.log(int_ngo_filter);
         var url = BaseUrl + "/api/v1/int_ngo/partner/" + int_ngo_filter;
         $http
-          .get(url)
+          .get(url, config)
           .success(function (data, status, header, config) {
             var options = "";
             $.each(data, function (key, value) {
@@ -1132,7 +1118,7 @@ myapp.controller("notificationCtrl", [
       function loadFilesYear() {
         var url = BaseUrl + "/api/v1/saving_year";
         $http
-          .get(url)
+          .get(url, config)
           .success(function (data, status, header, config) {
             console.log(data);
             var options = "";
@@ -1152,7 +1138,7 @@ myapp.controller("notificationCtrl", [
       function loadNgoFiles() {
         var url = BaseUrl + "/api/v1/files";
         $http
-          .get(url)
+          .get(url, config)
           .success(function (data, status, header, config) {
             console.log(data);
             $scope.files = data;
@@ -1174,7 +1160,7 @@ myapp.controller("notificationCtrl", [
       function loadNgoFiles(user_id) {
         var url = BaseUrl + "/api/v1/files/user/" + user_id;
         $http
-          .get(url)
+          .get(url, config)
           .success(function (data, status, header, config) {
             console.log(
               data,
@@ -1192,7 +1178,7 @@ myapp.controller("notificationCtrl", [
         console.log(ngo_id);
         var url = BaseUrl + "/api/v1/int_ngo/partner/" + ngo_id;
         $http
-          .get(url)
+          .get(url, config)
           .success(function (data, status, header, config) {
             console.log(data);
             var options = "";
@@ -1213,7 +1199,7 @@ myapp.controller("notificationCtrl", [
       function loadFilesYear() {
         var url = BaseUrl + "/api/v1/saving_year";
         $http
-          .get(url)
+          .get(url, config)
           .success(function (data, status, header, config) {
             console.log(data);
             var options = "";
@@ -1235,7 +1221,7 @@ myapp.controller("notificationCtrl", [
       function loadNgoFiles(user_id) {
         var url = BaseUrl + "/api/v1/files/user/" + user_id;
         $http
-          .get(url)
+          .get(url, config)
           .success(function (data, status, header, config) {
             console.log(
               data,
@@ -1362,12 +1348,7 @@ myapp.controller("viewAlldataCtrl", [
     $scope.downloadExcel = function (query, year) {
       console.log(query, year, "downloading a file");
       // config variable for http post
-      var config = {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        responseType: "blob",
-      };
+      config.responseType = "blob";
       var data = '{"query":"' + query + '", "year":"' + year + '"}';
       var url = BaseUrl + "/api/v1/data/download/";
       $http
@@ -1420,7 +1401,7 @@ myapp.controller("viewAlldataCtrl", [
         year +
         "/" +
         type;
-      $http.get(url).success(function (data, status, header, config) {
+      $http.get(url, config).success(function (data, status, header, config) {
         console.log(data);
         $scope.saving_group = numeral(data.saving_group).format();
         $scope.year_of_creation = data.year_of_creation.length;
@@ -1463,7 +1444,7 @@ myapp.controller("viewAlldataCtrl", [
 
     function viewDataLoadSector(ids, $http) {
       var url = BaseUrl + "/api/v1/data/sector/" + ids;
-      $http.get(url).success(function (data, status, header, config) {
+      $http.get(url, config).success(function (data, status, header, config) {
         console.log(data);
         var options = "";
         $.each(data, function (key, val) {
@@ -1480,7 +1461,7 @@ myapp.controller("viewAlldataCtrl", [
 
     function viewDataLoadDistrict(ids, $http) {
       var url = BaseUrl + "/api/v1/data/district/" + ids;
-      $http.get(url).success(function (data, status, header, config) {
+      $http.get(url, config).success(function (data, status, header, config) {
         console.log(data);
         var options = "";
         $.each(data, function (key, val) {
@@ -1620,7 +1601,7 @@ function loadDistrictSelectBox(province_id, idBox, $http) {
 function loadSectorSelectBox(district_id, idBox, $http) {
   alert(district_id);
   var url = BaseUrl + "/api/v1/kenessa/district/sector/" + district_id;
-  $http.get(url).success(function (data, status, header, config) {
+  $http.get(url, config).success(function (data, status, header, config) {
     console.log(data);
     var options = "";
     $.each(data, function (key, value) {
@@ -2031,7 +2012,7 @@ function chartFunction($http, year, ngo, province, district) {
     district;
 
   $http
-    .get(url)
+    .get(url, config)
     .success(function (data, status, header, config) {
       // FInscope chart
 
@@ -2188,7 +2169,7 @@ function chartFunction($http, year, ngo, province, district) {
     district;
   console.log(ngo);
   $http
-    .get(url)
+    .get(url, config)
     .success(function (data, status, header, config) {
       console.log(data.creation);
       var layout = {

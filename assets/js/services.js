@@ -1,4 +1,4 @@
-var BaseUrl = "https://sgapi.bnr.rw/";
+var BaseUrl = "http://localhost:5000";
 myapp.factory("AuthService", [
   "$q",
   "$timeout",
@@ -8,13 +8,16 @@ myapp.factory("AuthService", [
     // config variable for http post
 
     $http.defaults.headers.post["Authorization"] = localStorage.getItem(
+      "authTokenTop"
+    );
+    $http.defaults.headers.post["Authentication-Token"] = localStorage.getItem(
       "authToken"
     );
-    console.log("getting this as the token", localStorage.getItem("authToken"));
     var config = {
       headers: {
         "Content-Type": "application/json",
-        Authorization: "Bearer " + localStorage.getItem("authToken"),
+        Authorization: "Bearer " + localStorage.getItem("authTokenTop"),
+        "Authentication-Token": localStorage.getItem("authToken"),
       },
       withCredentials: true,
     };
@@ -59,6 +62,7 @@ myapp.factory("AuthService", [
             user = true;
             storeUser(data.data.user_id);
             saveNgo(data.data.ngo_id);
+            localStorage.setItem("authToken", data.data.auth_token);
             deferred.resolve();
           } else {
             deferred.reject();
@@ -81,7 +85,7 @@ myapp.factory("AuthService", [
         // handle success
         .success(function (data, status, headers, config) {
           if (status == 200 && data.response.tf_state === "ready") {
-            localStorage.setItem("authToken", data.response.user.token);
+            localStorage.setItem("authTokenTop", data.response.user.token);
             deferred.resolve();
           } else {
             user = false;
@@ -249,7 +253,7 @@ myapp.factory("AuthService", [
       // send a get request checking status
       var url = BaseUrl + "/api/v1/ngo_status/" + ngo_id;
       $http
-        .get(url)
+        .get(url, config)
         .success(function (data, status) {
           if (status == 200 && data.status) {
             deferred.resolve();
@@ -270,7 +274,7 @@ myapp.factory("AuthService", [
       // send a get request for user role
       var url = BaseUrl + "/api/v1/user_role/" + user_id;
       $http
-        .get(url)
+        .get(url, config)
         .success(function (data, status) {
           if (status == 200 && data.status) {
             deferred.resolve();
