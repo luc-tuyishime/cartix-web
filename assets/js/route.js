@@ -91,6 +91,19 @@ myapp.config([
 ]);
 
 myapp.run(function ($rootScope, $location, $route, AuthService) {
+  var lastDigestRun = new Date();
+  $rootScope.$watch(function detectIdle() {
+    var now = new Date();
+    if (now - lastDigestRun > 1000 * 5 * 60) {
+      // logout here, like delete cookie, navigate to login ...
+      console.log("I should log out", "==============");
+      AuthService.logout().then(function () {
+        localStorage.clear();
+        $location.path("/signin");
+      });
+    }
+    lastDigestRun = now;
+  });
   $rootScope.$on("$routeChangeStart", function (event, next, current) {
     if (!AuthService.getUserStatus()) {
       if (next.data.private && !AuthService.isLoggedIn()) {
