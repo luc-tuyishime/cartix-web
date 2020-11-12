@@ -11,7 +11,7 @@
                         <h3 class="reset-password-style">Change password</h3>
                     </div>
                 </div>
-                <div class="form-bottom" ng-controller="changePasswordCtrl">
+                <div class="form-bottom" ng-controller="resetPasswordCtrl">
                     <form role="form" name="changeP" class="login-form">
                         <div class="form-group">
                             <label class="sr-only" for="form-npassword">New Password</label>
@@ -21,7 +21,7 @@
                             <label class="sr-only" for="form-cpassword">Confirm Password</label>
                             <input type="password" placeholder="Confirm password..." class="form-password form-control" id="form-cpassword" ng-model="cpassword" required>
                         </div>
-                        <button type="submit" class="btn-sign" ng-click="changePass(password, cpassword)" ng-disabled="!changeP.$valid">Change password</button>
+                        <button type="submit" class="btn-sign" ng-click="resetPassword(password, cpassword)" ng-disabled="!changeP.$valid">Change password</button>
                     </form>
                 </div>
                 <div class="dont-have-an-account">

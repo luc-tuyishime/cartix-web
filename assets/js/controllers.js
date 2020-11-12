@@ -145,12 +145,31 @@ myapp.controller("changePasswordCtrl", [
   "AuthService",
   function ($scope, $http, $location, $routeParams, AuthService) {
     $scope.message = false;
-    $scope.changePass = function (password, cpassword) {
-      if (password != cpassword) {
+    $scope.changePass = function changePass(
+      email,
+      currentPassword,
+      newPassword,
+      passwordConfirm
+    ) {
+      console.log(
+        {
+          current: currentPassword,
+          new: newPassword,
+          confirm: passwordConfirm,
+        },
+        "========="
+      );
+      if (newPassword != passwordConfirm) {
         $scope.message = true;
       } else {
-        AuthService.changePassword(password, $routeParams.email)
+        AuthService.changePassword(
+          email,
+          currentPassword,
+          newPassword,
+          passwordConfirm
+        )
           .then(function () {
+            $scope.message = false;
             $location.path("/signin");
           })
           .catch(function () {
@@ -176,32 +195,9 @@ myapp.controller("validateOtpCtrl", [
           $location.path("/app");
         })
         .catch(function () {
+          $("#topMessage").html(localStorage.getItem("topMessage"));
           $scope.notValid = true;
         });
-    };
-  },
-]);
-
-myapp.controller("changePasswordCtrl", [
-  "$scope",
-  "$http",
-  "$location",
-  "$routeParams",
-  "AuthService",
-  function ($scope, $http, $location, $routeParams, AuthService) {
-    $scope.message = false;
-    $scope.changePass = function (password, cpassword) {
-      if (password != cpassword) {
-        $scope.message = true;
-      } else {
-        AuthService.changePassword(password, $routeParams.email)
-          .then(function () {
-            $location.path("/signin");
-          })
-          .catch(function () {
-            $scope.message = true;
-          });
-      }
     };
   },
 ]);
@@ -228,6 +224,35 @@ myapp.controller("forgetCtrl", [
           $scope.reset_email = true;
           $scope.reset_email_success = false;
         });
+    };
+  },
+]);
+
+myapp.controller("resetPasswordCtrl", [
+  "$scope",
+  "$http",
+  "$location",
+  "$routeParams",
+  "AuthService",
+  function ($scope, $http, $location, $routeParams, AuthService) {
+    $scope.message = false;
+    $scope.resetPassword = function (password, confirmPassword) {
+      if (password != confirmPassword) {
+        $scope.message = true;
+      } else {
+        AuthService.resetPassword(
+          password,
+          confirmPassword,
+          $routeParams.email,
+          $routeParams.token
+        )
+          .then(function () {
+            $location.path("/signin");
+          })
+          .catch(function () {
+            $scope.message = true;
+          });
+      }
     };
   },
 ]);

@@ -15,7 +15,7 @@
                             <input type="number" id="otp" class="form-control" placeholder="Enter 6 digit code" ng-model="otpCode" required>
                         </div>
                         <div class="form-group" ng-show="notValid">
-                            <p class="text-center error-message" >Otp code invalid</p>
+                            <p id="topMessage" class="text-center error-message" ></p>
                         </div>
                         <button type="submit" class="btn-sign" ng-click="validateOtpCode(otpCode)" [disabled]="!form.valid"> Submit  </button>
                     </form>

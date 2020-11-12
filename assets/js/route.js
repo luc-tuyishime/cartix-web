@@ -36,6 +36,13 @@ myapp.config([
           private: false,
         },
       })
+      .when("/reset-password/:token/:email", {
+        templateUrl: "views/sign_/recovery-pass.html",
+        controller: "resetPasswordCtrl",
+        data: {
+          private: false,
+        },
+      })
       .when("/organisation", {
         templateUrl: "views/sign/organisation.html",
         controller: "loginBgCtrl",
@@ -76,15 +83,6 @@ myapp.config([
         data: {
           private: false,
         },
-      })
-      .when("/new-password/:email", {
-        templateUrl: "views/sign_/recovery-pass.html",
-        data: {
-          private: false,
-        },
-      })
-      .otherwise({
-        redirectTo: "/",
       });
 
     // use the HTML5 History API

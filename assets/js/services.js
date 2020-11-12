@@ -6,17 +6,9 @@ myapp.factory("AuthService", [
   "$cookies",
   function ($q, $timeout, $http, $cookies) {
     // config variable for http post
-
-    $http.defaults.headers.post["Authorization"] = localStorage.getItem(
-      "authTokenTop"
-    );
-    $http.defaults.headers.post["Authentication-Token"] = localStorage.getItem(
-      "authToken"
-    );
     var config = {
       headers: {
         "Content-Type": "application/json",
-        Authorization: "Bearer " + localStorage.getItem("authTokenTop"),
         "Authentication-Token": localStorage.getItem("authToken"),
       },
       withCredentials: true,
@@ -41,6 +33,7 @@ myapp.factory("AuthService", [
       ngoStatus: ngoStatus,
       userRole: userRole,
       validateOtp: validateOtp,
+      resetPassword: resetPassword,
     };
 
     function isLoggedIn() {
@@ -52,7 +45,8 @@ myapp.factory("AuthService", [
     }
 
     function validateOtp(data) {
-      console.log(data, "=======|||||=======", config);
+      config.headers.Authorization =
+        "Bearer " + localStorage.getItem("authTokenTop");
       var deferred = $q.defer();
       //send post request
       $http
@@ -70,6 +64,7 @@ myapp.factory("AuthService", [
         })
         .error(function (error) {
           console.log(error, "==============");
+          localStorage.setItem("topMessage", error.message);
           deferred.reject();
         });
       return deferred.promise;
@@ -166,23 +161,60 @@ myapp.factory("AuthService", [
       return deferred.promise;
     }
 
-    function changePassword(password, email) {
+    function changePassword(
+      email,
+      currentPassword,
+      newPassword,
+      passwordConfirm
+    ) {
       var deferred = $q.defer();
 
-      var data = '{"password":"' + password + '", "email":"' + email + '"}';
-
+      var data = {
+        password: currentPassword,
+        email: email,
+        new_password: newPassword,
+        new_password_confirm: passwordConfirm,
+      };
+      console.log("changing the password with the following data ", data);
       //send post request
       $http
-        .put(BaseUrl + "/api/v1/change/password", data, config)
+        .post(BaseUrl + "/auth/change", data, config)
         .success(function (data, status) {
-          if (status == 200 && data.result) {
+          if (status == 200) {
             console.log(data.result);
             deferred.resolve();
           } else {
             deferred.reject();
           }
         })
-        .error(function () {
+        .error(function (error) {
+          console.log(error, "=================");
+          deferred.reject();
+        });
+      return deferred.promise;
+    }
+
+    function resetPassword(password, confirmPassword, email, token) {
+      var deferred = $q.defer();
+
+      var data = {
+        email: email,
+        password: password,
+        password_confirm: confirmPassword,
+      };
+      console.log("reset the password with the following data ", data);
+      //send post request
+      $http
+        .post(BaseUrl + "/auth/reset/" + token, data)
+        .success(function (data, status) {
+          if (status == 200) {
+            deferred.resolve();
+          } else {
+            deferred.reject();
+          }
+        })
+        .error(function (error) {
+          console.log(error, "=================");
           deferred.reject();
         });
       return deferred.promise;
@@ -190,20 +222,21 @@ myapp.factory("AuthService", [
 
     function recover(email) {
       var deferred = $q.defer();
-      var link = BaseUrl + "/api/v1/recover/" + email;
-
+      var link = BaseUrl + "/auth/reset";
+      data = { email: email };
       //send get request
       $http
-        .get(link)
+        .post(link, data)
         .success(function (data, status) {
-          if (status == 200 && data.result) {
+          if (status == 200) {
             console.log(data.result);
             deferred.resolve();
           } else {
             deferred.reject();
           }
         })
-        .error(function () {
+        .error(function (error) {
+          console.log(error, "=========");
           deferred.reject();
         });
       return deferred.promise;
