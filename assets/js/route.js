@@ -2,6 +2,7 @@ var myapp = angular.module("cartixApp", [
   "ngRoute",
   "ngFileUpload",
   "ngCookies",
+  "ngIdle",
 ]);
 myapp.config([
   "$routeProvider",
@@ -91,19 +92,6 @@ myapp.config([
 ]);
 
 myapp.run(function ($rootScope, $location, $route, AuthService) {
-  var lastDigestRun = new Date();
-  $rootScope.$watch(function detectIdle() {
-    var now = new Date();
-    if (now - lastDigestRun > 1000 * 5 * 60) {
-      // logout here, like delete cookie, navigate to login ...
-      console.log("I should log out", "==============");
-      AuthService.logout().then(function () {
-        localStorage.clear();
-        $location.path("/signin");
-      });
-    }
-    lastDigestRun = now;
-  });
   $rootScope.$on("$routeChangeStart", function (event, next, current) {
     if (!AuthService.getUserStatus()) {
       if (next.data.private && !AuthService.isLoggedIn()) {
@@ -111,5 +99,29 @@ myapp.run(function ($rootScope, $location, $route, AuthService) {
         $route.reload();
       }
     }
+  });
+});
+
+myapp.config([
+  "KeepaliveProvider",
+  "IdleProvider",
+  function (KeepaliveProvider, IdleProvider) {
+    IdleProvider.idle(10 * 60);
+    IdleProvider.timeout(5);
+    KeepaliveProvider.interval(10);
+  },
+]);
+
+myapp.run(function ($rootScope, Idle, AuthService, $location) {
+  Idle.watch();
+  $rootScope.$on("IdleTimeout", function () {
+    // end their session and redirect to login.
+    console.log(
+      "I am logging the user out here and checking if everythign si working"
+    );
+    AuthService.logout().then(function () {
+      $location.path("/signin");
+      localStorage.clear();
+    });
   });
 });

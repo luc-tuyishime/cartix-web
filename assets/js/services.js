@@ -1,4 +1,4 @@
-var BaseUrl = "http://localhost:5000";
+var BaseUrl = "https://sgapi.bnr.rw";
 myapp.factory("AuthService", [
   "$q",
   "$timeout",

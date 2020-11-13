@@ -1,4 +1,4 @@
-var BaseUrl = "http://localhost:5000";
+var BaseUrl = "https://sgapi.bnr.rw";
 var user_id = 0;
 
 var config = {
