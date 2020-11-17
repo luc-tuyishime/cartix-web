@@ -333,6 +333,7 @@ myapp.controller("excelFileCtrl", [
         data: {
           file: file,
         },
+        config: config,
       });
 
       file.upload.then(
@@ -340,7 +341,16 @@ myapp.controller("excelFileCtrl", [
           $timeout(function () {
             $scope.spinLoad = false;
             $scope.uploadInput = true;
-            if (!response.data.status) {
+            console.log(
+              "uploading data message",
+              response.data,
+              10 * "======="
+            );
+            if (
+              response.data.status == 0 &&
+              response.data.originalpath &&
+              response.data.filename
+            ) {
               postFailFile(
                 response.data.originalpath,
                 response.data.savepath,
@@ -355,7 +365,11 @@ myapp.controller("excelFileCtrl", [
               $scope.filename = response.data.filename;
             } else {
               console.log(response.data.status, "djjjfjfjfjfjfjfj");
-              if (response.data.status == 3) {
+              if (
+                response.data.status == 3 &&
+                response.data.originalpath &&
+                response.data.filename.endsWith(".pdf")
+              ) {
                 $scope.uploadProcess = false;
                 $scope.showDataUlploaded = false;
                 savepdf(response.data.originalpath, response.data.filename);
