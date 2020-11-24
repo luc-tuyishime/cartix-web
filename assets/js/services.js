@@ -112,6 +112,7 @@ myapp.factory("AuthService", [
         user = false;
         deferred.reject();
       }
+      localStorage.clear();
 
       return deferred.promise;
     }
